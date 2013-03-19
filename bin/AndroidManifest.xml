@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.count.easydrive366"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="17" />
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="cn.count.easydrive366.WelcomeActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+         <activity android:name="cn.count.easydrive366.InformationActivity"></activity>
+         <activity android:name="cn.count.easydrive366.HelpCallActivity"></activity>
+         <activity android:name="cn.count.easydrive366.RescueActivity"></activity>
+         <activity android:name="cn.count.easydrive366.MaintainActivity"></activity>
+         <activity android:name="cn.count.easydrive366.DriverLicenseActivity"></activity>
+         <activity android:name="cn.count.easydrive366.CarRegistrationActivity"></activity>
+         <activity android:name="cn.count.easydrive366.TaxForCarShipActivity"></activity>
+         <activity android:name="cn.count.easydrive366.CompulsoryInsuranceActivity"></activity>
+         <activity android:name="cn.count.easydrive366.BusinessInsuranceActivity"></activity>
+          <activity android:name="cn.count.easydrive366.BusinessSuggestionActivity"></activity>
+         <activity android:name="cn.count.easydrive366.DriverLicenseEditActivity"></activity>
+         <activity android:name="cn.count.easydrive366.HomeActivity"></activity>
+         <activity android:name="cn.count.easydrive366.MaintainEditActivity"></activity>
+         <activity android:name="cn.count.easydrive366.CarRegistrationEditActivity"></activity>
+         <activity android:name="cn.count.easydrive366.LoginActivity"></activity>
+         <activity android:name="cn.count.easydrive366.SignupActivity"></activity>
+         <activity android:name="cn.count.easydrive366.ViolationSearchActivity"></activity>
+           <receiver android:name="cn.count.easydriver366.service.GetLatestReceiver">
+             
+             
+             
+             <intent-filer>
+                 <action android:name="cn.count.easydriver366.service.GetLatestReceiver"></action>
+                 
+                 
+             </intent-filer>
+         </receiver>
+         <service android:name="cn.count.easydriver366.service.BackendService"
+             android:persistent="true"
+             android:exported="true"
+             android:enabled="true"></service>
+         
+		<receiver android:name="cn.count.easydriver366.service.StartServiceReceiver" android:label="@string/app_name"> 
+   			 <intent-filter> 
+       				<action android:name="android.intent.action.BOOT_COMPLETED" /> 
+       				<category android:name="android.intent.category.LAUNCHER" /> 
+    		</intent-filter> 
+		</receiver>
+    </application>
+
+</manifest>
