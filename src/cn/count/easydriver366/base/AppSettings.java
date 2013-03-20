@@ -8,7 +8,9 @@ public final class AppSettings {
 //	static public String ServerUrl = "http://10.4.30.190:7000/pm/";
 	static public String ServerUrl ="http://124.135.63.250:21000/pm/";
 	static public String AppTile="cn.count.EasyDrive366";
+	static public String LatestNewsKey="LatestNews";
 	static public int userid=65;
+	static public int TotalPageCount=10;
 	static public String username;
 	static public boolean isLogin= false;
 	static public JSONArray driver_type_list;

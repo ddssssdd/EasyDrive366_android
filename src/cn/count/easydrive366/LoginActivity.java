@@ -23,7 +23,7 @@ public class LoginActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_login_activity);
 		btnLogin = (Button)findViewById(R.id.btn_login_login);
-		btnSignup =(Button)findViewById(R.id.btn_login_Signup);
+	
 		edtUsername = (EditText)findViewById(R.id.edt_login_username);
 		edtPassword = (EditText)findViewById(R.id.edt_login_passwrod);
 		edtUsername.setText("aaa");
@@ -35,13 +35,7 @@ public class LoginActivity extends BaseHttpActivity {
 				login();
 				
 			}});
-		btnSignup.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				signup();
-				
-			}});
+		
 	}
 	private void login(){
 		String username= edtUsername.getText().toString();
@@ -81,11 +75,6 @@ public class LoginActivity extends BaseHttpActivity {
 			
 		}
 	}
-	private void signup(){
-		Intent intent = new Intent(this,SignupActivity.class);
-		startActivity(intent);
-		this.finish();
-		
-	}
+	
 
 }

@@ -8,4 +8,7 @@
 	<string name="insurance_suggestion">保险建议</string>
 	<string name="save">保存</string>
 	<string name="edit">设置</string>
+	<string name="password">密码</string>
+	<string name="repassword">再输密码</string>
+	<string name="username">用户名</string>
 </resources>

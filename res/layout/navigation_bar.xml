@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dip"
-        android:background="@drawable/index_looks"/>
+        android:background="@drawable/ic_launcher"/>
     
 
     <ImageButton 

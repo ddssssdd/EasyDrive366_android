@@ -23,18 +23,12 @@ public class SignupActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_signup_activity);
-		btnLogin = (Button)findViewById(R.id.btn_signup_login);
+		
 		btnSignup =(Button)findViewById(R.id.btn_signup_signup);
 		edtUsername = (EditText)findViewById(R.id.edt_signup_username);
 		edtPassword = (EditText)findViewById(R.id.edt_signup_passwrod);
 		edtRePassword = (EditText)findViewById(R.id.edt_signup_repasswrod);
-		btnLogin.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				login();
-				
-			}});
+		
 		btnSignup.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -43,13 +37,7 @@ public class SignupActivity extends BaseHttpActivity {
 				
 			}});
 	}
-	private void login(){
-		Intent intent = new Intent(this,SignupActivity.class);
-		startActivity(intent);
-		this.finish();
-		
-		
-	}
+	
 	@Override
 	public void processMessage(int msgType, final Object result) {
 		super.processMessage(msgType, result);

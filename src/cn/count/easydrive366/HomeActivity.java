@@ -9,6 +9,7 @@ import cn.count.easydrive366.components.HomeMenuItem;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.service.BackendService;
+import cn.count.easydriver366.service.GetLatestReceiver;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -18,6 +19,8 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -30,12 +33,26 @@ public class HomeActivity extends Activity {
 		setContentView(R.layout.moudles_home_activity);
 		startBackendService();
 		setupMenu();
+		findViewById(R.id.title_set_bn).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				settingsButtonPress();
+				
+			}
+			
+		});
 	}
 	private void startBackendService(){
 		if (!isServiceRunning()){
 			Intent service = new Intent(this,BackendService.class);
 			this.startService(service);
 		}
+		
+		GetLatestReceiver receiver = new GetLatestReceiver();
+		receiver.run();
+			
+		
 	}
 	private boolean isServiceRunning(){
 		boolean result = false;
@@ -109,6 +126,14 @@ public class HomeActivity extends Activity {
 		editor.putInt("userid", 0);
 		editor.putBoolean("islogin", false);
 		editor.commit();
+	}
+	private void settingsButtonPress(){
+		Intent intent = new Intent();
+		intent.putExtra("key", "01");
+		intent.putExtra("description","dd");
+		intent.putExtra("updated_time", "aa");
+		intent.setAction("cn.count.easydrive366.components.HomeMenuItem$LatestInformationReceiver");
+		this.sendBroadcast(intent);
 	}
 	
 }

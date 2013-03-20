@@ -28,17 +28,23 @@ public final class R {
         public static final int home_select_list_style=0x7f020004;
         public static final int ic_launcher=0x7f020005;
         public static final int index_looks=0x7f020006;
-        public static final int set_bn_style=0x7f020007;
-        public static final int sign_input1=0x7f020008;
-        public static final int sign_input2=0x7f020009;
-        public static final int sign_line=0x7f02000a;
-        public static final int sign_logo=0x7f02000b;
-        public static final int signup_hit_input1=0x7f02000c;
-        public static final int signup_hit_input2=0x7f02000d;
-        public static final int signup_hit_input6=0x7f02000e;
-        public static final int top_bar_bg=0x7f02000f;
-        public static final int top_bar_set_btn=0x7f020010;
-        public static final int top_bar_set_btn_d=0x7f020011;
+        public static final int main_login_normal=0x7f020007;
+        public static final int main_login_pressed=0x7f020008;
+        public static final int main_login_selector=0x7f020009;
+        public static final int main_regist_normal=0x7f02000a;
+        public static final int main_regist_pressed=0x7f02000b;
+        public static final int main_regist_selector=0x7f02000c;
+        public static final int set_bn_style=0x7f02000d;
+        public static final int sign_input1=0x7f02000e;
+        public static final int sign_input2=0x7f02000f;
+        public static final int sign_line=0x7f020010;
+        public static final int sign_logo=0x7f020011;
+        public static final int signup_hit_input1=0x7f020012;
+        public static final int signup_hit_input2=0x7f020013;
+        public static final int signup_hit_input6=0x7f020014;
+        public static final int top_bar_bg=0x7f020015;
+        public static final int top_bar_set_btn=0x7f020016;
+        public static final int top_bar_set_btn_d=0x7f020017;
     }
     public static final class id {
         public static final int btn_carregistration_edit=0x7f080012;
@@ -49,13 +55,11 @@ public final class R {
         public static final int btn_compulsory_insurance_2=0x7f080023;
         public static final int btn_driverlicense_edit=0x7f080025;
         public static final int btn_driverlicense_save=0x7f080035;
-        public static final int btn_login_Signup=0x7f080048;
-        public static final int btn_login_login=0x7f080049;
+        public static final int btn_login_login=0x7f080048;
         public static final int btn_modules_businessinsurance_suggestion=0x7f080010;
         public static final int btn_modules_edit_maintain_save=0x7f080042;
-        public static final int btn_modules_maintain_edit=0x7f080056;
-        public static final int btn_signup_login=0x7f080051;
-        public static final int btn_signup_signup=0x7f080052;
+        public static final int btn_modules_maintain_edit=0x7f080054;
+        public static final int btn_signup_signup=0x7f080050;
         public static final int btn_welcome_login=0x7f080000;
         public static final int btn_welcome_signup=0x7f080001;
         public static final int edt_carregistration_engine_no=0x7f080032;
@@ -73,27 +77,27 @@ public final class R {
         public static final int edt_maintain_max_time=0x7f080041;
         public static final int edt_maintain_pre_date=0x7f08003f;
         public static final int edt_maintain_pre_distance=0x7f08003e;
-        public static final int edt_signup_passwrod=0x7f08004f;
-        public static final int edt_signup_repasswrod=0x7f080050;
-        public static final int edt_signup_username=0x7f08004e;
-        public static final int expandableListView1=0x7f080053;
+        public static final int edt_signup_passwrod=0x7f08004e;
+        public static final int edt_signup_repasswrod=0x7f08004f;
+        public static final int edt_signup_username=0x7f08004d;
+        public static final int expandableListView1=0x7f080051;
         public static final int expandableListView_compulsory_insurance=0x7f080024;
         public static final int listitem_content=0x7f080007;
         public static final int listitem_pic=0x7f080005;
         public static final int listitem_title=0x7f080006;
-        public static final int menu_settings=0x7f08006d;
+        public static final int menu_settings=0x7f08006b;
         public static final int modules_information_listview=0x7f080045;
         public static final int moudles_helpcall_listview=0x7f080044;
         public static final int table_modules_businessinsurance_table=0x7f08000f;
         public static final int table_modules_businesssuggestion_table=0x7f080011;
-        public static final int table_modules_violationsearch_table=0x7f080054;
-        public static final int table_partview_business_items=0x7f080063;
+        public static final int table_modules_violationsearch_table=0x7f080052;
+        public static final int table_partview_business_items=0x7f080061;
         public static final int tablelayout_edit_maintain=0x7f08003c;
-        public static final int tablelout_in_home_activity=0x7f080055;
+        public static final int tablelout_in_home_activity=0x7f080053;
         public static final int textView1=0x7f080020;
-        public static final int titile_layout_ry=0x7f08005f;
-        public static final int title_logo_img=0x7f080060;
-        public static final int title_set_bn=0x7f080061;
+        public static final int titile_layout_ry=0x7f08005d;
+        public static final int title_logo_img=0x7f08005e;
+        public static final int title_set_bn=0x7f08005f;
         public static final int txt_carregistration_brand=0x7f080016;
         public static final int txt_carregistration_car_type=0x7f080014;
         public static final int txt_carregistration_car_typename=0x7f080015;
@@ -129,28 +133,28 @@ public final class R {
         public static final int txt_listitem_detail_detail=0x7f08000d;
         public static final int txt_listitem_detail_right=0x7f08000e;
         public static final int txt_listitem_detail_title=0x7f08000c;
-        public static final int txt_maintain_average_mileage=0x7f080057;
-        public static final int txt_maintain_current_date=0x7f08005c;
-        public static final int txt_maintain_current_distance=0x7f08005e;
-        public static final int txt_maintain_current_miles=0x7f08005d;
-        public static final int txt_maintain_max_distance=0x7f08005a;
-        public static final int txt_maintain_max_time=0x7f08005b;
-        public static final int txt_maintain_pre_date=0x7f080059;
-        public static final int txt_maintain_pre_distance=0x7f080058;
-        public static final int txt_partview_business_companyname=0x7f080064;
-        public static final int txt_partview_business_date_to_date=0x7f080066;
-        public static final int txt_partview_business_insurance_no=0x7f080065;
-        public static final int txt_partview_business_title=0x7f080062;
-        public static final int txt_partview_verydetailitem_=0x7f080067;
-        public static final int txt_rescue_Address=0x7f08004b;
-        public static final int txt_rescue_Description=0x7f08004d;
-        public static final int txt_rescue_Phone=0x7f08004c;
-        public static final int txt_rescue_ShopName=0x7f08004a;
-        public static final int txt_violationdetailitem_detail=0x7f080069;
-        public static final int txt_violationdetailitem_r1=0x7f08006a;
-        public static final int txt_violationdetailitem_r2=0x7f08006b;
-        public static final int txt_violationdetailitem_r3=0x7f08006c;
-        public static final int txt_violationdetailitem_title=0x7f080068;
+        public static final int txt_maintain_average_mileage=0x7f080055;
+        public static final int txt_maintain_current_date=0x7f08005a;
+        public static final int txt_maintain_current_distance=0x7f08005c;
+        public static final int txt_maintain_current_miles=0x7f08005b;
+        public static final int txt_maintain_max_distance=0x7f080058;
+        public static final int txt_maintain_max_time=0x7f080059;
+        public static final int txt_maintain_pre_date=0x7f080057;
+        public static final int txt_maintain_pre_distance=0x7f080056;
+        public static final int txt_partview_business_companyname=0x7f080062;
+        public static final int txt_partview_business_date_to_date=0x7f080064;
+        public static final int txt_partview_business_insurance_no=0x7f080063;
+        public static final int txt_partview_business_title=0x7f080060;
+        public static final int txt_partview_verydetailitem_=0x7f080065;
+        public static final int txt_rescue_Address=0x7f08004a;
+        public static final int txt_rescue_Description=0x7f08004c;
+        public static final int txt_rescue_Phone=0x7f08004b;
+        public static final int txt_rescue_ShopName=0x7f080049;
+        public static final int txt_violationdetailitem_detail=0x7f080067;
+        public static final int txt_violationdetailitem_r1=0x7f080068;
+        public static final int txt_violationdetailitem_r2=0x7f080069;
+        public static final int txt_violationdetailitem_r3=0x7f08006a;
+        public static final int txt_violationdetailitem_title=0x7f080066;
     }
     public static final class layout {
         public static final int activity_welcome=0x7f030000;
@@ -191,17 +195,22 @@ public final class R {
         public static final int edit=0x7f050006;
         public static final int insurance_suggestion=0x7f050004;
         public static final int menu_settings=0x7f050002;
+        public static final int password=0x7f050007;
+        public static final int repassword=0x7f050008;
         public static final int save=0x7f050005;
+        public static final int username=0x7f050009;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -220,5 +229,7 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        public static final int button=0x7f060002;
+        public static final int button_green=0x7f060003;
     }
 }

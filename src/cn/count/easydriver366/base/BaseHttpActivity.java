@@ -45,41 +45,25 @@ public class BaseHttpActivity extends Activity implements HttpClient.IHttpCallba
 	}
 	public String getOfflineResult(final int msgType){
 		SharedPreferences prefs =this.getPreferences(MODE_PRIVATE);
-		String result = prefs.getString(String.format("json_%d",msgType), "");
+		String result = prefs.getString(getKey(msgType), "");
 		return result;
+	}
+	private String getKey(final int msgType){
+		return String.format("json_%d_by_userid_%d",msgType,AppSettings.userid);
 	}
 	@Override
 	public void recordResult(final int msgType,final Object result){
 		if (this.isSuccess(result)){
 			SharedPreferences prefs =this.getPreferences(MODE_PRIVATE);
 			Editor editor = prefs.edit();
-			editor.putString(String.format("json_%d",msgType), result.toString());
+			editor.putString(getKey(msgType), result.toString());
 			editor.commit();
 		}
 		
 		
 	}
 	public boolean isSuccess(final Object jsonobj){
-		boolean result= false;
-		if (jsonobj==null){
-			return result;
-		}
-		if (jsonobj instanceof JSONObject){
-			try{
-				final String status = ((JSONObject)jsonobj).getString("status");
-				result = status.equals("success");
-			}catch(Exception e){
-				log(e);
-			}
-			 
-		}else if (jsonobj instanceof JSONArray){
-			try{
-				result =  ((JSONArray)jsonobj).length()>0;
-			}catch(Exception e){
-				log(e);
-			}
-		}
-		return result;
+		return AppTools.isSuccess(jsonobj);
 	}
 	protected void log(Exception e){
 		Log.e(BaseHttpClientTAG, e.getMessage());
