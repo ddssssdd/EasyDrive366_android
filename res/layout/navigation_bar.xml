@@ -13,6 +13,8 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dip"
         android:background="@drawable/index_looks"/>
+    
+
     <ImageButton 
         android:id="@+id/title_set_bn"
         android:layout_width="59dip"

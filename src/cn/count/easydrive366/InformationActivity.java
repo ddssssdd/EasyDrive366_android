@@ -25,6 +25,7 @@ public class InformationActivity extends BaseListViewActivity {
 		this.resource_listitem_id = R.layout.module_listitem;
 		restoreFromLocal(1);
 		this.get(AppSettings.url_for_get_news(), 1);
+		
 	}
 	@Override
 	protected void initData(Object result,int msgType){
