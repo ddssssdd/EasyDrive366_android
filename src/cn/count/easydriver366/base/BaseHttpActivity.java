@@ -53,19 +53,26 @@ public class BaseHttpActivity extends Activity implements HttpClient.IHttpCallba
 		Log.e(BaseHttpClientTAG, result.toString());
 	}
 	public void restoreFromLocal(final int msgType){
+		if (this.isOnline()){
+			return;
+		}
 		String result = this.getOfflineResult(msgType);
 		if (result!=null && !result.isEmpty()){
 			try {
+				
 				this.processMessage(msgType, new JSONObject(result));
+				
 			} catch (JSONException e) {
 				log(e);
 			}
 		}
 	}
 	public String getOfflineResult(final int msgType){
+		
 		SharedPreferences prefs =this.getPreferences(MODE_PRIVATE);
 		String result = prefs.getString(getKey(msgType), "");
 		return result;
+		
 	}
 	private String getKey(final int msgType){
 		return String.format("json_%d_by_userid_%d",msgType,AppSettings.userid);
@@ -140,6 +147,9 @@ public class BaseHttpActivity extends Activity implements HttpClient.IHttpCallba
 			});
 		}
 		
+	}
+	protected boolean isOnline(){
+		return NetworkUtils.getNetworkState(this)>0;
 	}
 	    
 }

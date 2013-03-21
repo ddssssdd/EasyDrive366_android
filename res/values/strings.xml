@@ -11,4 +11,6 @@
 	<string name="password">密码</string>
 	<string name="repassword">再输密码</string>
 	<string name="username">用户名</string>
+	<string name="app_loading_fail">Failure</string>
+	<string name="app_loading">Loading...</string>
 </resources>

@@ -15,6 +15,7 @@ import cn.count.easydriver366.base.AppSettings;
 public class HelpCallActivity extends BaseListViewActivity {
 	private String _companyname;
 	private String _phone;
+	private MyAdapter _adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -42,9 +43,14 @@ public class HelpCallActivity extends BaseListViewActivity {
 	
 	@Override
 	protected void initView(){
-		ListView lv = (ListView)findViewById(resource_listview_id);
-		MyAdapter adapter =new MyAdapter(HelpCallActivity.this);
-		lv.setAdapter(adapter);
+		if (_adapter==null){
+			ListView lv = (ListView)findViewById(resource_listview_id);
+			_adapter =new MyAdapter(HelpCallActivity.this);
+			lv.setAdapter(_adapter);
+		}else{
+			_adapter.notifyDataSetChanged();
+		}
+		
 		TextView txtCompany = (TextView)findViewById(R.id.txt_helpcall_company);
 		txtCompany.setText(_companyname);
 	}
