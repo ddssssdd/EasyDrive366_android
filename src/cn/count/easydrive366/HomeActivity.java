@@ -96,17 +96,17 @@ public class HomeActivity extends Activity {
 	
 	private void initMenuItems(){
 		menus = new ArrayList<HomeMenu>();
-		menus.add(new HomeMenu("01","01",InformationActivity.class));
-		menus.add(new HomeMenu("02","02",HelpCallActivity.class));
-		menus.add(new HomeMenu("03","03",RescueActivity.class));
-		menus.add(new HomeMenu("04","04",MaintainActivity.class));
-		menus.add(new HomeMenu("05","05",DriverLicenseActivity.class));
-		menus.add(new HomeMenu("06","06",CarRegistrationActivity.class));
-		menus.add(new HomeMenu("07","07",TaxForCarShipActivity.class));
-		menus.add(new HomeMenu("08","08",CompulsoryInsuranceActivity.class));
-		menus.add(new HomeMenu("09","09",BusinessInsuranceActivity.class));
+		menus.add(new HomeMenu("最新消息","01",InformationActivity.class));
+		menus.add(new HomeMenu("紧急救助","02",HelpCallActivity.class));
+		menus.add(new HomeMenu("会员服务","03",RescueActivity.class));
+		menus.add(new HomeMenu("维修服务","04",MaintainActivity.class));
+		menus.add(new HomeMenu("驾驶证","05",DriverLicenseActivity.class));
+		menus.add(new HomeMenu("行驶证","06",CarRegistrationActivity.class));
+		menus.add(new HomeMenu("车船税","07",TaxForCarShipActivity.class));
+		menus.add(new HomeMenu("交强险","08",CompulsoryInsuranceActivity.class));
+		menus.add(new HomeMenu("商业险","09",BusinessInsuranceActivity.class));
 		
-		menus.add(new HomeMenu("10","10",null));
+		menus.add(new HomeMenu("XX记录","10",null));
 		menus.add(new HomeMenu("11","11",null));
 	}
 	@Override

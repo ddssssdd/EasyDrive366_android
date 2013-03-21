@@ -91,7 +91,8 @@ public class WelcomeActivity extends Activity {
 		if (result){
 			AppSettings.userid = prefs.getInt("userid", 0);
 			AppSettings.username= prefs.getString("username", "");
-			result = (AppSettings.userid>0) && (!AppSettings.username.equals(""));
+			AppSettings.isLogin = prefs.getBoolean("islogin", false);
+			result = (AppSettings.userid>0) && (!AppSettings.username.equals("")) && AppSettings.isLogin;
 		}
 		return result;
 	}
