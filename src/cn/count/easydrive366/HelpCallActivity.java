@@ -20,6 +20,7 @@ public class HelpCallActivity extends BaseListViewActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_helpcall_activity);
+		this.setRightButtonInVisible();
 		resource_listview_id = R.id.moudles_helpcall_listview;
 		resource_listitem_id = R.layout.module_listitem;
 		restoreFromLocal(1);

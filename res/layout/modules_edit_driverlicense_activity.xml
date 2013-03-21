@@ -8,10 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="*" >
-        <Button android:id="@+id/btn_driverlicense_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/save"/>
+         <include android:layout_width="match_parent"
+         android:layout_height="wrap_content" 
+         layout="@layout/navigation_bar" /> 
+         
+<!--         <Button android:id="@+id/btn_driverlicense_save" -->
+<!--         android:layout_width="match_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:text="@string/save"/> -->
         
 		
         <TableRow

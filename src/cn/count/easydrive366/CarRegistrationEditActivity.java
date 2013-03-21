@@ -37,7 +37,8 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 			((EditText)findViewById(R.id.edt_carregistration_engine_no  )).setText(json.getString("engine_no"));
 			((EditText)findViewById(R.id.edt_carregistration_vin  )).setText(json.getString("vin"));
 			((EditText)findViewById(R.id.edt_carregistration_registration_date  )).setText(json.getString("registration_date"));
-			
+			this.setupRightButtonWithText(this.getResources().getString(R.string.save));
+			/*
 			findViewById(R.id.btn_carregistration_save).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -47,10 +48,15 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 				}
 				
 			});
+			*/
 			
 		} catch (Exception e) {
 			log(e);
 		}
+	}
+	@Override
+	protected void onRightButtonPress(){
+		save();
 	}
 	private void save(){
 		String url =String.format("api/add_car_registration?user_id=%d&car_id=%s&engine_no=%s&vin=%s&init_date=%s",

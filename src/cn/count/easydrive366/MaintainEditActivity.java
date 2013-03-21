@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpClient;
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +18,7 @@ import android.widget.Button;
 
 import android.widget.EditText;
 
-public class MaintainEditActivity extends Activity implements HttpClient.IHttpCallback{
+public class MaintainEditActivity extends BaseHttpActivity{
 	private JSONObject _result;
 	private String _average_mileage;
 	private String _pre_distance;
@@ -33,7 +34,7 @@ public class MaintainEditActivity extends Activity implements HttpClient.IHttpCa
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_edit_maintain_activity);
-		_http = new HttpClient(this);
+		
 		Intent intent = this.getIntent();
 		try {
 			_result = new JSONObject(intent.getStringExtra("data"));
@@ -62,11 +63,14 @@ public class MaintainEditActivity extends Activity implements HttpClient.IHttpCa
 			((EditText)findViewById(R.id.edt_maintain_pre_date)).setText(_prev_date);
 			((EditText)findViewById(R.id.edt_maintain_max_distance)).setText(_max_distance);
 			((EditText)findViewById(R.id.edt_maintain_max_time)).setText(_max_time);
+			
 			/*
 			((EditText)findViewById(R.id.edt_maintain_current_date)).setText(_current_date);
 			((EditText)findViewById(R.id.edt_maintain_current_miles)).setText(_current_miles);
 			((EditText)findViewById(R.id.edt_maintain_current_distance)).setText(_current_distance);
 			*/
+			this.setupRightButtonWithText(this.getResources().getString(R.string.save));
+			/*
 			((Button)findViewById(R.id.btn_modules_edit_maintain_save)).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -74,6 +78,7 @@ public class MaintainEditActivity extends Activity implements HttpClient.IHttpCa
 					save();
 					
 				}});
+				*/
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -87,8 +92,12 @@ public class MaintainEditActivity extends Activity implements HttpClient.IHttpCa
 				((EditText)findViewById(R.id.edt_maintain_pre_distance)).getText(),
 				((EditText)findViewById(R.id.edt_maintain_average_mileage)).getText()
 				);
-		_http.requestServer(url, 1);
+		getHttpClient().requestServer(url, 1);
 		
+	}
+	@Override
+	protected void onRightButtonPress(){
+		save();
 	}
 	@Override
 	public void processMessage(int msgType, Object result) {

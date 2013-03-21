@@ -21,6 +21,7 @@ public class ViolationSearchActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_violationsearch_activity);
+		this.setRightButtonInVisible();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_for_illegallys(), 1);
 	}

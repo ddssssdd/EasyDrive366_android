@@ -66,7 +66,7 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 			((TextView)findViewById(R.id.txt_driverlicense_renew_date  )).setText(_result.getString("renew_date"));
 			((TextView)findViewById(R.id.txt_driverlicense_start_date  )).setText(_result.getString("start_date"));
 			((TextView)findViewById(R.id.txt_driverlicense_car_type  )).setText(_result.getString("car_type"));
-			
+			/*
 			Button btn= (Button)findViewById(R.id.btn_driverlicense_edit);
 			btn.setOnClickListener(new OnClickListener(){
 
@@ -77,6 +77,8 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 					startActivityForResult(intent,0);
 					
 				}});
+			*/
+			this.setupRightButton();
 		}catch(Exception e){
 			log(e);
 		}
@@ -84,7 +86,12 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 		
 
 	}
-
+	@Override
+	protected void onRightButtonPress(){
+		Intent intent = new Intent(DriverLicenseActivity.this,DriverLicenseEditActivity.class);
+		intent.putExtra("data", _result.toString());
+		startActivityForResult(intent,0);
+	}
 	@Override
 	protected void setupListItem(ViewHolder holder, Map<String, Object> info) {
 		

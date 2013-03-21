@@ -4,6 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cn.count.easydrive366.MaintainActivity;
+import cn.count.easydrive366.MaintainEditActivity;
+import cn.count.easydrive366.R;
+
 
 
 
@@ -12,13 +16,28 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class BaseHttpActivity extends Activity implements HttpClient.IHttpCallback {
 	private static String BaseHttpClientTAG="BaseHttpActivity";
-	private HttpClient httpClient;
+	protected HttpClient httpClient;
+//	protected ImageButton _rightButton;
+	protected Button _rightButton;
+	@Override
+	protected void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+	}
 	protected HttpClient getHttpClient(){
 		if (httpClient==null){
 			httpClient =new HttpClient(this);
@@ -87,6 +106,40 @@ public class BaseHttpActivity extends Activity implements HttpClient.IHttpCallba
 		 new AlertDialog.Builder(this)
 	         .setMessage(str)
 	         .show();
-	    }
+	}
+	protected void onRightButtonPress(){
+		
+	}
+	protected void setBarTitle(final String title){
+		TextView txt = (TextView)findViewById(R.id.txt_navigation_bar_title);
+		if (txt!=null){
+			txt.setText(title);
+		}
+	}
+	protected void setRightButtonInVisible(){
+		_rightButton = (Button)findViewById(R.id.title_set_bn);
+		if (_rightButton!=null){
+			_rightButton.setVisibility(View.GONE);
+		}
+	}
+	protected void setupRightButton(){
+		this.setupRightButtonWithText(getResources().getString(R.string.edit));
+	}
+	protected void setupRightButtonWithText(final String buttonText){
+		_rightButton = (Button)findViewById(R.id.title_set_bn);
+		if (_rightButton!=null){
+			_rightButton.setText(buttonText);
+			_rightButton.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					onRightButtonPress();
+					
+				}
+				
+			});
+		}
+		
+	}
 	    
 }

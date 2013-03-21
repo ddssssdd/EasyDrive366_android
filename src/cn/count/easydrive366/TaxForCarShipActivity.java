@@ -29,6 +29,7 @@ public class TaxForCarShipActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_taxforcarship_activity);
+		this.setRightButtonInVisible();
 		this.get(AppSettings.url_get_taxforcarship(), 1);
 		ExpandableListView lv = (ExpandableListView)findViewById(R.id.expandableListView1);
 		_adapter = new ExtAdapter(this);

@@ -7,6 +7,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:stretchColumns="*" >
+     <include android:layout_width="match_parent"
+         android:layout_height="wrap_content" 
+         layout="@layout/navigation_bar" /> 
     <TableRow  android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/signup_hit_input1">
@@ -90,11 +93,11 @@
     </TableRow>
     
 	
-    <Button
-            android:id="@+id/btn_modules_edit_maintain_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/save" />
+<!--     <Button -->
+<!--             android:id="@+id/btn_modules_edit_maintain_save" -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:text="@string/save" /> -->
 </TableLayout>
     
 

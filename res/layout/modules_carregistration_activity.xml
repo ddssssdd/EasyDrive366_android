@@ -2,15 +2,18 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+	
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="*" >
-         <Button android:id="@+id/btn_carregistration_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/edit"/>
+         <include android:layout_width="match_parent"
+         android:layout_height="wrap_content" 
+         layout="@layout/navigation_bar" /> 
+<!--          <Button android:id="@+id/btn_carregistration_edit" -->
+<!--         android:layout_width="match_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:text="@string/edit"/> -->
 		
         <TableRow
             android:layout_width="match_parent"

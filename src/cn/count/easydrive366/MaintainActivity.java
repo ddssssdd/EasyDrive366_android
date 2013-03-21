@@ -29,6 +29,7 @@ public class MaintainActivity extends BaseListViewActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moudles_maintain_activity);
+		
 		restoreFromLocal(1);
 		this.get(AppSettings.url_for_get_maintain_record(), 1);
 	}
@@ -62,6 +63,7 @@ public class MaintainActivity extends BaseListViewActivity {
 		((TextView)findViewById(R.id.txt_maintain_current_date)).setText(_current_date);
 		((TextView)findViewById(R.id.txt_maintain_current_miles)).setText(_current_miles);
 		((TextView)findViewById(R.id.txt_maintain_current_distance)).setText(_current_distance);
+		/*
 		((Button)findViewById(R.id.btn_modules_maintain_edit)).setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -71,6 +73,14 @@ public class MaintainActivity extends BaseListViewActivity {
 				startActivityForResult(intent,0);
 				
 			}});
+			*/
+		this.setupRightButton();
+	}
+	@Override
+	protected void onRightButtonPress(){
+		Intent intent =new Intent(MaintainActivity.this,MaintainEditActivity.class);
+		intent.putExtra("data", _result.toString());
+		startActivityForResult(intent,0);
 	}
 
 	@Override

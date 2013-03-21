@@ -2,6 +2,8 @@ package cn.count.easydrive366;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 
@@ -21,15 +23,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 public class HomeActivity extends Activity {
 	private TableLayout _tableLayout;
 	private List<HomeMenu> menus;
+	private boolean _userWantQuit=false;
+	private Timer _quitTimer;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.moudles_home_activity);
 		startBackendService();
 		setupMenu();
@@ -104,7 +111,28 @@ public class HomeActivity extends Activity {
 	}
 	@Override
 	public void onBackPressed() {
-		//nothing;
+		if (_userWantQuit){
+			this.finish();
+			System.exit(0);
+		}else{
+			Toast.makeText(this, "再按一次退出"+this.getResources().getString(R.string.app_name), Toast.LENGTH_LONG).show();
+			_userWantQuit = true;
+			if (_quitTimer==null){
+				_quitTimer = new Timer();
+			}
+			TimerTask task = new TimerTask(){
+
+				@Override
+				public void run() {
+					_userWantQuit = false;
+					
+				};
+			};
+			_quitTimer.schedule(task, 2000);
+
+							
+		}
+		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -128,12 +156,12 @@ public class HomeActivity extends Activity {
 		editor.commit();
 	}
 	private void settingsButtonPress(){
-		Intent intent = new Intent();
-		intent.putExtra("key", "01");
-		intent.putExtra("description","dd");
-		intent.putExtra("updated_time", "aa");
-		intent.setAction("cn.count.easydrive366.components.HomeMenuItem$LatestInformationReceiver");
-		this.sendBroadcast(intent);
+//		Intent intent = new Intent();
+//		intent.putExtra("key", "01");
+//		intent.putExtra("description","dd");
+//		intent.putExtra("updated_time", "aa");
+//		intent.setAction("cn.count.easydrive366.components.HomeMenuItem$LatestInformationReceiver");
+//		this.sendBroadcast(intent);
 	}
 	
 }

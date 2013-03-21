@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/titile_layout_ry"
     android:layout_width="fill_parent"
     android:layout_height="43dip"
-    android:background="@drawable/top_bar_bg"
-    android:id="@+id/titile_layout_ry" >
+    android:background="@drawable/top_bar_bg" >
 
-    <ImageView 
+    <ImageView
         android:id="@+id/title_logo_img"
         android:layout_width="34dip"
         android:layout_height="34dip"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dip"
-        android:background="@drawable/ic_launcher"/>
-    
-
-    <ImageButton 
+        android:background="@drawable/ic_launcher" />
+	<TextView android:id="@+id/txt_navigation_bar_title"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerInParent="true"
+	    android:text="@string/app_name"
+	    android:textSize="15sp"/>
+    <Button
         android:id="@+id/title_set_bn"
+        style="@style/button"
         android:layout_width="59dip"
-        android:layout_height="25dip"
-        android:layout_marginRight="5dip"
+        android:layout_height="35dip"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/set_bn_style"/>
+        android:layout_marginRight="5dip"
+        android:text="设置" />
+
+    <!-- <ImageButton -->
+    <!-- android:id="@+id/title_set_bn" -->
+    <!-- android:layout_width="59dip" -->
+    <!-- android:layout_height="25dip" -->
+    <!-- android:layout_marginRight="5dip" -->
+    <!-- android:layout_alignParentRight="true" -->
+    <!-- android:layout_centerVertical="true" -->
+    <!-- android:background="@drawable/set_bn_style"/> -->
 
 </RelativeLayout>

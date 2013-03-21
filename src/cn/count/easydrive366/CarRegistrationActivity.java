@@ -51,6 +51,8 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 			((TextView)findViewById(R.id.txt_carregistration_untreated_mark  )).setText(_result.getString("untreated_mark"));
 			((TextView)findViewById(R.id.txt_carregistration_untreated_number  )).setText(_result.getString("untreated_number"));
 			((TextView)findViewById(R.id.txt_carregistration_vin  )).setText(_result.getString("vin"));
+			this.setupRightButton();
+			/*
 			((Button)findViewById(R.id.btn_carregistration_edit)).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -60,6 +62,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 					startActivityForResult(intent,0);
 					
 				}});
+				*/
 			((Button)findViewById(R.id.btn_carregistration_search)).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -75,7 +78,12 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 		
 
 	}
-
+	@Override
+	protected void onRightButtonPress(){
+		Intent intent = new Intent(CarRegistrationActivity.this,CarRegistrationEditActivity.class);
+		intent.putExtra("data", _result.toString());
+		startActivityForResult(intent,0);
+	}
 	@Override
 	protected void setupListItem(ViewHolder holder, Map<String, Object> info) {
 		// TODO Auto-generated method stub

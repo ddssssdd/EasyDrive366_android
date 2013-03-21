@@ -48,6 +48,7 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 			((EditText)findViewById(R.id.edt_driverlicense_init_date  )).setText(json.getString("init_date"));
 			((EditText)findViewById(R.id.edt_driverlicense_number  )).setText(json.getString("number"));
 			((EditText)findViewById(R.id.edt_driverlicense_car_type  )).setText(json.getString("car_type"));
+			/*
 			findViewById(R.id.btn_driverlicense_save).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -57,6 +58,8 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 				}
 				
 			});
+			*/
+			this.setupRightButtonWithText(this.getResources().getString(R.string.save));
 			findViewById(R.id.txt_driverlicense_choose_driver_type).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -74,6 +77,10 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 		} catch (Exception e) {
 			log(e);
 		}
+	}
+	@Override
+	protected void onRightButtonPress(){
+		save();
 	}
 	private void save(){
 		String url =String.format("api/add_driver_license?user_id=%d&name=%s&license_id=%s&type=%s&init_date=%s",

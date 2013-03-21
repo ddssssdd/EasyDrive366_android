@@ -3,11 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="" />
+      <include android:layout_width="match_parent"
+         android:layout_height="wrap_content" 
+         layout="@layout/navigation_bar" /> 
 
      <ExpandableListView
          android:id="@+id/expandableListView1"

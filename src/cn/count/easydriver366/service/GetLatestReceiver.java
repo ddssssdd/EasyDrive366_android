@@ -60,6 +60,9 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 		notificationManager.notify(NOTIFICATION_ID, notification);
 	}
 	public void run() {
+		if (!AppSettings.isLogin){
+			return;
+		}
 		HttpClient client = new HttpClient(this);
 		for(int i=1;i<=AppSettings.TotalPageCount;i++){
 			final String url = String.format("api/get_latest?userid=%d&keyname=%02d",AppSettings.userid,i);
