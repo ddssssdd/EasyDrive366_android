@@ -21,6 +21,7 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_driverlicense_activity);
+		this.setupLeftButton();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_get_driver_license(), 1);
 		this.get(AppSettings.url_get_license_type(), 2);

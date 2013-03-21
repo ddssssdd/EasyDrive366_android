@@ -29,7 +29,7 @@ public class MaintainActivity extends BaseListViewActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moudles_maintain_activity);
-		
+		this.setupLeftButton();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_for_get_maintain_record(), 1);
 	}

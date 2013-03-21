@@ -33,6 +33,7 @@ public class CompulsoryInsuranceActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_compulsoryinsurance_activity);
+		this.setupLeftButton();
 		this.setRightButtonInVisible();
 		ExpandableListView lv = (ExpandableListView)findViewById(R.id.expandableListView_compulsory_insurance);
 		_adapter = new ExtAdapter(this);

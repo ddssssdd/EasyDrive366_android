@@ -93,6 +93,7 @@ public final class R {
         public static final int edt_signup_username=0x7f090049;
         public static final int expandableListView1=0x7f09004d;
         public static final int expandableListView_compulsory_insurance=0x7f090024;
+        public static final int img_navigationbar_logo=0x7f090059;
         public static final int listitem_content=0x7f090007;
         public static final int listitem_pic=0x7f090005;
         public static final int listitem_title=0x7f090006;
@@ -108,7 +109,6 @@ public final class R {
         public static final int tablelayout_edit_maintain=0x7f090039;
         public static final int tablelout_in_home_activity=0x7f09004f;
         public static final int titile_layout_ry=0x7f090058;
-        public static final int title_logo_img=0x7f090059;
         public static final int title_set_bn=0x7f09005b;
         public static final int txt_carregistration_brand=0x7f090017;
         public static final int txt_carregistration_car_type=0x7f090015;

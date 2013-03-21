@@ -28,6 +28,7 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_businessinsurance_activity);
+		this.setupLeftButton();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_get_business_insurance(), 1);
 		this.get(AppSettings.url_get_suggestion_count(), 2);

@@ -18,6 +18,7 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_edit_carregistration_activity);
+		this.setupLeftButton();
 		Intent intent =this.getIntent();
 		String data =intent.getStringExtra("data");
 		try {

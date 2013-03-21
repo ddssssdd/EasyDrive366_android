@@ -20,6 +20,7 @@ public class RescueActivity extends BaseListViewActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_rescue_activity);
 		this.setRightButtonInVisible();
+		this.setupLeftButton();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_for_rescue(),1);
 	}

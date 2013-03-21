@@ -20,6 +20,7 @@ public class BusinessSuggestionActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_businesssuggestion_activity);
 		this.setRightButtonInVisible();
+		this.setupLeftButton();
 		this.setBarTitle(this.getResources().getString(R.string.insurance_suggestion));
 		this.get(AppSettings.url_get_suggestion_insurance(), 1);
 	}

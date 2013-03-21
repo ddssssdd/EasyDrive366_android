@@ -20,6 +20,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_carregistration_activity);
+		this.setupLeftButton();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_get_car_registration(), 1);
 	}
@@ -67,9 +68,9 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 
 				@Override
 				public void onClick(View v) {
-					Intent intent = new Intent(CarRegistrationActivity.this,CarRegistrationEditActivity.class);
-					intent.putExtra("data", _result.toString());
-					startActivityForResult(intent,0);
+					Intent intent = new Intent(CarRegistrationActivity.this,ViolationSearchActivity.class);
+					//intent.putExtra("data", _result.toString());
+					startActivityForResult(intent,1);
 					
 				}});
 		}catch(Exception e){

@@ -6,12 +6,13 @@
     android:background="@drawable/top_bar_bg" >
 
     <ImageView
-        android:id="@+id/title_logo_img"
+        android:id="@+id/img_navigationbar_logo"
         android:layout_width="34dip"
         android:layout_height="34dip"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dip"
+        android:contentDescription="@string/app_name"
         android:background="@drawable/ic_launcher" />
 	<TextView android:id="@+id/txt_navigation_bar_title"
 	    android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="5dip"
-        android:text="设置" />
+        android:text="@string/edit" />
 
     <!-- <ImageButton -->
     <!-- android:id="@+id/title_set_bn" -->

@@ -34,7 +34,7 @@ public class MaintainEditActivity extends BaseHttpActivity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_edit_maintain_activity);
-		
+		this.setupLeftButton();
 		Intent intent = this.getIntent();
 		try {
 			_result = new JSONObject(intent.getStringExtra("data"));
