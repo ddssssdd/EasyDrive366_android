@@ -34,7 +34,8 @@ public class HomeMenuItem extends LinearLayout {
 		
 		_inflater = LayoutInflater.from(context);
 		_context = context;
-		_inflater.inflate(R.layout.home_menu_item, this);
+		//_inflater.inflate(R.layout.home_menu_item, this);
+		_inflater.inflate(R.layout.home_menu_items_one_line, this);
 		_title = (TextView)findViewById(R.id.listitem_title);
 		_description =(TextView)findViewById(R.id.listitem_content);
 		this.setOnClickListener(new OnClickListener(){

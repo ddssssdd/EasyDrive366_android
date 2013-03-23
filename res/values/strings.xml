@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">伊家</string>
+    <string name="app_name">易驾366</string>
     <string name="Login">登录</string>
     <string name="menu_settings">注销</string>
 	<string name="Signup">注册</string>
@@ -11,6 +11,18 @@
 	<string name="password">密码</string>
 	<string name="repassword">再输密码</string>
 	<string name="username">用户名</string>
-	<string name="app_loading_fail">Failure</string>
-	<string name="app_loading">Loading...</string>
+	<string name="app_loading_fail">装载失败</string>
+	<string name="app_loading">正在装载...</string>
+	<string name="key_01">最新消息</string>
+	<string name="key_02">紧急救助</string>
+	<string name="key_03">事故救援</string>
+	<string name="key_04">保养建议</string>
+	<string name="key_05">驾驶证</string>
+	<string name="key_06">行驶证</string>
+	<string name="key_07">车船税</string>
+	<string name="key_08">交强险</string>
+	<string name="key_09">商业险</string>
+	<string name="key_10">理赔记录</string>
+	<string name="key_11">维修记录</string>
+	<string name="exit_question">再按一次退出易驾366</string>
 </resources>

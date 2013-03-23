@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -40,6 +41,8 @@ public class HomeActivity extends Activity {
 		setContentView(R.layout.moudles_home_activity);
 		startBackendService();
 		setupMenu();
+		((Button)findViewById(R.id.title_set_bn)).setText("娉ㄩ攢");
+		
 		findViewById(R.id.title_set_bn).setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -96,18 +99,17 @@ public class HomeActivity extends Activity {
 	
 	private void initMenuItems(){
 		menus = new ArrayList<HomeMenu>();
-		menus.add(new HomeMenu("最新消息","01",InformationActivity.class));
-		menus.add(new HomeMenu("紧急救助","02",HelpCallActivity.class));
-		menus.add(new HomeMenu("会员服务","03",RescueActivity.class));
-		menus.add(new HomeMenu("维修服务","04",MaintainActivity.class));
-		menus.add(new HomeMenu("驾驶证","05",DriverLicenseActivity.class));
-		menus.add(new HomeMenu("行驶证","06",CarRegistrationActivity.class));
-		menus.add(new HomeMenu("车船税","07",TaxForCarShipActivity.class));
-		menus.add(new HomeMenu("交强险","08",CompulsoryInsuranceActivity.class));
-		menus.add(new HomeMenu("商业险","09",BusinessInsuranceActivity.class));
-		
-		menus.add(new HomeMenu("XX记录","10",null));
-		menus.add(new HomeMenu("11","11",null));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_01),"01",InformationActivity.class));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_02),"02",HelpCallActivity.class));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_03),"03",RescueActivity.class));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_04),"04",MaintainActivity.class));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_05),"05",DriverLicenseActivity.class));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_06),"06",CarRegistrationActivity.class));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_07),"07",TaxForCarShipActivity.class));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_08),"08",CompulsoryInsuranceActivity.class));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_09),"09",BusinessInsuranceActivity.class));	
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_10),"10",null));
+		menus.add(new HomeMenu(this.getResources().getString(R.string.key_11),"11",null));
 	}
 	@Override
 	public void onBackPressed() {
@@ -115,7 +117,7 @@ public class HomeActivity extends Activity {
 			this.finish();
 			System.exit(0);
 		}else{
-			Toast.makeText(this, "再按一次退出"+this.getResources().getString(R.string.app_name), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, this.getResources().getString(R.string.exit_question), Toast.LENGTH_LONG).show();
 			_userWantQuit = true;
 			if (_quitTimer==null){
 				_quitTimer = new Timer();

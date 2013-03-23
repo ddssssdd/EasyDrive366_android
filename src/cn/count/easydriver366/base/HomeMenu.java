@@ -8,9 +8,9 @@ public class HomeMenu {
 	public String phone;
 	public String company;
 	public Class activityClass;
-	public HomeMenu(final String n,final String k,Class aClass){
-		this.name= n;
-		this.key =k;
+	public HomeMenu(final String name,final String key,Class aClass){
+		this.name= name;
+		this.key =key;
 		this.activityClass = aClass;
 	}
 }
