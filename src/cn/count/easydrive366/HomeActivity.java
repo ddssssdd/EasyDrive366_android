@@ -10,6 +10,7 @@ import java.util.TimerTask;
 import cn.count.easydrive366.components.HomeMenuItem;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.HomeMenu;
+import cn.count.easydriver366.base.Menus;
 import cn.count.easydriver366.service.BackendService;
 import cn.count.easydriver366.service.GetLatestReceiver;
 
@@ -98,18 +99,7 @@ public class HomeActivity extends Activity {
 	}
 	
 	private void initMenuItems(){
-		menus = new ArrayList<HomeMenu>();
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_01),"01",InformationActivity.class));
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_02),"02",HelpCallActivity.class));
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_03),"03",RescueActivity.class));
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_04),"04",MaintainActivity.class));
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_05),"05",DriverLicenseActivity.class));
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_06),"06",CarRegistrationActivity.class));
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_07),"07",TaxForCarShipActivity.class));
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_08),"08",CompulsoryInsuranceActivity.class));
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_09),"09",BusinessInsuranceActivity.class));	
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_10),"10",null));
-		menus.add(new HomeMenu(this.getResources().getString(R.string.key_11),"11",null));
+		menus = (new Menus(this)).getMenus();
 	}
 	@Override
 	public void onBackPressed() {

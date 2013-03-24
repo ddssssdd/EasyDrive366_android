@@ -40,18 +40,26 @@ public class InformationActivity extends BaseListViewActivity {
 		}
 		
 	}
+	/*
 	@Override
 	protected void initView(){
+	
 		ListView lv = (ListView)findViewById(R.id.modules_information_listview);
 		MyAdapter adapter =new MyAdapter(InformationActivity.this);
 		lv.setAdapter(adapter);
 		
 	}
+	*/
+	@Override
+	protected void onListItemClick(View view,int index){
+		System.out.println("click");
+	}
 	@Override
 	protected void setupListItem(ViewHolder holder,Map<String,Object> info){
 		holder.title.setText(info.get("fmt_createDate").toString());
 		holder.detail.setText(info.get("description").toString());
-		holder.action.setText(info.get("action").toString());
+		//holder.action.setText(info.get("action").toString());
+		holder.action.setText("");
 	}
 	@Override
 	protected void initListItem(ViewHolder holder,View convertView){

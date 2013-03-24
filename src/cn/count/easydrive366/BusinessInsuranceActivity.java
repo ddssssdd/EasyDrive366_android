@@ -43,6 +43,21 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 				this.runOnUiThread(initViewThread);
 			}else if (msgType==2){
 				final int count = ((JSONObject)result).getInt("result");
+				
+				
+				runOnUiThread(new Runnable(){
+
+					@Override
+					public void run() {
+						if (count==0){
+							setRightButtonInVisible();
+						}else{
+							setupRightButtonWithText(getResources().getString(R.string.insurance_suggestion));
+						}
+						
+						
+				}});
+				/*
 				final Button btn = (Button)findViewById(R.id.btn_modules_businessinsurance_suggestion);
 				runOnUiThread(new Runnable(){
 
@@ -56,12 +71,18 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 						
 						
 				}});
+				*/
 				
 			}
 		}catch(Exception e){
 			this.log(e);
 		}
 
+	}
+	@Override 
+	protected void onRightButtonPress(){
+		Intent intent = new Intent(BusinessInsuranceActivity.this,BusinessSuggestionActivity.class);
+		startActivity(intent);
 	}
 	private OnClickListener buttonSuggestionPress = new OnClickListener(){
 
@@ -82,10 +103,10 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 	private void initView(){
 		tableLayout = (TableLayout)findViewById(R.id.table_modules_businessinsurance_table);
 		if (_curr!=null){
-			this.addTableRow("Current",_curr);
+			this.addTableRow(this.getResources().getString(R.string.current),_curr);
 		}
 		if (_renew!=null){
-			this.addTableRow("Renew",_renew);
+			this.addTableRow(this.getResources().getString(R.string.renew),_renew);
 		}
 	}
 	private Runnable initViewThread = new Runnable(){

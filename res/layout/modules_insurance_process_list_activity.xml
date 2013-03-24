@@ -3,17 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-     <include android:layout_width="match_parent"
+    
+ 	<include android:layout_width="match_parent"
          android:layout_height="wrap_content" 
          layout="@layout/navigation_bar" /> 
    
-     <TableLayout android:id="@+id/table_modules_businesssuggestion_table"
+    <cn.count.easydrive366.components.CornerListView 
+        android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="*"
-        >
+        android:layout_height="match_parent">
         
-        
-    </TableLayout> 
-
+    </cn.count.easydrive366.components.CornerListView>
 </LinearLayout>

@@ -25,4 +25,6 @@
 	<string name="key_10">理赔记录</string>
 	<string name="key_11">维修记录</string>
 	<string name="exit_question">再按一次退出易驾366</string>
+	<string name="current">当前保单</string>
+	<string name="renew">新续保单</string>
 </resources>

@@ -68,6 +68,16 @@ public class BusinessSuggestionActivity extends BaseHttpActivity {
 			for(int i=0;i<_list.length();i++){
 				JSONObject item = _list.getJSONObject(i);
 				TableRow  tr= new TableRow(this);
+				tr.setPadding(10, 10, 10, 10);
+				int backId;
+				if (i==0){
+					backId = R.drawable.signup_hit_input1;
+				}else if(i==_list.length()-1){
+					backId = R.drawable.signup_hit_input6;
+				}else{
+					backId = R.drawable.signup_hit_input2;
+				}
+				tr.setBackgroundResource(backId);
 				tr.addView(addTextView(item.getString("item")));
 				tr.addView(addTextView(item.getString("field1")));
 				tr.addView(addTextView(item.getString("field2")));

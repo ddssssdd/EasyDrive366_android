@@ -22,6 +22,8 @@ public class BaseHttpActivity extends Activity implements HttpClient.IHttpCallba
 	protected HttpClient httpClient;
 //	protected ImageButton _rightButton;
 	protected Button _rightButton;
+	protected String _company;
+	protected String _phone;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -41,6 +43,15 @@ public class BaseHttpActivity extends Activity implements HttpClient.IHttpCallba
 	public void processMessage(int msgType, final Object result) {
 		
 		Log.e(BaseHttpClientTAG, result.toString());
+	}
+	protected void setupCompanyAndPhone(final Object json){
+		final JSONObject result = (JSONObject)json;
+		try{
+			_company = result.getJSONObject("result").getString("company");
+			_phone = result.getJSONObject("result").getString("phone");
+		}catch(Exception e){
+			log(e);
+		}
 	}
 	public void restoreFromLocal(final int msgType){
 		if (this.isOnline()){

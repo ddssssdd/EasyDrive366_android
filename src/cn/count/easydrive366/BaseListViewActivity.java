@@ -16,13 +16,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 import android.widget.TextView;
 
 public abstract class BaseListViewActivity extends BaseHttpActivity {
 	protected List<Map<String,Object>> _list=null;
-
+	protected MyAdapter _adapter;
 	protected int resource_listview_id;
 	protected int resource_listitem_id;
 	@Override
@@ -69,7 +72,26 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 			log(e);
 		}
 	}
-	abstract protected void initView();
+	protected void initView(){
+		if (_adapter==null){
+			ListView lv = (ListView)findViewById(resource_listview_id);
+			_adapter =new MyAdapter(this);
+			lv.setAdapter(_adapter);
+			lv.setOnItemClickListener(new OnItemClickListener(){
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					onListItemClick(arg1,arg2);
+					
+				}});
+		}else{
+			_adapter.notifyDataSetChanged();
+		}
+	}
+	protected void onListItemClick(View view,int index){
+		
+	}
 	
 	abstract protected void setupListItem(ViewHolder holder,Map<String,Object> info);
 	

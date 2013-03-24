@@ -13,8 +13,7 @@ import cn.count.easydriver366.base.AppSettings;
 
 
 public class HelpCallActivity extends BaseListViewActivity {
-	private String _companyname;
-	private String _phone;
+	
 	private MyAdapter _adapter;
 	
 	@Override
@@ -32,18 +31,22 @@ public class HelpCallActivity extends BaseListViewActivity {
 	
 	protected void initData(Object result,int msgType){
 		try{
+			
 			JSONArray list = ((JSONObject)result).getJSONObject("result").getJSONArray("data");
-			_companyname = ((JSONObject)result).getJSONObject("result").getString("company");
+			//_companyname = ((JSONObject)result).getJSONObject("result").getString("company");
+			
+			this.setupCompanyAndPhone(result);
 			 _phone =((JSONObject)result).getJSONObject("result").getString("phone");
 			initList(list);
 		}catch(Exception e){
-			e.printStackTrace();
+			log(e);
 		}
 		
 	}
 	
 	@Override
 	protected void initView(){
+		/*
 		if (_adapter==null){
 			ListView lv = (ListView)findViewById(resource_listview_id);
 			_adapter =new MyAdapter(HelpCallActivity.this);
@@ -51,9 +54,11 @@ public class HelpCallActivity extends BaseListViewActivity {
 		}else{
 			_adapter.notifyDataSetChanged();
 		}
-		
+		*/
+		super.initView();
 		TextView txtCompany = (TextView)findViewById(R.id.txt_helpcall_company);
-		txtCompany.setText(_companyname);
+		//txtCompany.setText(_companyname);
+		txtCompany.setText(_company);
 	}
 	@Override
 	protected void setupListItem(ViewHolder holder,Map<String,Object> info){

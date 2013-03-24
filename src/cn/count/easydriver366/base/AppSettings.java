@@ -14,6 +14,7 @@ public final class AppSettings {
 	static public String username;
 	static public boolean isLogin= false;
 	static public JSONArray driver_type_list;
+	
 	static public String url_for_get_news()
 	{
 		
@@ -71,10 +72,10 @@ public final class AppSettings {
 		return String.format("api/get_count_of_suggestion?userid=%d", userid);
 	}
 	static public String url_get_compulsory_details(){
-		return "api/get_compulsory_details?userid=0";
+		return String.format("api/get_compulsory_details?userid=%d",userid);
 	}
 	static public String url_get_taxforcarship(){
-		return "api/get_taxforcarship?userid=0";
+		return String.format("api/get_taxforcarship?userid=%d",userid);
 	}
 	
 	
