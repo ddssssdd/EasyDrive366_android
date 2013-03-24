@@ -62,8 +62,9 @@
         <activity android:name="cn.count.easydrive366.ViolationSearchActivity" >
         </activity>
         <activity android:name="cn.count.easydrive366.InsuranceProcessListActivity" >
+         
         </activity>
-        
+        <activity android:name="cn.count.easydrive366.BrowserActivity"></activity>
 
         <receiver android:name="cn.count.easydriver366.service.GetLatestReceiver" >
             <intent-filer>
