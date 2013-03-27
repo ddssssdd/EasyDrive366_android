@@ -6,9 +6,13 @@
     <include android:layout_width="match_parent"
          android:layout_height="wrap_content" 
          layout="@layout/navigation_bar" /> 
-    <ScrollView
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+         xmlns:ptr="http://schemas.android.com/apk/res-auto"
+         android:id="@+id/pull_refresh_scrollview"
          android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+         ptr:ptrAnimationStyle="flip"
+         ptr:ptrMode="pullFromStart">
     <TableLayout android:id="@+id/tablelout_in_home_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +21,6 @@
         
         
     </TableLayout>
-    </ScrollView>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
 </LinearLayout>

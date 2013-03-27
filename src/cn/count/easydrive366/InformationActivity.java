@@ -24,6 +24,7 @@ public class InformationActivity extends BaseListViewActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_information_activity);
 		this.setupLeftButton();
+		
 		this.setRightButtonInVisible();
 		this.resource_listview_id = R.id.modules_information_listview;
 		this.resource_listitem_id = R.layout.module_listitem;
@@ -34,9 +35,11 @@ public class InformationActivity extends BaseListViewActivity {
 	@Override
 	protected void initData(Object result,int msgType){
 		try{
+			//this.setupCompanyAndPhone(result);
 			result = ((JSONObject)result).getJSONObject("result");
 			JSONArray obj = ((JSONObject)result).getJSONArray("data");		
 			this.initList(obj);
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}

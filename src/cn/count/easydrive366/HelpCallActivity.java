@@ -35,7 +35,7 @@ public class HelpCallActivity extends BaseListViewActivity {
 			JSONArray list = ((JSONObject)result).getJSONObject("result").getJSONArray("data");
 			//_companyname = ((JSONObject)result).getJSONObject("result").getString("company");
 			
-			this.setupCompanyAndPhone(result);
+			//this.setupCompanyAndPhone(result);
 			 _phone =((JSONObject)result).getJSONObject("result").getString("phone");
 			initList(list);
 		}catch(Exception e){

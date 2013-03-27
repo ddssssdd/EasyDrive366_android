@@ -12,11 +12,14 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.HttpClient;
 import android.app.Notification;
+import android.app.Notification.Builder;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,15 +30,9 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 	@Override
 	public void onReceive(Context arg0, Intent arg1) {
 
-		Toast.makeText(arg0, "Check the latest information", Toast.LENGTH_LONG)
-				.show();
+		//Toast.makeText(arg0, "Check the latest information", Toast.LENGTH_LONG).show();
 		this.context = arg0;
-		/*
-		 * Log.d("TestReceiver","intent="+arg1); String message =
-		 * arg1.getStringExtra("message"); Log.d("TestReceiver",message); if
-		 * (message.equals("clear")){ this.deleteNotification(); }else{
-		 * this.showNotification(); }
-		 */
+		
 		run();
 	}
 
@@ -46,13 +43,43 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 				.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 		notificationManager.cancel(NOTIFICATION_ID);
 	}
+	/*
+	private void showNotification(final String title,final String content){
+		NotificationCompat.Builder mBuilder =
+		        new NotificationCompat.Builder(context)
+		        .setSmallIcon(R.drawable.ic_launcher)
+		        .setContentTitle(title)
+		        .setContentText(content);
+		// Creates an explicit intent for an Activity in your app
+		Intent resultIntent = new Intent(context, WelcomeActivity.class);
 
-	private void showNotification() {
+		// The stack builder object will contain an artificial back stack for the
+		// started Activity.
+		// This ensures that navigating backward from the Activity leads out of
+		// your application to the Home screen.
+		TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+		// Adds the back stack for the Intent (but not the Intent itself)
+		stackBuilder.addParentStack(WelcomeActivity.class);
+		// Adds the Intent that starts the Activity to the top of the stack
+		stackBuilder.addNextIntent(resultIntent);
+		PendingIntent resultPendingIntent =
+		        stackBuilder.getPendingIntent(
+		            0,
+		            PendingIntent.FLAG_UPDATE_CURRENT
+		        );
+		mBuilder.setContentIntent(resultPendingIntent);
+		NotificationManager mNotificationManager =
+		    (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+		// mId allows you to update the notification later on.
+		mNotificationManager.notify(1, mBuilder.build());
+	}
+	*/
+	private void showNotification(final String title,final String content) {
 		Notification notification = new Notification(R.drawable.ic_launcher,
-				"title", System.currentTimeMillis());
+				title, System.currentTimeMillis());
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
 				new Intent(context, WelcomeActivity.class), 0);
-		notification.setLatestEventInfo(context, "title", "information",
+		notification.setLatestEventInfo(context, title, content,
 				contentIntent);
 
 		NotificationManager notificationManager = (NotificationManager) context
@@ -84,6 +111,7 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 				intent.putExtra("json",json.getJSONObject("result").toString());
 				intent.setAction("cn.count.easydrive366.components.HomeMenuItem$LatestInformationReceiver");
 				context.sendBroadcast(intent);
+				this.showNotification(json.getJSONObject("result").getString("company"), json.getJSONObject("result").getString("latest"));
 			}
 		}catch(Exception e){
 			AppTools.log(e);

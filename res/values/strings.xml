@@ -27,4 +27,7 @@
 	<string name="exit_question">再按一次退出易驾366</string>
 	<string name="current">当前保单</string>
 	<string name="renew">新续保单</string>
+	<string name="ok">确定</string>
+	<string name="cancel">取消</string>
+	<string name="quit_question">请确认您要注销？</string>
 </resources>

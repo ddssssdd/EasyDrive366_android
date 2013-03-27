@@ -31,7 +31,7 @@
         android:textColor="@android:color/secondary_text_light"
         android:textSize="12sp"
          />
-    <ImageView
+    <ImageButton
         android:id="@+id/listitem_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

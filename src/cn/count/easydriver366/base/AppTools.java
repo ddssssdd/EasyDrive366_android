@@ -3,6 +3,8 @@ package cn.count.easydriver366.base;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 public final class AppTools {
@@ -30,5 +32,27 @@ public final class AppTools {
 			}
 		}
 		return result;
+	}
+	public static Intent getPhoneAction(final String phone){
+		Intent intent=null;
+		try {
+			intent = new Intent(Intent.ACTION_CALL);
+			intent.setData(Uri.parse("tel:" + phone));
+			//startActivity(intent);
+			
+		} catch (Exception e) {
+			log(e);
+		}
+		return intent;
+	}
+	public static Intent getBrowserAction(final String url){
+		//Uri uri = Uri.parse("http://www.google.com"); //浏览器 
+		//Uri uri =Uri.parse("tel:1232333"); //拨号程序 
+		//Uri uri=Uri.parse("geo:39.899533,116.036476"); //打开地图定位 
+		//Intent it = new Intent(Intent.ACTION_VIEW,uri); 
+		
+		Intent intent = null;
+		intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
+		return intent;
 	}
 }

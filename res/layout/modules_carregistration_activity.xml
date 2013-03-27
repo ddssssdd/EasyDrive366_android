@@ -370,6 +370,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_span="3"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 style="@style/button"
                 android:text="违章查询" >
             </Button>

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -38,6 +39,13 @@ public class HomeMenuItem extends LinearLayout {
 		_inflater.inflate(R.layout.home_menu_items_one_line, this);
 		_title = (TextView)findViewById(R.id.listitem_title);
 		_description =(TextView)findViewById(R.id.listitem_content);
+		findViewById(R.id.listitem_pic).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				makeCall();
+				
+			}});
 		this.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -61,6 +69,14 @@ public class HomeMenuItem extends LinearLayout {
 			processData(oldValue);
 		}
 		
+	}
+	private void makeCall(){
+		if (_phone!=null && !_phone.equals("")){
+			Uri uri =Uri.parse(String.format("tel:%s",_phone)); 
+			
+			Intent it = new Intent(Intent.ACTION_VIEW,uri); 
+			_context.startActivity(it); 
+		}
 	}
 	private void clickHandler(){
 		if ((_menuItem!=null) && (_menuItem.activityClass!=null)){

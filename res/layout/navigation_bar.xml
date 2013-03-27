@@ -1,42 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/titile_layout_ry"
-    android:layout_width="fill_parent"
-    android:layout_height="43dip"
-    android:background="@drawable/top_bar_bg" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">"
 
-    <ImageView
-        android:id="@+id/img_navigationbar_logo"
-        android:layout_width="34dip"
-        android:layout_height="34dip"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="5dip"
-        android:contentDescription="@string/app_name"
-        android:background="@drawable/ic_launcher" />
-	<TextView android:id="@+id/txt_navigation_bar_title"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_centerInParent="true"
-	    android:text="@string/app_name"
-	    android:textSize="15sp"/>
+    <RelativeLayout
+        android:id="@+id/titile_layout_ry"
+        android:layout_width="fill_parent"
+        android:layout_height="43dip"
+        android:background="@drawable/top_bar_bg" >
+
+        <ImageView
+            android:id="@+id/img_navigationbar_logo"
+            android:layout_width="34dip"
+            android:layout_height="34dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dip"
+            android:background="@drawable/ic_launcher"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/txt_navigation_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/title_set_bn"
+            style="@style/button"
+            android:layout_width="59dip"
+            android:layout_height="35dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:text="@string/edit" />
+    </RelativeLayout>
+
     <Button
-        android:id="@+id/title_set_bn"
-        style="@style/button"
-        android:layout_width="59dip"
-        android:layout_height="35dip"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="5dip"
-        android:text="@string/edit" />
+        android:id="@+id/btn_phone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/app_loading"
+        style="@style/button.green" >
+    </Button>
+"
 
-    <!-- <ImageButton -->
-    <!-- android:id="@+id/title_set_bn" -->
-    <!-- android:layout_width="59dip" -->
-    <!-- android:layout_height="25dip" -->
-    <!-- android:layout_marginRight="5dip" -->
-    <!-- android:layout_alignParentRight="true" -->
-    <!-- android:layout_centerVertical="true" -->
-    <!-- android:background="@drawable/set_bn_style"/> -->
-
-</RelativeLayout>
+</LinearLayout>
