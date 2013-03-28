@@ -114,8 +114,8 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		MultiChoiceID.clear();
-		builder.setIcon(R.drawable.index_looks);
-		builder.setTitle("Please choose");
+		builder.setIcon(R.drawable.ic_launcher);
+		builder.setTitle(this.getResources().getString(R.string.app_name));
 		
 		final String[] items = new String[list.length()];		
 		boolean[] checkedItems= new boolean[list.length()];
@@ -151,7 +151,7 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 				
 			}
 		});
-		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton(this.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -165,7 +165,7 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
                 changeDriverType();
 			}
 		});
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		builder.setNegativeButton(this.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
             }
@@ -206,7 +206,8 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 								c.set(Calendar.YEAR, year);
 								c.set(Calendar.MONTH,monthOfYear);
 								c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-								showDialog(sdf.format(c.getTime()));
+								//showDialog(sdf.format(c.getTime()));
+								((EditText)findViewById(R.id.edt_driverlicense_init_date  )).setText(sdf.format(c.getTime()));
 						}
 					},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
 			dialog.show();

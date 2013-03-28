@@ -65,7 +65,7 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 			((TextView)findViewById(R.id.txt_driverlicense_mark_end_date  )).setText(_result.getString("mark_end_date"));
 			((TextView)findViewById(R.id.txt_driverlicense_number  )).setText(_result.getString("number"));
 			((TextView)findViewById(R.id.txt_driverlicense_renew_date  )).setText(_result.getString("renew_date"));
-			((TextView)findViewById(R.id.txt_driverlicense_start_date  )).setText(_result.getString("start_date"));
+			//((TextView)findViewById(R.id.txt_driverlicense_start_date  )).setText(_result.getString("start_date"));
 			((TextView)findViewById(R.id.txt_driverlicense_car_type  )).setText(_result.getString("car_type"));
 			/*
 			Button btn= (Button)findViewById(R.id.btn_driverlicense_edit);

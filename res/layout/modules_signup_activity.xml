@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/default_bg"
     android:orientation="vertical" >
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
         android:stretchColumns="*" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:layout_weight="0.0"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:text="@string/app_name" />
+        
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="10dip"
-            android:background="@drawable/signup_hit_input1"
+           
             android:orientation="horizontal" >
 
             <TextView
@@ -36,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:hint="phone or email" >
+                 >
             </EditText>
 
             <TextView
@@ -46,14 +42,12 @@
                 android:text="" />
         </TableRow>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#F00" />
+       
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/signup_hit_input2"
+            
             android:orientation="horizontal" >
 
             <TextView
@@ -81,7 +75,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/signup_hit_input2"
+            
             android:orientation="horizontal" >
 
             <TextView
@@ -96,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:hint="Row:1" >
+                 >
             </EditText>
 
             <TextView
@@ -105,19 +99,24 @@
                 android:layout_weight="0.0"
                 android:text="" />
         </TableRow>
-
+		<View android:layout_width="match_parent"
+		    android:layout_height="30dp">
+		    
+		</View>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/signup_hit_input6"
+            
             android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/btn_signup_signup"
                 style="@style/button"
                 android:layout_span="3"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:text="@string/Signup" />
         </TableRow>
     </TableLayout>
 
-</LinearLayout>
+</RelativeLayout>

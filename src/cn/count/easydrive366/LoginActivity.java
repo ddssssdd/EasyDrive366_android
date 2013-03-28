@@ -21,6 +21,7 @@ public class LoginActivity extends BaseHttpActivity {
 	private EditText edtPassword;
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
+		this._isHideTitleBar = false;
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.modules_login_activity);

@@ -27,11 +27,15 @@ public class BaseHttpActivity extends Activity implements
 	protected Button _rightButton;
 	protected String _company;
 	protected String _phone;
+	protected boolean _isHideTitleBar = true;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		if (_isHideTitleBar){
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
+		}
 
 	}
 
@@ -215,6 +219,7 @@ public class BaseHttpActivity extends Activity implements
 
 						}
 					});
+					
 					
 				}
 				

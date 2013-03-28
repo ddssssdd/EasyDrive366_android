@@ -18,7 +18,7 @@ public class BrowserActivity extends BaseHttpActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		setContentView(R.layout.modules_browser_activity);
 		this.setRightButtonInVisible();
 		_webView = (WebView) findViewById(R.id.webView);

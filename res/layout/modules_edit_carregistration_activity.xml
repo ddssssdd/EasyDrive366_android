@@ -5,15 +5,12 @@
     android:orientation="vertical" >
      <include android:layout_width="match_parent"
          android:layout_height="wrap_content" 
-         layout="@layout/navigation_bar" /> 
+         layout="@layout/navigation_bar_without_phone_button" /> 
      <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="*" >
-<!--          <Button android:id="@+id/btn_carregistration_save" -->
-<!--         android:layout_width="match_parent" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:text="保存"/> -->
+
          
 		<TextView
                 android:layout_width="wrap_content"

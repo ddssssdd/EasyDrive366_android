@@ -1,6 +1,9 @@
 package cn.count.easydrive366;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,12 +12,15 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpClient;
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 
 import android.widget.EditText;
 
@@ -79,6 +85,13 @@ public class MaintainEditActivity extends BaseHttpActivity{
 					
 				}});
 				*/
+			findViewById(R.id.imagebutton_date).setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					chooseDate();
+					
+				}});
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -114,6 +127,36 @@ public class MaintainEditActivity extends BaseHttpActivity{
 	@Override
 	public void recordResult(int msgType, Object result) {
 		// TODO Auto-generated method stub
+		
+	}
+	private void chooseDate(){
+		String d = ((EditText)findViewById(R.id.edt_maintain_pre_date  )).getText().toString();
+		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		final Calendar c  = Calendar.getInstance();
+		
+		try{
+			c.setTime(sdf.parse(d));
+			
+			Dialog dialog = new DatePickerDialog(this,
+					new DatePickerDialog.OnDateSetListener() {
+						
+						@Override
+						public void onDateSet(DatePicker view, int year, int monthOfYear,
+								int dayOfMonth) {
+								c.set(Calendar.YEAR, year);
+								c.set(Calendar.MONTH,monthOfYear);
+								c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+								//showDialog(sdf.format(c.getTime()));
+								((EditText)findViewById(R.id.edt_maintain_pre_date  )).setText(sdf.format(c.getTime()));
+						}
+					},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
+			dialog.show();
+		}catch(Exception e){
+			log(e);
+		}
+		
+	
+		
 		
 	}
 }

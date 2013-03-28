@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-   
+    android:layout_height="match_parent" >
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="*" >
-         <include android:layout_width="match_parent"
-         android:layout_height="wrap_content" 
-         layout="@layout/navigation_bar" /> 
-         
-<!--         <Button android:id="@+id/btn_driverlicense_save" -->
-<!--         android:layout_width="match_parent" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:text="@string/save"/> -->
-        
-		
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/navigation_bar_without_phone_button" />
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="10dip"
-            android:orientation="horizontal"
-            android:background="@drawable/signup_hit_input1" >
- 			
+            android:background="@drawable/signup_hit_input1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,13 +41,13 @@
                 android:layout_weight="0.0"
                 android:text="" />
         </TableRow>
-		<View android:layout_height="2dip"
-		    android:background="#F00"/>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" 
-            android:background="@drawable/signup_hit_input2">
+            android:background="@drawable/signup_hit_input2"
+            android:gravity="center"
+            android:orientation="horizontal" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,19 +65,18 @@
             </EditText>
 
             <TextView
-                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
-                android:text=">" />
+                android:text="" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" 
             android:background="@drawable/signup_hit_input2"
-            >
+            android:gravity="center"
+            android:orientation="horizontal" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,19 +93,21 @@
                 android:hint="" >
             </EditText>
 
-            <TextView
+            <ImageView
                 android:id="@+id/txt_driverlicense_choose_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
-                android:text="  >" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/home_index_arrow" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/signup_hit_input6" >
+            android:background="@drawable/signup_hit_input6"
+            android:gravity="center"
+            android:orientation="horizontal" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,26 +121,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:hint="Row:1" >
+                android:hint="" >
             </EditText>
 
-            <TextView
+            <ImageView
                 android:id="@+id/txt_driverlicense_choose_driver_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
-                android:text="  >" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/home_index_arrow" />
         </TableRow>
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-            </TableLayout>
+    </TableLayout>
 
 </ScrollView>

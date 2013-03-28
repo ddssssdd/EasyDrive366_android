@@ -14,6 +14,7 @@ import android.os.IBinder;
 
 public class BackendService extends Service {
 	private GetLatestReceiver br;
+	private int seconds = 30*60;
 	@Override
 	public void onStart(Intent intent,int startId){
 		super.onStart(intent, startId);
@@ -35,7 +36,7 @@ public class BackendService extends Service {
 		br = new GetLatestReceiver();
 		registerReceiver(br,filter);
 		
-		Calendar cal = DateUtils.getTimeAfterInSecs(10);
+		Calendar cal = DateUtils.getTimeAfterInSecs(seconds);
 		String s = DateUtils.getDateTimeString(cal);
 		
 		String actionString = "cn.count.easydriver366.service.GetLatestReceiverr";
@@ -45,7 +46,7 @@ public class BackendService extends Service {
 		broadcastIntent.addFlags(Intent.FLAG_FROM_BACKGROUND);
 		PendingIntent pi = this.getDistinctPendingIntent(broadcastIntent, 2);
 		AlarmManager am =(AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
-		am.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30*60*1000, pi);
+		am.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), seconds*1000, pi);
 		
 	}
 	protected PendingIntent getDistinctPendingIntent(Intent intent,int requestId){

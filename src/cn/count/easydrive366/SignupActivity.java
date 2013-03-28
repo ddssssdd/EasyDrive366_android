@@ -22,6 +22,7 @@ public class SignupActivity extends BaseHttpActivity {
 	private EditText edtRePassword;
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
+		this._isHideTitleBar = false;
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.modules_signup_activity);

@@ -55,14 +55,14 @@ public class MaintainActivity extends BaseListViewActivity {
 
 	@Override
 	protected void initView() {
-		((TextView)findViewById(R.id.txt_maintain_average_mileage)).setText(_average_mileage);
-		((TextView)findViewById(R.id.txt_maintain_pre_distance)).setText(_pre_distance);
+		((TextView)findViewById(R.id.txt_maintain_average_mileage)).setText(_average_mileage+"公里/天");
+		((TextView)findViewById(R.id.txt_maintain_pre_distance)).setText(_pre_distance+"公里");
 		((TextView)findViewById(R.id.txt_maintain_pre_date)).setText(_prev_date);
-		((TextView)findViewById(R.id.txt_maintain_max_distance)).setText(_max_distance);
-		((TextView)findViewById(R.id.txt_maintain_max_time)).setText(_max_time);
+		((TextView)findViewById(R.id.txt_maintain_max_distance)).setText(_max_distance+"公里");
+		((TextView)findViewById(R.id.txt_maintain_max_time)).setText(_max_time+"个月");
 		((TextView)findViewById(R.id.txt_maintain_current_date)).setText(_current_date);
 		((TextView)findViewById(R.id.txt_maintain_current_miles)).setText(_current_miles);
-		((TextView)findViewById(R.id.txt_maintain_current_distance)).setText(_current_distance);
+		//((TextView)findViewById(R.id.txt_maintain_current_distance)).setText(_current_distance);
 		/*
 		((Button)findViewById(R.id.btn_modules_maintain_edit)).setOnClickListener(new OnClickListener(){
 

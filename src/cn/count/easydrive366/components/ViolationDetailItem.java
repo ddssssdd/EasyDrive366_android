@@ -15,7 +15,8 @@ public class ViolationDetailItem extends LinearLayout {
 		super(context,attrs);
 		_inflater = LayoutInflater.from(context);
 		_context = context;
-		_inflater.inflate(R.layout.partview_violationdetail_items, this);
+//		_inflater.inflate(R.layout.partview_violationdetail_items, this);
+		_inflater.inflate(R.layout.partview_violationdetail_items2, this);
 	}
 	public void setData(final String address,final String reason,final String fine,final String mark,final String occurTime){
 		((TextView)findViewById(R.id.txt_violationdetailitem_title)).setText(address);

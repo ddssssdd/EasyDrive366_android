@@ -48,6 +48,6 @@
         android:text="@string/app_loading"
         style="@style/button.green" >
     </Button>
-"
+
 
 </LinearLayout>
