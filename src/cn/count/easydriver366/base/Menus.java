@@ -29,14 +29,14 @@ public class Menus {
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_01),"01",InformationActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_02),"02",HelpCallActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",RescueActivity.class));
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_04),"04",MaintainActivity.class));
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_05),"05",DriverLicenseActivity.class));
+		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_04),"04",MaintainActivity.class));	
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_06),"06",CarRegistrationActivity.class));
+		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_05),"05",DriverLicenseActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_07),"07",TaxForCarShipActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_08),"08",CompulsoryInsuranceActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_09),"09",BusinessInsuranceActivity.class));	
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_10),"10",InsuranceProcessListActivity.class));
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_11),"11",null));
+		//menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_11),"11",null));
 	}
 	public List<HomeMenu> getMenus(){
 		return menus;

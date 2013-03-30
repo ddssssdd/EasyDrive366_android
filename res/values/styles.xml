@@ -32,6 +32,7 @@
     <style name="button.green">
         <item name="android:background">@drawable/main_login_selector</item>
         <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

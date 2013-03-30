@@ -55,6 +55,7 @@ public class HomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.moudles_home_activity);
+		AppSettings.restore_login_from_device(this);
 		startBackendService();
 		setupMenu();
 		
@@ -95,6 +96,7 @@ public class HomeActivity extends Activity {
 			}
 			*/
 			Intent intent = new Intent("cn.count.easydriver366.service.GetLatestReceiverr");
+			intent.putExtra("isInApp", true);
 			sendBroadcast(intent);
 			
 			return null;
@@ -116,9 +118,6 @@ public class HomeActivity extends Activity {
 			this.startService(service);
 		}
 		
-		GetLatestReceiver receiver = new GetLatestReceiver();
-		receiver.run();
-			
 		
 	}
 	private boolean isServiceRunning(){
@@ -143,6 +142,7 @@ public class HomeActivity extends Activity {
 		_tableLayout = (TableLayout)findViewById(R.id.tablelout_in_home_activity);
 		initMenuItems();
 		fillMenu();
+		new GetDataTask().execute();
 		
 	}
 	private void addTableRow(HomeMenu menu){
@@ -200,14 +200,10 @@ public class HomeActivity extends Activity {
 		return true;
 	}
 	public void logout(){
-		SharedPreferences prefs =getSharedPreferences(AppSettings.AppTile, MODE_PRIVATE);
-		Editor editor = prefs.edit();
-		editor.putString("username","");
-		editor.putInt("userid", 0);
-		editor.putBoolean("islogin", false);
+		AppSettings.logout(this);
 		Intent intent = new Intent(this,WelcomeActivity.class);
 		startActivity(intent);
-		editor.commit();
+		
 	}
 	private void settingsButtonPress(){
 		
@@ -215,7 +211,7 @@ public class HomeActivity extends Activity {
 		//startActivity(AppTools.getBrowserAction("http://www.baidu.com"));
 		new AlertDialog.Builder(this).setTitle(R.string.app_name)
 		.setIcon(android.R.drawable.ic_dialog_info)
-		.setMessage(this.getResources().getString(R.string.quit_question)).setPositiveButton(this.getResources().getString(R.string.ok), new  DialogInterface.OnClickListener(){
+		.setMessage(String.format(getResources().getString(R.string.quit_question),AppSettings.username)).setPositiveButton(this.getResources().getString(R.string.ok), new  DialogInterface.OnClickListener(){
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

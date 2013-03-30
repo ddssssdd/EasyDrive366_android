@@ -44,11 +44,11 @@ public class LoginActivity extends BaseHttpActivity {
 		String username= edtUsername.getText().toString();
 		String password = edtPassword.getText().toString();
 		if (username.equals("")){
-			this.showMessage("username can not be empty", null);
+			this.showMessage(getResources().getString(R.string.username_not_empty), null);
 			return;
 		}
-		if (password.equals("")){
-			this.showMessage("password can not be empty", null);
+		if (password.equals("") ){
+			this.showMessage(getResources().getString(R.string.password_not_empty), null);
 			return;
 		}
 		String url =String.format("api/login?username=%s&password=%s",username,password);
@@ -58,7 +58,7 @@ public class LoginActivity extends BaseHttpActivity {
 	public void processMessage(int msgType, final Object result) {
 		super.processMessage(msgType, result);
 		if (this.isSuccess(result)){
-			AppSettings.login((JSONObject) result);
+			AppSettings.login((JSONObject) result,this);
 			Bundle bundle =new Bundle();
 			bundle.putString("result",result.toString());
 			Intent intent = new Intent();

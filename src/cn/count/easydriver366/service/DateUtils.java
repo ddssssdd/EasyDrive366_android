@@ -29,6 +29,10 @@ public class DateUtils {
 		String s = df.format(cal.getTime());
 		return s;
 	}
-	
+	public static boolean is_SleepTime(){
+		Calendar today = Calendar.getInstance();
+		int hours = today.get(Calendar.HOUR_OF_DAY);
+		return hours<8 || hours>21;
+	}
 
 }

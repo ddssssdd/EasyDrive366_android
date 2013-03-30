@@ -29,13 +29,14 @@
                 android:id="@+id/edt_maintain_average_mileage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="" >
             </EditText>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text="公里/天" />
         </TableRow>
 		 <TableRow
             android:layout_width="match_parent"
@@ -52,13 +53,14 @@
                 android:id="@+id/edt_maintain_max_distance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberSigned"
                 android:hint="" >
             </EditText>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text="公里" />
         </TableRow>
 
         <TableRow
@@ -76,13 +78,14 @@
                 android:id="@+id/edt_maintain_max_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberSigned"
                 android:hint="" >
             </EditText>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text="个月" />
         </TableRow>
         
         <TableRow
@@ -100,13 +103,14 @@
                 android:id="@+id/edt_maintain_pre_distance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberSigned"
                 android:hint="" >
             </EditText>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text="公里" />
         </TableRow>
 
         <TableRow

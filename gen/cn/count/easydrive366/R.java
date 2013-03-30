@@ -391,8 +391,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int app_name=0x7f070006;
         public static final int cancel=0x7f070021;
         public static final int current=0x7f07001e;
+        public static final int default_plate_no=0x7f070024;
         public static final int edit=0x7f07000c;
         public static final int exit_question=0x7f07001d;
+        public static final int hint=0x7f070022;
         public static final int insurance_suggestion=0x7f07000a;
         public static final int key_01=0x7f070012;
         public static final int key_02=0x7f070013;
@@ -408,6 +410,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int menu_settings=0x7f070008;
         public static final int ok=0x7f070020;
         public static final int password=0x7f07000d;
+        public static final int password_not_empty=0x7f070026;
+        public static final int password_not_match=0x7f070027;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -417,11 +421,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_pull_label=0x7f070000;
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
-        public static final int quit_question=0x7f070022;
+        public static final int quit_question=0x7f070023;
         public static final int renew=0x7f07001f;
         public static final int repassword=0x7f07000e;
         public static final int save=0x7f07000b;
         public static final int username=0x7f07000f;
+        public static final int username_not_empty=0x7f070025;
     }
     public static final class style {
         /** 
@@ -435,17 +440,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             backward-compatibility can go here.
 
         
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 

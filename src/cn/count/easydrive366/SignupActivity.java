@@ -45,7 +45,7 @@ public class SignupActivity extends BaseHttpActivity {
 	public void processMessage(int msgType, final Object result) {
 		super.processMessage(msgType, result);
 		if (this.isSuccess(result)){
-			AppSettings.login((JSONObject) result);
+			AppSettings.login((JSONObject) result,this);
 			Bundle bundle =new Bundle();
 			bundle.putString("result",result.toString());
 			Intent intent = new Intent();
@@ -70,15 +70,15 @@ public class SignupActivity extends BaseHttpActivity {
 		String password = edtPassword.getText().toString();
 		String repassword = edtRePassword.getText().toString();
 		if (username.equals("")){
-			this.showMessage("username can not be empty", null);
+			this.showMessage(getResources().getString(R.string.username_not_empty), null);
 			return;
 		}
-		if (password.equals("")){
-			this.showMessage("password can not be empty", null);
+		if (password.equals("") || password.length()<6){
+			this.showMessage(getResources().getString(R.string.password_not_empty), null);
 			return;
 		}
 		if (!password.equals(repassword)){
-			this.showMessage("password not match", null);
+			this.showMessage(getResources().getString(R.string.password_not_match), null);
 			return;
 		}
 		String url =String.format("api/signup?username=%s&password=%s",username,password);

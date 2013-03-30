@@ -119,14 +119,15 @@ public class BaseHttpActivity extends Activity implements
 	protected void showMessage(final String info,
 		final DialogInterface.OnClickListener okListener) {
 		final Context context = this;
+		
 		this.runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
-				new AlertDialog.Builder(context).setTitle("Warnning")
+				new AlertDialog.Builder(context).setTitle(getResources().getString(R.string.hint))
 						.setIcon(android.R.drawable.ic_dialog_alert)
-						.setMessage(info).setPositiveButton("OK", okListener)
-						.setNegativeButton("Cancel", null).show();
+						.setMessage(info).setPositiveButton(getResources().getString(R.string.ok), okListener).show();
+						//.setNegativeButton(getResources().getString(R.string.cancel), null).show();
 			}
 		});
 

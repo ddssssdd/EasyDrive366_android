@@ -30,15 +30,17 @@ public class CompulsoryInsuranceActivity extends BaseHttpActivity {
 	private JSONObject _type1;
 	private JSONObject _type2; 
 	private ExtAdapter _adapter;
+	private ExpandableListView _lv;
+	private int _groupCount;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_compulsoryinsurance_activity);
 		this.setupLeftButton();
 		this.setRightButtonInVisible();
-		ExpandableListView lv = (ExpandableListView)findViewById(R.id.expandableListView_compulsory_insurance);
+		_lv = (ExpandableListView)findViewById(R.id.expandableListView_compulsory_insurance);
 		_adapter = new ExtAdapter(this);
-		lv.setAdapter(_adapter);
+		_lv.setAdapter(_adapter);
 		restoreFromLocal(1);
 		this.get(AppSettings.url_get_compulsory_details(), 1);
 		
@@ -48,7 +50,7 @@ public class CompulsoryInsuranceActivity extends BaseHttpActivity {
 			@Override
 			public void onClick(View v) {
 				_adapter.setData(_type0);
-				
+				showListview();
 			}
 			
 		});
@@ -58,6 +60,7 @@ public class CompulsoryInsuranceActivity extends BaseHttpActivity {
 			@Override
 			public void onClick(View v) {
 				_adapter.setData(_type1);
+				showListview();
 				
 			}
 			
@@ -68,6 +71,7 @@ public class CompulsoryInsuranceActivity extends BaseHttpActivity {
 			@Override
 			public void onClick(View v) {
 				_adapter.setData(_type2);
+				showListview();
 				
 			}
 			
@@ -89,7 +93,7 @@ public class CompulsoryInsuranceActivity extends BaseHttpActivity {
 					@Override
 					public void run() {
 						_adapter.setData(_type0);
-						
+						showListview();
 					}});
 				
 			}
@@ -97,6 +101,14 @@ public class CompulsoryInsuranceActivity extends BaseHttpActivity {
 			this.log(e);
 		}
 
+	}
+	private void showListview(){
+		
+		/*
+		for(int i=0;i<_groupCount;i++){
+			_lv.expandGroup(i);
+		}
+		*/
 	}
 	public class ExtAdapter extends BaseExpandableListAdapter{
 		private LayoutInflater mInflater = null;
@@ -125,6 +137,7 @@ public class CompulsoryInsuranceActivity extends BaseHttpActivity {
 					}
 					items.add(target);
 				}
+				_groupCount = groups.size();
 				this.notifyDataSetChanged();
 			}catch(Exception e){
 				log(e);

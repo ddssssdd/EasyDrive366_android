@@ -34,6 +34,9 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 		try {
 			EditText t1 = ((EditText)findViewById(R.id.edt_carregistration_plate_no));
 			String s1 =json.getString("plate_no"); 
+			if (s1.equals("")){
+				s1 =this.getResources().getString(R.string.default_plate_no);
+			}
 			t1.setText(s1);
 			((EditText)findViewById(R.id.edt_carregistration_engine_no  )).setText(json.getString("engine_no"));
 			((EditText)findViewById(R.id.edt_carregistration_vin  )).setText(json.getString("vin"));

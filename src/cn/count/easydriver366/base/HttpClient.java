@@ -18,6 +18,9 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.os.Handler;
+import android.os.Message;
+
 public class HttpClient {
 	private IHttpCallback mCallback;
 
@@ -25,7 +28,7 @@ public class HttpClient {
 	public HttpClient(IHttpCallback callback){
 		mCallback = callback;
 	}
-
+	
 	public JSONObject getSucessResult(JSONObject result){
 		JSONObject game = null;
 		try{

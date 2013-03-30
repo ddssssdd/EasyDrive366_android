@@ -68,7 +68,9 @@
         </activity>
         <activity android:name="cn.count.easydrive366.BrowserActivity"></activity>
 
-        <receiver android:name="cn.count.easydriver366.service.GetLatestReceiver" >
+        <receiver android:name="cn.count.easydriver366.service.GetLatestReceiver" android:enabled="true"
+            
+            android:persistent="true" >
             <intent-filer>
                 <action android:name="cn.count.easydriver366.service.GetLatestReceiver" >
                 </action>
@@ -78,7 +80,7 @@
         <service
             android:name="cn.count.easydriver366.service.BackendService"
             android:enabled="true"
-            android:exported="true"
+            
             android:persistent="true" >
         </service>
 

@@ -14,7 +14,7 @@ import android.os.IBinder;
 
 public class BackendService extends Service {
 	private GetLatestReceiver br;
-	private int seconds = 30*60;
+	private int seconds = 60*60;
 	@Override
 	public void onStart(Intent intent,int startId){
 		super.onStart(intent, startId);

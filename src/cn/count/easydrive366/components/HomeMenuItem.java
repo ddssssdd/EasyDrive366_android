@@ -108,12 +108,12 @@ public class HomeMenuItem extends LinearLayout {
 		return String.format("%s_userid_%d", AppSettings.LatestNewsKey,AppSettings.userid);
 	}
 	private String loadJson(){
-		SharedPreferences prefs =_context.getSharedPreferences(getKey(), Context.MODE_MULTI_PROCESS);
+		SharedPreferences prefs =_context.getSharedPreferences(getKey(), Context.MODE_PRIVATE);
 		String result = prefs.getString(_menuItem.key, "");
 		return result;
 	}
 	private void saveJson(final String json){
-		SharedPreferences prefs =_context.getSharedPreferences(getKey(), Context.MODE_MULTI_PROCESS);
+		SharedPreferences prefs =_context.getSharedPreferences(getKey(), Context.MODE_PRIVATE);
 		Editor editor = prefs.edit();
 		editor.putString(_menuItem.key, json);
 		editor.commit();

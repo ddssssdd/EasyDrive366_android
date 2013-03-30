@@ -4,12 +4,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
 public final class AppSettings {
 //	static public String ServerUrl = "http://10.4.30.190:7000/pm/";
-	static public String ServerUrl ="http://124.135.63.250:21000/pm/";
-	static public String AppTile="cn.count.EasyDrive366";
+	static public final String ServerUrl ="http://124.135.63.250:21000/pm/";
+	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
-	static public int userid=65;
+	static public int userid=0;
 	static public int TotalPageCount=10;
 	static public String username;
 	static public boolean isLogin= false;
@@ -79,15 +83,38 @@ public final class AppSettings {
 	}
 	
 	
-	static public void login(JSONObject result) {
+	static public void login(JSONObject result,Context context) {
 		try {
 			userid = result.getJSONObject("result").getInt("id");
 			username = result.getJSONObject("result").getString("username");
 			isLogin = true;
+			SharedPreferences prefs =context.getSharedPreferences(AppSettings.AppTile+"_login", Context.MODE_PRIVATE);
+			Editor editor = prefs.edit();
+			editor.putInt("userid", userid);
+			editor.putBoolean("isLogin", isLogin);
+			editor.putString("username", username);
+			
+			editor.commit();
 		} catch (JSONException e) {
 			AppTools.log(e);
 		}
 	}
+	static public  void restore_login_from_device(Context context){
+		SharedPreferences prefs =context.getSharedPreferences(AppSettings.AppTile+"_login", Context.MODE_PRIVATE);
+		userid = prefs.getInt("userid", 0);
+		isLogin = prefs.getBoolean("isLogin", false);
+		username = prefs.getString("username", "");
+	}
+	static public void logout(Context context){
+		SharedPreferences prefs =context.getSharedPreferences(AppSettings.AppTile+"_login", Context.MODE_PRIVATE);
+		Editor editor = prefs.edit();
+		editor.putInt("userid", 0);
+		editor.putBoolean("isLogin", false);
+		editor.putString("username", "");
+		
+		editor.commit();
+	}
+	
 	
 	
 }

@@ -37,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
+                android:inputType="number"
                 android:hint="" >
             </EditText>
 
@@ -71,6 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
+                android:inputType="textCapCharacters"
                 android:hint="" >
             </EditText>
 
@@ -98,6 +100,7 @@
                 android:id="@+id/edt_carregistration_vin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="textCapCharacters"
                 android:layout_weight="1.0"
                 android:hint="" >
             </EditText>
