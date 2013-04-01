@@ -13,6 +13,7 @@
 	<string name="username">用户名</string>
 	<string name="app_loading_fail">装载失败</string>
 	<string name="app_loading">正在装载...</string>
+	<string name="app_uploading">正在上传...</string>
 	<string name="key_01">最新消息</string>
 	<string name="key_02">紧急救助</string>
 	<string name="key_03">事故救援</string>
@@ -35,4 +36,7 @@
 	<string name="username_not_empty">用户名称不能为空</string>
 	<string name="password_not_empty">密码不能为空，至少6位</string>
 	<string name="password_not_match">密码不匹配</string>
+	<string name="name_is_empty">姓名不能为空！</string>
+	<string name="id_is_wrong">身份证为18位。</string>
+	<string name="no_network">网络不给力，无法保存。</string>
 </resources>

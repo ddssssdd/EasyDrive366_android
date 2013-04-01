@@ -10,6 +10,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cn.count.easydrive366.R;
@@ -17,6 +18,7 @@ import cn.count.easydrive366.HomeActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.HttpClient;
+import cn.count.easydriver366.base.NetworkUtils;
 import android.app.Notification;
 
 import android.app.NotificationManager;
@@ -95,7 +97,7 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 
 		NotificationManager notificationManager = (NotificationManager) context
 				.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
-		//NOTIFICATION_ID=NOTIFICATION_ID+1;
+		NOTIFICATION_ID=NOTIFICATION_ID+1;
 		notificationManager.notify(NOTIFICATION_ID, notification);
 		if (isDebug)
 			Toast.makeText(context, "end...", Toast.LENGTH_LONG).show();
@@ -111,64 +113,23 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 		if (!this._isInApp && DateUtils.is_SleepTime()){
 			return;
 		}
-		
+		if ( NetworkUtils.getNetworkState(context) <1){
+			return;
+		}
 		HttpClient client = new HttpClient(this);
-		for(int i=1;i<=AppSettings.TotalPageCount;i++){
-			final String url = String.format("api/get_latest?userid=%d&keyname=%02d",AppSettings.userid,i);
-			client.sendHttp(AppSettings.ServerUrl, url, i);
-			//sendHttp(AppSettings.ServerUrl+url,i);
-		}
-	}
-	private void sendHttp(final String urlParams,final int i){
-		String url =urlParams+"&timestamp="+String.valueOf(System.currentTimeMillis());
-		
-		
-		HttpGet httpGet = new HttpGet(url);
-		DefaultHttpClient client = new DefaultHttpClient();
-		try{
-		
-			HttpResponse response = client.execute(httpGet);
-			if (response.getStatusLine().getStatusCode()==200){
-				HttpEntity entity = response.getEntity();
-				InputStream inputStream = entity.getContent();
-				ByteArrayOutputStream content = new ByteArrayOutputStream();
-				int readBytes =0;
-				byte[] sBuffer = new byte[512];
-				while ((readBytes=inputStream.read(sBuffer))!=-1){
-					content.write(sBuffer, 0, readBytes);
-				}
-				String result = new String(content.toByteArray());
-				try{
-					JSONObject json = new JSONObject(result);
-					if (AppTools.isSuccess(json)){
-						if (_isInApp){
-							Intent intent = new Intent();
-							intent.putExtra("key", String.format("%02d", i));
-							SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
-							final String updated_time = sdf.format(new Date());
-							json.getJSONObject("result").put("updated_time", updated_time);
-							intent.putExtra("json",json.getJSONObject("result").toString());
-							intent.setAction("cn.count.easydrive366.components.HomeMenuItem$LatestInformationReceiver");
-							context.sendBroadcast(intent);
-						}else{
-							this.showNotification(json.getJSONObject("result").getString("company"), json.getJSONObject("result").getString("latest"));
-						}
-						
-						
-						
-					}
-				}catch(Exception e){
-					
-					AppTools.log(e);
-				}
-				//processResponse(msgType,result);
+		if (_isInApp){
+			for(int i=1;i<=AppSettings.TotalPageCount;i++){
+				final String url = String.format("api/get_latest?userid=%d&keyname=%02d",AppSettings.userid,i);
+				client.sendHttp(AppSettings.ServerUrl, url, i);
+				//sendHttp(AppSettings.ServerUrl+url,i);
 			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			client.getConnectionManager().shutdown();
+		}else{
+			final String url = AppSettings.url_for_get_news();
+			client.sendHttp(AppSettings.ServerUrl, url, 1);
 		}
+		
 	}
+	
 	@Override
 	public void processMessage(int msgType, Object result) {
 		try{
@@ -184,7 +145,12 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 					intent.setAction("cn.count.easydrive366.components.HomeMenuItem$LatestInformationReceiver");
 					context.sendBroadcast(intent);
 				}else{
-					this.showNotification(json.getJSONObject("result").getString("company"), json.getJSONObject("result").getString("latest"));
+					JSONArray list = json.getJSONObject("result").getJSONArray("data");
+					for(int i=0;i<list.length();i++){
+						JSONObject item = list.getJSONObject(i);
+						this.showNotification("易驾366",item.getString("description"));
+					}
+					
 				}
 				
 				//Looper.prepare();

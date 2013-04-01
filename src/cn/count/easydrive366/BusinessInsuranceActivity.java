@@ -31,7 +31,7 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 		this.setupLeftButton();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_get_business_insurance(), 1);
-		this.get(AppSettings.url_get_suggestion_count(), 2);
+		this.get(AppSettings.url_get_suggestion_count(), 2,"");
 	}
 	@Override
 	public void processMessage(int msgType, final Object result) {
@@ -39,7 +39,9 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 			if (msgType==1){
 				_result= (((JSONObject)result).getJSONObject("result")).getJSONObject("data");
 				_curr  =_result.getJSONObject("curr");
-				_renew =_result.getJSONObject("renew");
+				if (!_result.isNull("renew")){
+					_renew =_result.getJSONObject("renew");
+				}
 				this.runOnUiThread(initViewThread);
 			}else if (msgType==2){
 				final int count = ((JSONObject)result).getInt("result");

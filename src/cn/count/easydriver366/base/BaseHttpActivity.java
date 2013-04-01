@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import cn.count.easydrive366.R;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,7 +29,7 @@ public class BaseHttpActivity extends Activity implements
 	protected String _company;
 	protected String _phone;
 	protected boolean _isHideTitleBar = true;
-	
+	protected ProgressDialog _dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +46,22 @@ public class BaseHttpActivity extends Activity implements
 		}
 		return httpClient;
 	}
-
 	public void get(String actionAndParameters, final int returnType) {
+		
+		this.get(actionAndParameters, returnType,this.getResources().getString(R.string.app_loading));
+	}
+
+	public void get(String actionAndParameters, final int returnType,final String hint) {
+		if (!this.isOnline()){
+			this.restoreFromLocal(returnType);
+			return;
+		}
+		if (!hint.equals("")){
+			_dialog = new ProgressDialog(this);
+			_dialog.setMessage(hint);
+			_dialog.show();
+		}
+		
 		this.getHttpClient().requestServer(actionAndParameters, returnType);
 	}
 
@@ -59,9 +74,12 @@ public class BaseHttpActivity extends Activity implements
 	protected void setupCompanyAndPhone(final Object json) {
 		final JSONObject result = (JSONObject) json;
 		try {
-			_company = result.getJSONObject("result").getString("company");
-			_phone = result.getJSONObject("result").getString("phone");
-			this.setupPhoneButton();
+			if (!result.getJSONObject("result").isNull("company")){
+				_company = result.getJSONObject("result").getString("company");
+				_phone = result.getJSONObject("result").getString("phone");
+				this.setupPhoneButton();
+			}
+			
 		} catch (Exception e) {
 			log(e);
 		}
@@ -74,7 +92,7 @@ public class BaseHttpActivity extends Activity implements
 		String result = this.getOfflineResult(msgType);
 		if (!result.equals("")) {
 			try {
-
+				this.setupCompanyAndPhone(new JSONObject(result));	
 				this.processMessage(msgType, new JSONObject(result));
 
 			} catch (JSONException e) {
@@ -105,7 +123,10 @@ public class BaseHttpActivity extends Activity implements
 			editor.commit();
 			this.setupCompanyAndPhone(result);
 		}
-
+		if (_dialog!=null){
+			_dialog.dismiss();
+			_dialog = null;
+		}
 	}
 
 	public boolean isSuccess(final Object jsonobj) {

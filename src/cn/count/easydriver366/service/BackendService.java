@@ -2,6 +2,8 @@ package cn.count.easydriver366.service;
 
 import java.util.Calendar;
 
+import cn.count.easydriver366.base.AppSettings;
+
 
 
 import android.app.AlarmManager;
@@ -14,11 +16,12 @@ import android.os.IBinder;
 
 public class BackendService extends Service {
 	private GetLatestReceiver br;
-	private int seconds = 60*60;
+	private int seconds = 4*60*60;
 	@Override
 	public void onStart(Intent intent,int startId){
 		super.onStart(intent, startId);
-		
+		AppSettings.restore_login_from_device(this);
+		seconds = AppSettings.update_time;
 		this.startRepeatAlarm();
 	}
 	@Override

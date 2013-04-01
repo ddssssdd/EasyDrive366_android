@@ -1,5 +1,8 @@
 package cn.count.easydrive366;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -7,10 +10,13 @@ import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.AppSettings;
 
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 public class CarRegistrationEditActivity extends BaseHttpActivity {
@@ -53,7 +59,13 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 				
 			});
 			*/
-			
+			findViewById(R.id.txt_driverlicense_choose_date).setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					chooseDate();
+					
+				}});
 		} catch (Exception e) {
 			log(e);
 		}
@@ -63,6 +75,10 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 		save();
 	}
 	private void save(){
+		if (!this.isOnline()){
+			this.showMessage(this.getResources().getString(R.string.no_network), null);
+			return;
+		}
 		String url =String.format("api/add_car_registration?user_id=%d&car_id=%s&engine_no=%s&vin=%s&init_date=%s",
 				AppSettings.userid,
 				((EditText)findViewById(R.id.edt_carregistration_plate_no)).getText(),
@@ -70,7 +86,7 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 				((EditText)findViewById(R.id.edt_carregistration_vin)).getText(),
 				((EditText)findViewById(R.id.edt_carregistration_registration_date)).getText()
 				);
-		this.get(url, 2);
+		this.get(url, 2,this.getResources().getString(R.string.app_uploading));
 	}
 	@Override
 	public void processMessage(int msgType, final Object result) {
@@ -82,5 +98,35 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 		intent.putExtras(bundle);
 		setResult(RESULT_OK,intent);
 		finish();
+	}
+	private void chooseDate(){
+		String d = ((EditText)findViewById(R.id.edt_carregistration_registration_date  )).getText().toString();
+		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		final Calendar c  = Calendar.getInstance();
+		
+		try{
+			c.setTime(sdf.parse(d));
+			
+			Dialog dialog = new DatePickerDialog(this,
+					new DatePickerDialog.OnDateSetListener() {
+						
+						@Override
+						public void onDateSet(DatePicker view, int year, int monthOfYear,
+								int dayOfMonth) {
+								c.set(Calendar.YEAR, year);
+								c.set(Calendar.MONTH,monthOfYear);
+								c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+								//showDialog(sdf.format(c.getTime()));
+								((EditText)findViewById(R.id.edt_carregistration_registration_date  )).setText(sdf.format(c.getTime()));
+						}
+					},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
+			dialog.show();
+		}catch(Exception e){
+			log(e);
+		}
+		
+	
+		
+		
 	}
 }

@@ -232,9 +232,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int edt_carregistration_registration_date=0x7f050042;
         public static final int edt_carregistration_vin=0x7f050041;
         public static final int edt_driverlicense_car_type=0x7f050047;
-        public static final int edt_driverlicense_init_date=0x7f050045;
-        public static final int edt_driverlicense_name=0x7f050043;
-        public static final int edt_driverlicense_number=0x7f050044;
+        public static final int edt_driverlicense_init_date=0x7f050046;
+        public static final int edt_driverlicense_name=0x7f050044;
+        public static final int edt_driverlicense_number=0x7f050045;
         public static final int edt_login_passwrod=0x7f050055;
         public static final int edt_login_username=0x7f050054;
         public static final int edt_maintain_average_mileage=0x7f05004a;
@@ -296,7 +296,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txt_carregistration_vin=0x7f05002e;
         public static final int txt_driverlicense_car_type=0x7f05003c;
         public static final int txt_driverlicense_check_date=0x7f050036;
-        public static final int txt_driverlicense_choose_date=0x7f050046;
+        public static final int txt_driverlicense_choose_date=0x7f050043;
         public static final int txt_driverlicense_choose_driver_type=0x7f050048;
         public static final int txt_driverlicense_end_date=0x7f05003e;
         public static final int txt_driverlicense_init_date=0x7f05003d;
@@ -389,29 +389,33 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int app_loading=0x7f070011;
         public static final int app_loading_fail=0x7f070010;
         public static final int app_name=0x7f070006;
-        public static final int cancel=0x7f070021;
-        public static final int current=0x7f07001e;
-        public static final int default_plate_no=0x7f070024;
+        public static final int app_uploading=0x7f070012;
+        public static final int cancel=0x7f070022;
+        public static final int current=0x7f07001f;
+        public static final int default_plate_no=0x7f070025;
         public static final int edit=0x7f07000c;
-        public static final int exit_question=0x7f07001d;
-        public static final int hint=0x7f070022;
+        public static final int exit_question=0x7f07001e;
+        public static final int hint=0x7f070023;
+        public static final int id_is_wrong=0x7f07002a;
         public static final int insurance_suggestion=0x7f07000a;
-        public static final int key_01=0x7f070012;
-        public static final int key_02=0x7f070013;
-        public static final int key_03=0x7f070014;
-        public static final int key_04=0x7f070015;
-        public static final int key_05=0x7f070016;
-        public static final int key_06=0x7f070017;
-        public static final int key_07=0x7f070018;
-        public static final int key_08=0x7f070019;
-        public static final int key_09=0x7f07001a;
-        public static final int key_10=0x7f07001b;
-        public static final int key_11=0x7f07001c;
+        public static final int key_01=0x7f070013;
+        public static final int key_02=0x7f070014;
+        public static final int key_03=0x7f070015;
+        public static final int key_04=0x7f070016;
+        public static final int key_05=0x7f070017;
+        public static final int key_06=0x7f070018;
+        public static final int key_07=0x7f070019;
+        public static final int key_08=0x7f07001a;
+        public static final int key_09=0x7f07001b;
+        public static final int key_10=0x7f07001c;
+        public static final int key_11=0x7f07001d;
         public static final int menu_settings=0x7f070008;
-        public static final int ok=0x7f070020;
+        public static final int name_is_empty=0x7f070029;
+        public static final int no_network=0x7f07002b;
+        public static final int ok=0x7f070021;
         public static final int password=0x7f07000d;
-        public static final int password_not_empty=0x7f070026;
-        public static final int password_not_match=0x7f070027;
+        public static final int password_not_empty=0x7f070027;
+        public static final int password_not_match=0x7f070028;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -421,12 +425,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_pull_label=0x7f070000;
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
-        public static final int quit_question=0x7f070023;
-        public static final int renew=0x7f07001f;
+        public static final int quit_question=0x7f070024;
+        public static final int renew=0x7f070020;
         public static final int repassword=0x7f07000e;
         public static final int save=0x7f07000b;
         public static final int username=0x7f07000f;
-        public static final int username_not_empty=0x7f070025;
+        public static final int username_not_empty=0x7f070026;
     }
     public static final class style {
         /** 

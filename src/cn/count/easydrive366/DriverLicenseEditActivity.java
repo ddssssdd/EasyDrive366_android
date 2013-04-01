@@ -84,6 +84,20 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 		save();
 	}
 	private void save(){
+		if (!this.isOnline()){
+			this.showMessage(this.getResources().getString(R.string.no_network), null);
+			return;
+		}
+		String name = ((EditText)findViewById(R.id.edt_driverlicense_name)).getText().toString().trim();
+		String id = ((EditText)findViewById(R.id.edt_driverlicense_number)).getText().toString().trim();
+		if (name.equals("")){
+			this.showMessage(this.getResources().getString(R.string.name_is_empty), null);
+			return;
+		}
+		if (id.equals("") || id.length()!=18){
+			this.showMessage(this.getResources().getString(R.string.id_is_wrong), null);
+			return;
+		}
 		String url =String.format("api/add_driver_license?user_id=%d&name=%s&license_id=%s&type=%s&init_date=%s",
 				AppSettings.userid,
 				((EditText)findViewById(R.id.edt_driverlicense_name)).getText(),
@@ -91,7 +105,7 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 				((EditText)findViewById(R.id.edt_driverlicense_car_type)).getText(),
 				((EditText)findViewById(R.id.edt_driverlicense_init_date)).getText()
 				);
-		this.get(url, 2);
+		this.get(url, 2,this.getResources().getString(R.string.app_uploading));
 	}
 	@Override
 	public void processMessage(int msgType, final Object result) {
@@ -191,6 +205,9 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 	}
 	private void chooseDate(){
 		String d = ((EditText)findViewById(R.id.edt_driverlicense_init_date  )).getText().toString();
+		if (d.equals("")){
+			d = "1990-01-01";
+		}
 		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		final Calendar c  = Calendar.getInstance();
 		

@@ -18,6 +18,7 @@ public final class AppSettings {
 	static public String username;
 	static public boolean isLogin= false;
 	static public JSONArray driver_type_list;
+	static public int update_time=4*60*60;
 	
 	static public String url_for_get_news()
 	{
@@ -85,15 +86,20 @@ public final class AppSettings {
 	
 	static public void login(JSONObject result,Context context) {
 		try {
+			
 			userid = result.getJSONObject("result").getInt("id");
 			username = result.getJSONObject("result").getString("username");
 			isLogin = true;
+			int update_time = 4*60*60;
+			if (!result.getJSONObject("result").isNull("update_time")){
+				update_time = result.getJSONObject("result").getInt("update_time");
+			}
 			SharedPreferences prefs =context.getSharedPreferences(AppSettings.AppTile+"_login", Context.MODE_PRIVATE);
 			Editor editor = prefs.edit();
 			editor.putInt("userid", userid);
 			editor.putBoolean("isLogin", isLogin);
 			editor.putString("username", username);
-			
+			editor.putInt("update_time", update_time);
 			editor.commit();
 		} catch (JSONException e) {
 			AppTools.log(e);
@@ -104,6 +110,7 @@ public final class AppSettings {
 		userid = prefs.getInt("userid", 0);
 		isLogin = prefs.getBoolean("isLogin", false);
 		username = prefs.getString("username", "");
+		update_time = prefs.getInt("update_time", 4*60*60);
 	}
 	static public void logout(Context context){
 		SharedPreferences prefs =context.getSharedPreferences(AppSettings.AppTile+"_login", Context.MODE_PRIVATE);
@@ -111,7 +118,7 @@ public final class AppSettings {
 		editor.putInt("userid", 0);
 		editor.putBoolean("isLogin", false);
 		editor.putString("username", "");
-		
+		editor.putInt("update_time", 4*60*60);
 		editor.commit();
 	}
 	

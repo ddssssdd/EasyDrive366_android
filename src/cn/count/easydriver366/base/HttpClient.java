@@ -29,23 +29,6 @@ public class HttpClient {
 		mCallback = callback;
 	}
 	
-	public JSONObject getSucessResult(JSONObject result){
-		JSONObject game = null;
-		try{
-			String status = result.getString("status");
-			if ("success".equals(status)){
-				if (!result.isNull("game")){
-					JSONObject gameJson = result.getJSONObject("game");
-					game = gameJson;
-				}
-				
-				
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return game;
-	}
 	
 	
 	public void requestServer(final String urlParams,final int returnType){

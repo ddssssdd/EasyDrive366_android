@@ -32,7 +32,7 @@ public class DateUtils {
 	public static boolean is_SleepTime(){
 		Calendar today = Calendar.getInstance();
 		int hours = today.get(Calendar.HOUR_OF_DAY);
-		return hours<8 || hours>21;
+		return hours<8 || hours>19;
 	}
 
 }

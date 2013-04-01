@@ -24,6 +24,7 @@ import cn.count.easydriver366.service.GetLatestReceiver;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,7 +47,7 @@ public class HomeActivity extends Activity {
 	private List<HomeMenu> menus;
 	private boolean _userWantQuit=false;
 	private Timer _quitTimer;
-	
+	private ProgressDialog _dialog;
 	PullToRefreshScrollView mPullRefreshScrollView;
 	ScrollView mScrollView;
 	
@@ -55,6 +56,7 @@ public class HomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.moudles_home_activity);
+		
 		AppSettings.restore_login_from_device(this);
 		startBackendService();
 		setupMenu();
@@ -105,12 +107,20 @@ public class HomeActivity extends Activity {
 		@Override
 		protected void onPostExecute(String[] result) {
 			// Do some stuff here
-
+			_dialog.dismiss();
+			
 			// Call onRefreshComplete when the list has been refreshed.
 			mPullRefreshScrollView.onRefreshComplete();
 
 			super.onPostExecute(result);
 		}
+		@Override
+		protected void onPreExecute(){
+			_dialog = new ProgressDialog(HomeActivity.this);
+			_dialog.setMessage(getResources().getString(R.string.app_loading));
+			_dialog.show();
+		}
+		 
 	}
 	private void startBackendService(){
 		if (!isServiceRunning()){

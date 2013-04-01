@@ -97,6 +97,10 @@ public class MaintainEditActivity extends BaseHttpActivity{
 		}
 	}
 	private void save(){
+		if (!this.isOnline()){
+			this.showMessage(this.getResources().getString(R.string.no_network), null);
+			return;
+		}
 		String url = String.format("api/add_maintain_record?user_id=%d&max_distance=%s&max_time=%s&prev_date=%s&prev_distance=%s&average_mileage=%s",
 				AppSettings.userid,
 				((EditText)findViewById(R.id.edt_maintain_max_distance)).getText(),
@@ -105,7 +109,8 @@ public class MaintainEditActivity extends BaseHttpActivity{
 				((EditText)findViewById(R.id.edt_maintain_pre_distance)).getText(),
 				((EditText)findViewById(R.id.edt_maintain_average_mileage)).getText()
 				);
-		getHttpClient().requestServer(url, 1);
+		//getHttpClient().requestServer(url, 1);
+		this.get(url, 1, this.getResources().getString(R.string.app_uploading));
 		
 	}
 	@Override
