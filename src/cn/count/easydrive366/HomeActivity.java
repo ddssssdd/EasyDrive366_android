@@ -86,17 +86,26 @@ public class HomeActivity extends Activity {
 		
 	}
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
-
+		private boolean _needSleep=false;
+		public GetDataTask(){
+			super();
+		}
+		public GetDataTask(boolean needSleep){
+			super();
+			_needSleep = needSleep;
+		}
 		@Override
 		protected String[] doInBackground(Void... params) {
 			// Simulates a background job.
-			/*
-			try {
-				Thread.sleep(4000);
-				
-			} catch (InterruptedException e) {
+			if (_needSleep){
+				try {
+					Thread.sleep(2000);
+					
+				} catch (InterruptedException e) {
+				}
 			}
-			*/
+			
+			
 			Intent intent = new Intent("cn.count.easydriver366.service.GetLatestReceiverr");
 			intent.putExtra("isInApp", true);
 			sendBroadcast(intent);
@@ -152,7 +161,7 @@ public class HomeActivity extends Activity {
 		_tableLayout = (TableLayout)findViewById(R.id.tablelout_in_home_activity);
 		initMenuItems();
 		fillMenu();
-		new GetDataTask().execute();
+		new GetDataTask(true).execute();
 		
 	}
 	private void addTableRow(HomeMenu menu){

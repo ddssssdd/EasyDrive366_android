@@ -11,6 +11,7 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -100,6 +101,7 @@ public class HomeMenuItem extends LinearLayout {
 	private void processJson(final String key,final String json){
 		if (_menuItem.key.equals(key)){
 			saveJson(json);
+			
 			processData(json);
 		}
 		
@@ -128,7 +130,7 @@ public class HomeMenuItem extends LinearLayout {
 			final String json = bundle.getString("json");
 			
 			processJson(key,json);
-			
+			Log.i("Receiver", json);
 		}
 		
 	}

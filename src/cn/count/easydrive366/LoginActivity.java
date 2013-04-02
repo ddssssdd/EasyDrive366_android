@@ -29,8 +29,8 @@ public class LoginActivity extends BaseHttpActivity {
 	
 		edtUsername = (EditText)findViewById(R.id.edt_login_username);
 		edtPassword = (EditText)findViewById(R.id.edt_login_passwrod);
-		edtUsername.setText("aaa");
-		edtPassword.setText("12");
+		edtUsername.setText("");
+		edtPassword.setText("");
 		btnLogin.setOnClickListener(new OnClickListener(){
 
 			@Override

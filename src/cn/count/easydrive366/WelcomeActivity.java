@@ -1,5 +1,8 @@
 package cn.count.easydrive366;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,10 +19,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 
 public class WelcomeActivity extends Activity {
-
+	private boolean _userWantQuit=false;
+	private Timer _quitTimer;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -100,8 +105,27 @@ public class WelcomeActivity extends Activity {
 	
 	@Override
 	public void onBackPressed() {
-		//nothing;
-		this.finish();
+		if (_userWantQuit){
+			this.finish();
+			System.exit(0);
+		}else{
+			Toast.makeText(this, this.getResources().getString(R.string.exit_question), Toast.LENGTH_LONG).show();
+			_userWantQuit = true;
+			if (_quitTimer==null){
+				_quitTimer = new Timer();
+			}
+			TimerTask task = new TimerTask(){
+
+				@Override
+				public void run() {
+					_userWantQuit = false;
+					
+				};
+			};
+			_quitTimer.schedule(task, 2000);
+
+							
+		};
 	}
 }
 

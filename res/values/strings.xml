@@ -8,9 +8,9 @@
 	<string name="insurance_suggestion">建议</string>
 	<string name="save">保存</string>
 	<string name="edit">设置</string>
-	<string name="password">密码</string>
-	<string name="repassword">再输密码</string>
-	<string name="username">用户名</string>
+	<string name="password">密码：</string>
+	<string name="repassword">再输密码：</string>
+	<string name="username">用户名：</string>
 	<string name="app_loading_fail">装载失败</string>
 	<string name="app_loading">正在装载...</string>
 	<string name="app_uploading">正在上传...</string>
