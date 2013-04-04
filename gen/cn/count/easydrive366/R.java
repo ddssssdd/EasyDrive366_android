@@ -437,11 +437,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
 
         
          */
@@ -452,6 +454,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int AppTheme=0x7f090001;
         public static final int button=0x7f090002;
         public static final int button_green=0x7f090003;
+        public static final int edittext=0x7f090007;
+        public static final int textview=0x7f090004;
+        public static final int textview_left=0x7f090006;
+        public static final int textview_right=0x7f090005;
     }
     public static final class styleable {
         /** Attributes that can be used with a PullToRefresh.

@@ -20,22 +20,19 @@
             android:background="@drawable/signup_hit_input1" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="每日日平均行程：" />
+               style="@style/textview.right"
+               android:textSize="14sp"
+                android:text="每日平均行程：" />
 
             <EditText
                 android:id="@+id/edt_maintain_average_mileage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/edittext"
                 android:inputType="number"
                 android:hint="" >
             </EditText>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview"
                 android:text="公里/天" />
         </TableRow>
 		 <TableRow
@@ -44,22 +41,18 @@
             android:background="@drawable/signup_hit_input2" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="最大保养里程：" />
 
             <EditText
                 android:id="@+id/edt_maintain_max_distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/edittext"
                 android:inputType="numberSigned"
                 android:hint="" >
             </EditText>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview"
                 android:text="公里" />
         </TableRow>
 
@@ -69,22 +62,18 @@
             android:background="@drawable/signup_hit_input2" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="最长保养间隔：" />
 
             <EditText
                 android:id="@+id/edt_maintain_max_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/edittext"
                 android:inputType="numberSigned"
                 android:hint="" >
             </EditText>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview"
                 android:text="个月" />
         </TableRow>
         
@@ -94,22 +83,18 @@
             android:background="@drawable/signup_hit_input2" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="上次保养里程：" />
 
             <EditText
                 android:id="@+id/edt_maintain_pre_distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/edittext"
                 android:inputType="numberSigned"
                 android:hint="" >
             </EditText>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview"
                 android:text="公里" />
         </TableRow>
 
@@ -120,15 +105,12 @@
             android:background="@drawable/signup_hit_input6" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="上次保养日期：" />
 
             <EditText
                 android:id="@+id/edt_maintain_pre_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/edittext"
                 android:hint="" >
             </EditText>
 

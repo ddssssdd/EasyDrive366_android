@@ -11,32 +11,20 @@
         android:layout_height="wrap_content"
         android:stretchColumns="*" >
 
-         
-		<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:layout_marginLeft="20dip"
-                android:gravity="center"
-                android:text="行驶证" />
+        
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="10dip"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@drawable/signup_hit_input1" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="车牌号：" />
 
             <EditText
                 android:id="@+id/edt_carregistration_plate_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
+                style="@style/edittext"
                 android:inputType="textCapCharacters"
                 android:hint="" >
             </EditText>
@@ -55,17 +43,12 @@
             android:background="@drawable/signup_hit_input2" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="发动机号:" />
 
             <EditText
                 android:id="@+id/edt_carregistration_engine_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
+                style="@style/edittext"
                 android:inputType="textCapCharacters"
                 android:hint="" >
             </EditText>
@@ -84,18 +67,14 @@
             android:background="@drawable/signup_hit_input2" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="VIN:" />
 
             <EditText
                 android:id="@+id/edt_carregistration_vin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/edittext"
                 android:inputType="textCapCharacters"
-                android:layout_weight="1.0"
+               
                 android:hint="" >
             </EditText>
 
@@ -114,17 +93,12 @@
             android:background="@drawable/signup_hit_input6" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="初登日期:" />
 
             <EditText
                 android:id="@+id/edt_carregistration_registration_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
+                style="@style/edittext"
                 android:hint="" >
             </EditText>
 

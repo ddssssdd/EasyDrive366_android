@@ -12,29 +12,20 @@
         android:layout_marginTop="15dp"
         android:stretchColumns="*" >
 
-        
-
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="10dip"
+            android:layout_height="wrap_content"
             android:background="@drawable/signup_hit_input1"
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:gravity="right"
-                
+                style="@style/textview.right"
                 android:text="@string/username" />
 
             <EditText
                 android:id="@+id/edt_signup_username"
-                android:layout_width="180dp"
-                 android:layout_marginTop="3dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                 >
+                style="@style/edittext"
+                android:inputType="textNoSuggestions" >
             </EditText>
 
             <TextView
@@ -44,8 +35,6 @@
                 android:text="" />
         </TableRow>
 
-       
-
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,20 +42,15 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="@string/password" />
 
             <EditText
                 android:id="@+id/edt_signup_passwrod"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                 android:layout_marginTop="3dp"
-                android:inputType="textPassword"
+                style="@style/edittext"
                 android:layout_weight="1.0"
-                android:hint="" >
+                android:hint=""
+                android:inputType="textPassword" >
             </EditText>
 
             <TextView
@@ -83,20 +67,14 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:gravity="right"
+                style="@style/textview.right"
                 android:text="@string/repassword" />
 
             <EditText
                 android:id="@+id/edt_signup_repasswrod"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                 android:layout_marginTop="3dp"
-                android:inputType="textPassword"
+                style="@style/edittext"
                 android:layout_weight="1.0"
-                 >
+                android:inputType="textPassword" >
             </EditText>
 
             <TextView
@@ -105,7 +83,7 @@
                 android:layout_weight="0.0"
                 android:text="" />
         </TableRow>
-		
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,9 +93,9 @@
             <Button
                 android:id="@+id/btn_signup_signup"
                 style="@style/button"
-                android:layout_span="3"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
+                android:layout_span="3"
                 android:text="@string/Signup" />
         </TableRow>
     </TableLayout>
