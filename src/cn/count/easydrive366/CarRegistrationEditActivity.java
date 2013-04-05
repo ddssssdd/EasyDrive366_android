@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class CarRegistrationEditActivity extends BaseHttpActivity {
 	@Override
@@ -39,14 +40,14 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 	private void initView(final JSONObject json){
 		try {
 			EditText t1 = ((EditText)findViewById(R.id.edt_carregistration_plate_no));
-			String s1 =json.getString("plate_no"); 
+			String s1 =json.getString("plate_no").toUpperCase(); 
 			if (s1.equals("")){
 				s1 =this.getResources().getString(R.string.default_plate_no);
 			}
 			t1.setText(s1);
-			((EditText)findViewById(R.id.edt_carregistration_engine_no  )).setText(json.getString("engine_no"));
-			((EditText)findViewById(R.id.edt_carregistration_vin  )).setText(json.getString("vin"));
-			((EditText)findViewById(R.id.edt_carregistration_registration_date  )).setText(json.getString("registration_date"));
+			((EditText)findViewById(R.id.edt_carregistration_engine_no  )).setText(json.getString("engine_no").toUpperCase());
+			((EditText)findViewById(R.id.edt_carregistration_vin  )).setText(json.getString("vin").toUpperCase());
+			((TextView)findViewById(R.id.edt_carregistration_registration_date  )).setText(json.getString("registration_date"));
 			this.setupRightButtonWithText(this.getResources().getString(R.string.save));
 			/*
 			findViewById(R.id.btn_carregistration_save).setOnClickListener(new OnClickListener(){
@@ -59,6 +60,13 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 				
 			});
 			*/
+			findViewById(R.id.edt_carregistration_registration_date).setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					chooseDate();
+					
+				}});
 			findViewById(R.id.txt_driverlicense_choose_date).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -81,10 +89,10 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 		}
 		String url =String.format("api/add_car_registration?user_id=%d&car_id=%s&engine_no=%s&vin=%s&init_date=%s",
 				AppSettings.userid,
-				((EditText)findViewById(R.id.edt_carregistration_plate_no)).getText(),
-				((EditText)findViewById(R.id.edt_carregistration_engine_no)).getText(),
-				((EditText)findViewById(R.id.edt_carregistration_vin)).getText(),
-				((EditText)findViewById(R.id.edt_carregistration_registration_date)).getText()
+				((EditText)findViewById(R.id.edt_carregistration_plate_no)).getText().toString().toUpperCase(),
+				((EditText)findViewById(R.id.edt_carregistration_engine_no)).getText().toString().toUpperCase(),
+				((EditText)findViewById(R.id.edt_carregistration_vin)).getText().toString().toUpperCase(),
+				((TextView)findViewById(R.id.edt_carregistration_registration_date)).getText()
 				);
 		this.get(url, 2,this.getResources().getString(R.string.app_uploading));
 	}
@@ -100,7 +108,7 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 		finish();
 	}
 	private void chooseDate(){
-		String d = ((EditText)findViewById(R.id.edt_carregistration_registration_date  )).getText().toString();
+		String d = ((TextView)findViewById(R.id.edt_carregistration_registration_date  )).getText().toString();
 		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		final Calendar c  = Calendar.getInstance();
 		
@@ -117,7 +125,7 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 								c.set(Calendar.MONTH,monthOfYear);
 								c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 								//showDialog(sdf.format(c.getTime()));
-								((EditText)findViewById(R.id.edt_carregistration_registration_date  )).setText(sdf.format(c.getTime()));
+								((TextView)findViewById(R.id.edt_carregistration_registration_date  )).setText(sdf.format(c.getTime()));
 						}
 					},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
 			dialog.show();

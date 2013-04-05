@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
-
+import android.widget.TextView;
 import android.widget.EditText;
 
 public class MaintainEditActivity extends BaseHttpActivity{
@@ -66,7 +66,7 @@ public class MaintainEditActivity extends BaseHttpActivity{
 			*/
 			((EditText)findViewById(R.id.edt_maintain_average_mileage)).setText(_average_mileage);
 			((EditText)findViewById(R.id.edt_maintain_pre_distance)).setText(_pre_distance);
-			((EditText)findViewById(R.id.edt_maintain_pre_date)).setText(_prev_date);
+			((TextView)findViewById(R.id.edt_maintain_pre_date)).setText(_prev_date);
 			((EditText)findViewById(R.id.edt_maintain_max_distance)).setText(_max_distance);
 			((EditText)findViewById(R.id.edt_maintain_max_time)).setText(_max_time);
 			
@@ -85,6 +85,13 @@ public class MaintainEditActivity extends BaseHttpActivity{
 					
 				}});
 				*/
+			findViewById(R.id.edt_maintain_pre_date).setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					chooseDate();
+					
+				}});
 			findViewById(R.id.imagebutton_date).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -105,7 +112,7 @@ public class MaintainEditActivity extends BaseHttpActivity{
 				AppSettings.userid,
 				((EditText)findViewById(R.id.edt_maintain_max_distance)).getText(),
 				((EditText)findViewById(R.id.edt_maintain_max_time)).getText(),
-				((EditText)findViewById(R.id.edt_maintain_pre_date)).getText(),
+				((TextView)findViewById(R.id.edt_maintain_pre_date)).getText(),
 				((EditText)findViewById(R.id.edt_maintain_pre_distance)).getText(),
 				((EditText)findViewById(R.id.edt_maintain_average_mileage)).getText()
 				);
@@ -135,7 +142,7 @@ public class MaintainEditActivity extends BaseHttpActivity{
 		
 	}
 	private void chooseDate(){
-		String d = ((EditText)findViewById(R.id.edt_maintain_pre_date  )).getText().toString();
+		String d = ((TextView)findViewById(R.id.edt_maintain_pre_date  )).getText().toString();
 		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		final Calendar c  = Calendar.getInstance();
 		
@@ -152,7 +159,7 @@ public class MaintainEditActivity extends BaseHttpActivity{
 								c.set(Calendar.MONTH,monthOfYear);
 								c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 								//showDialog(sdf.format(c.getTime()));
-								((EditText)findViewById(R.id.edt_maintain_pre_date  )).setText(sdf.format(c.getTime()));
+								((TextView)findViewById(R.id.edt_maintain_pre_date  )).setText(sdf.format(c.getTime()));
 						}
 					},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
 			dialog.show();

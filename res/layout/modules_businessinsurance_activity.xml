@@ -21,15 +21,11 @@
                 android:id="@+id/table_modules_businessinsurance_table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/table"
                 android:stretchColumns="*" >
             </TableLayout>
 
-<!--             <Button -->
-<!--                 android:id="@+id/btn_modules_businessinsurance_suggestion" -->
-<!--                 android:layout_width="match_parent" -->
-<!--                 android:layout_height="wrap_content" -->
-<!--                 android:text="@string/insurance_suggestion" > -->
-<!--             </Button> -->
+
         </LinearLayout>
     </ScrollView>
 

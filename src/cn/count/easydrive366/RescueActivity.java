@@ -43,11 +43,11 @@ public class RescueActivity extends BaseListViewActivity {
 	protected void initView() {
 		TextView shopname= (TextView)findViewById(R.id.txt_rescue_ShopName);
 		TextView address = (TextView)findViewById(R.id.txt_rescue_Address);
-		TextView phone = (TextView)findViewById(R.id.txt_rescue_Phone);
+		//TextView phone = (TextView)findViewById(R.id.txt_rescue_Phone);
 		TextView description = (TextView)findViewById(R.id.txt_rescue_Description);
 		shopname.setText(_shopName);
 		address.setText(_address);
-		phone.setText(_phone);
+		//phone.setText(_phone);
 		description.setText(_description);
 
 	}

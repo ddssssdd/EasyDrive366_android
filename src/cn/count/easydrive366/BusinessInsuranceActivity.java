@@ -100,7 +100,12 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 		view.setData(json,title);
 		TableRow tr = new TableRow(this);
 		tr.addView(view);
+	
 		tableLayout.addView(tr);
+		View tr2 = new View(this);
+		tr2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,20));
+		tableLayout.addView(tr2);
+
 	}
 	private void initView(){
 		tableLayout = (TableLayout)findViewById(R.id.table_modules_businessinsurance_table);

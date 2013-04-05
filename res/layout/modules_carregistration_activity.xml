@@ -12,6 +12,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/table"
         android:stretchColumns="*" >
         
          <TableRow
@@ -63,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="未处理次数:" />
+                android:text="未处理次数：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_untreated_number"
@@ -92,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="未处理积分:" />
+                android:text="未处理积分：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_untreated_mark"
@@ -121,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="未处理罚款:" />
+                android:text="未处理罚款：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_untreated_fine"
@@ -210,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="车型名:" />
+                android:text="车辆类型：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_car_typename"
@@ -239,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="品牌:" />
+                android:text="品牌：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_brand"
@@ -268,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="型号:" />
+                android:text="型号：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_model"
@@ -297,7 +298,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="发动机号:" />
+                android:text="发动机号：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_engine_no"
@@ -326,7 +327,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="VIN:" />
+                android:text="VIN：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_vin"
@@ -355,7 +356,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="初登日期:" />
+                android:text="初登日期：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_registration_date"

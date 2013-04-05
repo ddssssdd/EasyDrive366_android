@@ -64,9 +64,9 @@ public class HelpCallActivity extends BaseListViewActivity {
 	protected void setupListItem(ViewHolder holder,Map<String,Object> info){
 		try{
 			
-			holder.title.setText(info.get("Name").toString());
-			holder.detail.setText(info.get("Description").toString());
-			holder.action.setText(info.get("StandardPrice").toString());
+			holder.title.setText(info.get("name").toString());
+			holder.detail.setText(info.get("description").toString());
+			holder.action.setText(info.get("price").toString());
 		}catch(Exception e){
 			log(e);
 		}

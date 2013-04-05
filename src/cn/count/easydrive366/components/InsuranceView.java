@@ -26,10 +26,14 @@ public class InsuranceView extends LinearLayout {
 	}
 	public void setData(final JSONObject data,final String title){
 		try{
+			//{"total":"4669.84","valid":"2012-05-23~2013-05-22","com":"760.00","tax":"420.00","company":"英大泰和财产保险股份有限公司  ","list":[{"Amount":"保额","PolicyId":"","InsuName":"","DeductibleFee":"不计免赔","InsuType":"","Fee":"保费"},{"Amount":"500,000.00","PolicyId":"b6b8a5c9-8e76-404a-956f-bde5ce437953","InsuName":"三者","DeductibleFee":"0.00","InsuType":"F0000003","Fee":"1,190.00"},{"Amount":"70,345.60","PolicyId":"b6b8a5c9-8e76-404a-956f-bde5ce437953","InsuName":"盗抢","DeductibleFee":"0.00","InsuType":"F0000005","Fee":"325.28"},{"Amount":"0.00","PolicyId":"b6b8a5c9-8e76-404a-956f-bde5ce437953","InsuName":"不计免赔","DeductibleFee":"0.00","InsuType":"F0000022","Fee":"452.20"},{"Amount":"0.00","PolicyId":"b6b8a5c9-8e76-404a-956f-bde5ce437953","InsuName":"玻璃国产","DeductibleFee":"0.00","InsuType":"F0000031","Fee":"131.40"},{"Amount":"98,800.00","PolicyId":"b6b8a5c9-8e76-404a-956f-bde5ce437953","InsuName":"车损","DeductibleFee":"0.00","InsuType":"F0000038","Fee":"1,390.96"}],"po":"1140605082012002707YD ","biz":"3489.84"}
 			((TextView)findViewById(R.id.txt_partview_business_title)).setText(title);
 			((TextView)findViewById(R.id.txt_partview_business_companyname)).setText(data.getString("company"));
 			((TextView)findViewById(R.id.txt_partview_business_insurance_no)).setText(data.getString("po"));
 			((TextView)findViewById(R.id.txt_partview_business_date_to_date)).setText(data.getString("valid"));
+			((TextView)findViewById(R.id.txt_partview_business_tax)).setText(data.getString("tax"));
+			((TextView)findViewById(R.id.txt_partview_business_compulsory)).setText(data.getString("com"));
+			((TextView)findViewById(R.id.txt_partview_business_biz)).setText(data.getString("biz"));
 			TableLayout tablelayout= (TableLayout)findViewById(R.id.table_partview_business_items);
 			/*
 			TableRow tr= new TableRow(mContext);
@@ -61,7 +65,9 @@ public class InsuranceView extends LinearLayout {
 				detail.setData(item.getString("InsuName"), item.getString("Amount"), item.getString("Fee"), item.getString("DeductibleFee"));
 				row.addView(detail);
 				tablelayout.addView(row);
-				
+				if (i==list.length()-1){
+					detail.setEndBackend();
+				}
 			}
 			
 		}catch(Exception e){

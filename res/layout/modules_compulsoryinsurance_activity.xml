@@ -25,6 +25,7 @@
             android:layout_height="35dp" 
             android:layout_weight="1.0"
             android:text="基础费率"
+            android:textSize="12sp"
             style="@style/button"
          />
         <Button android:id="@+id/btn_compulsory_insurance_1"
@@ -32,6 +33,7 @@
             android:layout_height="35dp" 
             android:layout_weight="1.0"
             android:text="保险责任"
+            android:textSize="12sp"
             style="@style/button"
          />
         <Button android:id="@+id/btn_compulsory_insurance_2"
@@ -39,6 +41,7 @@
             android:layout_height="35dp" 
             android:layout_weight="1.0"
             android:text="浮动因素"
+            android:textSize="12sp"
             style="@style/button"
          />    
             	   

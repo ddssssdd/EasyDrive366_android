@@ -7,10 +7,11 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 public final class AppSettings {
-//	static public String ServerUrl = "http://10.4.30.190:7000/pm/";
-	static public final String ServerUrl ="http://124.135.63.250:21000/pm/";
+	static public String ServerUrl = "http://119.167.144.23:82/index.php/";
+	//static public final String ServerUrl ="http://124.135.63.250:21000/pm/";
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
 	static public int userid=0;
@@ -92,7 +93,9 @@ public final class AppSettings {
 			isLogin = true;
 			int update_time = 4*60*60;
 			if (!result.getJSONObject("result").isNull("update_time")){
-				update_time = result.getJSONObject("result").getInt("update_time");
+				//Log.i("Update_time",result.getJSONObject("result").getString("update_time"));
+				JSONObject json = result.getJSONObject("result");
+				update_time = Integer.parseInt(json.getString("update_time"));
 			}
 			SharedPreferences prefs =context.getSharedPreferences(AppSettings.AppTile+"_login", Context.MODE_PRIVATE);
 			Editor editor = prefs.edit();

@@ -40,7 +40,10 @@
             android:text="@string/edit" />
     </RelativeLayout>
 
-    <Button
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <Button
         android:id="@+id/btn_phone"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -49,6 +52,9 @@
         android:text="@string/app_loading"
         style="@style/button.green" >
     </Button>
+        
+    </LinearLayout>
+    
 
 
 </LinearLayout>

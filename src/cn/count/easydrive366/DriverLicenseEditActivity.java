@@ -46,9 +46,9 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 	private void initView(final JSONObject json){
 		try {
 			((EditText)findViewById(R.id.edt_driverlicense_name)).setText(json.getString("name"));
-			((EditText)findViewById(R.id.edt_driverlicense_init_date  )).setText(json.getString("init_date"));
+			((TextView)findViewById(R.id.edt_driverlicense_init_date  )).setText(json.getString("init_date"));
 			((EditText)findViewById(R.id.edt_driverlicense_number  )).setText(json.getString("number"));
-			((EditText)findViewById(R.id.edt_driverlicense_car_type  )).setText(json.getString("car_type"));
+			((TextView)findViewById(R.id.edt_driverlicense_car_type  )).setText(json.getString("car_type"));
 			/*
 			findViewById(R.id.btn_driverlicense_save).setOnClickListener(new OnClickListener(){
 
@@ -61,6 +61,21 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 			});
 			*/
 			this.setupRightButtonWithText(this.getResources().getString(R.string.save));
+			findViewById(R.id.edt_driverlicense_car_type).setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					chooseDriverType();
+					
+				}});
+			findViewById(R.id.edt_driverlicense_init_date).setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					chooseDate();
+					
+				}});
+			
 			findViewById(R.id.txt_driverlicense_choose_driver_type).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -100,10 +115,10 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 		}
 		String url =String.format("api/add_driver_license?user_id=%d&name=%s&license_id=%s&type=%s&init_date=%s",
 				AppSettings.userid,
-				((EditText)findViewById(R.id.edt_driverlicense_name)).getText(),
-				((EditText)findViewById(R.id.edt_driverlicense_number)).getText(),
-				((EditText)findViewById(R.id.edt_driverlicense_car_type)).getText(),
-				((EditText)findViewById(R.id.edt_driverlicense_init_date)).getText()
+				((EditText)findViewById(R.id.edt_driverlicense_name)).getText().toString().toUpperCase(),
+				((EditText)findViewById(R.id.edt_driverlicense_number)).getText().toString().toUpperCase(),
+				((TextView)findViewById(R.id.edt_driverlicense_car_type)).getText(),
+				((TextView)findViewById(R.id.edt_driverlicense_init_date)).getText()
 				);
 		this.get(url, 2,this.getResources().getString(R.string.app_uploading));
 	}
@@ -124,7 +139,7 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 		if (list==null){
 			return;
 		}
-		String types =((EditText)findViewById(R.id.edt_driverlicense_car_type)).getText().toString();
+		String types =((TextView)findViewById(R.id.edt_driverlicense_car_type)).getText().toString();
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		MultiChoiceID.clear();
@@ -159,8 +174,10 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 					if (!MultiChoiceID.contains(which))
 						MultiChoiceID.add(which);
 				}else{
-					if (MultiChoiceID.contains(which))
-						MultiChoiceID.remove(which);
+					if (MultiChoiceID.contains(which)){
+						int i_index = MultiChoiceID.indexOf(which);
+						MultiChoiceID.remove(i_index);
+					}
 				}
 				
 			}
@@ -200,11 +217,11 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 		}
 		String result =sb.toString();
 		result = result.substring(0, result.length()-1);
-		((EditText)findViewById(R.id.edt_driverlicense_car_type  )).setText(result);
+		((TextView)findViewById(R.id.edt_driverlicense_car_type  )).setText(result);
 		
 	}
 	private void chooseDate(){
-		String d = ((EditText)findViewById(R.id.edt_driverlicense_init_date  )).getText().toString();
+		String d = ((TextView)findViewById(R.id.edt_driverlicense_init_date  )).getText().toString();
 		if (d.equals("")){
 			d = "1990-01-01";
 		}
@@ -224,7 +241,7 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 								c.set(Calendar.MONTH,monthOfYear);
 								c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 								//showDialog(sdf.format(c.getTime()));
-								((EditText)findViewById(R.id.edt_driverlicense_init_date  )).setText(sdf.format(c.getTime()));
+								((TextView)findViewById(R.id.edt_driverlicense_init_date  )).setText(sdf.format(c.getTime()));
 						}
 					},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
 			dialog.show();
