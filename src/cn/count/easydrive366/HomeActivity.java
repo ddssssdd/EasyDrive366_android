@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -225,9 +228,15 @@ public class HomeActivity extends Activity {
 		
 	}
 	private void settingsButtonPress(){
+		//scan test;
+		/*
+		IntentIntegrator integrator = new IntentIntegrator(this);
+	    integrator.initiateScan();
+	    
+	    */
+		// show scan code test
+		//encodeBarcode("TEXT_TYPE", "i am super fool.");
 		
-		//startActivity(AppTools.getPhoneAction("18963023080"));
-		//startActivity(AppTools.getBrowserAction("http://www.baidu.com"));
 		new AlertDialog.Builder(this).setTitle(R.string.app_name)
 		.setIcon(android.R.drawable.ic_dialog_info)
 		.setMessage(String.format(getResources().getString(R.string.quit_question),AppSettings.username)).setPositiveButton(this.getResources().getString(R.string.ok), new  DialogInterface.OnClickListener(){
@@ -238,6 +247,35 @@ public class HomeActivity extends Activity {
 				
 			}})
 		.setNegativeButton(this.getResources().getString(R.string.cancel), null).show();
+		
 	}
+	private void encodeBarcode(CharSequence type, CharSequence data) {
+	    IntentIntegrator integrator = new IntentIntegrator(this);
+	    integrator.shareText(data, type);
+	 }
+	private void encodeBarcode(CharSequence type, Bundle data) {
+		    IntentIntegrator integrator = new IntentIntegrator(this);
+		    integrator.addExtra("ENCODE_DATA", data);
+		    integrator.shareText(data.toString(), type); // data.toString() isn't used
+	}
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+	    IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+	    if (result != null) {
+	      String contents = result.getContents();
+	      if (contents != null) {
+	        showDialog(R.string.result_succeeded, result.toString());
+	      } else {
+	        showDialog(R.string.result_failed, getString(R.string.result_failed_why));
+	      }
+	    }
+	  }
+	private void showDialog(int title, CharSequence message) {
+	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    builder.setTitle(title);
+	    builder.setMessage(message);
+	    builder.setPositiveButton("OK", null);
+	    builder.show();
+	  }
 	
 }

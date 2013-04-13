@@ -431,6 +431,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int quit_question=0x7f070024;
         public static final int renew=0x7f070020;
         public static final int repassword=0x7f07000e;
+        public static final int result_failed=0x7f07002c;
+        public static final int result_failed_why=0x7f07002d;
+        public static final int result_succeeded=0x7f07002e;
         public static final int save=0x7f07000b;
         public static final int username=0x7f07000f;
         public static final int username_not_empty=0x7f070026;
