@@ -6,6 +6,9 @@
  <include android:layout_width="match_parent"
          android:layout_height="wrap_content" 
          layout="@layout/navigation_bar" /> 
+         
+ 	<ScrollView  android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -287,5 +290,5 @@
 
         
     </TableLayout>
-
+	</ScrollView>
 </LinearLayout>

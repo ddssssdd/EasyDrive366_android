@@ -6,6 +6,8 @@
       <include android:layout_width="match_parent"
          android:layout_height="wrap_content" 
          layout="@layout/navigation_bar" /> 
+     <ScrollView  android:layout_width="match_parent"
+        android:layout_height="wrap_content">
      <TableLayout android:id="@+id/table_modules_violationsearch_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,5 +17,6 @@
         
         
     </TableLayout> 
+    </ScrollView>
 	
 </LinearLayout>
