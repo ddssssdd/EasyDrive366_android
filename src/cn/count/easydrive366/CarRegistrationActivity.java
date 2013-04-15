@@ -23,6 +23,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 		this.setupLeftButton();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_get_car_registration(), 1);
+		this.setupScrollView();
 	}
 	@Override
 	protected void initData(Object result, int msgType) {

@@ -23,6 +23,7 @@ public class RescueActivity extends BaseListViewActivity {
 		this.setupLeftButton();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_for_rescue(),1);
+		
 	}
 	
 	@Override

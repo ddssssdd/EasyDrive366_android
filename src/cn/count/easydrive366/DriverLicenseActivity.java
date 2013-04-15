@@ -25,6 +25,7 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 		restoreFromLocal(1);
 		this.get(AppSettings.url_get_driver_license(), 1);
 		this.get(AppSettings.url_get_license_type(), 2,"");
+		this.setupScrollView();
 	}
 	@Override
 	public void processMessage(int msgType,final Object result){

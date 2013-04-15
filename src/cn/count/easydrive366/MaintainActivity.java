@@ -32,6 +32,7 @@ public class MaintainActivity extends BaseListViewActivity {
 		this.setupLeftButton();
 		restoreFromLocal(1);
 		this.get(AppSettings.url_for_get_maintain_record(), 1);
+		this.setupScrollView();
 	}
 	@Override
 	protected void initData(Object result, int msgType) {

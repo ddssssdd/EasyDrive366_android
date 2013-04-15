@@ -32,6 +32,7 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 		restoreFromLocal(1);
 		this.get(AppSettings.url_get_business_insurance(), 1);
 		this.get(AppSettings.url_get_suggestion_count(), 2,"");
+		this.setupScrollView();
 	}
 	@Override
 	public void processMessage(int msgType, final Object result) {

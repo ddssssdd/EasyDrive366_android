@@ -26,7 +26,7 @@ public class HelpCallActivity extends BaseListViewActivity {
 		resource_listitem_id = R.layout.module_listitem;
 		restoreFromLocal(1);
 		this.get(AppSettings.url_for_get_helpcalls(), 1);
-		
+		this.setupPullToRefresh();
 	}
 	
 	protected void initData(Object result,int msgType){

@@ -2,7 +2,16 @@ package cn.count.easydriver366.base;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+
+
+import cn.count.easydrive366.HomeActivity;
 import cn.count.easydrive366.R;
+
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -12,12 +21,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ScrollView;
+
 import android.widget.TextView;
 
 public class BaseHttpActivity extends Activity implements
@@ -30,7 +43,7 @@ public class BaseHttpActivity extends Activity implements
 	protected String _phone;
 	protected boolean _isHideTitleBar = true;
 	protected ProgressDialog _dialog;
-
+	protected PullToRefreshScrollView mPullRefreshScrollView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,7 +52,60 @@ public class BaseHttpActivity extends Activity implements
 		}
 
 	}
+	protected void setupScrollView(){
+		mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_refresh_scrollview);
+		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 
+			@Override
+			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				new GetDataTask().execute();
+			}
+		});
+	}
+	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+		private boolean _needSleep=false;
+		public GetDataTask(){
+			super();
+		}
+		public GetDataTask(boolean needSleep){
+			super();
+			_needSleep = needSleep;
+		}
+		@Override
+		protected String[] doInBackground(Void... params) {
+			// Simulates a background job.
+			if (_needSleep){
+				try {
+					Thread.sleep(2000);
+					
+				} catch (InterruptedException e) {
+				}
+			}
+			
+			
+			//do the task
+			
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String[] result) {
+			// Do some stuff here
+			_dialog.dismiss();
+			
+			// Call onRefreshComplete when the list has been refreshed.
+			mPullRefreshScrollView.onRefreshComplete();
+
+			super.onPostExecute(result);
+		}
+		@Override
+		protected void onPreExecute(){
+			_dialog = new ProgressDialog(BaseHttpActivity.this);
+			_dialog.setMessage(getResources().getString(R.string.app_loading));
+			_dialog.show();
+		}
+		 
+	}
 	protected HttpClient getHttpClient() {
 		if (httpClient == null) {
 			httpClient = new HttpClient(this);

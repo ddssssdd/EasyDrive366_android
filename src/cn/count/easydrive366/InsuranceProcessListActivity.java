@@ -24,6 +24,7 @@ public class InsuranceProcessListActivity extends BaseListViewActivity {
 		this.resource_listview_id = R.id.listview;
 		this.resource_listitem_id = R.layout.module_listitem;
 		this.get(AppSettings.url_for_insurance_list(), 1);
+		this.setupPullToRefresh();
 	}
 	@Override
 	protected void initData(Object result, int msgType) {
