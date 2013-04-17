@@ -266,7 +266,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pullFromEnd=0x7f050002;
         public static final int pullFromStart=0x7f050001;
         public static final int pullUpFromBottom=0x7f050006;
-        public static final int pull_refresh_scrollview=0x7f050023;
+        public static final int pull_refresh_scrollview=0x7f050022;
         public static final int pull_to_refresh_image=0x7f05007a;
         public static final int pull_to_refresh_progress=0x7f05007b;
         public static final int pull_to_refresh_sub_text=0x7f05007d;
@@ -275,7 +275,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int refresh_list_footer_text=0x7f050018;
         public static final int rotate=0x7f050007;
         public static final int scrollview=0x7f05000b;
-        public static final int table_modules_businessinsurance_table=0x7f050022;
+        public static final int table_modules_businessinsurance_table=0x7f050023;
         public static final int table_modules_businesssuggestion_table=0x7f050024;
         public static final int table_modules_violationsearch_table=0x7f050060;
         public static final int table_partview_business_items=0x7f05006b;

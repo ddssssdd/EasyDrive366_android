@@ -32,7 +32,7 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 		this.setupLeftButton();
 		restoreFromLocal(1);
 		reload_data();
-		//this.setupScrollView();
+		this.setupScrollView();
 	}
 	@Override
 	protected void reload_data(){
