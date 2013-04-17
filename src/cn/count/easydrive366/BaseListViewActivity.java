@@ -15,11 +15,14 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
 import cn.count.easydriver366.base.BaseHttpActivity;
+import cn.count.easydriver366.base.HttpClient;
 
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,57 +49,13 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 
 			@Override
 			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-				new GetDataTask().execute();
+				reload_data();
 				
 			}
 		});
 
 	
 		
-	}
-	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
-		private boolean _needSleep=false;
-		public GetDataTask(){
-			super();
-		}
-		public GetDataTask(boolean needSleep){
-			super();
-			_needSleep = needSleep;
-		}
-		@Override
-		protected String[] doInBackground(Void... params) {
-			// Simulates a background job.
-			if (_needSleep){
-				try {
-					Thread.sleep(2000);
-					
-				} catch (InterruptedException e) {
-				}
-			}
-			
-			
-			//nothing
-			
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String[] result) {
-			// Do some stuff here
-			_dialog.dismiss();
-			
-			// Call onRefreshComplete when the list has been refreshed.
-			mListView.onRefreshComplete();
-
-			super.onPostExecute(result);
-		}
-		@Override
-		protected void onPreExecute(){
-			_dialog = new ProgressDialog(BaseListViewActivity.this);
-			_dialog.setMessage(getResources().getString(R.string.app_loading));
-			_dialog.show();
-		}
-		 
 	}
 	
 	@Override
@@ -105,6 +64,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 		try{
 			if (this.isSuccess(result)){
 				initData(result,msgType);
+				
 				this.runOnUiThread(
 						new Runnable(){
 
@@ -117,12 +77,20 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 					
 						}
 				);
+				
 			}
 		}catch(Exception e){
 			log(e);
 		}
 	}
-	
+	@Override 
+	protected void endRefresh(){
+		if (mListView!=null){
+			mListView.onRefreshComplete();
+		}
+		super.endRefresh();
+		
+	}
 	abstract protected void initData(Object result,int msgType);
 	
 	protected void initList(JSONArray list){
@@ -159,6 +127,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 		}else{
 			_adapter.notifyDataSetChanged();
 		}
+		mListView.onRefreshComplete();
 	}
 	protected void onListItemClick(View view,int index){
 		

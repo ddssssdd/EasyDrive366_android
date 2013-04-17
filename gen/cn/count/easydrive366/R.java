@@ -232,8 +232,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int edt_carregistration_plate_no=0x7f050040;
         public static final int edt_carregistration_registration_date=0x7f050043;
         public static final int edt_carregistration_vin=0x7f050042;
-        public static final int edt_driverlicense_car_type=0x7f050048;
-        public static final int edt_driverlicense_init_date=0x7f050047;
+        public static final int edt_driverlicense_car_type=0x7f050047;
+        public static final int edt_driverlicense_init_date=0x7f050049;
         public static final int edt_driverlicense_name=0x7f050045;
         public static final int edt_driverlicense_number=0x7f050046;
         public static final int edt_login_passwrod=0x7f050056;
@@ -266,7 +266,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pullFromEnd=0x7f050002;
         public static final int pullFromStart=0x7f050001;
         public static final int pullUpFromBottom=0x7f050006;
-        public static final int pull_refresh_scrollview=0x7f050022;
+        public static final int pull_refresh_scrollview=0x7f050023;
         public static final int pull_to_refresh_image=0x7f05007a;
         public static final int pull_to_refresh_progress=0x7f05007b;
         public static final int pull_to_refresh_sub_text=0x7f05007d;
@@ -275,7 +275,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int refresh_list_footer_text=0x7f050018;
         public static final int rotate=0x7f050007;
         public static final int scrollview=0x7f05000b;
-        public static final int table_modules_businessinsurance_table=0x7f050023;
+        public static final int table_modules_businessinsurance_table=0x7f050022;
         public static final int table_modules_businesssuggestion_table=0x7f050024;
         public static final int table_modules_violationsearch_table=0x7f050060;
         public static final int table_partview_business_items=0x7f05006b;
@@ -298,7 +298,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txt_driverlicense_car_type=0x7f05003d;
         public static final int txt_driverlicense_check_date=0x7f050037;
         public static final int txt_driverlicense_choose_date=0x7f050044;
-        public static final int txt_driverlicense_choose_driver_type=0x7f050049;
+        public static final int txt_driverlicense_choose_driver_type=0x7f050048;
         public static final int txt_driverlicense_end_date=0x7f05003f;
         public static final int txt_driverlicense_init_date=0x7f05003e;
         public static final int txt_driverlicense_mark=0x7f05003a;
@@ -320,10 +320,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txt_maintain_average_mileage=0x7f050064;
         public static final int txt_maintain_current_date=0x7f050062;
         public static final int txt_maintain_current_miles=0x7f050063;
-        public static final int txt_maintain_max_distance=0x7f050067;
-        public static final int txt_maintain_max_time=0x7f050068;
-        public static final int txt_maintain_pre_date=0x7f050066;
-        public static final int txt_maintain_pre_distance=0x7f050065;
+        public static final int txt_maintain_max_distance=0x7f050065;
+        public static final int txt_maintain_max_time=0x7f050066;
+        public static final int txt_maintain_pre_date=0x7f050068;
+        public static final int txt_maintain_pre_distance=0x7f050067;
         public static final int txt_navigation_bar_title=0x7f05001f;
         public static final int txt_partview_business_biz=0x7f05006e;
         public static final int txt_partview_business_companyname=0x7f05006f;

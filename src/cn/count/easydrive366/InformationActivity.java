@@ -15,7 +15,8 @@ import android.view.View;
 
 
 import android.widget.TextView;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
+
 
 
 import cn.count.easydriver366.base.AppSettings;
@@ -35,11 +36,14 @@ public class InformationActivity extends BaseListViewActivity {
 		this.resource_listview_id = R.id.modules_information_listview;
 		this.resource_listitem_id = R.layout.module_listitem;
 		restoreFromLocal(1);
-		this.get(AppSettings.url_for_get_news(), 1);
 		
+		reload_data();
 		this.setupPullToRefresh();
 	}
-	
+	@Override
+	protected void reload_data(){
+		this.get(AppSettings.url_for_get_news(), 1);
+	}
 	@Override
 	protected void initData(Object result,int msgType){
 		try{

@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.AppSettings;
 public class DriverLicenseActivity extends BaseListViewActivity {
@@ -23,9 +24,14 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 		setContentView(R.layout.modules_driverlicense_activity);
 		this.setupLeftButton();
 		restoreFromLocal(1);
-		this.get(AppSettings.url_get_driver_license(), 1);
 		this.get(AppSettings.url_get_license_type(), 2,"");
+		reload_data();
 		this.setupScrollView();
+	}
+	@Override
+	protected void reload_data() {
+		this.get(AppSettings.url_get_driver_license(), 1);
+		
 	}
 	@Override
 	public void processMessage(int msgType,final Object result){
@@ -58,6 +64,7 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 	@Override
 	protected void initView() {
 		try{
+			this.endRefresh();
 			((TextView)findViewById(R.id.txt_driverlicense_name)).setText(_result.getString("name"));
 			((TextView)findViewById(R.id.txt_driverlicense_check_date  )).setText(_result.getString("check_date"));
 			((TextView)findViewById(R.id.txt_driverlicense_end_date  )).setText(_result.getString("end_date"));
@@ -81,6 +88,7 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 				}});
 			*/
 			this.setupRightButton();
+			
 		}catch(Exception e){
 			log(e);
 		}

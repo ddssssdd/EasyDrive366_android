@@ -1,5 +1,13 @@
 package cn.count.easydriver366.base;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +32,8 @@ import android.net.Uri;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -58,53 +68,19 @@ public class BaseHttpActivity extends Activity implements
 
 			@Override
 			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-				new GetDataTask().execute();
+				reload_data();
 			}
 		});
 	}
-	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
-		private boolean _needSleep=false;
-		public GetDataTask(){
-			super();
-		}
-		public GetDataTask(boolean needSleep){
-			super();
-			_needSleep = needSleep;
-		}
-		@Override
-		protected String[] doInBackground(Void... params) {
-			// Simulates a background job.
-			if (_needSleep){
-				try {
-					Thread.sleep(2000);
-					
-				} catch (InterruptedException e) {
-				}
-			}
-			
-			
-			//do the task
-			
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String[] result) {
-			// Do some stuff here
-			_dialog.dismiss();
-			
-			// Call onRefreshComplete when the list has been refreshed.
+	
+	protected void reload_data(){
+		
+	}
+	protected void endRefresh(){
+		if (mPullRefreshScrollView!=null){
 			mPullRefreshScrollView.onRefreshComplete();
-
-			super.onPostExecute(result);
 		}
-		@Override
-		protected void onPreExecute(){
-			_dialog = new ProgressDialog(BaseHttpActivity.this);
-			_dialog.setMessage(getResources().getString(R.string.app_loading));
-			_dialog.show();
-		}
-		 
+		
 	}
 	protected HttpClient getHttpClient() {
 		if (httpClient == null) {
@@ -116,7 +92,7 @@ public class BaseHttpActivity extends Activity implements
 		
 		this.get(actionAndParameters, returnType,this.getResources().getString(R.string.app_loading));
 	}
-
+	
 	public void get(String actionAndParameters, final int returnType,final String hint) {
 		if (!this.isOnline()){
 			this.restoreFromLocal(returnType);
@@ -129,12 +105,50 @@ public class BaseHttpActivity extends Activity implements
 		}
 		
 		this.getHttpClient().requestServer(actionAndParameters, returnType);
+		
 	}
-
+	
+	public Object sendHttp(final String urlParams,final int msgType){
+		String url =AppSettings.ServerUrl +urlParams+"&timestamp="+String.valueOf(System.currentTimeMillis());
+		
+		
+		HttpGet httpGet = new HttpGet(url);
+		DefaultHttpClient client = new DefaultHttpClient();
+		try{
+		
+			HttpResponse response = client.execute(httpGet);
+			if (response.getStatusLine().getStatusCode()==200){
+				HttpEntity entity = response.getEntity();
+				InputStream inputStream = entity.getContent();
+				ByteArrayOutputStream content = new ByteArrayOutputStream();
+				int readBytes =0;
+				byte[] sBuffer = new byte[512];
+				while ((readBytes=inputStream.read(sBuffer))!=-1){
+					content.write(sBuffer, 0, readBytes);
+				}
+				String result = new String(content.toByteArray());
+				
+				Object resultObj=null;
+				if (result.startsWith("[")){
+					resultObj=new JSONArray(result);
+				}else{
+					resultObj = new JSONObject(result);
+				}
+				return resultObj;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			client.getConnectionManager().shutdown();
+		}
+		return null;
+		
+	}
 	@Override
 	public void processMessage(int msgType, final Object result) {
 
 		Log.e(BaseHttpClientTAG, result.toString());
+		
 	}
 
 	protected void setupCompanyAndPhone(final Object json) {
@@ -187,7 +201,10 @@ public class BaseHttpActivity extends Activity implements
 			Editor editor = prefs.edit();
 			editor.putString(getKey(msgType), result.toString());
 			editor.commit();
-			this.setupCompanyAndPhone(result);
+			JSONObject jsonResult =(JSONObject)result;
+			if (jsonResult.optJSONObject("result")!=null){
+				this.setupCompanyAndPhone(result);
+			}
 		}
 		if (_dialog!=null){
 			_dialog.dismiss();

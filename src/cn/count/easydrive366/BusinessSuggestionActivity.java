@@ -22,6 +22,11 @@ public class BusinessSuggestionActivity extends BaseHttpActivity {
 		this.setRightButtonInVisible();
 		this.setupLeftButton();
 		this.setBarTitle(this.getResources().getString(R.string.insurance_suggestion));
+		this.reload_data();
+		this.setupScrollView();
+	}
+	@Override
+	protected void reload_data(){
 		this.get(AppSettings.url_get_suggestion_insurance(), 1);
 	}
 	@Override
@@ -64,6 +69,8 @@ public class BusinessSuggestionActivity extends BaseHttpActivity {
 	}
 	private void initView(){
 		TableLayout table = (TableLayout)findViewById(R.id.table_modules_businesssuggestion_table);
+		table.removeAllViewsInLayout();
+		this.endRefresh();
 		try{
 			for(int i=0;i<_list.length();i++){
 				JSONObject item = _list.getJSONObject(i);

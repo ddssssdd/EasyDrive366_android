@@ -31,8 +31,12 @@ public class MaintainActivity extends BaseListViewActivity {
 		setContentView(R.layout.moudles_maintain_activity);
 		this.setupLeftButton();
 		restoreFromLocal(1);
-		this.get(AppSettings.url_for_get_maintain_record(), 1);
+		reload_data();
 		this.setupScrollView();
+	}
+	@Override
+	protected void reload_data(){
+		this.get(AppSettings.url_for_get_maintain_record(), 1);
 	}
 	@Override
 	protected void initData(Object result, int msgType) {
@@ -62,7 +66,7 @@ public class MaintainActivity extends BaseListViewActivity {
 		((TextView)findViewById(R.id.txt_maintain_max_distance)).setText(_max_distance+"公里");
 		((TextView)findViewById(R.id.txt_maintain_max_time)).setText(_max_time+"个月");
 		((TextView)findViewById(R.id.txt_maintain_current_date)).setText(_current_date);
-		((TextView)findViewById(R.id.txt_maintain_current_miles)).setText(_current_miles);
+		((TextView)findViewById(R.id.txt_maintain_current_miles)).setText(_current_miles+"公里");
 		//((TextView)findViewById(R.id.txt_maintain_current_distance)).setText(_current_distance);
 		/*
 		((Button)findViewById(R.id.btn_modules_maintain_edit)).setOnClickListener(new OnClickListener(){
@@ -76,6 +80,7 @@ public class MaintainActivity extends BaseListViewActivity {
 			}});
 			*/
 		this.setupRightButton();
+		this.endRefresh();
 	}
 	@Override
 	protected void onRightButtonPress(){

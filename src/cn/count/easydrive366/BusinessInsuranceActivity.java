@@ -12,6 +12,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+
 import cn.count.easydrive366.components.InsuranceView;
 
 
@@ -30,9 +31,13 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 		setContentView(R.layout.modules_businessinsurance_activity);
 		this.setupLeftButton();
 		restoreFromLocal(1);
+		reload_data();
+		//this.setupScrollView();
+	}
+	@Override
+	protected void reload_data(){
 		this.get(AppSettings.url_get_business_insurance(), 1);
 		this.get(AppSettings.url_get_suggestion_count(), 2,"");
-		this.setupScrollView();
 	}
 	@Override
 	public void processMessage(int msgType, final Object result) {
@@ -110,12 +115,14 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 	}
 	private void initView(){
 		tableLayout = (TableLayout)findViewById(R.id.table_modules_businessinsurance_table);
+		tableLayout.removeAllViewsInLayout();
 		if (_curr!=null){
 			this.addTableRow(this.getResources().getString(R.string.current),_curr);
 		}
 		if (_renew!=null){
 			this.addTableRow(this.getResources().getString(R.string.renew),_renew);
 		}
+		this.endRefresh();
 	}
 	private Runnable initViewThread = new Runnable(){
 

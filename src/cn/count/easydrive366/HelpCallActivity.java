@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.AppSettings;
 
@@ -25,10 +26,13 @@ public class HelpCallActivity extends BaseListViewActivity {
 		resource_listview_id = R.id.moudles_helpcall_listview;
 		resource_listitem_id = R.layout.module_listitem;
 		restoreFromLocal(1);
-		this.get(AppSettings.url_for_get_helpcalls(), 1);
+		reload_data();
 		this.setupPullToRefresh();
 	}
-	
+	@Override
+	protected void reload_data(){
+		this.get(AppSettings.url_for_get_helpcalls(), 1);
+	}
 	protected void initData(Object result,int msgType){
 		try{
 			

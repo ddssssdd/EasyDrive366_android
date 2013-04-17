@@ -8,27 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/navigation_bar" />
-
-    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/pull_refresh_scrollview"
+	
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ptr:ptrAnimationStyle="flip"
-        ptr:ptrMode="pullFromStart" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="400dp" >
-
-            <TableLayout
-                android:id="@+id/table_modules_businessinsurance_table"
-                style="@style/table"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="*" >
-            </TableLayout>
-        </LinearLayout>
-    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+        android:orientation="vertical" >
+        
+		
+        
+        <TableLayout
+            android:id="@+id/table_modules_businessinsurance_table"
+            style="@style/table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*" >
+        </TableLayout>
+    </LinearLayout>
 
 </LinearLayout>
