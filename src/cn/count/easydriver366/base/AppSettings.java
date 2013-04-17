@@ -10,8 +10,9 @@ import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
 public final class AppSettings {
-	static public String ServerUrl = "http://119.167.144.23:82/index.php/";
+//	static public String ServerUrl = "http://119.167.144.23:82/index.php/";
 	//static public final String ServerUrl ="http://124.135.63.250:21000/pm/";
+	static public String ServerUrl = "http://dev.4006678888.com:21000/pm/";
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
 	static public int userid=0;

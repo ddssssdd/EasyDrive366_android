@@ -31,17 +31,17 @@ public class CornerListView extends ListView {
 	                } else {
 	                        if (itemnum == 0){
 	                                if (itemnum == (getAdapter().getCount()-1)) {
-	                                    //Ö»ÓÐÒ»Ïî
+	                                    //Ö»ï¿½ï¿½Ò»ï¿½ï¿½
 	                                    setSelector(R.drawable.corner_list_single_item);
 	                                } else {
-	                                    //µÚÒ»Ïî
+	                                    //ï¿½ï¿½Ò»ï¿½ï¿½
 	                                    setSelector(R.drawable.corner_list_first_item);
 	                                }
 	                        } else if (itemnum==(getAdapter().getCount()-1)){
-	                             //×îºóÒ»Ïî
+	                             //ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 	                            setSelector(R.drawable.corner_list_last_item);
 	                        } else {
-	                            //ÖÐ¼äÏî
+	                            //ï¿½Ð¼ï¿½ï¿½ï¿½
 	                            setSelector(R.drawable.corner_list_item);
 	                        }
 	                }

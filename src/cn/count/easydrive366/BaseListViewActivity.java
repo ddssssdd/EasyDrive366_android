@@ -9,9 +9,20 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import cn.count.easydriver366.base.BaseHttpActivity;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+
+import cn.count.easydriver366.base.BaseHttpActivity;
+import cn.count.easydriver366.base.HttpClient;
+
+
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +32,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+
 import android.widget.TextView;
 
 public abstract class BaseListViewActivity extends BaseHttpActivity {
@@ -28,12 +40,31 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 	protected MyAdapter _adapter;
 	protected int resource_listview_id;
 	protected int resource_listitem_id;
+	protected PullToRefreshListView mListView;
+	
+	protected void setupPullToRefresh(){
+		mListView = (PullToRefreshListView) findViewById(this.resource_listview_id);
+		
+		mListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
+
+			@Override
+			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+				reload_data();
+				
+			}
+		});
+
+	
+		
+	}
+	
 	@Override
 	public void processMessage(int msgType,final Object result){
 		Log.e("Http", result.toString());
 		try{
 			if (this.isSuccess(result)){
 				initData(result,msgType);
+				
 				this.runOnUiThread(
 						new Runnable(){
 
@@ -46,12 +77,20 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 					
 						}
 				);
+				
 			}
 		}catch(Exception e){
 			log(e);
 		}
 	}
-	
+	@Override 
+	protected void endRefresh(){
+		if (mListView!=null){
+			mListView.onRefreshComplete();
+		}
+		super.endRefresh();
+		
+	}
 	abstract protected void initData(Object result,int msgType);
 	
 	protected void initList(JSONArray list){
@@ -74,10 +113,10 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 	}
 	protected void initView(){
 		if (_adapter==null){
-			ListView lv = (ListView)findViewById(resource_listview_id);
+			//ListView lv = (ListView)findViewById(resource_listview_id);
 			_adapter =new MyAdapter(this);
-			lv.setAdapter(_adapter);
-			lv.setOnItemClickListener(new OnItemClickListener(){
+			mListView.setAdapter(_adapter);
+			mListView.setOnItemClickListener(new OnItemClickListener(){
 
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1,
@@ -88,6 +127,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 		}else{
 			_adapter.notifyDataSetChanged();
 		}
+		mListView.onRefreshComplete();
 	}
 	protected void onListItemClick(View view,int index){
 		
@@ -100,6 +140,8 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 		holder.detail = (TextView)convertView.findViewById(R.id.txt_listitem_detail_detail);
 		holder.action = (TextView)convertView.findViewById(R.id.txt_listitem_detail_right);
 		convertView.setTag(holder);
+//		convertView.setBackgroundDrawable(R.drawable.corner_list_item);
+		convertView.setBackgroundResource(R.drawable.bk2);
 	}
 	class ViewHolder{
 		

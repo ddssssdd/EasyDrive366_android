@@ -24,6 +24,12 @@ public class ViolationSearchActivity extends BaseHttpActivity {
 		this.setRightButtonInVisible();
 		this.setupLeftButton();
 		restoreFromLocal(1);
+		reload_data();
+		this.setupScrollView();
+		
+	}
+	@Override
+	protected void reload_data(){
 		this.get(AppSettings.url_for_illegallys(), 1);
 	}
 	@Override
@@ -53,7 +59,9 @@ public class ViolationSearchActivity extends BaseHttpActivity {
 		
 	}
 	private void initView(){
+		this.endRefresh();
 		_tableLayout = (TableLayout)findViewById(R.id.table_modules_violationsearch_table);
+		_tableLayout.removeAllViewsInLayout();
 		try{
 			JSONArray list= _result.getJSONArray("data");
 			for(int i=0;i<list.length();i++){

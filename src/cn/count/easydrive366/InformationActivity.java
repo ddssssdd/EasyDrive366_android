@@ -6,19 +6,26 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
+import android.app.ProgressDialog;
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
+
+
 import android.widget.TextView;
 
-import cn.count.easydriver366.base.BaseHttpActivity;
+
+
+
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.Menus;
 
 
 public class InformationActivity extends BaseListViewActivity {
 	
+	private ProgressDialog _dialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -29,8 +36,13 @@ public class InformationActivity extends BaseListViewActivity {
 		this.resource_listview_id = R.id.modules_information_listview;
 		this.resource_listitem_id = R.layout.module_listitem;
 		restoreFromLocal(1);
-		this.get(AppSettings.url_for_get_news(), 1);
 		
+		reload_data();
+		this.setupPullToRefresh();
+	}
+	@Override
+	protected void reload_data(){
+		this.get(AppSettings.url_for_get_news(), 1);
 	}
 	@Override
 	protected void initData(Object result,int msgType){

@@ -63,36 +63,12 @@
                 android:text="" />
         </TableRow>
 
+        
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/signup_hit_input2"
-            android:gravity="center"
-            android:orientation="horizontal" >
-
-            <TextView
-                style="@style/textview.right" 
-                android:text="初领日期：" />
-
-            <TextView
-                android:id="@+id/edt_driverlicense_init_date"
-                style="@style/textview"
-                 >
-            </TextView>
-
-            <ImageView
-                android:id="@+id/txt_driverlicense_choose_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/home_index_arrow" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/signup_hit_input6"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -108,6 +84,31 @@
 
             <ImageView
                 android:id="@+id/txt_driverlicense_choose_driver_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.0"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/home_index_arrow" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signup_hit_input6"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/textview.right" 
+                android:text="初领日期：" />
+
+            <TextView
+                android:id="@+id/edt_driverlicense_init_date"
+                style="@style/textview"
+                 >
+            </TextView>
+
+            <ImageView
+                android:id="@+id/txt_driverlicense_choose_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"

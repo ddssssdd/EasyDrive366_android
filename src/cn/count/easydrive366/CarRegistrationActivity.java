@@ -22,6 +22,11 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 		setContentView(R.layout.modules_carregistration_activity);
 		this.setupLeftButton();
 		restoreFromLocal(1);
+		this.reload_data();
+		this.setupScrollView();
+	}
+	@Override
+	protected void reload_data(){
 		this.get(AppSettings.url_get_car_registration(), 1);
 	}
 	@Override
@@ -73,6 +78,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 					startActivityForResult(intent,1);
 					
 				}});
+			this.endRefresh();
 		}catch(Exception e){
 			log(e);
 		}

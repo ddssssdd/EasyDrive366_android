@@ -23,6 +23,11 @@ public class InsuranceProcessListActivity extends BaseListViewActivity {
 		this.setupLeftButton();
 		this.resource_listview_id = R.id.listview;
 		this.resource_listitem_id = R.layout.module_listitem;
+		reload_data();
+		this.setupPullToRefresh();
+	}
+	@Override
+	protected void reload_data(){
 		this.get(AppSettings.url_for_insurance_list(), 1);
 	}
 	@Override

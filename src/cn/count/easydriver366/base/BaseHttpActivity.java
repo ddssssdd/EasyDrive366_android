@@ -1,8 +1,25 @@
 package cn.count.easydriver366.base;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+
+
+import cn.count.easydrive366.HomeActivity;
 import cn.count.easydrive366.R;
+
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -12,12 +29,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ScrollView;
+
 import android.widget.TextView;
 
 public class BaseHttpActivity extends Activity implements
@@ -30,7 +53,7 @@ public class BaseHttpActivity extends Activity implements
 	protected String _phone;
 	protected boolean _isHideTitleBar = true;
 	protected ProgressDialog _dialog;
-
+	protected PullToRefreshScrollView mPullRefreshScrollView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,7 +62,26 @@ public class BaseHttpActivity extends Activity implements
 		}
 
 	}
+	protected void setupScrollView(){
+		mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_refresh_scrollview);
+		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 
+			@Override
+			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				reload_data();
+			}
+		});
+	}
+	
+	protected void reload_data(){
+		
+	}
+	protected void endRefresh(){
+		if (mPullRefreshScrollView!=null){
+			mPullRefreshScrollView.onRefreshComplete();
+		}
+		
+	}
 	protected HttpClient getHttpClient() {
 		if (httpClient == null) {
 			httpClient = new HttpClient(this);
@@ -50,7 +92,7 @@ public class BaseHttpActivity extends Activity implements
 		
 		this.get(actionAndParameters, returnType,this.getResources().getString(R.string.app_loading));
 	}
-
+	
 	public void get(String actionAndParameters, final int returnType,final String hint) {
 		if (!this.isOnline()){
 			this.restoreFromLocal(returnType);
@@ -63,12 +105,50 @@ public class BaseHttpActivity extends Activity implements
 		}
 		
 		this.getHttpClient().requestServer(actionAndParameters, returnType);
+		
 	}
-
+	
+	public Object sendHttp(final String urlParams,final int msgType){
+		String url =AppSettings.ServerUrl +urlParams+"&timestamp="+String.valueOf(System.currentTimeMillis());
+		
+		
+		HttpGet httpGet = new HttpGet(url);
+		DefaultHttpClient client = new DefaultHttpClient();
+		try{
+		
+			HttpResponse response = client.execute(httpGet);
+			if (response.getStatusLine().getStatusCode()==200){
+				HttpEntity entity = response.getEntity();
+				InputStream inputStream = entity.getContent();
+				ByteArrayOutputStream content = new ByteArrayOutputStream();
+				int readBytes =0;
+				byte[] sBuffer = new byte[512];
+				while ((readBytes=inputStream.read(sBuffer))!=-1){
+					content.write(sBuffer, 0, readBytes);
+				}
+				String result = new String(content.toByteArray());
+				
+				Object resultObj=null;
+				if (result.startsWith("[")){
+					resultObj=new JSONArray(result);
+				}else{
+					resultObj = new JSONObject(result);
+				}
+				return resultObj;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			client.getConnectionManager().shutdown();
+		}
+		return null;
+		
+	}
 	@Override
 	public void processMessage(int msgType, final Object result) {
 
 		Log.e(BaseHttpClientTAG, result.toString());
+		
 	}
 
 	protected void setupCompanyAndPhone(final Object json) {
@@ -121,7 +201,10 @@ public class BaseHttpActivity extends Activity implements
 			Editor editor = prefs.edit();
 			editor.putString(getKey(msgType), result.toString());
 			editor.commit();
-			this.setupCompanyAndPhone(result);
+			JSONObject jsonResult =(JSONObject)result;
+			if (jsonResult.optJSONObject("result")!=null){
+				this.setupCompanyAndPhone(result);
+			}
 		}
 		if (_dialog!=null){
 			_dialog.dismiss();

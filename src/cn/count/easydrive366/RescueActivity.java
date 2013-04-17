@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.AppSettings;
 
@@ -22,6 +23,12 @@ public class RescueActivity extends BaseListViewActivity {
 		this.setRightButtonInVisible();
 		this.setupLeftButton();
 		restoreFromLocal(1);
+		reload_data();
+		
+		
+	}
+	@Override
+	protected void reload_data(){
 		this.get(AppSettings.url_for_rescue(),1);
 	}
 	
