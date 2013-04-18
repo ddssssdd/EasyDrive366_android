@@ -313,7 +313,7 @@ public class BaseHttpActivity extends Activity implements
 				public void run() {
 					Intent intent = getIntent();
 					String title = intent.getStringExtra("title");
-					if (!title.equals("")){
+					if (title!=null  && !title.equals("")){
 						setBarTitle(title);
 					}
 					((Button)v).setText(String.format("拨号：%s", _phone));
