@@ -124,7 +124,8 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 				//sendHttp(AppSettings.ServerUrl+url,i);
 			}
 		}else{
-			final String url = AppSettings.url_for_get_news();
+			//final String url = AppSettings.url_for_get_news();
+			final String url = AppSettings.url_pull_msg();
 			client.sendHttp(AppSettings.ServerUrl, url, 1);
 		}
 		
@@ -148,7 +149,11 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 					JSONArray list = json.getJSONObject("result").getJSONArray("data");
 					for(int i=0;i<list.length();i++){
 						JSONObject item = list.getJSONObject(i);
-						this.showNotification("易驾366",item.getString("description"));
+						String description = item.getString("description");
+						if (!description.equals("")){
+							this.showNotification("易驾366",item.getString("description"));
+						}
+						
 					}
 					
 				}

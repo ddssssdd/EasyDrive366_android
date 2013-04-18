@@ -27,6 +27,9 @@ public final class AppSettings {
 		
 	    return String.format("api/get_news?userid=%d",userid);
 	}
+	static public String url_pull_msg(){
+		return String.format("pushapi/pull_msg?userid=%d", userid);
+	}
 	static public String url_for_get_helpcalls()
 	{
 	    return String.format("api/get_helps?userid=%d",userid);

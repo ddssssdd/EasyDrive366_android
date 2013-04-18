@@ -26,7 +26,7 @@
     </View>
 
     <TableLayout
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:stretchColumns="*" >
 
@@ -43,7 +43,9 @@
 
             <TextView
                 android:id="@+id/txt_partview_business_tax"
-                android:layout_width="match_parent"
+                android:layout_width="220dp"
+                android:maxLength="20"
+                
                 android:layout_height="wrap_content" />
         </TableRow>
 
