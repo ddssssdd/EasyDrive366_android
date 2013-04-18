@@ -305,11 +305,17 @@ public class BaseHttpActivity extends Activity implements
 	}
 	protected void setupPhoneButton() {
 		final View v = findViewById(R.id.btn_phone);
+		
 		if (v != null) {
 			this.runOnUiThread(new Runnable(){
 
 				@Override
 				public void run() {
+					Intent intent = getIntent();
+					String title = intent.getStringExtra("title");
+					if (!title.equals("")){
+						setBarTitle(title);
+					}
 					((Button)v).setText(String.format("拨号：%s", _phone));
 					v.setOnClickListener(new OnClickListener() {
 

@@ -83,6 +83,7 @@ public class HomeMenuItem extends LinearLayout {
 		if ((_menuItem!=null) && (_menuItem.activityClass!=null)){
 			
 			Intent intent=new Intent(_context,_menuItem.activityClass);
+			intent.putExtra("title", _menuItem.name);
 			_context.startActivity(intent);
 		}
 	}
