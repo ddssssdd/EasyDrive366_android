@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import android.view.View;
+import android.view.Window;
 
 import android.view.View.OnClickListener;
 
@@ -45,9 +46,10 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.modules_taxforcarship_activity);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
-		reload_data();
+		
+		
 	
 	}
 	protected void setBarTitle(final String title) {

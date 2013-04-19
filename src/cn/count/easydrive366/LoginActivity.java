@@ -1,9 +1,13 @@
 package cn.count.easydrive366;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -14,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.AppSettings;
@@ -41,12 +46,21 @@ public class LoginActivity extends BaseHttpActivity {
 		chbRememberPassword.setChecked(pref.getBoolean("remember_password", false));
 		if (chbRememberPassword.isChecked()){
 			edtPassword.setText(pref.getString("password", ""));
+		}else{
+			edtPassword.setText("");
 		}
 		btnLogin.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
 				login();
+				
+			}});
+		findViewById(R.id.img_choose).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				chooseUser();
 				
 			}});
 		
@@ -125,6 +139,68 @@ public class LoginActivity extends BaseHttpActivity {
 			
 		}
 	}
+	private void setupUser(final JSONObject user){
+		try{
+			this.edtUsername.setText(user.getString("username"));
+			this.chbRememberPassword.setChecked(user.getBoolean("remember_password"));
+			if (this.chbRememberPassword.isChecked()){
+				this.edtPassword.setText(user.getString("password"));
+			}else{
+				this.edtPassword.setText("");
+			}
+		}catch(Exception e){
+			log(e);
+		}
+	}
 	
+	private void chooseUser(){
+		
+		SharedPreferences pref = this.getPreferences(MODE_PRIVATE);
+		String logins = pref.getString("logins", "");
+		if (logins.equals("")){
+			return;
+		}
+		
+		
+		try{
+			final JSONArray list = new JSONArray(logins);
+			final String[] items = new String[list.length()];		
+			
+			for(int i=0;i<list.length();i++){
+				JSONObject item = list.getJSONObject(i);
+				
+				String name = item.getString("username");
+				
+				items[i]=name;
+				
+				
+			}
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			
+			builder.setIcon(R.drawable.ic_launcher);
+			builder.setTitle(this.getResources().getString(R.string.app_name)).setItems(items,  new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					try{
+						setupUser(list.getJSONObject(which));
+					}catch(Exception e){
+						log(e);
+					}
+					
+					
+				}
+			});
+			builder.show();
+		}catch(Exception e){
+			
+			
+			return;
+		}
+		
+		
+		
+		
+	}
 
 }
