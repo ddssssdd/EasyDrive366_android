@@ -28,7 +28,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="5dp"
-            android:text="change password"
+            android:text=""
             android:textSize="16sp"/>
 		<TableRow
             android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="输入密码2：" />
+                android:text="再输一遍：" />
 
             <EditText
                 android:id="@+id/edt_repassword"
@@ -99,7 +99,7 @@
                 android:id="@+id/btn_change_password"
                 style="@style/button"
                 android:layout_span="3"
-                android:text="Change Password"
+                android:text="修改密码"
                 android:hint="" >
             </Button>
 
@@ -111,7 +111,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="5dp"
-            android:text="Set up"
+            android:text=""
             android:textSize="16sp"/>
         <TableRow
             android:id="@+id/row_choose1"
@@ -126,7 +126,7 @@
                 android:id="@+id/txt_maintain"
                 android:layout_span="2"
                 android:gravity = "center"
-                android:text="maintain"
+                android:text="保养维护设置"
                  >
             </TextView>
 
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:gravity = "center"
-                android:text="driver"
+                android:text="驾驶证设置"
                 >
             </TextView>
 
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:gravity = "center"
-                android:text="license"
+                android:text="行驶证设置"
                  >
             </TextView>
 
@@ -201,12 +201,30 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="5dp"
-            android:text="System"
+            android:text=""
             android:textSize="16sp"/>
 		 <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
               android:background="@drawable/signup_hit_input1"
+            android:gravity="center" >
+
+            
+
+            <Button
+                android:id="@+id/btn_logout"
+                style="@style/button"
+                android:layout_span="3"
+                android:text="Logout"
+                android:hint="" >
+            </Button>
+
+           
+        </TableRow>
+		 <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+              android:background="@drawable/signup_hit_input6"
             android:gravity="center" >
 
             <TextView
@@ -231,24 +249,7 @@
                 android:layout_weight="0.0"
                 android:text=" " />
         </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-              android:background="@drawable/signup_hit_input6"
-            android:gravity="center" >
-
-            
-
-            <Button
-                android:id="@+id/btn_logout"
-                style="@style/button"
-                android:layout_span="3"
-                android:text="Logout"
-                android:hint="" >
-            </Button>
-
-           
-        </TableRow>
+       
 
        
        

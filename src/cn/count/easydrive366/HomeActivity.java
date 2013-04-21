@@ -68,7 +68,7 @@ public class HomeActivity extends Activity {
 		startBackendService();
 		setupMenu();
 		
-		((Button)findViewById(R.id.title_set_bn)).setText("注销");
+		((Button)findViewById(R.id.title_set_bn)).setText(this.getResources().getString(R.string.menu_settings));
 		
 		findViewById(R.id.title_set_bn).setOnClickListener(new OnClickListener(){
 
@@ -234,6 +234,9 @@ public class HomeActivity extends Activity {
 		
 	}
 	private void settingsButtonPress(){
+		Intent intent = new Intent(this,SettingsActivity.class);
+		startActivity(intent);
+		
 		//scan test;
 		/*
 		IntentIntegrator integrator = new IntentIntegrator(this);
@@ -242,7 +245,7 @@ public class HomeActivity extends Activity {
 	    */
 		// show scan code test
 		//encodeBarcode("TEXT_TYPE", "i am super fool.");
-		
+		/*
 		new AlertDialog.Builder(this).setTitle(R.string.app_name)
 		.setIcon(android.R.drawable.ic_dialog_info)
 		.setMessage(String.format(getResources().getString(R.string.quit_question),AppSettings.username)).setPositiveButton(this.getResources().getString(R.string.ok), new  DialogInterface.OnClickListener(){
@@ -253,7 +256,7 @@ public class HomeActivity extends Activity {
 				
 			}})
 		.setNegativeButton(this.getResources().getString(R.string.cancel), null).show();
-		
+		*/
 	}
 	private void encodeBarcode(CharSequence type, CharSequence data) {
 	    IntentIntegrator integrator = new IntentIntegrator(this);

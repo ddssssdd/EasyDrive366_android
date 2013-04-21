@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
@@ -13,15 +14,16 @@ import cn.count.easydriver366.base.BaseHttpActivity;
 public class SettingsActivity extends BaseHttpActivity {
 	private EditText password1;
 	private EditText password2;
-	
+	private Button logoutButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.modules_settings_activity);
 		this.setupLeftButton();
-		this.setupRightButton();
+		this.setRightButtonInVisible();
 		this.setupPhoneButtonInVisible();
 		this.init_view();
+		this.setBarTitle(this.getResources().getString(R.string.menu_settings));
 		
 	}
 	private void init_view(){
@@ -55,6 +57,8 @@ public class SettingsActivity extends BaseHttpActivity {
 				setup_car_registration();
 				
 			}});
+		this.logoutButton = (Button)findViewById(R.id.btn_logout);
+		logoutButton.setText(String.format("注销-%s", AppSettings.username));
 		findViewById(R.id.btn_logout).setOnClickListener(new OnClickListener(){
 
 			@Override
