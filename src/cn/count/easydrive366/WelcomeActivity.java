@@ -28,8 +28,13 @@ public class WelcomeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (AppSettings.isquiting){
+			finish();
+			System.exit(0);
+		}
 		setContentView(R.layout.activity_welcome);
 		AppSettings.restore_login_from_device(this);
+		
 		if (AppSettings.isLogin){
 			this.goHome();
 		}else{
@@ -107,6 +112,7 @@ public class WelcomeActivity extends Activity {
 	public void onBackPressed() {
 		if (_userWantQuit){
 			this.finish();
+			AppSettings.isquiting = true;
 			System.exit(0);
 		}else{
 			Toast.makeText(this, this.getResources().getString(R.string.exit_question), Toast.LENGTH_LONG).show();

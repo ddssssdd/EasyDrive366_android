@@ -52,6 +52,7 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 		try{
 			if (msgType==1){
 				_result= (((JSONObject)result).getJSONObject("result")).getJSONObject("data");
+				this.saveWithKey("driver_license", _result);
 			}
 		}catch(Exception e){
 			this.log(e);

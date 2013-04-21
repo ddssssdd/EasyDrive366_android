@@ -3,11 +3,13 @@ package cn.count.easydrive366;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -82,6 +84,8 @@ public class SignupActivity extends BaseHttpActivity {
 			return;
 		}
 		String url =String.format("api/signup?username=%s&password=%s",username,password);
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(edtUsername.getWindowToken(), 0);
 		this.get(url, 1);
 		
 	}

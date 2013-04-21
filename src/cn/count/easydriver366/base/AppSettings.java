@@ -21,6 +21,7 @@ public final class AppSettings {
 	static public boolean isLogin= false;
 	static public JSONArray driver_type_list;
 	static public int update_time=4*60*60;
+	static public boolean isquiting = false;
 	
 	static public String url_for_get_news()
 	{

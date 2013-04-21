@@ -346,4 +346,23 @@ public class BaseHttpActivity extends Activity implements
 	protected void makeCall(final String phone) {
 		startActivity(AppTools.getPhoneAction(phone));
 	}
+	protected void saveWithKey(String key,JSONObject value){
+		SharedPreferences prefs = this.getSharedPreferences(AppSettings.AppTile, Context.MODE_PRIVATE);
+		Editor editor = prefs.edit();
+		editor.putString(key, value.toString());
+		editor.commit();
+	}
+	protected JSONObject loadWithKey(String key,JSONObject defaultValue){
+		SharedPreferences prefs = this.getSharedPreferences(AppSettings.AppTile, Context.MODE_PRIVATE);
+		String value = prefs.getString(key, "");
+		if (value.equals("")){
+			return defaultValue;
+		}
+		try{
+			JSONObject result = new JSONObject(value);
+			return result;
+		}catch(Exception e){
+			return defaultValue;
+		}
+	}
 }

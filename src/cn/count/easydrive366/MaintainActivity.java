@@ -51,6 +51,7 @@ public class MaintainActivity extends BaseListViewActivity {
 			_current_date = _result.getString("current_date");
 			_current_miles = _result.getString("current_miles");
 			_current_distance = _result.getString("current_distance");
+			this.saveWithKey("maintain", _result);
 		}catch(Exception e){
 			log(e);
 		}

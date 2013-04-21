@@ -99,6 +99,7 @@
             </intent-filer>
             
         </receiver>
+         <activity android:name="cn.count.easydrive366.SettingsActivity"></activity>
     </application>
 
 </manifest>

@@ -34,6 +34,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 		try{
 			if (msgType==1){
 				_result= (((JSONObject)result).getJSONObject("result")).getJSONObject("data");
+				this.saveWithKey("car_registration", _result);
 			}
 		}catch(Exception e){
 			this.log(e);

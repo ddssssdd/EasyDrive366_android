@@ -57,6 +57,10 @@ public class HomeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		if (AppSettings.isquiting){
+			finish();
+			System.exit(0);
+		}
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.moudles_home_activity);
 		
@@ -187,6 +191,7 @@ public class HomeActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		if (_userWantQuit){
+			AppSettings.isquiting = true;
 			this.finish();
 			System.exit(0);
 		}else{
@@ -217,8 +222,9 @@ public class HomeActivity extends Activity {
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
-		this.logout();
-		
+		//this.logout();
+		Intent intent = new Intent(this,SettingsActivity.class);
+		startActivity(intent);
 		return true;
 	}
 	public void logout(){
