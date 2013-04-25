@@ -111,7 +111,7 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 			return;
 		}
 		String name = ((EditText)findViewById(R.id.edt_driverlicense_name)).getText().toString().trim();
-		String id = ((EditText)findViewById(R.id.edt_driverlicense_number)).getText().toString().trim();
+		String id = ((EditText)findViewById(R.id.edt_driverlicense_number)).getText().toString().trim().toUpperCase();
 		if (name.equals("")){
 			this.showMessage(this.getResources().getString(R.string.name_is_empty), null);
 			return;

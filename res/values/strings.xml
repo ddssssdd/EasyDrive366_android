@@ -37,7 +37,7 @@
 	<string name="password_not_empty">密码不能为空，至少6位</string>
 	<string name="password_not_match">密码不匹配</string>
 	<string name="name_is_empty">姓名不能为空！</string>
-	<string name="id_is_wrong">身份证为18位。</string>
+	<string name="id_is_wrong">身份证为18位,最后一位可以为X.</string>
 	<string name="no_network">网络不给力，无法保存。</string>
 	<string name="result_failed">没有发现条码</string>
   	<string name="result_failed_why">"放弃扫描"</string>

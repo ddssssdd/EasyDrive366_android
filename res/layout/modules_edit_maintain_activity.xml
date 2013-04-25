@@ -35,7 +35,7 @@
 
             <TextView
                 style="@style/textview"
-                android:text="公里/天" />
+                android:text="公里" />
         </TableRow>
 		 <TableRow
             android:layout_width="match_parent"

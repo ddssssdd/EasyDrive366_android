@@ -39,25 +39,31 @@ public class SettingsActivity extends BaseHttpActivity {
 				changePassword();
 				
 			}});
+		
+		
+		
 		findViewById(R.id.row_choose1).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				setup_maintain();
+//				setup_maintain();
+				get(AppSettings.url_for_get_maintain_record(), 2);
 				
 			}});
 		findViewById(R.id.row_choose2).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				setup_driver();
+//				setup_driver();
+				get(AppSettings.url_get_driver_license(),3);
 				
 			}});
 		findViewById(R.id.row_choose3).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				setup_car_registration();
+//				setup_car_registration();
+				get(AppSettings.url_get_car_registration(),4);
 				
 			}});
 		this.logoutButton = (Button)findViewById(R.id.btn_logout);
@@ -95,11 +101,35 @@ public class SettingsActivity extends BaseHttpActivity {
 
 		if (msgType==1){
 			this.showMessage(this.getString(R.string.password_change_success), null);
+		}else if (msgType==2){
+			//maintain
+			try{
+				JSONObject json = (JSONObject)result;
+				this.setup_maintain(json.getJSONObject("result").getJSONObject("data"));
+			}catch(Exception e){
+				log(e);
+			}
+			
+		}else if (msgType==3){
+			try{
+				JSONObject json = (JSONObject)result;
+				this.setup_driver(json.getJSONObject("result").getJSONObject("data"));
+			}catch(Exception e){
+				log(e);
+			}
+		}else if (msgType==4){
+			try{
+				JSONObject json = (JSONObject)result;
+				this.setup_car_registration(json.getJSONObject("result").getJSONObject("data"));
+			}catch(Exception e){
+				log(e);
+			}
 		}
 		
 	}
-	private void setup_maintain(){
+	private void setup_maintain(final JSONObject result){
 		Intent intent =new Intent(this,MaintainEditActivity.class);
+		/*
 		JSONObject result = new JSONObject();
 		try{
 			
@@ -112,11 +142,13 @@ public class SettingsActivity extends BaseHttpActivity {
 			
 		}
 		result = this.loadWithKey("maintain", result);
+		*/
 		intent.putExtra("data", result.toString());
 		startActivityForResult(intent,0);
 	}
-	private void setup_driver(){
+	private void setup_driver(final JSONObject result){
 		Intent intent = new Intent(this,DriverLicenseEditActivity.class);
+		/*
 		JSONObject result = new JSONObject();
 		try{
 			
@@ -129,11 +161,13 @@ public class SettingsActivity extends BaseHttpActivity {
 			
 		}
 		result = this.loadWithKey("driver_license", result);
+		*/
 		intent.putExtra("data", result.toString());
 		startActivityForResult(intent,0);
 	}
-	private void setup_car_registration(){
+	private void setup_car_registration(final JSONObject result){
 		Intent intent = new Intent(this,CarRegistrationEditActivity.class);
+		/*
 		JSONObject result = new JSONObject();
 		try{
 			
@@ -146,6 +180,7 @@ public class SettingsActivity extends BaseHttpActivity {
 			
 		}
 		result = this.loadWithKey("car_registration", result);
+		*/
 		intent.putExtra("data", result.toString());
 		startActivityForResult(intent,0);
 	}
