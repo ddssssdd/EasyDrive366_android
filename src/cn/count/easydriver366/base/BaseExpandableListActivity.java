@@ -42,7 +42,7 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 	protected Button _rightButton;
 	protected String _company;
 	protected String _phone;
-	
+	private int reload = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -70,7 +70,7 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 		mListView.setOnRefreshListener(new OnRefreshListener<ExpandableListView>() {
 			@Override
 			public void onRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
-				
+				reload = 1;
 				reload_data();
 			}
 		});
@@ -90,8 +90,10 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 	}
 	
 	public void get(String actionAndParameters, final int returnType,final String hint) {
-		
-		this.getHttpClient().requestServer(actionAndParameters, returnType);
+		final String url = String.format("%s&reload=%d", actionAndParameters,reload);
+		Log.e("Reload", url);
+		this.getHttpClient().requestServer(url, returnType);
+		reload =0;
 		
 	}
 	protected void setupCompanyAndPhone(final Object json) {

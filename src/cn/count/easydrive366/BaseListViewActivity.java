@@ -49,6 +49,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 
 			@Override
 			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+				reload = 1;
 				reload_data();
 				
 			}

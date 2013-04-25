@@ -208,12 +208,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int sign_input1=0x7f020022;
         public static final int sign_input2=0x7f020023;
         public static final int sign_line=0x7f020024;
-        public static final int signup_hit_input1=0x7f020025;
-        public static final int signup_hit_input2=0x7f020026;
-        public static final int signup_hit_input6=0x7f020027;
-        public static final int top_bar_bg=0x7f020028;
-        public static final int top_bar_set_btn=0x7f020029;
-        public static final int top_bar_set_btn_d=0x7f02002a;
+        public static final int signup_hit_input0=0x7f020025;
+        public static final int signup_hit_input1=0x7f020026;
+        public static final int signup_hit_input2=0x7f020027;
+        public static final int signup_hit_input6=0x7f020028;
+        public static final int top_bar_bg=0x7f020029;
+        public static final int top_bar_set_btn=0x7f02002a;
+        public static final int top_bar_set_btn_d=0x7f02002b;
     }
     public static final class id {
         public static final int both=0x7f050003;
@@ -432,6 +433,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int no_network=0x7f07002b;
         public static final int ok=0x7f070021;
         public static final int password=0x7f07000d;
+        public static final int password_change_success=0x7f070030;
         public static final int password_not_empty=0x7f070027;
         public static final int password_not_match=0x7f070028;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 

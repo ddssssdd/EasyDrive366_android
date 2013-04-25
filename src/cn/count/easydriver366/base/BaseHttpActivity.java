@@ -54,6 +54,7 @@ public class BaseHttpActivity extends Activity implements
 	protected boolean _isHideTitleBar = true;
 	protected ProgressDialog _dialog;
 	protected PullToRefreshScrollView mPullRefreshScrollView;
+	protected int reload =0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,6 +69,7 @@ public class BaseHttpActivity extends Activity implements
 
 			@Override
 			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				reload=1;
 				reload_data();
 			}
 		});
@@ -103,8 +105,10 @@ public class BaseHttpActivity extends Activity implements
 			_dialog.setMessage(hint);
 			_dialog.show();
 		}
-		
-		this.getHttpClient().requestServer(actionAndParameters, returnType);
+		final String url = String.format("%s&reload=%d", actionAndParameters,reload);
+		Log.e("Reload", url);
+		this.getHttpClient().requestServer(url, returnType);
+		reload = 0;
 		
 	}
 	

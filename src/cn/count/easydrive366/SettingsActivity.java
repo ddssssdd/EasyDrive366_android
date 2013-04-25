@@ -2,10 +2,13 @@ package cn.count.easydrive366;
 
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import cn.count.easydriver366.base.AppSettings;
@@ -70,7 +73,29 @@ public class SettingsActivity extends BaseHttpActivity {
 		
 	}
 	private void changePassword(){
-		this.showDialog("change password, i am waiting interface");
+		String password = password1.getText().toString();
+		String repassword = password2.getText().toString();
+		if (password.equals("") || password.length()<6){
+			this.showMessage(getResources().getString(R.string.password_not_empty), null);
+			return;
+		}
+		if (!password.equals(repassword)){
+			this.showMessage(getResources().getString(R.string.password_not_match), null);
+			return;
+		}
+		String url =String.format("api/r_u_p?userid=%d&pwd=%s",AppSettings.userid,password);
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(password1.getWindowToken(), 0);
+		this.get(url, 1);
+		
+		
+	}
+	@Override
+	public void processMessage(int msgType, final Object result) {
+
+		if (msgType==1){
+			this.showMessage(this.getString(R.string.password_change_success), null);
+		}
 		
 	}
 	private void setup_maintain(){
