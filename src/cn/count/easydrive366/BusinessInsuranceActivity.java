@@ -118,12 +118,17 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 	private void initView(){
 		tableLayout = (TableLayout)findViewById(R.id.table_modules_businessinsurance_table);
 		tableLayout.removeAllViewsInLayout();
-		if (_curr!=null){
-			this.addTableRow(this.getResources().getString(R.string.current),_curr);
+		try{
+			if (_curr!=null){
+				this.addTableRow(_curr.getString("title"),_curr);
+			}
+			if (_renew!=null){
+				this.addTableRow(_renew.getString("title"),_renew);
+			}
+		}catch(Exception e){
+			log(e);
 		}
-		if (_renew!=null){
-			this.addTableRow(this.getResources().getString(R.string.renew),_renew);
-		}
+		
 		this.endRefresh();
 	}
 	private Runnable initViewThread = new Runnable(){

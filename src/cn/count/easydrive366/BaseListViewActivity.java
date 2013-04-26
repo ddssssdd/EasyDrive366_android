@@ -122,7 +122,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1,
 						int arg2, long arg3) {
-					onListItemClick(arg1,arg2);
+					onListItemClick(arg1,arg3);
 					
 				}});
 		}else{
@@ -130,7 +130,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 		}
 		mListView.onRefreshComplete();
 	}
-	protected void onListItemClick(View view,int index){
+	protected void onListItemClick(final View view,final long index){
 		
 	}
 	

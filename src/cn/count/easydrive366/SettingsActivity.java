@@ -15,8 +15,7 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 
 public class SettingsActivity extends BaseHttpActivity {
-	private EditText password1;
-	private EditText password2;
+	
 	private Button logoutButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -30,9 +29,8 @@ public class SettingsActivity extends BaseHttpActivity {
 		
 	}
 	private void init_view(){
-		password1 = (EditText)findViewById(R.id.edt_password);
-		password2 = (EditText)findViewById(R.id.edt_repassword);
-		findViewById(R.id.btn_change_password).setOnClickListener(new OnClickListener(){
+		
+		findViewById(R.id.row_choose4).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
@@ -79,20 +77,8 @@ public class SettingsActivity extends BaseHttpActivity {
 		
 	}
 	private void changePassword(){
-		String password = password1.getText().toString();
-		String repassword = password2.getText().toString();
-		if (password.equals("") || password.length()<6){
-			this.showMessage(getResources().getString(R.string.password_not_empty), null);
-			return;
-		}
-		if (!password.equals(repassword)){
-			this.showMessage(getResources().getString(R.string.password_not_match), null);
-			return;
-		}
-		String url =String.format("api/r_u_p?userid=%d&pwd=%s",AppSettings.userid,password);
-		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(password1.getWindowToken(), 0);
-		this.get(url, 1);
+		Intent intent = new Intent(this,PasswordResetActivity.class);
+		startActivity(intent);
 		
 		
 	}
@@ -100,7 +86,7 @@ public class SettingsActivity extends BaseHttpActivity {
 	public void processMessage(int msgType, final Object result) {
 
 		if (msgType==1){
-			this.showMessage(this.getString(R.string.password_change_success), null);
+			
 		}else if (msgType==2){
 			//maintain
 			try{
@@ -185,8 +171,10 @@ public class SettingsActivity extends BaseHttpActivity {
 		startActivityForResult(intent,0);
 	}
 	private void logout(){
+		
 		AppSettings.logout(this);
 		Intent intent = new Intent(this,WelcomeActivity.class);
 		startActivity(intent);
+		this.finish();
 	}
 }

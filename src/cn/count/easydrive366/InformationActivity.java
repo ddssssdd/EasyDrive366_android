@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.base.Menus;
 
 
@@ -60,10 +61,10 @@ public class InformationActivity extends BaseListViewActivity {
 	
 	
 	@Override
-	protected void onListItemClick(View view,int index){
+	protected void onListItemClick(final View view,final long index){
 		//System.out.println("click");
 		if (_list!=null){
-			Map<String,Object> map = _list.get(index);
+			Map<String,Object> map = _list.get((int) index);
 			final String action = map.get("action").toString();
 			final String url = map.get("url").toString();
 			if (!url.equals("")){
@@ -74,9 +75,13 @@ public class InformationActivity extends BaseListViewActivity {
 			}else if (!action.equals("01")){
 				
 				Menus menus = new Menus(this);
-				Class<?> intentClass = menus.findMenuItemClassByKey(action);
-				Intent intent = new Intent(this,intentClass);
-				startActivity(intent);
+				//Class<?> intentClass = menus.findMenuItemClassByKey(action);
+				HomeMenu item = menus.findMenuByKey(action);
+				if (item!=null){
+					Intent intent = new Intent(this,item.activityClass);
+					intent.putExtra("title", item.name);
+					startActivity(intent);
+				}
 			}
 			
 		}
