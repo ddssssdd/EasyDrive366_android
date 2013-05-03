@@ -209,6 +209,8 @@ public class BaseHttpActivity extends Activity implements
 			if (jsonResult.optJSONObject("result")!=null){
 				this.setupCompanyAndPhone(result);
 			}
+		}else{
+			this.endRefresh();
 		}
 		if (_dialog!=null){
 			_dialog.dismiss();

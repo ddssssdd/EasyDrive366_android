@@ -19,6 +19,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import cn.count.easydrive366.components.HomeMenuItem;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
+import cn.count.easydriver366.base.CheckUpdate;
 import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.base.Menus;
 import cn.count.easydriver366.service.BackendService;
@@ -91,6 +92,7 @@ public class HomeActivity extends Activity {
 
 		mScrollView = mPullRefreshScrollView.getRefreshableView();
 		
+		new CheckUpdate(this,false);
 	}
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
 		private boolean _needSleep=false;

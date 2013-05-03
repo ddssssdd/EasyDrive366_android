@@ -103,13 +103,16 @@
                 android:hint="" >
             </TextView>
 
-             <ImageView
+             
+              <TextView
                 android:id="@+id/txt_driverlicense_choose_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/home_index_arrow" />
+                android:gravity="right"
+                
+                android:layout_marginRight="20dp"
+                android:textSize="24sp"
+                android:text=">" />
         </TableRow>
 
        </TableLayout>

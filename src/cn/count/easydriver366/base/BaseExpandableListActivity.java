@@ -243,6 +243,12 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 	@Override
 	public void recordResult(int msgType, Object result) {
 		setupCompanyAndPhone(result);
-		
+		try{
+			if (mListView!=null){
+				mListView.onRefreshComplete();
+			}
+		}catch(Exception e){
+			log(e);
+		}
 	}
 }

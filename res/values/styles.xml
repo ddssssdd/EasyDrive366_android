@@ -34,6 +34,11 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">16sp</item>
     </style>
+    <style name="button.red">
+        <item name="android:background">@drawable/red_button_selector</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 	 <style name="textview" parent="@android:style/TextAppearance.Medium">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

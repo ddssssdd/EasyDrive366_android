@@ -108,6 +108,17 @@ public class MaintainEditActivity extends BaseHttpActivity{
 			this.showMessage(this.getResources().getString(R.string.no_network), null);
 			return;
 		}
+		String max_time = ((EditText)findViewById(R.id.edt_maintain_max_time)).getText().toString();
+		try{
+			int max_month= Integer.parseInt(max_time);
+			if (!(max_month>0 && max_month<=24)){
+				this.showMessage(this.getString(R.string.max_time_error), null);
+				return;
+			}
+		}catch(Exception e){
+			log(e);
+			this.showMessage(this.getString(R.string.max_time_error), null);
+		}
 		String url = String.format("api/add_maintain_record?user_id=%d&max_distance=%s&max_time=%s&prev_date=%s&prev_distance=%s&average_mileage=%s",
 				AppSettings.userid,
 				((EditText)findViewById(R.id.edt_maintain_max_distance)).getText(),

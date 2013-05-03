@@ -101,6 +101,7 @@
         </receiver>
          <activity android:name="cn.count.easydrive366.SettingsActivity"></activity>
          <activity android:name="cn.count.easydrive366.PasswordResetActivity"></activity>
+         <activity android:name="cn.count.easydrive366.BindCellphoneActivity"></activity>
          
     </application>
 

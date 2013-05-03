@@ -122,12 +122,16 @@
                  >
             </TextView>
 
-            <ImageView
+            
+            <TextView
                 android:id="@+id/imagebutton_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/home_index_arrow" />
+                android:gravity="right"
+                
+                android:layout_marginRight="20dp"
+                android:textSize="24sp"
+                android:text=">" />
         </TableRow>
 
        

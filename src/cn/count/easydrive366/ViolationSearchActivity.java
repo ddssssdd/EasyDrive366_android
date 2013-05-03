@@ -24,6 +24,7 @@ public class ViolationSearchActivity extends BaseHttpActivity {
 		this.setRightButtonInVisible();
 		this.setupLeftButton();
 		restoreFromLocal(1);
+		reload=1;
 		reload_data();
 		this.setupScrollView();
 		
