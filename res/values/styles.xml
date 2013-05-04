@@ -36,7 +36,7 @@
     </style>
     <style name="button.red">
         <item name="android:background">@drawable/red_button_selector</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColor">#ff0000</item>
         <item name="android:textSize">16sp</item>
     </style>
 	 <style name="textview" parent="@android:style/TextAppearance.Medium">

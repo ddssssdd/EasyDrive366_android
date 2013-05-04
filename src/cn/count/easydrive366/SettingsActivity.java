@@ -122,7 +122,14 @@ public class SettingsActivity extends BaseHttpActivity {
 					JSONObject json = (JSONObject)result;
 					
 					if (json.getJSONObject("result").getString("status").equals("02")){
-						txtBind.setText(this.getString(R.string.unbind));
+						this.runOnUiThread(new Runnable(){
+
+							@Override
+							public void run() {
+								txtBind.setText(getString(R.string.unbind));
+								
+							}});
+						
 						_isbind = 0;
 					}
 					_cellphone= json.getJSONObject("result").getString("phone");
@@ -219,5 +226,23 @@ public class SettingsActivity extends BaseHttpActivity {
 		Intent intent = new Intent(this,WelcomeActivity.class);
 		startActivity(intent);
 		this.finish();
+	}
+	@Override
+	protected void onActivityResult(int requestCode,int resultCode,Intent data){
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode==BINDCELLPHONE && resultCode==RESULT_OK){
+			this.get(AppSettings.url_get_user_phone(), 1);
+			/*
+			Bundle extras = data.getExtras();
+			this._isbind = extras.getInt("isbind");
+			this.runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					txtBind.setText(getString(_isbind==0?R.string.unbind:R.string.bind));
+					
+				}});
+				*/
+		}
 	}
 }
