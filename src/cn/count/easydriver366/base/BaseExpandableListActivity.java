@@ -244,9 +244,16 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 	public void recordResult(int msgType, Object result) {
 		setupCompanyAndPhone(result);
 		try{
-			if (mListView!=null){
-				mListView.onRefreshComplete();
-			}
+			this.runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					if (mListView!=null){
+						mListView.onRefreshComplete();
+					}
+					
+				}});
+			
 		}catch(Exception e){
 			log(e);
 		}

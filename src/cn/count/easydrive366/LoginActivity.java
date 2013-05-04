@@ -129,6 +129,8 @@ public class LoginActivity extends BaseHttpActivity {
 			Intent intent = new Intent();
 			intent.putExtras(bundle);
 			setResult(RESULT_OK,intent);
+			InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(edtUsername.getWindowToken(), 0);
 			finish();
 			
 		}else{

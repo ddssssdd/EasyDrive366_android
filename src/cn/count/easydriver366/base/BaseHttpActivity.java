@@ -210,7 +210,14 @@ public class BaseHttpActivity extends Activity implements
 				this.setupCompanyAndPhone(result);
 			}
 		}else{
-			this.endRefresh();
+			this.runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					endRefresh();
+					
+				}});
+			
 		}
 		if (_dialog!=null){
 			_dialog.dismiss();
