@@ -74,6 +74,13 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 					chooseDate();
 					
 				}});
+			findViewById(R.id.tr_choose_date).setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					chooseDate();
+					
+				}});
 		} catch (Exception e) {
 			log(e);
 		}
@@ -109,6 +116,9 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 	}
 	private void chooseDate(){
 		String d = ((TextView)findViewById(R.id.edt_carregistration_registration_date  )).getText().toString();
+		if (d.equals("")){
+			d = "2000-01-01";
+		}
 		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		final Calendar c  = Calendar.getInstance();
 		

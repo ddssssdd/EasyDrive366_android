@@ -94,6 +94,7 @@ public class WelcomeActivity extends Activity {
 		}
 	}
 	private void goHome(){
+		/*
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		
 		if (imm.isActive()) { 
@@ -101,7 +102,7 @@ public class WelcomeActivity extends Activity {
 			imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS); 
 		 
 		} 
-		
+		*/
 		Intent intent = new Intent(this,HomeActivity.class);
 		startActivity(intent);
 		finish();

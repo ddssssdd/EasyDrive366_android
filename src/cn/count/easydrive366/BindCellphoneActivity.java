@@ -84,10 +84,17 @@ public class BindCellphoneActivity extends BaseHttpActivity {
 			}});
 	}
 	private void getCode(){
+		if (edtCellphone.getText().toString().length()<11){
+			this.showMessage(this.getString(R.string.input_cellphone),null);
+			return;
+		}
 		this.get(String.format("api/get_sms_code?userid=%d&phone=%s&isbind=%d", AppSettings.userid,edtCellphone.getText().toString(),this._isbind), 1);
 	}
 	private void bindCellphone(){
-		
+		if (edtCode.getText().toString().length()!=6){
+			this.showMessage(getString(R.string.input_verify_code),null);
+			return;
+		}
 		if (_isbind==0){
 			this.get(String.format("api/reset_phone?userid=%d&code=%s",AppSettings.userid,edtCode.getText().toString()), 3);
 		}else{
