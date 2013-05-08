@@ -27,7 +27,7 @@
                 android:id="@+id/txt_maintain"
                 android:layout_span="2"
                 android:gravity="center"
-                android:text="保养维护设置" >
+                android:text="保养设置" >
             </TextView>
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:gravity="center"
-                android:text="驾驶证设置" >
+                android:text="驾驶证" >
             </TextView>
 
             <TextView
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:gravity="center"
-                android:text="行驶证设置" >
+                android:text="我的车辆" >
             </TextView>
 
              <TextView
