@@ -3,6 +3,7 @@ package cn.count.easydrive366;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -91,6 +92,13 @@ public class SettingsActivity extends BaseHttpActivity {
 				new CheckUpdate(SettingsActivity.this,true);
 				
 			}});
+		findViewById(R.id.row_choose_findpassword).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				reset_password();
+				
+			}});
 		txtBind = (TextView)findViewById(R.id.txt_bindCellphone);
 		txtVersion = (TextView)findViewById(R.id.txt_version);
 		txtVersion.setText(String.format("V%s >", AppSettings.version));
@@ -110,8 +118,9 @@ public class SettingsActivity extends BaseHttpActivity {
 	private void changePassword(){
 		Intent intent = new Intent(this,PasswordResetActivity.class);
 		startActivity(intent);
-		
-		
+	}
+	private void find_password(){
+		this.get(String.format("api/sms_reset_pwd?userid=%d", AppSettings.userid), 5);
 	}
 	@Override
 	public void processMessage(int msgType, final Object result) {
@@ -157,6 +166,15 @@ public class SettingsActivity extends BaseHttpActivity {
 			try{
 				JSONObject json = (JSONObject)result;
 				this.setup_car_registration(json.getJSONObject("result").getJSONObject("data"));
+			}catch(Exception e){
+				log(e);
+			}
+		}else if (msgType==5){
+			try{
+				if (AppTools.isSuccess(result)){
+					this.showMessage(((JSONObject)result).getString("result"), null);
+					changePassword();
+				}
 			}catch(Exception e){
 				log(e);
 			}
@@ -243,6 +261,30 @@ public class SettingsActivity extends BaseHttpActivity {
 					
 				}});
 				*/
+		}
+	}
+	private void reset_password(){
+		if (this._isbind==1){
+			this.confirm("找回密码操作需要绑定手机，请先绑定手机。", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent = new Intent(SettingsActivity.this,BindCellphoneActivity.class);
+					intent.putExtra("phone", _cellphone);
+					intent.putExtra("isbind", _isbind);
+					startActivityForResult(intent,BINDCELLPHONE);
+					
+				}
+			});
+		}else{
+			this.confirm("找回密码操作将向您绑定手机发送随机初始密码（短信免费），请确认要找回密码？", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					find_password();
+					
+				}
+			});
 		}
 	}
 }

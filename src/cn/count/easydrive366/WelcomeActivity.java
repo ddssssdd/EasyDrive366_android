@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +26,10 @@ import android.widget.Toast;
 public class WelcomeActivity extends Activity {
 	private boolean _userWantQuit=false;
 	private Timer _quitTimer;
+	@Override
+	protected void onDestroy(){
+		super.onDestroy();
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

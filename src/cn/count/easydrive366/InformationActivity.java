@@ -35,7 +35,8 @@ public class InformationActivity extends BaseListViewActivity {
 		
 		this.setRightButtonInVisible();
 		this.resource_listview_id = R.id.modules_information_listview;
-		this.resource_listitem_id = R.layout.module_listitem;
+		//this.resource_listitem_id = R.layout.module_listitem;
+		this.resource_listitem_id = R.layout.module_listitem_information;
 		restoreFromLocal(1);
 		
 		reload_data();
@@ -91,13 +92,13 @@ public class InformationActivity extends BaseListViewActivity {
 		holder.title.setText(info.get("fmt_createDate").toString());
 		holder.detail.setText(info.get("description").toString());
 		//holder.action.setText(info.get("action").toString());
-		holder.action.setText("");
+		//holder.action.setText("");
 	}
 	@Override
 	protected void initListItem(ViewHolder holder,View convertView){
 		holder.title = (TextView)convertView.findViewById(R.id.txt_listitem_detail_title);
 		holder.detail = (TextView)convertView.findViewById(R.id.txt_listitem_detail_detail);
-		holder.action = (TextView)convertView.findViewById(R.id.txt_listitem_detail_right);
+		//holder.action = (TextView)convertView.findViewById(R.id.txt_listitem_detail_right);
 		convertView.setTag(holder);
 	}
 	

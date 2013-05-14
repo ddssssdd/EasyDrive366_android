@@ -104,7 +104,11 @@
          <activity android:name="cn.count.easydrive366.SettingsActivity"></activity>
          <activity android:name="cn.count.easydrive366.PasswordResetActivity"></activity>
          <activity android:name="cn.count.easydrive366.BindCellphoneActivity"></activity>
-         
+         <activity android:name="cn.count.easydrive366.CarServiceActivity"></activity>
+         <activity android:name="cn.count.easydrive366.CarServiceDetailActivity"></activity>
+         <activity android:name="cn.count.easydrive366.CarServiceVendorActivity"></activity>
+         <activity android:name="cn.count.easydrive366.CarServiceWikiActivity"></activity>
+         <activity android:name="cn.count.easydrive366.CarServiceNoteActivity"></activity>         
     </application>
 
 </manifest>

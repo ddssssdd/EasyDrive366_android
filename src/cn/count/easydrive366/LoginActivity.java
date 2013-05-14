@@ -55,7 +55,7 @@ public class LoginActivity extends BaseHttpActivity {
 
 			@Override
 			public void onClick(View v) {
-				login();
+				login(edtUsername.getText().toString(),edtPassword.getText().toString());
 				
 			}});
 		findViewById(R.id.img_choose).setOnClickListener(new OnClickListener(){
@@ -102,9 +102,9 @@ public class LoginActivity extends BaseHttpActivity {
 		editor.commit();
 	}
 	
-	private void login(){
-		String username= edtUsername.getText().toString();
-		String password = edtPassword.getText().toString();
+	private void login(final String username,final String password){
+		//String username= edtUsername.getText().toString();
+		//String password = edtPassword.getText().toString();
 		if (username.equals("")){
 			this.showMessage(getResources().getString(R.string.username_not_empty), null);
 			return;
@@ -147,6 +147,10 @@ public class LoginActivity extends BaseHttpActivity {
 	}
 	private void setupUser(final JSONObject user){
 		try{
+			if (user.getBoolean("remember_password")){
+				this.login(user.getString("username"), user.getString("password"));
+				return;
+			}
 			this.edtUsername.setText(user.getString("username"));
 			this.chbRememberPassword.setChecked(user.getBoolean("remember_password"));
 			if (this.chbRememberPassword.isChecked()){

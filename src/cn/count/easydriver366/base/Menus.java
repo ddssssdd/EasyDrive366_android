@@ -7,6 +7,7 @@ import android.app.Activity;
 
 import cn.count.easydrive366.BusinessInsuranceActivity;
 import cn.count.easydrive366.CarRegistrationActivity;
+import cn.count.easydrive366.CarServiceActivity;
 import cn.count.easydrive366.CompulsoryInsuranceActivity;
 import cn.count.easydrive366.DriverLicenseActivity;
 import cn.count.easydrive366.HelpCallActivity;
@@ -31,6 +32,9 @@ public class Menus {
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",RescueActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_04),"04",MaintainActivity.class));	
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_06),"06",CarRegistrationActivity.class));
+		
+		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_12),"12",CarServiceActivity.class));
+		
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_05),"05",DriverLicenseActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_07),"07",TaxForCarShipActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_08),"08",CompulsoryInsuranceActivity.class));

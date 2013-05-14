@@ -249,6 +249,22 @@ public class BaseHttpActivity extends Activity implements
 		});
 
 	}
+	protected void confirm(final String info,
+			final DialogInterface.OnClickListener okListener) {
+			final Context context = this;
+			
+			this.runOnUiThread(new Runnable() {
+
+				@Override
+				public void run() {
+					new AlertDialog.Builder(context).setTitle(getResources().getString(R.string.hint))
+							.setIcon(android.R.drawable.ic_dialog_alert)
+							.setMessage(info).setPositiveButton(getResources().getString(R.string.ok), okListener)
+							.setNegativeButton(getResources().getString(R.string.cancel), null).show();
+				}
+			});
+
+		}
 
 	protected void showDialog(String str) {
 		new AlertDialog.Builder(this).setMessage(str).show();

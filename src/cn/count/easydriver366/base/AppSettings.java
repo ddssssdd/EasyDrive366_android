@@ -12,17 +12,17 @@ import android.util.Log;
 public final class AppSettings {
 //	static public String ServerUrl = "http://119.167.144.23:82/index.php/";
 	//static public final String ServerUrl ="http://124.135.63.250:21000/pm/";
-	static public String ServerUrl = "http://m.4006678888.com:21000/index.php/";
+	static public String ServerUrl = "http://next.4006678888.com:21000/index.php/";
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
 	static public int userid=0;
-	static public int TotalPageCount=10;
+	static public int TotalPageCount=12;
 	static public String username;
 	static public boolean isLogin= false;
 	static public JSONArray driver_type_list;
 	static public int update_time=4*60*60;
 	static public boolean isquiting = false;
-	static public String version = "1.01";
+	static public String version = "1.02";
 	
 	static public String url_for_get_news()
 	{
@@ -36,6 +36,20 @@ public final class AppSettings {
 	{
 	    return String.format("api/get_helps?userid=%d",userid);
 	}
+	static public String url_for_get_carservice()
+	{
+	    return String.format("api/get_check_helps?userid=%d",userid);
+	}
+	
+	static public String url_for_get_carservice_vendor(final String code)
+	{
+	    return String.format("api/get_help_service?userid=%d&code=%s",userid,code);
+	}
+	static public String url_for_get_carservice_note(final String code)
+	{
+	    return String.format("api/get_help_note?userid=%d&code=%s",userid,code);
+	}
+	
 	static public String url_for_rescue(){
 	    return String.format("api/get_rescues?userid=%d",userid);
 	}

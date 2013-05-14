@@ -124,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:background="@drawable/signup_hit_input6" >
+            android:background="@drawable/signup_hit_input2" >
 
             <TextView
                 android:id="@+id/txt_bindCellphone"
@@ -137,6 +137,31 @@
 
              <TextView
                 android:id="@+id/img_choose_cellphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="20dp"
+                android:textSize="20dp"
+                android:text=">"/>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row_choose_findpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/signup_hit_input6" >
+
+            <TextView
+                android:id="@+id/txt_findpassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="找回密码" >
+            </TextView>
+
+             <TextView
+                android:id="@+id/img_find_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"

@@ -18,8 +18,10 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.Toast;
 
 public class HttpClient {
 	private IHttpCallback mCallback;
@@ -120,6 +122,20 @@ public class HttpClient {
 				}
 				mCallback.processMessage(msgType,resultObj);
 				mCallback.recordResult(msgType, resultObj);
+				if (AppTools.isSuccess(resultObj)){
+					JSONObject obj = (JSONObject)resultObj;
+					if (!obj.isNull("alertmsg")){
+						String alertmsg = obj.getString("alertmsg");
+						if (!alertmsg.equals(""))
+							Toast.makeText((Context) mCallback, obj.getString("alertmsg"), Toast.LENGTH_LONG).show();
+					}
+				}else{
+					JSONObject obj = (JSONObject)resultObj;
+					if (!obj.isNull("message")){
+						if (!obj.getString("message").equals(""))
+							Toast.makeText((Context) mCallback, obj.getString("message"), Toast.LENGTH_LONG).show();
+					}
+				}
 			}
 		}catch(Exception e){
 			e.printStackTrace();
