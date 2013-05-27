@@ -12,7 +12,8 @@ import android.util.Log;
 public final class AppSettings {
 //	static public String ServerUrl = "http://119.167.144.23:82/index.php/";
 	//static public final String ServerUrl ="http://124.135.63.250:21000/pm/";
-	static public String ServerUrl = "http://next.4006678888.com:21000/index.php/";
+//	static public String ServerUrl = "http://next.4006678888.com:21000/index.php/";
+	static public String ServerUrl = "http://m.4006678888.com:21000/index.php/";
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
 	static public int userid=0;
@@ -22,7 +23,7 @@ public final class AppSettings {
 	static public JSONArray driver_type_list;
 	static public int update_time=4*60*60;
 	static public boolean isquiting = false;
-	static public String version = "1.02";
+	static public String version = "1.01";
 	
 	static public String url_for_get_news()
 	{

@@ -99,6 +99,13 @@ public class SettingsActivity extends BaseHttpActivity {
 				reset_password();
 				
 			}});
+		findViewById(R.id.row_choose_user_feedback).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				user_feedback();
+				
+			}});
 		txtBind = (TextView)findViewById(R.id.txt_bindCellphone);
 		txtVersion = (TextView)findViewById(R.id.txt_version);
 		txtVersion.setText(String.format("V%s >", AppSettings.version));
@@ -286,5 +293,11 @@ public class SettingsActivity extends BaseHttpActivity {
 				}
 			});
 		}
+	}
+	private void user_feedback(){
+		Intent intent = new Intent(SettingsActivity.this,UserFeedbackActivity.class);
+		intent.putExtra("phone", _cellphone);
+		intent.putExtra("isbind", _isbind);
+		startActivity(intent);
 	}
 }

@@ -3,6 +3,8 @@ package cn.count.easydrive366;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -83,5 +85,16 @@ public class HelpCallActivity extends BaseListViewActivity {
 		holder.action = (TextView)convertView.findViewById(R.id.txt_listitem_detail_right);
 		convertView.setTag(holder);
 	}
-
+	@Override
+	protected void onListItemClick(final View view,final long index){
+		//System.out.println("click");
+		if (_list!=null){
+			Map<String,Object> map = _list.get((int) index);
+			final String code = map.get("Code").toString();
+			Intent intent = new Intent(this,CarServiceDetailActivity.class);
+			intent.putExtra("code", code);
+			startActivity(intent);
+			
+		}
+	}
 }

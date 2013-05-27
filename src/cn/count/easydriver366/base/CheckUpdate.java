@@ -1,21 +1,42 @@
 package cn.count.easydriver366.base;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.json.JSONObject;
+
+import cn.count.easydriver366.service.DownloadUtils;
 
 import cn.count.easydrive366.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.app.DownloadManager.Request;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Environment;
+import android.util.Log;
+import android.webkit.MimeTypeMap;
+import android.widget.Toast;
+
 
 public class CheckUpdate implements HttpClient.IHttpCallback {
 	private Context _context;
 	private HttpClient _http;
 	private boolean _isSettings;
-	
+	private DownloadManager downloadManager;
+	private long dmId;
 	public CheckUpdate(Context context,boolean isSettings){
 		_context = context;
 		_isSettings = isSettings;
@@ -51,10 +72,17 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
+						/*
 						Intent intent = null;
 						intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
 						_context.startActivity(intent);
+						*/
+						/*
+						File updateApk = downLoadFile(url);
+						openFile(updateApk);
+						*/
 						
+						download("http://192.168.1.102/EasyDrive366_1_03.apk");
 					}
 				})
 				.setNegativeButton(_context.getResources().getString(R.string.cancel), null).show();
@@ -74,5 +102,146 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 		// TODO Auto-generated method stub
 		
 	}
+	private void download(final String url){
+		downloadManager = (DownloadManager) _context.getSystemService(android.content.Context.DOWNLOAD_SERVICE);
+		Uri resource = Uri.parse(url);   
+        DownloadManager.Request request = new DownloadManager.Request(resource);   
+        request.setAllowedNetworkTypes(Request.NETWORK_MOBILE | Request.NETWORK_WIFI);   
+        request.setAllowedOverRoaming(false);   
+        //设置文件类型  
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();  
+        String mimeString = mimeTypeMap.getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(url));  
+        request.setMimeType(mimeString);  
+        //在通知栏中显示   
+        request.setShowRunningNotification(true);  
+        request.setVisibleInDownloadsUi(true);  
+        //sdcard的目录下的download文件夹  
+        request.setDestinationInExternalPublicDir("/download/", "easydrive366.apk");  
+        request.setTitle(AppSettings.AppTile);   
+        dmId = downloadManager.enqueue(request);
+        _context.registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));  
+	}
+	private BroadcastReceiver receiver = new BroadcastReceiver() {   
+        @Override   
+        public void onReceive(Context context, Intent intent) {   
+            //这里可以取得下载的id，这样就可以知道哪个文件下载完成了。适用与多个下载任务的监听  
+            Log.v("intent", ""+intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, 0)); 
+            Cursor c = downloadManager.query(new DownloadManager.Query().setFilterById(dmId));
+            if (c.moveToFirst()){
+            	final String filename = c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));
+            	final File file = new File(filename);
+            	openFile(file);
+            }
+            //queryDownloadStatus();   
+            _context.unregisterReceiver(receiver);
+        }   
+    };   
+    private void queryDownloadStatus() {   
+        DownloadManager.Query query = new DownloadManager.Query();   
+        query.setFilterById(dmId);   
+        Cursor c = downloadManager.query(query);   
+        if(c.moveToFirst()) {   
+            int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));   
+            switch(status) {   
+            case DownloadManager.STATUS_PAUSED:   
+                Log.v("down", "STATUS_PAUSED");  
+            case DownloadManager.STATUS_PENDING:   
+                Log.v("down", "STATUS_PENDING");  
+            case DownloadManager.STATUS_RUNNING:   
+                //正在下载，不做任何事情  
+                Log.v("down", "STATUS_RUNNING");  
+                break;   
+            case DownloadManager.STATUS_SUCCESSFUL:   
+                //完成  
+                Log.v("down", "下载完成");  
+               
+                break;   
+            case DownloadManager.STATUS_FAILED:   
+                //清除已下载的内容，重新下载  
+                Log.v("down", "STATUS_FAILED");  
+                downloadManager.remove(dmId);   
+                  
+                break;   
+            }   
+        }  
+    }  
+	protected File downLoadFile(String httpUrl) {
+		
+        // TODO Auto-generated method stub
+        final String fileName = "updata.apk";
+        String sdpath = Environment.getExternalStorageDirectory() + "/";
+        String mSavePath = sdpath + "download/";
+        File tmpFile = new File(mSavePath);
+        if (!tmpFile.exists()) {
+                tmpFile.mkdir();
+        }
+        final File file = new File(mSavePath + fileName);
+
+        try {
+        	 	DownloadUtils.download(httpUrl,file,false,null);
+        		/*
+                URL url = new URL(httpUrl);
+                try {
+                        HttpURLConnection conn = (HttpURLConnection) url
+                                        .openConnection();
+                        conn.setRequestMethod("GET");
+                        conn.setConnectTimeout(5*1000);
+                        conn.connect();
+                        InputStream is = conn.getInputStream();
+                        FileOutputStream fos = new FileOutputStream(file);
+                        byte[] buf = new byte[256];
+                        conn.connect();
+                        double count = 0;
+                        if (conn.getResponseCode() >= 400) {
+                                Toast.makeText(_context, "连接超时", Toast.LENGTH_SHORT)
+                                                .show();
+                        } else {
+                                while (count <= 100) {
+                                        if (is != null) {
+                                                int numRead = is.read(buf);
+                                                if (numRead <= 0) {
+                                                        break;
+                                                } else {
+                                                        fos.write(buf, 0, numRead);
+                                                }
+
+                                        } else {
+                                                break;
+                                        }
+
+                                }
+                        }
+
+                        conn.disconnect();
+                        fos.close();
+                        is.close();
+                        
+                } catch (IOException e) {
+                        // TODO Auto-generated catch block
+
+                        e.printStackTrace();
+                }
+                */
+        } catch (Exception e) {
+                
+
+                e.printStackTrace();
+        }
+
+        return file;
+	}
+	//打开APK程序代码
+
+	private void openFile(File file) {
+        // TODO Auto-generated method stub
+        Log.e("OpenFile", file.getName());
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(android.content.Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file),
+                        "application/vnd.android.package-archive");
+        _context.startActivity(intent);
+	}
+
 
 }

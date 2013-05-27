@@ -5,8 +5,10 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -23,6 +25,7 @@ public class ViolationSearchActivity extends BaseHttpActivity {
 		setContentView(R.layout.modules_violationsearch_activity);
 		this.setRightButtonInVisible();
 		this.setupLeftButton();
+		this.setTitle("违章查询");
 		restoreFromLocal(1);
 		//reload=1;
 		reload_data();
@@ -67,19 +70,32 @@ public class ViolationSearchActivity extends BaseHttpActivity {
 			JSONArray list= _result.getJSONArray("data");
 			for(int i=0;i<list.length();i++){
 				JSONObject item = list.getJSONObject(i);
-				addTableRow(item.getString("Address"),item.getString("Reason"),item.getString("Fine"),item.getString("Mark"),item.getString("OccurTime"));
+				addTableRow(item.getString("Address"),item.getString("Reason"),item.getString("Fine"),item.getString("Mark"),
+						item.getString("OccurTime"),
+						item.getString("id"));
 			}
 			
 		}catch(Exception e){
 			log(e);
 		}
 	}
-	private void addTableRow(final String address,final String reason,final String fine,final String mark,final String occurTime){
+	private void addTableRow(final String address,final String reason,final String fine,final String mark,final String occurTime,final String id){
 		TableRow tr = new TableRow(this);
 		ViolationDetailItem item = new ViolationDetailItem(this,null);
 		item.setData(address,reason,fine,mark,occurTime);
 		tr.addView(item);
 		_tableLayout.addView(tr);
+		tr.setOnClickListener(new View.OnClickListener() {
+			
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(ViolationSearchActivity.this,ViolationDetailActivity.class);
+				intent.putExtra("id", id);
+				startActivity(intent);
+				
+			}
+		});
 	}
 	
 }
