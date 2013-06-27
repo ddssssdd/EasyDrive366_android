@@ -82,7 +82,8 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 						openFile(updateApk);
 						*/
 						
-						download("http://192.168.1.102/EasyDrive366_1_03.apk");
+						//download("http://192.168.1.102/EasyDrive366_1_03.apk");
+						download(url);
 					}
 				})
 				.setNegativeButton(_context.getResources().getString(R.string.cancel), null).show();

@@ -28,6 +28,8 @@ import android.view.Window;
 
 import android.view.View.OnClickListener;
 
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
@@ -74,6 +76,18 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 				reload_data();
 			}
 		});
+		mListView.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				
+				onListViewItemClick(parent,view,position,id);
+			}});
+	}
+	protected void onListViewItemClick(AdapterView<?> parent, View view,
+					int position, long id){
+		
 	}
 	protected void reload_data(){
 		this.get(AppSettings.url_get_taxforcarship(), 1);

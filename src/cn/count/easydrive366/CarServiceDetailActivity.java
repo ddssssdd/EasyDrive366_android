@@ -34,9 +34,10 @@ public class CarServiceDetailActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         String code;
+        String pageId;
         Intent intent = this.getIntent();
         code = intent.getStringExtra("code");
-       
+        pageId = intent.getStringExtra("pageId");
         setContentView(R.layout.modules_carservice_detail_activity);
         mTabHost = this.getTabHost();
         /* 去除标签下方的白线 */
@@ -66,6 +67,8 @@ public class CarServiceDetailActivity extends TabActivity {
         Intent layout3intent = new Intent();
         layout3intent.setClass(this, CarServiceWikiActivity.class);
         layout3intent.putExtra("code", code);
+        layout3intent.putExtra("pageId", pageId);
+        layout3intent.putExtra("title", "易驾百科");
         TabHost.TabSpec layout3spec = mTabHost.newTabSpec("layout3");
         layout3spec.setIndicator("易驾百科",
                 rs.getDrawable(R.drawable.icon0177));

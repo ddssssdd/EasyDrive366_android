@@ -8,15 +8,16 @@
          android:layout_height="wrap_content" 
          layout="@layout/navigation_bar_without_phone_button" /> 
 
-    <TextView
-        android:id="@+id/txt_rescue_ShopName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:textSize="24sp" >
-    </TextView>
+
+     
+     <com.handmark.pulltorefresh.library.PullToRefreshExpandableListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/expandableListView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        ptr:ptrHeaderBackground="@android:color/white"
+        ptr:ptrHeaderTextColor="@android:color/black"
+        ptr:ptrMode="pullFromStart" />
 
        
 

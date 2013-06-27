@@ -57,6 +57,7 @@ public class CarServiceActivity extends BaseListViewActivity {
 			final String code = map.get("Code").toString();
 			Intent intent = new Intent(this,CarServiceDetailActivity.class);
 			intent.putExtra("code", code);
+			intent.putExtra("pageId", "12");
 			startActivity(intent);
 			
 		}

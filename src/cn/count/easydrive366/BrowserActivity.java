@@ -20,7 +20,8 @@ public class BrowserActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.modules_browser_activity);
-		this.setRightButtonInVisible();
+		this.setupLeftButton();
+		
 		_webView = (WebView) findViewById(R.id.webView);
 		WebSettings webSettings = _webView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
@@ -43,8 +44,18 @@ public class BrowserActivity extends BaseHttpActivity {
 		String url = intent.getStringExtra("url");
 		if (url==null){
 			url = "http://www.yijia366.com";
+		}else{
+			if (!url.startsWith("http://")){
+				url = "http://"+url;
+			}
 		}
 		_webView.loadUrl(url);
+		if (intent.getStringExtra("title")!=null){
+			this.setBarTitle(intent.getStringExtra("title"));
+			this.setupRightButtonWithText("评论");
+		}else{
+			this.setRightButtonInVisible();
+		}
 	}
 	public boolean onKeyDown(int keyCode, KeyEvent event) {       
         if ((keyCode == KeyEvent.KEYCODE_BACK) && _webView.canGoBack()) {       

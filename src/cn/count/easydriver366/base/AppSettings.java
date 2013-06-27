@@ -23,7 +23,7 @@ public final class AppSettings {
 	static public JSONArray driver_type_list;
 	static public int update_time=4*60*60;
 	static public boolean isquiting = false;
-	static public String version = "1.01";
+	static public String version = "1.03";
 	
 	static public String url_for_get_news()
 	{
