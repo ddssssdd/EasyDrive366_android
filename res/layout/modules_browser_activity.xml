@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <RelativeLayout
+    <!-- <RelativeLayout
         android:id="@+id/titile_layout_ry"
         android:layout_width="fill_parent"
         android:layout_height="43dip"
@@ -36,8 +36,10 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="5dip"
             android:text="@string/edit" />
-    </RelativeLayout>
-
+    </RelativeLayout> -->
+	 <include android:layout_width="match_parent"
+         android:layout_height="wrap_content" 
+         layout="@layout/navigation_bar_without_phone_button" />
      <WebView
          android:id="@+id/webView"
          android:layout_width="match_parent"

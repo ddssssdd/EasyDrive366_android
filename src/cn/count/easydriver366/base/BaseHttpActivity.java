@@ -116,6 +116,7 @@ public class BaseHttpActivity extends Activity implements
 		String url =AppSettings.ServerUrl +urlParams+"&timestamp="+String.valueOf(System.currentTimeMillis());
 		
 		
+		
 		HttpGet httpGet = new HttpGet(url);
 		DefaultHttpClient client = new DefaultHttpClient();
 		try{

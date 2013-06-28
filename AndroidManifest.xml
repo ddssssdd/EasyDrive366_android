@@ -112,7 +112,9 @@
          <activity android:name="cn.count.easydrive366.CarServiceWikiActivity"></activity>
          <activity android:name="cn.count.easydrive366.CarServiceNoteActivity"></activity>    
          <activity android:name="cn.count.easydrive366.UserFeedbackActivity"></activity>
-         <activity android:name="cn.count.easydrive366.ViolationDetailActivity"></activity>            
+         <activity android:name="cn.count.easydrive366.ViolationDetailActivity"></activity>
+         <activity android:name="cn.count.easydrive366.ArticleCommentsActivity"></activity>
+         <activity android:name="cn.count.easydrive366.AddCommentsActivity"></activity>            
     </application>
 
 </manifest>

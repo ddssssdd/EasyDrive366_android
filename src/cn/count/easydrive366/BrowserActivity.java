@@ -63,5 +63,14 @@ public class BrowserActivity extends BaseHttpActivity {
                    return true;       
         }       
         return super.onKeyDown(keyCode, event);       
-    }     
+    }
+	@Override 
+	protected void onRightButtonPress() {
+		Intent comments = new Intent(this,ArticleCommentsActivity.class);
+		Intent intent =this.getIntent();
+		comments.putExtra("id", intent.getStringExtra("id"));
+		comments.putExtra("column_id", intent.getStringExtra("column_id"));
+		comments.putExtra("title", intent.getStringExtra("title"));
+		this.startActivity(comments);
+	}
 }

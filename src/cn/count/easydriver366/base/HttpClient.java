@@ -84,7 +84,7 @@ public class HttpClient {
 				HttpPost http = new HttpPost(url);
 				DefaultHttpClient client = new DefaultHttpClient();
 				try{
-					params.add(new BasicNameValuePair("timestamp",String.valueOf(System.currentTimeMillis())));
+					//params.add(new BasicNameValuePair("timestamp",String.valueOf(System.currentTimeMillis())));
 					http.setEntity(new UrlEncodedFormEntity(params,HTTP.UTF_8));
 					HttpResponse response = client.execute(http);
 					if (response.getStatusLine().getStatusCode()==200){

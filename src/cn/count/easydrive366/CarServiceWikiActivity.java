@@ -115,6 +115,9 @@ public class CarServiceWikiActivity extends BaseExpandableListActivity {
 					mapitem.put("title", item.getString("title"));
 					mapitem.put("url", item.getString("url"));
 					mapitem.put("fmt_update_time", item.getString("fmt_update_time"));
+					mapitem.put("column_id", item.getString("column_id"));
+					mapitem.put("id", item.getString("id"));
+					
 					target.add(mapitem);
 				}
 				items.add(target);
@@ -147,6 +150,9 @@ public class CarServiceWikiActivity extends BaseExpandableListActivity {
 		String url = mapitem.get("url");
 		Intent intent = new Intent(this,BrowserActivity.class);
 		intent.putExtra("url", url);
+		intent.putExtra("title", mapitem.get("title"));
+		intent.putExtra("column_id", mapitem.get("column_id"));
+		intent.putExtra("id", mapitem.get("id"));
 		intent.putExtra("title", mapitem.get("title"));
 		startActivity(intent);
 		return true;

@@ -54,5 +54,6 @@
   	<string name="input_cellphone">请输入正确的手机号码</string>
   	<string name="input_verify_code">请输入6位验证码</string>
   	<string name="feedback">请输入您的反馈意见</string>
+  	<string name="comments">请输入您的评论</string>
   	<string name="contact">联系方式：邮箱/QQ/手机号</string>
 </resources>
