@@ -2,49 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
-    <RelativeLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        "
-    	<TextView
-        android:id="@+id/txt_listitem_detail_title"
+    <LinearLayout
+        android:id="@+id/layout_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       	android:layout_marginLeft="15dip"
-    	android:layout_marginRight="15dip"
-    	android:layout_alignParentLeft="true"
-        android:textSize="16sp" />  
-        
-<!--         <CheckBox android:id="@+id/chk_item" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:checked="false" -->
-<!--             android:layout_alignParentRight="true" -->
-<!--             android:layout_marginRight="15dip" -->
-<!--             android:text="" -->
-<!--             android:textSize="12sp" -->
-<!--             /> -->
-        
-    </RelativeLayout>
-    
+        android:layout_weight="1" >
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        <CheckBox
+            android:id="@+id/chk_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"    
+        	
+        	android:clickable="false"           
+        	android:checkMark="?android:attr/listChoiceIndicatorMultiple" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_listitem_detail_detail"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-    	android:layout_marginLeft="15dip"
-    	android:layout_marginRight="15dip"
-        android:maxLines="3"
-        android:singleLine="false"
-        android:textColor="@color/gray"
-        android:textSize="14sp" />
+        android:layout_weight="9"
+        android:orientation="vertical">"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:orientation="horizontal" >
+         <TextView
+                android:id="@+id/txt_listitem_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            android:id="@+id/txt_listitem_detail_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:maxLines="3"
+            android:singleLine="false"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </LinearLayout>

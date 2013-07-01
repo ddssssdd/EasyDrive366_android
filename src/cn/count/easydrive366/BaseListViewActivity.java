@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 
@@ -41,6 +42,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 	protected int resource_listview_id;
 	protected int resource_listitem_id;
 	protected PullToRefreshListView mListView;
+	protected boolean _isInDeleting=false;
 	
 	protected void setupPullToRefresh(){
 		mListView = (PullToRefreshListView) findViewById(this.resource_listview_id);
@@ -149,6 +151,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 		public TextView title;
 		public TextView detail;
 		public TextView action;
+		public CheckBox selected;
 	}
 	public class MyAdapter extends BaseAdapter
 	{
@@ -188,6 +191,16 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 			}else{
 				holder = (ViewHolder)convertView.getTag();
 			}
+			if (holder.selected!=null){
+				if (_isInDeleting){
+					holder.selected.setVisibility(android.view.View.VISIBLE);
+					
+					
+				}else{
+					holder.selected.setVisibility(android.view.View.GONE);
+				}
+			}
+			
 			Map<String,Object> info = _list.get(position);
 			setupListItem(holder,info);
 			return convertView;

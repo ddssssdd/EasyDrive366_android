@@ -14,8 +14,11 @@ import android.os.Bundle;
 import android.view.View;
 
 
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.widget.CheckBox;
 
 
 
@@ -27,13 +30,14 @@ import cn.count.easydriver366.base.Menus;
 public class InformationActivity extends BaseListViewActivity {
 	
 	private ProgressDialog _dialog;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_information_activity);
 		this.setupLeftButton();
 		
-		this.setRightButtonInVisible();
+		this.setupRightButtonWithText("删除");
 		this.resource_listview_id = R.id.modules_information_listview;
 		//this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.module_listitem_information;
@@ -52,6 +56,10 @@ public class InformationActivity extends BaseListViewActivity {
 			//this.setupCompanyAndPhone(result);
 			result = ((JSONObject)result).getJSONObject("result");
 			JSONArray obj = ((JSONObject)result).getJSONArray("data");		
+			for(int i=0;i<obj.length();i++){
+				JSONObject item = obj.getJSONObject(i);
+				item.put("selected", false);
+			}
 			this.initList(obj);
 			
 		}catch(Exception e){
@@ -63,9 +71,18 @@ public class InformationActivity extends BaseListViewActivity {
 	
 	@Override
 	protected void onListItemClick(final View view,final long index){
-		//System.out.println("click");
+		
 		if (_list!=null){
+			
 			Map<String,Object> map = _list.get((int) index);
+			if (_isInDeleting){
+				ViewHolder holder = (ViewHolder)view.getTag();
+				holder.selected.toggle();
+				map.put("selected", holder.selected.isChecked());
+				
+				return;
+			}
+			
 			final String action = map.get("action").toString();
 			final String url = map.get("url").toString();
 			if (!url.equals("")){
@@ -83,6 +100,10 @@ public class InformationActivity extends BaseListViewActivity {
 					intent.putExtra("title", item.name);
 					startActivity(intent);
 				}
+			}else{
+				Intent intent = new Intent(this,InformationDetailActivity.class);
+				intent.putExtra("id", map.get("id").toString());
+				startActivity(intent);
 			}
 			
 		}
@@ -93,13 +114,65 @@ public class InformationActivity extends BaseListViewActivity {
 		holder.detail.setText(info.get("description").toString());
 		//holder.action.setText(info.get("action").toString());
 		//holder.action.setText("");
+		if (_isInDeleting){
+			holder.selected.setChecked(info.get("selected").toString().equals("true"));
+		}
 	}
 	@Override
 	protected void initListItem(ViewHolder holder,View convertView){
 		holder.title = (TextView)convertView.findViewById(R.id.txt_listitem_detail_title);
 		holder.detail = (TextView)convertView.findViewById(R.id.txt_listitem_detail_detail);
 		//holder.action = (TextView)convertView.findViewById(R.id.txt_listitem_detail_right);
+		holder.selected = (CheckBox)convertView.findViewById(R.id.chk_item);
 		convertView.setTag(holder);
+		//LinearLayout layout = (LinearLayout)convertView.findViewById(R.id.layout_delete);
+		
+	}
+	@Override
+	protected void onRightButtonPress() {
+		if (!_isInDeleting){
+			_isInDeleting = true;
+			this.setupRightButtonWithText("完成");
+		
+			
+		}else{
+			_isInDeleting =false;
+			this.setupRightButtonWithText("删除");
+			StringBuilder sb = new StringBuilder();
+			for(int i=_list.size()-1;i>-1;i--){
+				Map<String,Object> map = _list.get(i);
+				if (map.get("selected").toString().equals("true")){
+					sb.append(map.get("id").toString()+",");
+					_list.remove(i);
+				}
+				
+			}
+			if (sb.length()>0){
+				this.get(String.format("api/del_news?userid=%d&newsid=%s",AppSettings.userid,sb.toString()),2);
+				
+			}
+			
+			
+		}
+		//_adapter.notifyDataSetChanged();
+		this.runOnUiThread(
+				new Runnable(){
+
+					@Override
+					public void run() {
+						_adapter.notifyDataSetChanged();
+						
+				
+					}
+			
+				}
+		);
+	}
+	@Override
+	public void processMessage(int msgType,final Object result){
+		if (msgType==1){
+			super.processMessage(msgType, result);
+	}
 	}
 	
 }
