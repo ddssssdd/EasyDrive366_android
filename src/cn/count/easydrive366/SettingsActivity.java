@@ -22,6 +22,7 @@ public class SettingsActivity extends BaseHttpActivity {
 	private Button logoutButton;
 	private TextView txtVersion;
 	private TextView txtBind;
+	private TextView txtCellphone;
 	private int _isbind =1;
 	private String _cellphone;
 	private int BINDCELLPHONE = 1;
@@ -108,6 +109,7 @@ public class SettingsActivity extends BaseHttpActivity {
 			}});
 		txtBind = (TextView)findViewById(R.id.txt_bindCellphone);
 		txtVersion = (TextView)findViewById(R.id.txt_version);
+		txtCellphone = (TextView)findViewById(R.id.img_choose_cellphone);
 		txtVersion.setText(String.format("V%s >", AppSettings.version));
 		
 		this.logoutButton = (Button)findViewById(R.id.btn_logout);
@@ -136,19 +138,19 @@ public class SettingsActivity extends BaseHttpActivity {
 			if (AppTools.isSuccess(result)){
 				try{
 					JSONObject json = (JSONObject)result;
-					
+					_cellphone= json.getJSONObject("result").getString("phone");
 					if (json.getJSONObject("result").getString("status").equals("02")){
 						this.runOnUiThread(new Runnable(){
 
 							@Override
 							public void run() {
 								txtBind.setText(getString(R.string.unbind));
-								
+								txtCellphone.setText(String.format("%s >", _cellphone));
 							}});
 						
 						_isbind = 0;
 					}
-					_cellphone= json.getJSONObject("result").getString("phone");
+					
 				}catch(Exception e){
 					log(e);
 				}
