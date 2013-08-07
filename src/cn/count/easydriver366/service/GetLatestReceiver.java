@@ -172,5 +172,9 @@ public class GetLatestReceiver extends BroadcastReceiver implements HttpClient.I
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Override
+	public void showFailureMessage(String msg) {
+		//Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+		
+	}
 }

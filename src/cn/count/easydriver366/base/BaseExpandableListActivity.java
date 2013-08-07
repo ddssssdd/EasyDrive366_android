@@ -34,6 +34,7 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class BaseExpandableListActivity extends ExpandableListActivity implements HttpClient.IHttpCallback {
@@ -271,5 +272,10 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 		}catch(Exception e){
 			log(e);
 		}
+	}
+	@Override
+	public void showFailureMessage(String msg) {
+		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+		
 	}
 }

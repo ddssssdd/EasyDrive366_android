@@ -126,14 +126,17 @@ public class HttpClient {
 					JSONObject obj = (JSONObject)resultObj;
 					if (!obj.isNull("alertmsg")){
 						String alertmsg = obj.getString("alertmsg");
-						if (!alertmsg.equals(""))
-							Toast.makeText((Context) mCallback, obj.getString("alertmsg"), Toast.LENGTH_LONG).show();
+						if (!alertmsg.equals("")){
+							//Toast.makeText((Context) mCallback, obj.getString("alertmsg"), Toast.LENGTH_LONG).show();
+							mCallback.showFailureMessage(obj.getString("alertmsg"));
+						}
 					}
 				}else{
 					JSONObject obj = (JSONObject)resultObj;
 					if (!obj.isNull("message")){
 						if (!obj.getString("message").equals(""))
-							Toast.makeText((Context) mCallback, obj.getString("message"), Toast.LENGTH_LONG).show();
+							mCallback.showFailureMessage(obj.getString("message"));
+							//Toast.makeText((Context) mCallback, obj.getString("message"), Toast.LENGTH_LONG).show();
 					}
 				}
 			}
@@ -151,5 +154,6 @@ public class HttpClient {
 	public interface IHttpCallback{
 		void processMessage(final int msgType,final Object result);
 		void recordResult(final int msgType,final Object result);
+		void showFailureMessage(String msg);
 	}
 }

@@ -16,7 +16,7 @@ public final class AppSettings {
 	static public String ServerUrl = "http://m.4006678888.com:21000/index.php/";
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
-	static public int userid=0;
+	static public int userid=-1;
 	static public int TotalPageCount=12;
 	static public String username;
 	static public boolean isLogin= false;
@@ -141,15 +141,17 @@ public final class AppSettings {
 	}
 	static public  void restore_login_from_device(Context context){
 		SharedPreferences prefs =context.getSharedPreferences(AppSettings.AppTile+"_login", Context.MODE_PRIVATE);
-		userid = prefs.getInt("userid", 0);
+		userid = prefs.getInt("userid", -1);
 		isLogin = prefs.getBoolean("isLogin", false);
 		username = prefs.getString("username", "");
 		update_time = prefs.getInt("update_time", 4*60*60);
 	}
 	static public void logout(Context context){
+		AppSettings.isLogin = false;
+		AppSettings.userid = -1;
 		SharedPreferences prefs =context.getSharedPreferences(AppSettings.AppTile+"_login", Context.MODE_PRIVATE);
 		Editor editor = prefs.edit();
-		editor.putInt("userid", 0);
+		editor.putInt("userid", -1);
 		editor.putBoolean("isLogin", false);
 		editor.putString("username", "");
 		editor.putInt("update_time", 4*60*60);

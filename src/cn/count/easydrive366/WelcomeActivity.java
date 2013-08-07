@@ -39,7 +39,7 @@ public class WelcomeActivity extends Activity {
 		}
 		setContentView(R.layout.activity_welcome);
 		AppSettings.restore_login_from_device(this);
-		
+		/*
 		if (AppSettings.isLogin){
 			this.goHome();
 		}else{
@@ -64,6 +64,27 @@ public class WelcomeActivity extends Activity {
 				
 			});
 		}
+		*/
+		findViewById(R.id.btn_welcome_login).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				Intent intent =new Intent(WelcomeActivity.this,LoginActivity.class);
+				startActivityForResult(intent,1);
+				
+			}
+			
+		});
+		findViewById(R.id.btn_welcome_signup).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				Intent intent =new Intent(WelcomeActivity.this,SignupActivity.class);
+				startActivityForResult(intent,2);
+				
+			}
+			
+		});
 		
 	}
 
@@ -93,12 +114,12 @@ public class WelcomeActivity extends Activity {
 			AppSettings.username= result.getJSONObject("result").getString("username");
 			AppSettings.isLogin= true;
 			*/
-			this.goHome();
+			this.goHome(1);
 		}catch(Exception e){
 			AppTools.log(e);
 		}
 	}
-	private void goHome(){
+	private void goHome(final int code){
 		/*
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		
@@ -108,14 +129,20 @@ public class WelcomeActivity extends Activity {
 		 
 		} 
 		*/
+		/*
 		Intent intent = new Intent(this,HomeActivity.class);
 		startActivity(intent);
+		*/
+		setResult(code,null);
 		finish();
 	}
 	
 	
 	@Override
 	public void onBackPressed() {
+		setResult(-100,null);
+		finish();
+		/*
 		if (_userWantQuit){
 			this.finish();
 			AppSettings.isquiting = true;
@@ -138,6 +165,7 @@ public class WelcomeActivity extends Activity {
 
 							
 		};
+		*/
 	}
 }
 

@@ -290,8 +290,11 @@ public class SettingsActivity extends BaseHttpActivity {
 	private void logout(){
 		
 		AppSettings.logout(this);
-		Intent intent = new Intent(this,WelcomeActivity.class);
+		/*
+		Intent intent = new Intent(this,HomeActivity.class);
 		startActivity(intent);
+		*/
+		setResult(-100,null);
 		this.finish();
 	}
 	@Override

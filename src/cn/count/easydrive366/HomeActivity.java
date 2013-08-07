@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -70,8 +73,11 @@ public class HomeActivity extends Activity {
 		AppSettings.restore_login_from_device(this);
 		startBackendService();
 		setupMenu();
-		
-		((Button)findViewById(R.id.title_set_bn)).setText(this.getResources().getString(R.string.menu_settings));
+		String rightButtonTitle ="登录";
+		if (AppSettings.isLogin){
+			rightButtonTitle=this.getResources().getString(R.string.menu_settings);
+		}
+		((Button)findViewById(R.id.title_set_bn)).setText(rightButtonTitle);
 		
 		findViewById(R.id.title_set_bn).setOnClickListener(new OnClickListener(){
 
@@ -239,8 +245,16 @@ public class HomeActivity extends Activity {
 		
 	}
 	private void settingsButtonPress(){
-		Intent intent = new Intent(this,SettingsActivity.class);
-		startActivity(intent);
+		
+		if (AppSettings.isLogin){
+			Intent intent = new Intent(this,SettingsActivity.class);
+			
+			startActivityForResult(intent,1);
+		}else{
+			Intent intent = new Intent(this,WelcomeActivity.class);
+			startActivityForResult(intent,2);
+		}
+		
 		
 		//scan test;
 		/*
@@ -263,6 +277,7 @@ public class HomeActivity extends Activity {
 		.setNegativeButton(this.getResources().getString(R.string.cancel), null).show();
 		*/
 	}
+	
 	private void encodeBarcode(CharSequence type, CharSequence data) {
 	    IntentIntegrator integrator = new IntentIntegrator(this);
 	    integrator.shareText(data, type);
@@ -274,6 +289,12 @@ public class HomeActivity extends Activity {
 	}
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		String rightButtonTitle ="登录";
+		if (AppSettings.isLogin){
+			rightButtonTitle=this.getResources().getString(R.string.menu_settings);
+		}
+		((Button)findViewById(R.id.title_set_bn)).setText(rightButtonTitle);
+		new GetDataTask().execute();
 	    IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 	    if (result != null) {
 	      String contents = result.getContents();
@@ -291,5 +312,16 @@ public class HomeActivity extends Activity {
 	    builder.setPositiveButton("OK", null);
 	    builder.show();
 	  }
-	
+	@Override
+	protected void onResume(){
+		super.onResume();
+	}
+	@Override
+	protected void onStart(){
+		super.onStart();
+	}
+	@Override
+	protected void onStop(){
+		super.onStop();
+	}
 }

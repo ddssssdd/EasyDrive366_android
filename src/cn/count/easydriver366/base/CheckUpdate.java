@@ -243,6 +243,11 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
                         "application/vnd.android.package-archive");
         _context.startActivity(intent);
 	}
+	@Override
+	public void showFailureMessage(String msg) {
+		//Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+		
+	}
 
 
 }

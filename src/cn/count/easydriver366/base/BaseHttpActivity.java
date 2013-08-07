@@ -40,6 +40,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import android.widget.TextView;
 
@@ -101,6 +102,10 @@ public class BaseHttpActivity extends Activity implements
 			return;
 		}
 		if (!hint.equals("")){
+			if (_dialog !=null){
+				_dialog.dismiss();
+				_dialog = null;
+			}
 			_dialog = new ProgressDialog(this);
 			_dialog.setMessage(hint);
 			_dialog.show();
@@ -394,5 +399,20 @@ public class BaseHttpActivity extends Activity implements
 		}catch(Exception e){
 			return defaultValue;
 		}
+	}
+	@Override
+	public void showFailureMessage(String msg) {
+		final String m = msg;
+		this.runOnUiThread(new Runnable(){
+
+			@Override
+			public void run() {
+				Toast.makeText(BaseHttpActivity.this, m, Toast.LENGTH_LONG).show();
+				
+			}
+			
+		});
+		
+		
 	}
 }

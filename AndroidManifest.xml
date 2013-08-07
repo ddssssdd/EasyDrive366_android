@@ -22,16 +22,21 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="cn.count.easydrive366.WelcomeActivity"
-            android:label="@string/app_name"
-            >
-            <intent-filter>
+        <activity android:name="cn.count.easydrive366.HomeActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
+             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="cn.count.easydrive366.WelcomeActivity"
+            android:label="@string/app_name"
+            >
+           
+        </activity>
+        
         <activity android:name="cn.count.easydrive366.InformationActivity" >
         </activity>
         <activity android:name="cn.count.easydrive366.HelpCallActivity" >
@@ -54,9 +59,7 @@
         </activity>
         <activity android:name="cn.count.easydrive366.DriverLicenseEditActivity" >
         </activity>
-        <activity android:name="cn.count.easydrive366.HomeActivity"
-            android:windowSoftInputMode="stateAlwaysHidden">"
-        </activity>
+        
         <activity android:name="cn.count.easydrive366.MaintainEditActivity" >
         </activity>
         <activity android:name="cn.count.easydrive366.CarRegistrationEditActivity" >
