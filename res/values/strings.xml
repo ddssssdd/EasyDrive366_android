@@ -56,4 +56,9 @@
   	<string name="feedback">请输入您的反馈意见</string>
   	<string name="comments">请输入您的评论</string>
   	<string name="contact">联系方式：邮箱/QQ/手机号</string>
+  	<string name="has_activate_code">已经激活</string>
+  	<string name="has_no_activate_code">激活</string>
+  	<string name="input_activate_code">请输入激活码：</string>
+  	<string name="activate_code_example">YJ366998877</string>
+  	<string name="next">下一步</string>
 </resources>

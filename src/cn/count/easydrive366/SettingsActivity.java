@@ -23,6 +23,8 @@ public class SettingsActivity extends BaseHttpActivity {
 	private TextView txtVersion;
 	private TextView txtBind;
 	private TextView txtCellphone;
+	private TextView txtActivate_code;
+	private boolean _isActivate=false;
 	private int _isbind =1;
 	private String _cellphone;
 	private int BINDCELLPHONE = 1;
@@ -107,9 +109,17 @@ public class SettingsActivity extends BaseHttpActivity {
 				user_feedback();
 				
 			}});
+		findViewById(R.id.row_activate_code).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				check_activate_code();
+				
+			}});
 		txtBind = (TextView)findViewById(R.id.txt_bindCellphone);
 		txtVersion = (TextView)findViewById(R.id.txt_version);
 		txtCellphone = (TextView)findViewById(R.id.img_choose_cellphone);
+		txtActivate_code = (TextView)findViewById(R.id.txt_activate_code);
 		txtVersion.setText(String.format("V%s >", AppSettings.version));
 		
 		this.logoutButton = (Button)findViewById(R.id.btn_logout);
@@ -123,6 +133,7 @@ public class SettingsActivity extends BaseHttpActivity {
 			}});
 		
 		this.get(AppSettings.url_get_user_phone(), 1);
+		this.get(AppSettings.url_get_activate_code(), 11);
 	}
 	private void changePassword(){
 		Intent intent = new Intent(this,PasswordResetActivity.class);
@@ -155,6 +166,24 @@ public class SettingsActivity extends BaseHttpActivity {
 					log(e);
 				}
 			}
+		}else if (msgType==11){
+			if (AppTools.isSuccess(result)){
+				try{
+					this.runOnUiThread(new Runnable(){
+
+						@Override
+						public void run() {
+							txtActivate_code.setText(getResources().getString(R.string.has_activate_code));
+						}});
+					
+					this._isActivate = true;
+					
+				}catch(Exception e){
+					log(e);
+				}
+			}
+			
+			this._isActivate = false;
 		}else if (msgType==2){
 			//maintain
 			try{
@@ -188,6 +217,10 @@ public class SettingsActivity extends BaseHttpActivity {
 				log(e);
 			}
 		}
+		
+	}
+	private void check_activate_code()
+	{
 		
 	}
 	private void setup_maintain(final JSONObject result){

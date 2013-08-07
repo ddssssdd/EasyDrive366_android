@@ -115,7 +115,8 @@
          <activity android:name="cn.count.easydrive366.ViolationDetailActivity"></activity>
          <activity android:name="cn.count.easydrive366.ArticleCommentsActivity"></activity>
          <activity android:name="cn.count.easydrive366.AddCommentsActivity"></activity>
-         <activity android:name="cn.count.easydrive366.InformationDetailActivity"></activity>            
+         <activity android:name="cn.count.easydrive366.InformationDetailActivity"></activity>  
+         <activity android:name="cn.count.easydrive366.ActivateCodeActivity"></activity>           
     </application>
 
 </manifest>

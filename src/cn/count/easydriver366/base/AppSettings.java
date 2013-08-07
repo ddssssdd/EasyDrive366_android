@@ -107,7 +107,9 @@ public final class AppSettings {
 	static public String url_get_user_phone(){
 		return String.format("api/get_user_phone?userid=%d", userid);
 	}
-	
+	static public String url_get_activate_code(){
+		return String.format("api/had_activate_code?userid=%d", userid);
+	}
 	static public void login(JSONObject result,Context context) {
 		try {
 			
