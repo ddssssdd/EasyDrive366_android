@@ -133,7 +133,7 @@ public class SettingsActivity extends BaseHttpActivity {
 			}});
 		
 		this.get(AppSettings.url_get_user_phone(), 1);
-		this.get(AppSettings.url_get_activate_code(), 11);
+		this.get(AppSettings.url_get_activate_code(), 11,"");
 	}
 	private void changePassword(){
 		Intent intent = new Intent(this,PasswordResetActivity.class);
@@ -166,6 +166,7 @@ public class SettingsActivity extends BaseHttpActivity {
 					log(e);
 				}
 			}
+			
 		}else if (msgType==11){
 			if (AppTools.isSuccess(result)){
 				try{
@@ -183,7 +184,7 @@ public class SettingsActivity extends BaseHttpActivity {
 				}
 			}
 			
-			this._isActivate = false;
+			
 		}else if (msgType==2){
 			//maintain
 			try{
@@ -221,7 +222,13 @@ public class SettingsActivity extends BaseHttpActivity {
 	}
 	private void check_activate_code()
 	{
-		
+		Intent intent;
+		if (this._isActivate){
+			intent = new Intent(this,ActivateCodeShowActivity.class);
+		}else{
+			intent = new Intent(this,ActivateCodeActivity.class);
+		}
+		startActivity(intent);
 	}
 	private void setup_maintain(final JSONObject result){
 		Intent intent =new Intent(this,MaintainEditActivity.class);

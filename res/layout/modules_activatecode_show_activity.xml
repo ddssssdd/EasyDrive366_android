@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/navigation_bar" />
+	<TableLayout
+        style="@style/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*" >
+		 <View android:layout_width="match_parent"
+		    android:layout_height="30dp"></View>
+        <TableRow
+            android:id="@+id/row_choose1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                
+                android:layout_span="1"
+                android:gravity="right"
+                android:layout_marginRight="20dp"
+                android:text="卡号：" >
+            </TextView>
+
+            <TextView
+                android:layout_span="2"
+                android:id="@+id/txt_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"
+                android:text=""
+                 />
+        </TableRow>
+        <TableRow
+            android:id="@+id/row_choose1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                
+                android:layout_span="1"
+                android:gravity="right"
+                android:layout_marginRight="20dp"
+                android:text="激活码：" >
+            </TextView>
+
+            <TextView
+                android:layout_span="2"
+                android:id="@+id/txt_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"
+                android:text=""
+                 />
+        </TableRow>
+        <TableRow
+            android:id="@+id/row_choose1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                
+                android:layout_span="1"
+                android:gravity="right"
+                android:layout_marginRight="20dp"
+                android:text="激活时间：" >
+            </TextView>
+
+            <TextView
+                android:layout_span="2"
+                android:id="@+id/txt_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"
+                android:text=""
+                 />
+        </TableRow>
+        <TableRow
+            android:id="@+id/row_choose1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                
+                android:layout_span="1"
+                android:gravity="right"
+                android:layout_marginRight="20dp"
+                android:text="有效期至：" >
+            </TextView>
+
+            <TextView
+                android:layout_span="2"
+                android:id="@+id/txt_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"
+                android:text=""
+                 />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

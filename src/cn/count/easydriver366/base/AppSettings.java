@@ -23,7 +23,7 @@ public final class AppSettings {
 	static public JSONArray driver_type_list;
 	static public int update_time=4*60*60;
 	static public boolean isquiting = false;
-	static public String version = "1.03";
+	static public String version = "1.04";
 	
 	static public String url_for_get_news()
 	{
@@ -109,6 +109,12 @@ public final class AppSettings {
 	}
 	static public String url_get_activate_code(){
 		return String.format("api/had_activate_code?userid=%d", userid);
+	}
+	static public String url_add_activate_code(String code){
+		return String.format("api/add_activate_code?userid=%d&code=%s", userid,code);
+	}
+	static public String url_user_activate_code(){
+		return String.format("api/get_activate_code?userid=%d", userid);
 	}
 	static public void login(JSONObject result,Context context) {
 		try {

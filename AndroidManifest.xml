@@ -116,7 +116,12 @@
          <activity android:name="cn.count.easydrive366.ArticleCommentsActivity"></activity>
          <activity android:name="cn.count.easydrive366.AddCommentsActivity"></activity>
          <activity android:name="cn.count.easydrive366.InformationDetailActivity"></activity>  
-         <activity android:name="cn.count.easydrive366.ActivateCodeActivity"></activity>           
+         <activity android:name="cn.count.easydrive366.ActivateCodeActivity"></activity> 
+         <activity android:name="cn.count.easydrive366.ActivateCodeShowActivity"></activity> 
+         <activity android:name="cn.count.easydrive366.Step1Activity"></activity> 
+         <activity android:name="cn.count.easydrive366.Step2Activity"></activity> 
+         <activity android:name="cn.count.easydrive366.Step3Activity"></activity> 
+                   
     </application>
 
 </manifest>
