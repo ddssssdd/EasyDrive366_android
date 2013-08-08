@@ -28,6 +28,10 @@ public class SettingsActivity extends BaseHttpActivity {
 	private int _isbind =1;
 	private String _cellphone;
 	private int BINDCELLPHONE = 1;
+	private String _number;
+	private String _code;
+	private String _activate_date;
+	private String _valid_date;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -133,7 +137,7 @@ public class SettingsActivity extends BaseHttpActivity {
 			}});
 		
 		this.get(AppSettings.url_get_user_phone(), 1);
-		this.get(AppSettings.url_get_activate_code(), 11,"");
+		//this.get(AppSettings.url_get_activate_code(), 11,"");
 	}
 	private void changePassword(){
 		Intent intent = new Intent(this,PasswordResetActivity.class);
@@ -150,6 +154,11 @@ public class SettingsActivity extends BaseHttpActivity {
 				try{
 					JSONObject json = (JSONObject)result;
 					_cellphone= json.getJSONObject("result").getString("phone");
+					_number = json.getJSONObject("result").getString("number");
+					_code = json.getJSONObject("result").getString("code");
+					_activate_date = json.getJSONObject("result").getString("activate_date");
+					_valid_date = json.getJSONObject("result").getString("valid_date");
+					_isActivate = !_code.isEmpty();
 					if (json.getJSONObject("result").getString("status").equals("02")){
 						this.runOnUiThread(new Runnable(){
 
@@ -161,7 +170,14 @@ public class SettingsActivity extends BaseHttpActivity {
 						
 						_isbind = 0;
 					}
-					
+					if (_isActivate){
+						this.runOnUiThread(new Runnable(){
+
+							@Override
+							public void run() {
+								txtActivate_code.setText(getResources().getString(R.string.has_activate_code));
+							}});
+					}
 				}catch(Exception e){
 					log(e);
 				}
@@ -225,6 +241,10 @@ public class SettingsActivity extends BaseHttpActivity {
 		Intent intent;
 		if (this._isActivate){
 			intent = new Intent(this,ActivateCodeShowActivity.class);
+			intent.putExtra("number", _number);
+			intent.putExtra("code", _code);
+			intent.putExtra("activate_date",_activate_date);
+			intent.putExtra("valid_date",_valid_date);
 		}else{
 			intent = new Intent(this,ActivateCodeActivity.class);
 		}

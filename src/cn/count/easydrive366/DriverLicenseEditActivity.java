@@ -98,13 +98,7 @@ public class DriverLicenseEditActivity extends BaseHttpActivity {
 	protected void onRightButtonPress(){
 		save();
 	}
-	private  boolean personIdValidation(String text) {
-		  String regx = "[0-9]{17}X";
-		  String reg1 = "[0-9]{15}";
-		  String regex = "[0-9]{18}";
-		  boolean flag = text.matches(regx) || text.matches(reg1) || text.matches(regex);
-		  return flag;
-	}
+	
 	private void save(){
 		if (!this.isOnline()){
 			this.showMessage(this.getResources().getString(R.string.no_network), null);

@@ -8,7 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/navigation_bar" />
-
+<com.handmark.pulltorefresh.library.PullToRefreshScrollView
+         xmlns:ptr="http://schemas.android.com/apk/res-auto"
+         android:id="@+id/pull_refresh_scrollview"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft = "5dp"
+        android:layout_marginRight = "5dp"
+         ptr:ptrAnimationStyle="flip"
+         ptr:ptrMode="pullFromStart">
     <TableLayout
         style="@style/table"
         android:layout_width="match_parent"
@@ -252,13 +260,14 @@
         </TableRow>
          <View android:layout_width="match_parent"
 		    android:layout_height="30dp"></View>
-    </TableLayout>
-
-    <Button
+         <Button
         android:id="@+id/btn_logout"
         style="@style/button.red"
         android:hint=""
         android:text="Logout" >
     </Button>
+    </TableLayout>
 
+    
+</com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 </LinearLayout>

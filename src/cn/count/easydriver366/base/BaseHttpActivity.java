@@ -2,6 +2,8 @@ package cn.count.easydriver366.base;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -22,6 +24,8 @@ import cn.count.easydrive366.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,6 +43,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -414,5 +420,76 @@ public class BaseHttpActivity extends Activity implements
 		});
 		
 		
+	}
+	protected void chooseDate(final EditText edtDate){
+		String d = edtDate.getText().toString();
+		if (d.equals("")){
+			d = "2000-01-01";
+		}
+		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		final Calendar c  = Calendar.getInstance();
+		
+		try{
+			c.setTime(sdf.parse(d));
+			
+			Dialog dialog = new DatePickerDialog(this,
+					new DatePickerDialog.OnDateSetListener() {
+						
+						@Override
+						public void onDateSet(DatePicker view, int year, int monthOfYear,
+								int dayOfMonth) {
+								c.set(Calendar.YEAR, year);
+								c.set(Calendar.MONTH,monthOfYear);
+								c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+								//showDialog(sdf.format(c.getTime()));
+								edtDate.setText(sdf.format(c.getTime()));
+						}
+					},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
+			dialog.show();
+		}catch(Exception e){
+			log(e);
+		}
+		
+	}
+	protected  boolean personIdValidation(String text) {
+		  String regx = "[0-9]{17}X";
+		  String reg1 = "[0-9]{15}";
+		  String regex = "[0-9]{18}";
+		  boolean flag = text.matches(regx) || text.matches(reg1) || text.matches(regex);
+		  return flag;
+	}
+	protected void saveLogin(final String username,final String password,final boolean isRemember){
+		SharedPreferences pref = this.getSharedPreferences("Login_histroy",MODE_PRIVATE);
+		Editor editor = pref.edit();
+		editor.putString("username", username);
+		editor.putString("password", password);
+		editor.putBoolean("remember_password", isRemember);
+		try{
+			JSONObject login = new JSONObject();
+			login.put("username", username);
+			login.put("password", password);
+			login.put("remember_password", isRemember);
+			String logins = pref.getString("logins", "");
+			JSONArray login_list;
+			if (logins.equals("")){
+				login_list = new JSONArray();
+			}else{
+				login_list = new JSONArray(logins);
+			}
+			int index = login_list.length();
+			for(int i=0;i<index;i++){
+				JSONObject item = login_list.getJSONObject(i);
+				if (item.getString("username").trim().equals(username.trim())){
+					index = i;
+					break;
+				}
+			}
+			login_list.put(index, login);
+			editor.putString("logins", login_list.toString());
+			
+		}catch(Exception e){
+			log(e);
+		}
+		editor.commit();
 	}
 }

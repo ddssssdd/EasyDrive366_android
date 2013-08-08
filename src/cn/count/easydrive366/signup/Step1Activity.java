@@ -26,7 +26,7 @@ public class Step1Activity extends BaseHttpActivity {
 		this._isHideTitleBar = false;
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.modules_signup_activity);
+		setContentView(R.layout.modules_step1_activity);
 		
 		btnNext =(Button)findViewById(R.id.btn_ok);
 		edtCar_no = (EditText)findViewById(R.id.edt_car_no);
@@ -45,14 +45,19 @@ public class Step1Activity extends BaseHttpActivity {
 	public void processMessage(int msgType, final Object result) {
 		super.processMessage(msgType, result);
 		if (this.isSuccess(result)){
-			/*
-			Bundle bundle =new Bundle();
-			bundle.putString("result",result.toString());
-			Intent intent = new Intent();
-			intent.putExtras(bundle);
-			setResult(RESULT_OK,intent);
-			*/
-			finish();
+			try{
+				Intent intent =new Intent(this,Step2Activity.class);
+				JSONObject json = (JSONObject)result;
+				AppSettings.userid = json.getJSONObject("result").getInt("userid");
+				intent.putExtra("vin", json.getJSONObject("result").getString("vin"));
+				intent.putExtra("engine_no", json.getJSONObject("result").getString("engine_no"));
+				intent.putExtra("registration_date", json.getJSONObject("result").getString("registration_date"));
+				startActivity(intent);
+				finish();
+			}catch(Exception e){
+				log(e);
+			}
+			
 			
 		}else{
 			String message;
@@ -71,11 +76,15 @@ public class Step1Activity extends BaseHttpActivity {
 		String id_no = edtId_no.getText().toString();
 		
 		if (car_no.equals("")){
-			this.showMessage(getResources().getString(R.string.username_not_empty), null);
+			this.showMessage("请输入车牌号码！", null);
 			return;
 		}
 		if (id_no.equals("") ){
-			this.showMessage(getResources().getString(R.string.password_not_empty), null);
+			this.showMessage("请输入身份证号码！", null);
+			return;
+		}
+		if ( id_no.length()!=18 || !personIdValidation(id_no)){
+			this.showMessage(this.getResources().getString(R.string.id_is_wrong), null);
 			return;
 		}
 		

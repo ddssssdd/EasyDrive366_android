@@ -3,6 +3,7 @@ package cn.count.easydrive366;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import cn.count.easydriver366.base.AppSettings;
@@ -25,7 +26,12 @@ public class ActivateCodeShowActivity extends BaseHttpActivity {
 		txt_code =(TextView)findViewById(R.id.txt_code);
 		txt_time =(TextView)findViewById(R.id.txt_time);
 		txt_to=(TextView)findViewById(R.id.txt_to);
-		this.get(AppSettings.url_user_activate_code(), 1);
+		Intent intent = this.getIntent();
+		txt_no.setText(intent.getStringExtra("number"));
+		txt_code.setText(intent.getStringExtra("code"));
+		txt_time.setText(intent.getStringExtra("activate_date"));
+		txt_to.setText(intent.getStringExtra("valid_date"));
+		//this.get(AppSettings.url_user_activate_code(), 1);
 	}
 	@Override
 	public void processMessage(int msgType, final Object result) {

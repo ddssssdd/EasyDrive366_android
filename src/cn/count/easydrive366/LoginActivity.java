@@ -42,7 +42,7 @@ public class LoginActivity extends BaseHttpActivity {
 		edtUsername = (EditText)findViewById(R.id.edt_login_username);
 		edtPassword = (EditText)findViewById(R.id.edt_login_passwrod);
 		chbRememberPassword = (CheckBox)findViewById(R.id.chb_remember_password);
-		SharedPreferences pref = this.getPreferences(MODE_PRIVATE);	
+		SharedPreferences pref = this.getSharedPreferences("Login_histroy", MODE_PRIVATE);	
 		
 		edtUsername.setText(pref.getString("username", ""));
 		chbRememberPassword.setChecked(pref.getBoolean("remember_password", false));
@@ -67,6 +67,7 @@ public class LoginActivity extends BaseHttpActivity {
 			}});
 		
 	}
+	/*
 	private void saveLogin(){
 		SharedPreferences pref = this.getPreferences(MODE_PRIVATE);
 		Editor editor = pref.edit();
@@ -101,7 +102,7 @@ public class LoginActivity extends BaseHttpActivity {
 		}
 		editor.commit();
 	}
-	
+	*/
 	private void login(final String username,final String password){
 		//String username= edtUsername.getText().toString();
 		//String password = edtPassword.getText().toString();
@@ -123,7 +124,8 @@ public class LoginActivity extends BaseHttpActivity {
 		super.processMessage(msgType, result);
 		if (this.isSuccess(result)){
 			AppSettings.login((JSONObject) result,this);
-			saveLogin();
+			//saveLogin();
+			this.saveLogin(edtUsername.getText().toString(), edtPassword.getText().toString(), chbRememberPassword.isChecked());
 			Bundle bundle =new Bundle();
 			bundle.putString("result",result.toString());
 			Intent intent = new Intent();

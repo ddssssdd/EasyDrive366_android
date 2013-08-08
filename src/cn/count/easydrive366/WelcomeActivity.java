@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cn.count.easydrive366.signup.Step1Activity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 
@@ -79,7 +80,8 @@ public class WelcomeActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent =new Intent(WelcomeActivity.this,SignupActivity.class);
+				//Intent intent =new Intent(WelcomeActivity.this,SignupActivity.class);
+				Intent intent =new Intent(WelcomeActivity.this,Step1Activity.class);
 				startActivityForResult(intent,2);
 				
 			}
@@ -96,6 +98,10 @@ public class WelcomeActivity extends Activity {
 	}
 	@Override
 	protected void onActivityResult(int requestCode,int resultCode,Intent data){
+		if (AppSettings.isLogin){
+			goHome(1);
+		}
+		/*
 		super.onActivityResult(requestCode, resultCode, data);
 		if ((requestCode==1 || requestCode==2) && resultCode==RESULT_OK){
 			Bundle extras = data.getExtras();
@@ -105,7 +111,7 @@ public class WelcomeActivity extends Activity {
 				
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 	private void processMessage(final int msgType,final JSONObject result){
 		try{

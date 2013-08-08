@@ -41,6 +41,8 @@ public class SignupActivity extends BaseHttpActivity {
 				signup();
 				
 			}});
+		Intent intent = getIntent();
+		edtUsername.setText(intent.getStringExtra("username"));
 	}
 	
 	@Override
@@ -48,6 +50,7 @@ public class SignupActivity extends BaseHttpActivity {
 		super.processMessage(msgType, result);
 		if (this.isSuccess(result)){
 			AppSettings.login((JSONObject) result,this);
+			this.saveLogin(edtUsername.getText().toString(), edtPassword.getText().toString(), true);
 			Bundle bundle =new Bundle();
 			bundle.putString("result",result.toString());
 			Intent intent = new Intent();
