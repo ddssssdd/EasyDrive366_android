@@ -113,7 +113,7 @@ public class Step3Activity extends BaseHttpActivity {
 		String car_type = edtCar_type.getText().toString();
 		String init_date = edtInit_date.getText().toString();
 		
-		
+		/*
 		if (name.equals("")){
 			this.showMessage("请输入姓名。", null);
 			return;
@@ -126,7 +126,7 @@ public class Step3Activity extends BaseHttpActivity {
 			this.showMessage("请输入初登日期。", null);
 			return;
 		}
-		
+		*/
 		String url =String.format("api/initstep3?userid=%d&name=%s&type=%s&init_date=%s",AppSettings.userid,name,car_type,init_date);
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtName.getWindowToken(), 0);

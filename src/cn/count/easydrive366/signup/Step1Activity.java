@@ -31,7 +31,7 @@ public class Step1Activity extends BaseHttpActivity {
 		btnNext =(Button)findViewById(R.id.btn_ok);
 		edtCar_no = (EditText)findViewById(R.id.edt_car_no);
 		edtId_no = (EditText)findViewById(R.id.edt_id_no);
-		
+		edtCar_no.setText("鲁");
 		btnNext.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -79,13 +79,12 @@ public class Step1Activity extends BaseHttpActivity {
 			this.showMessage("请输入车牌号码！", null);
 			return;
 		}
-		if (id_no.equals("") ){
-			this.showMessage("请输入身份证号码！", null);
-			return;
-		}
-		if ( id_no.length()!=18 || !personIdValidation(id_no)){
-			this.showMessage(this.getResources().getString(R.string.id_is_wrong), null);
-			return;
+		if (!id_no.equals("") ){
+			
+			if ( id_no.length()!=18 || !personIdValidation(id_no)){
+				this.showMessage(this.getResources().getString(R.string.id_is_wrong), null);
+				return;
+			}
 		}
 		
 		String url =String.format("api/initstep1?userid=-1&car_id=%s&license_id=%s",car_no,id_no);

@@ -59,6 +59,6 @@
   	<string name="has_activate_code">已经激活</string>
   	<string name="has_no_activate_code">激活</string>
   	<string name="input_activate_code">请输入激活码：</string>
-  	<string name="activate_code_example">YJ366998877</string>
+  	<string name="activate_code_example"></string>
   	<string name="next">下一步</string>
 </resources>

@@ -95,7 +95,7 @@ public class Step2Activity extends BaseHttpActivity {
 		String engine_no = edtEngine_no.getText().toString();
 		String registration_date = edtRegistration_date.getText().toString();
 		
-		
+		/*
 		if (vin.equals("")){
 			this.showMessage("请输入VIN码。", null);
 			return;
@@ -108,7 +108,7 @@ public class Step2Activity extends BaseHttpActivity {
 			this.showMessage("请输入初登日期。", null);
 			return;
 		}
-		
+		*/
 		String url =String.format("api/initstep2?userid=%d&vin=%s&engine_no=%s&registration_date=%s",AppSettings.userid,vin,engine_no,registration_date);
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtVIN.getWindowToken(), 0);
