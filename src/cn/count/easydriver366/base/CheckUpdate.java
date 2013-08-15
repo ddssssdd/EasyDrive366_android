@@ -41,7 +41,7 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 		_context = context;
 		_isSettings = isSettings;
 		_http = new HttpClient(this);
-		String url = String.format("api/get_ver?ver=%s&device=android", AppSettings.version);
+		String url = String.format("api/get_ver?ver=%s&device=android&userid=%d", AppSettings.version,AppSettings.userid);
 		_http.requestServer(url, 1);
 	}
 

@@ -14,11 +14,12 @@
         android:gravity="center"
         android:stretchColumns="*" >
 		 <View android:layout_width="match_parent"
-		    android:layout_height="30dp"></View>
+		    android:layout_height="10dp"></View>
         <TableRow
-            android:id="@+id/row_choose1"
+           
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/signup_hit_input1"
             android:gravity="center" >
 
             <TextView
@@ -42,9 +43,10 @@
            
         </TableRow>
         <TableRow
-            android:id="@+id/row_choose1"
+            
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/signup_hit_input2"
             android:gravity="center" >
 
             <TextView
@@ -69,9 +71,10 @@
            
         </TableRow>
         <TableRow
-            android:id="@+id/row_choose1"
+           
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/signup_hit_input2"
             android:gravity="center" >
 
             <TextView
@@ -96,9 +99,10 @@
            
         </TableRow>
         <TableRow
-            android:id="@+id/row_choose1"
+            
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/signup_hit_input6"
             android:gravity="center" >
 
             <TextView
@@ -123,4 +127,29 @@
            
         </TableRow>
     </TableLayout>
+    <View android:layout_width="match_parent"
+		    android:layout_height="20dp"></View>
+    <TextView
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signup_hit_input1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="服务项目"
+        android:textStyle="bold" />
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TableLayout
+        android:id="@+id/table_items"
+        style="@style/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:stretchColumns="*" >
+        </TableLayout>
+    </ScrollView>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package cn.count.easydrive366;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -32,6 +33,7 @@ public class SettingsActivity extends BaseHttpActivity {
 	private String _code;
 	private String _activate_date;
 	private String _valid_date;
+	private JSONArray _contents;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -158,6 +160,7 @@ public class SettingsActivity extends BaseHttpActivity {
 					_code = json.getJSONObject("result").getString("code");
 					_activate_date = json.getJSONObject("result").getString("activate_date");
 					_valid_date = json.getJSONObject("result").getString("valid_date");
+					_contents = json.getJSONObject("result").getJSONArray("contents");
 					_isActivate = !_code.isEmpty();
 					if (json.getJSONObject("result").getString("status").equals("02")){
 						this.runOnUiThread(new Runnable(){
@@ -245,6 +248,8 @@ public class SettingsActivity extends BaseHttpActivity {
 			intent.putExtra("code", _code);
 			intent.putExtra("activate_date",_activate_date);
 			intent.putExtra("valid_date",_valid_date);
+			if (_contents !=null)
+				intent.putExtra("contents", _contents.toString());
 		}else{
 			intent = new Intent(this,ActivateCodeActivity.class);
 		}

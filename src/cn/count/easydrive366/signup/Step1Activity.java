@@ -87,7 +87,7 @@ public class Step1Activity extends BaseHttpActivity {
 			}
 		}
 		
-		String url =String.format("api/initstep1?userid=-1&car_id=%s&license_id=%s",car_no,id_no);
+		String url =String.format("api/initstep1?userid=-1&car_id=%s&license_id=%s",car_no.toUpperCase(),id_no);
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtCar_no.getWindowToken(), 0);
 		this.get(url, 1);

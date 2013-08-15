@@ -86,7 +86,8 @@ public class SignupActivity extends BaseHttpActivity {
 			this.showMessage(getResources().getString(R.string.password_not_match), null);
 			return;
 		}
-		String url =String.format("api/signup?username=%s&password=%s",username,password);
+		//String url =String.format("api/signup?username=%s&password=%s",username,password);
+		String url =String.format("api/initstep4?userid=%d&username=%s&password=%s",AppSettings.userid,username,password);
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtUsername.getWindowToken(), 0);
 		this.get(url, 1);
