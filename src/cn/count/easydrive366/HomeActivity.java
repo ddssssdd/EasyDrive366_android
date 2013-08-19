@@ -19,6 +19,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
 
 
+import cn.count.easydrive366.baidumap.ShowLocationActivity;
+import cn.count.easydrive366.barcode.ShowBarcodeActivity;
 import cn.count.easydrive366.components.HomeMenuItem;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
@@ -246,6 +248,8 @@ public class HomeActivity extends Activity {
 	}
 	private void settingsButtonPress(){
 		
+		
+		/*
 		if (AppSettings.isLogin){
 			Intent intent = new Intent(this,SettingsActivity.class);
 			
@@ -255,27 +259,24 @@ public class HomeActivity extends Activity {
 			startActivityForResult(intent,2);
 		}
 		
-		
+		*/
+		//map test
+		/*
+		Intent intent = new Intent(this,ShowLocationActivity.class);
+		startActivity(intent);
+		*/
 		//scan test;
 		/*
 		IntentIntegrator integrator = new IntentIntegrator(this);
 	    integrator.initiateScan();
-	    
 	    */
+	    
 		// show scan code test
-		//encodeBarcode("TEXT_TYPE", "i am super fool.");
 		/*
-		new AlertDialog.Builder(this).setTitle(R.string.app_name)
-		.setIcon(android.R.drawable.ic_dialog_info)
-		.setMessage(String.format(getResources().getString(R.string.quit_question),AppSettings.username)).setPositiveButton(this.getResources().getString(R.string.ok), new  DialogInterface.OnClickListener(){
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				logout();
-				
-			}})
-		.setNegativeButton(this.getResources().getString(R.string.cancel), null).show();
+		encodeBarcode("TEXT_TYPE", "i am super fool.");
 		*/
+		Intent intent = new Intent(this,ShowBarcodeActivity.class);
+		startActivity(intent);
 	}
 	
 	private void encodeBarcode(CharSequence type, CharSequence data) {
