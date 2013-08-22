@@ -249,7 +249,7 @@ public class HomeActivity extends Activity {
 	private void settingsButtonPress(){
 		
 		
-		/*
+		
 		if (AppSettings.isLogin){
 			Intent intent = new Intent(this,SettingsActivity.class);
 			
@@ -259,7 +259,7 @@ public class HomeActivity extends Activity {
 			startActivityForResult(intent,2);
 		}
 		
-		*/
+		
 		//map test
 		/*
 		Intent intent = new Intent(this,ShowLocationActivity.class);
@@ -275,8 +275,10 @@ public class HomeActivity extends Activity {
 		/*
 		encodeBarcode("TEXT_TYPE", "i am super fool.");
 		*/
+		/*
 		Intent intent = new Intent(this,ShowBarcodeActivity.class);
 		startActivity(intent);
+		*/
 	}
 	
 	private void encodeBarcode(CharSequence type, CharSequence data) {

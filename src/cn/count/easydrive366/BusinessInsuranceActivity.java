@@ -25,6 +25,7 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 	private JSONObject _result;
 	private JSONObject _curr=null;
 	private JSONObject _renew=null;
+	private JSONObject _price = null;
 	private TableLayout tableLayout;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -49,6 +50,9 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 				_curr  =_result.getJSONObject("curr");
 				if (!_result.isNull("renew")){
 					_renew =_result.getJSONObject("renew");
+				}
+				if (!_result.isNull("pricelist")){
+					_price = _result.getJSONObject("pricelist");
 				}
 				this.runOnUiThread(initViewThread);
 			}else if (msgType==2){
@@ -125,6 +129,10 @@ public class BusinessInsuranceActivity extends BaseHttpActivity {
 			if (_renew!=null){
 				this.addTableRow(_renew.getString("title"),_renew);
 			}
+			if (_price!=null){
+				this.addTableRow(_price.getString("title"),_price);
+			}
+			
 		}catch(Exception e){
 			log(e);
 		}
