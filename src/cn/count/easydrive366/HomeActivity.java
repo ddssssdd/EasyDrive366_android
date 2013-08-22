@@ -90,6 +90,15 @@ public class HomeActivity extends Activity {
 			}
 			
 		});
+		findViewById(R.id.img_navigationbar_logo).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				test();
+				
+			}
+			
+		});
 		
 		mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_refresh_scrollview);
 		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
@@ -260,36 +269,10 @@ public class HomeActivity extends Activity {
 		}
 		
 		
-		//map test
-		/*
-		Intent intent = new Intent(this,ShowLocationActivity.class);
-		startActivity(intent);
-		*/
-		//scan test;
-		/*
-		IntentIntegrator integrator = new IntentIntegrator(this);
-	    integrator.initiateScan();
-	    */
-	    
-		// show scan code test
-		/*
-		encodeBarcode("TEXT_TYPE", "i am super fool.");
-		*/
-		/*
-		Intent intent = new Intent(this,ShowBarcodeActivity.class);
-		startActivity(intent);
-		*/
+		
 	}
 	
-	private void encodeBarcode(CharSequence type, CharSequence data) {
-	    IntentIntegrator integrator = new IntentIntegrator(this);
-	    integrator.shareText(data, type);
-	 }
-	private void encodeBarcode(CharSequence type, Bundle data) {
-		    IntentIntegrator integrator = new IntentIntegrator(this);
-		    integrator.addExtra("ENCODE_DATA", data);
-		    integrator.shareText(data.toString(), type); // data.toString() isn't used
-	}
+	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		String rightButtonTitle ="登录";
@@ -298,6 +281,7 @@ public class HomeActivity extends Activity {
 		}
 		((Button)findViewById(R.id.title_set_bn)).setText(rightButtonTitle);
 		new GetDataTask().execute();
+		
 	    IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 	    if (result != null) {
 	      String contents = result.getContents();
@@ -315,16 +299,36 @@ public class HomeActivity extends Activity {
 	    builder.setPositiveButton("OK", null);
 	    builder.show();
 	  }
-	@Override
-	protected void onResume(){
-		super.onResume();
+	private void test()
+	{
+				//map test
+				/*
+				Intent intent = new Intent(this,ShowLocationActivity.class);
+				startActivity(intent);
+				*/
+				//scan test;
+				/*
+				IntentIntegrator integrator = new IntentIntegrator(this);
+			    integrator.initiateScan();
+			    */
+			    
+				// show scan code test
+				/*
+				encodeBarcode("TEXT_TYPE", "i am super fool.");
+				*/
+				/*
+				Intent intent = new Intent(this,ShowBarcodeActivity.class);
+				startActivity(intent);
+				*/
+		
 	}
-	@Override
-	protected void onStart(){
-		super.onStart();
-	}
-	@Override
-	protected void onStop(){
-		super.onStop();
+	private void encodeBarcode(CharSequence type, CharSequence data) {
+	    IntentIntegrator integrator = new IntentIntegrator(this);
+	    integrator.shareText(data, type);
+	 }
+	private void encodeBarcode(CharSequence type, Bundle data) {
+		    IntentIntegrator integrator = new IntentIntegrator(this);
+		    integrator.addExtra("ENCODE_DATA", data);
+		    integrator.shareText(data.toString(), type); // data.toString() isn't used
 	}
 }
