@@ -3,20 +3,13 @@ package cn.count.easydriver366.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.count.easydrive366.R;
+import cn.count.easydrive366.baidumap.ShowLocationActivity;
+import cn.count.easydrive366.manager.ScanBarcodeActivity;
+
 import android.app.Activity;
 
-import cn.count.easydrive366.BusinessInsuranceActivity;
-import cn.count.easydrive366.CarRegistrationActivity;
-import cn.count.easydrive366.CarServiceActivity;
-import cn.count.easydrive366.CompulsoryInsuranceActivity;
-import cn.count.easydrive366.DriverLicenseActivity;
-import cn.count.easydrive366.HelpCallActivity;
-import cn.count.easydrive366.InformationActivity;
-import cn.count.easydrive366.InsuranceProcessListActivity;
-import cn.count.easydrive366.MaintainActivity;
-import cn.count.easydrive366.R;
-import cn.count.easydrive366.RescueActivity;
-import cn.count.easydrive366.TaxForCarShipActivity;
+
 
 public class Menus {
 	private Activity _activity;
@@ -28,7 +21,8 @@ public class Menus {
 	private void initMenuItems(){
 		menus = new ArrayList<HomeMenu>();
 		
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_01),"01",InformationActivity.class));
+		menus.add(new HomeMenu("条码扫描","100",ScanBarcodeActivity.class));
+		menus.add(new HomeMenu("地图","100",ShowLocationActivity.class));
 		/*
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_02),"02",HelpCallActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",RescueActivity.class));

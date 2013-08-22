@@ -134,11 +134,11 @@ public class HomeActivity extends Activity {
 				}
 			}
 			
-			
+			/*
 			Intent intent = new Intent("cn.count.easydriver366.service.GetLatestReceiverr");
 			intent.putExtra("isInApp", true);
 			sendBroadcast(intent);
-			
+			*/
 			return null;
 		}
 
