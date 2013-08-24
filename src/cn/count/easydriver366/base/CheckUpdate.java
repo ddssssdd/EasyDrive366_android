@@ -129,9 +129,23 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
             Log.v("intent", ""+intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, 0)); 
             Cursor c = downloadManager.query(new DownloadManager.Query().setFilterById(dmId));
             if (c.moveToFirst()){
-            	final String filename = c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));
+            	
+            	//final String filename = c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));
+            	int columnIndex = c.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                if (DownloadManager.STATUS_SUCCESSFUL == c.getInt(columnIndex)) {
+                	
+                    String uriString = c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+
+                    File file = new File(Uri.parse(uriString).getPath());
+                    openFile(file);
+
+                } else {
+                    Toast.makeText(_context,"下载更新失败，请卸载之后安装最新版本。",Toast.LENGTH_SHORT).show();
+                }
+                /*
             	final File file = new File(filename);
             	openFile(file);
+            	*/
             }
             //queryDownloadStatus();   
             _context.unregisterReceiver(receiver);
