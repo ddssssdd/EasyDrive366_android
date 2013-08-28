@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import cn.count.easydrive366.signup.Step1Activity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.BaseHttpActivity;
@@ -70,9 +71,10 @@ public class SettingsActivity extends BaseHttpActivity {
 			@Override
 			public void onClick(View v) {
 //				setup_driver();
-				get(AppSettings.url_get_driver_license(),3);
-				
+//				get(AppSettings.url_get_driver_license(),3);
+				register_step();
 			}});
+		/*
 		findViewById(R.id.row_choose3).setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -81,7 +83,7 @@ public class SettingsActivity extends BaseHttpActivity {
 				get(AppSettings.url_get_car_registration(),4);
 				
 			}});
-		
+		*/
 		findViewById(R.id.row_choose_cellphone).setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -368,6 +370,10 @@ public class SettingsActivity extends BaseHttpActivity {
 		Intent intent = new Intent(SettingsActivity.this,UserFeedbackActivity.class);
 		intent.putExtra("phone", _cellphone);
 		intent.putExtra("isbind", _isbind);
+		startActivity(intent);
+	}
+	private void register_step(){
+		Intent intent = new Intent(SettingsActivity.this,Step1Activity.class);
 		startActivity(intent);
 	}
 }

@@ -80,8 +80,8 @@ public class WelcomeActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				//Intent intent =new Intent(WelcomeActivity.this,SignupActivity.class);
-				Intent intent =new Intent(WelcomeActivity.this,Step1Activity.class);
+				Intent intent =new Intent(WelcomeActivity.this,SignupActivity.class);
+				//Intent intent =new Intent(WelcomeActivity.this,Step1Activity.class);
 				startActivityForResult(intent,2);
 				
 			}

@@ -23,11 +23,13 @@ public class Step1Activity extends BaseHttpActivity {
 	
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
-		this._isHideTitleBar = false;
+		this._isHideTitleBar = true;
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.modules_step1_activity);
-		
+		this.setupLeftButton();
+		this.setRightButtonInVisible();
+		this.setupPhoneButtonInVisible();
 		btnNext =(Button)findViewById(R.id.btn_ok);
 		edtCar_no = (EditText)findViewById(R.id.edt_car_no);
 		edtId_no = (EditText)findViewById(R.id.edt_id_no);
@@ -87,7 +89,7 @@ public class Step1Activity extends BaseHttpActivity {
 			}
 		}
 		
-		String url =String.format("api/initstep1?userid=-1&car_id=%s&license_id=%s",car_no.toUpperCase(),id_no);
+		String url =String.format("api/wizardstep1?userid=%d&car_id=%s&license_id=%s",AppSettings.userid,car_no.toUpperCase(),id_no);
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtCar_no.getWindowToken(), 0);
 		this.get(url, 1);

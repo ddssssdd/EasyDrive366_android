@@ -53,7 +53,7 @@
             android:id="@+id/row_choose2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/signup_hit_input2"
+            android:background="@drawable/signup_hit_input6"
             android:gravity="center" >
 
             <TextView
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:gravity="center"
-                android:text="驾驶证" >
+                android:text="设置向导" >
             </TextView>
 
             <TextView
@@ -76,31 +76,31 @@
               </TextView>
         </TableRow>
 
-        <TableRow
-            android:id="@+id/row_choose3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@drawable/signup_hit_input6" >
+<!--         <TableRow -->
+<!--             android:id="@+id/row_choose3" -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:gravity="center" -->
+<!--             android:background="@drawable/signup_hit_input6" > -->
 
-            <TextView
-                android:id="@+id/txt_license"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:gravity="center"
-                android:text="我的车辆" >
-            </TextView>
+<!--             <TextView -->
+<!--                 android:id="@+id/txt_license" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:layout_span="2" -->
+<!--                 android:gravity="center" -->
+<!--                 android:text="我的车辆" > -->
+<!--             </TextView> -->
 
-             <TextView
-                android:id="@+id/img_choose3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:text=">"/>
-        </TableRow>
+<!--              <TextView -->
+<!--                 android:id="@+id/img_choose3" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:gravity="right" -->
+<!--                 android:layout_marginRight="20dp" -->
+<!--                 android:textSize="20dp" -->
+<!--                 android:text=">"/> -->
+<!--         </TableRow> -->
 		<View android:layout_width="match_parent"
 		    android:layout_height="30dp"></View>
         <TableRow

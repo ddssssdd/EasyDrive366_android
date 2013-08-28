@@ -2,9 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default2"
+    
     android:orientation="vertical" >
-
+	<include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/navigation_bar" />
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,7 +15,8 @@
         android:layout_marginTop="15dp"
         style="@style/table"
         android:stretchColumns="*" >
-
+	<View android:layout_width="match_parent"
+		    android:layout_height="30dp"></View>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,7 +114,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="用户注册第2步共4步"
+                android:text="设置向导第2步共3步"
                 android:textSize="24sp" />
     </TableLayout>
 

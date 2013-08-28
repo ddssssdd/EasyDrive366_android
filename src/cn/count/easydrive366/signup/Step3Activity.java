@@ -31,11 +31,13 @@ public class Step3Activity extends BaseHttpActivity {
 	
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
-		this._isHideTitleBar = false;
+		this._isHideTitleBar = true;
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.modules_step3_activity);
-		
+		this.setupLeftButton();
+		this.setRightButtonInVisible();
+		this.setupPhoneButtonInVisible();
 		btnNext =(Button)findViewById(R.id.btn_ok);
 		edtName = (EditText)findViewById(R.id.edt_name);
 		edtCar_type = (EditText)findViewById(R.id.edt_car_type);
@@ -86,11 +88,13 @@ public class Step3Activity extends BaseHttpActivity {
 		}
 		if (this.isSuccess(result)){
 			try{
+				/*
 				Intent intent =new Intent(this,SignupActivity.class);
 				JSONObject json = (JSONObject)result;
 				intent.putExtra("username", json.getJSONObject("result").getString("username"));
 				
 				startActivity(intent);
+				*/
 				finish();
 			}catch(Exception e){
 				log(e);
@@ -127,7 +131,7 @@ public class Step3Activity extends BaseHttpActivity {
 			return;
 		}
 		*/
-		String url =String.format("api/initstep3?userid=%d&name=%s&type=%s&init_date=%s",AppSettings.userid,name,car_type,init_date);
+		String url =String.format("api/wizardstep3?userid=%d&name=%s&type=%s&init_date=%s",AppSettings.userid,name,car_type,init_date);
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtName.getWindowToken(), 0);
 		this.get(url, 1);
