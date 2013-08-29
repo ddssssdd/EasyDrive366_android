@@ -61,4 +61,5 @@
   	<string name="input_activate_code">请输入激活码：</string>
   	<string name="activate_code_example"></string>
   	<string name="next">下一步</string>
+  	<string name="username_hint">手机号或者车牌号</string>
 </resources>

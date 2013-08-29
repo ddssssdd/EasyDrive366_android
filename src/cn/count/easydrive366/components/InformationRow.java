@@ -23,6 +23,9 @@ public class InformationRow extends LinearLayout {
 		
 		
 	}
+	public void setBeginBackend(){
+		this.setBackgroundResource(R.drawable.signup_hit_input1);
+	}
 	public void setEndBackend(){
 		this.setBackgroundResource(R.drawable.signup_hit_input6);
 	}

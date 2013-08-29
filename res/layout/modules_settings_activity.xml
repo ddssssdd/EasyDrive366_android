@@ -244,7 +244,7 @@
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:gravity="center"
-                android:text="账号认证" >
+                android:text="我的卡券" >
             </TextView>
 
             <TextView
@@ -253,8 +253,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:layout_marginRight="20dp"
-                android:textSize="16dp"
-                android:text="@string/has_no_activate_code" >
+                android:textSize="20dp"
+                android:text=">" >
             </TextView>
            
         </TableRow>

@@ -26,7 +26,8 @@
             <EditText
                 android:id="@+id/edt_signup_username"
                 style="@style/edittext"
-                android:inputType="textNoSuggestions" >
+                android:inputType="textNoSuggestions"
+                android:hint="@string/username_hint" >
             </EditText>
 
             <TextView

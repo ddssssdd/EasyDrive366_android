@@ -14,6 +14,7 @@
         android:gravity="right"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
+        android:layout_marginRight="10dp"
         android:textSize="12sp" />
 
     <TextView
@@ -21,6 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="left"
+        android:layout_marginLeft="10dp"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:textSize="12sp" />

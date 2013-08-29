@@ -234,34 +234,7 @@
                 android:text="" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:background="@drawable/signup_hit_input2" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:gravity="right"
-                android:text="品牌：" />
-
-            <TextView
-                android:id="@+id/txt_carregistration_brand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:hint="" >
-            </TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.0"
-                android:text="" />
-        </TableRow>
+        
 
         <TableRow
             android:layout_width="match_parent"
@@ -275,7 +248,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.0"
                 android:gravity="right"
-                android:text="型号：" />
+                android:text="品牌型号：" />
 
             <TextView
                 android:id="@+id/txt_carregistration_model"

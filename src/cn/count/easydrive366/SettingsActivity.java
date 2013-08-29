@@ -127,7 +127,7 @@ public class SettingsActivity extends BaseHttpActivity {
 		txtBind = (TextView)findViewById(R.id.txt_bindCellphone);
 		txtVersion = (TextView)findViewById(R.id.txt_version);
 		txtCellphone = (TextView)findViewById(R.id.img_choose_cellphone);
-		txtActivate_code = (TextView)findViewById(R.id.txt_activate_code);
+		//txtActivate_code = (TextView)findViewById(R.id.txt_activate_code);
 		txtVersion.setText(String.format("V%s >", AppSettings.version));
 		
 		this.logoutButton = (Button)findViewById(R.id.btn_logout);
@@ -158,12 +158,12 @@ public class SettingsActivity extends BaseHttpActivity {
 				try{
 					JSONObject json = (JSONObject)result;
 					_cellphone= json.getJSONObject("result").getString("phone");
-					_number = json.getJSONObject("result").getString("number");
-					_code = json.getJSONObject("result").getString("code");
-					_activate_date = json.getJSONObject("result").getString("activate_date");
-					_valid_date = json.getJSONObject("result").getString("valid_date");
-					_contents = json.getJSONObject("result").getJSONArray("contents");
-					_isActivate = !_code.isEmpty();
+					//_number = json.getJSONObject("result").getString("number");
+					//_code = json.getJSONObject("result").getString("code");
+					//_activate_date = json.getJSONObject("result").getString("activate_date");
+					//_valid_date = json.getJSONObject("result").getString("valid_date");
+					//_contents = json.getJSONObject("result").getJSONArray("contents");
+					//_isActivate = !_code.isEmpty();
 					if (json.getJSONObject("result").getString("status").equals("02")){
 						this.runOnUiThread(new Runnable(){
 
@@ -180,7 +180,7 @@ public class SettingsActivity extends BaseHttpActivity {
 
 							@Override
 							public void run() {
-								txtActivate_code.setText(getResources().getString(R.string.has_activate_code));
+								//txtActivate_code.setText(getResources().getString(R.string.has_activate_code));
 							}});
 					}
 				}catch(Exception e){
@@ -195,7 +195,7 @@ public class SettingsActivity extends BaseHttpActivity {
 
 						@Override
 						public void run() {
-							txtActivate_code.setText(getResources().getString(R.string.has_activate_code));
+							//txtActivate_code.setText(getResources().getString(R.string.has_activate_code));
 						}});
 					
 					this._isActivate = true;
@@ -243,6 +243,10 @@ public class SettingsActivity extends BaseHttpActivity {
 	}
 	private void check_activate_code()
 	{
+		Intent intent = new Intent(this,ActivateCodeActivity.class);
+	
+		startActivity(intent);
+	/*
 		Intent intent;
 		if (this._isActivate){
 			intent = new Intent(this,ActivateCodeShowActivity.class);
@@ -256,6 +260,7 @@ public class SettingsActivity extends BaseHttpActivity {
 			intent = new Intent(this,ActivateCodeActivity.class);
 		}
 		startActivity(intent);
+		*/
 	}
 	private void setup_maintain(final JSONObject result){
 		Intent intent =new Intent(this,MaintainEditActivity.class);

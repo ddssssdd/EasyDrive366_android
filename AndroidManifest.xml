@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.count.easydrive366"
-    android:versionCode="4"
-    android:versionName="1.04" >
+    android:versionCode="5"
+    android:versionName="1.05" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -48,7 +48,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="cn.count.easydrive366.HomeActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" >
+            android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -154,7 +154,8 @@
         </activity>
         <activity android:name="cn.count.easydrive366.InformationDetailActivity" >
         </activity>
-        <activity android:name="cn.count.easydrive366.ActivateCodeActivity" >
+        <activity android:name="cn.count.easydrive366.ActivateCodeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
         </activity>
         <activity android:name="cn.count.easydrive366.ActivateCodeShowActivity" >
         </activity>

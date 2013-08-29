@@ -46,7 +46,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 	protected void initView() {
 		try{
 			//check_date
-			((TextView)findViewById(R.id.txt_carregistration_brand)).setText(_result.getString("brand"));
+			//((TextView)findViewById(R.id.txt_carregistration_brand)).setText(_result.getString("brand"));
 			((TextView)findViewById(R.id.txt_carregistration_check_date  )).setText(_result.getString("check_date"));
 			((TextView)findViewById(R.id.txt_carregistration_car_typename  )).setText(_result.getString("car_typename"));
 			((TextView)findViewById(R.id.txt_carregistration_engine_no  )).setText(_result.getString("engine_no"));
