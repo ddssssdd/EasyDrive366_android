@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.count.easydrive366.R;
+import cn.count.easydrive366.baidumap.ShowLocationActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.HomeMenu;
@@ -72,12 +73,17 @@ public class HomeMenuItem extends LinearLayout {
 		
 	}
 	private void makeCall(){
+		Intent intent = new Intent(_context,ShowLocationActivity.class);
+		_context.startActivity(intent);
+		
+		/*
 		if (_phone!=null && !_phone.equals("")){
 			Uri uri =Uri.parse(String.format("tel:%s",_phone)); 
 			
 			Intent it = new Intent(Intent.ACTION_VIEW,uri); 
 			_context.startActivity(it); 
 		}
+		*/
 	}
 	private void clickHandler(){
 		if ((_menuItem!=null) && (_menuItem.activityClass!=null)){

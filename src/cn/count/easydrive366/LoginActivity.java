@@ -166,8 +166,8 @@ public class LoginActivity extends BaseHttpActivity {
 	}
 	
 	private void chooseUser(){
-		
-		SharedPreferences pref = this.getPreferences(MODE_PRIVATE);
+		SharedPreferences pref = this.getSharedPreferences("Login_histroy",MODE_PRIVATE);
+		//SharedPreferences pref = this.getPreferences(MODE_PRIVATE);
 		String logins = pref.getString("logins", "");
 		if (logins.equals("")){
 			return;

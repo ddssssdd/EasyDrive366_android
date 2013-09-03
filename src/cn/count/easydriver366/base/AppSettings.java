@@ -119,6 +119,9 @@ public final class AppSettings {
 	static public String get_activate_code_list(){
 		return String.format("api/get_activate_code_list?userid=%d", userid);
 	}
+	static public String get_business(double latitude,double longitude,String typecode){
+		return String.format("api/get_position?userid=%d&x=%f&y=%f&type=%s", userid,latitude,longitude,typecode);
+	}
 	static public void login(JSONObject result,Context context) {
 		try {
 			

@@ -3,8 +3,12 @@ package cn.count.easydrive366.baidumap;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -19,29 +23,22 @@ import com.baidu.mapapi.map.MyLocationOverlay;
 import com.baidu.mapapi.map.OverlayItem;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import cn.count.easydrive366.R;
-import cn.count.easydriver366.base.AppSettings;
-import cn.count.easydriver366.base.AppTools;
+
+import cn.count.easydrive366.baidumap.ShowLocationActivity.ShopLocation;
+import cn.count.easydrive366.baidumap.ShowLocationActivity.ShopOverlay;
 import cn.count.easydriver366.base.BaseHttpActivity;
 
-public class ShowLocationActivity extends BaseHttpActivity {
+public class BaiduMapNavigationActivity extends BaseHttpActivity {
 	private BMapManager _mapManager = null;
 	private MapView _mapView = null;
 	public LocationClient mLocationClient = null;
 	private LocationData locData = null;
 	private MyLocationOverlay myLocationOverlay = null;
 	public BDLocationListener myListener = new MyLocationListener();
-	private boolean isRequest=false;
+	
 	private boolean isFirstLoc = false;
-	private List<ShopLocation> items= new ArrayList<ShopLocation>();
+	
 	private Button button =null;
 	private MapView.LayoutParams layoutParam = null;
 	@Override
@@ -52,9 +49,11 @@ public class ShowLocationActivity extends BaseHttpActivity {
 		_mapManager.init("30d50073a606ac3ce0b7f8a187e8248b", null);
 
 		setContentView(R.layout.modules_map_showlocation_activity);
-		this.setRightButtonInVisible();
+		
+		this.setRightButtonInVisible(); 
 		this.setupLeftButton();
 		this.setupPhoneButtonInVisible();
+		 
 
 		// init map step2
 		_mapView = (MapView) findViewById(R.id.bmapsView);
@@ -72,7 +71,7 @@ public class ShowLocationActivity extends BaseHttpActivity {
 
 			@Override
 			public void onClick(View v) {
-				popupClick();
+				_mapView.removeView(button);
 				
 			}
 			
@@ -102,6 +101,21 @@ public class ShowLocationActivity extends BaseHttpActivity {
 			mLocationClient.requestLocation();
 		else 
 			Log.d("LocSDK3", "locClient is null or not started");
+		addOverlay();
+	}
+	private void addOverlay()
+	{
+		ShopOverlay overlay = new ShopOverlay(this.getResources().getDrawable(R.drawable.icon_gcoding),_mapView);
+		String name = getIntent().getStringExtra("name");
+		String description = getIntent().getStringExtra("description");
+		double latitude = getIntent().getDoubleExtra("latitude", 0);
+		double longtitude = getIntent().getDoubleExtra("longtitude", 0);
+		GeoPoint p = new GeoPoint((int)(latitude*1e6),(int)(longtitude*1e6));
+		OverlayItem item = new OverlayItem(p,name,description);
+		overlay.addItem(item);
+		_mapView.getOverlays().add(overlay);
+		_mapView.refresh();
+		
 	}
 
 	@Override
@@ -131,63 +145,52 @@ public class ShowLocationActivity extends BaseHttpActivity {
 		}
 		super.onResume();
 	}
-	private void popupClick(){
-		_mapView.removeView(button);
-		int index = (Integer) button.getTag();
-		ShopLocation sl = items.get(index);
-		Intent intent =new Intent(this,ShowShopInformationActivity.class);
-		intent.putExtra("name", sl.name);
-		intent.putExtra("address", sl.address);
-		intent.putExtra("phone", sl.phone);
-		intent.putExtra("description", sl.description);
-		intent.putExtra("latitude", sl.latitude);
-		intent.putExtra("longtitude", sl.longtitude);
-		startActivity(intent);
-	}
-	private void getBusiness(LocationData locationData){
-		get(AppSettings.get_business(locationData.latitude, locationData.longitude, "09"),1);
-	}
-	@Override
-	public void processMessage(int msgType, final Object result) {
-		switch(msgType){
-		case 1:
-			if (AppTools.isSuccess(result)){
-				try{
-					items.clear();
-					JSONArray list = ((JSONObject)result).getJSONArray("result");
-					for(int index=0;index<list.length();index++){
-						JSONObject item = list.getJSONObject(index);
-						ShopLocation sl = new ShopLocation(item);
-						items.add(sl);
-					}
-					this.runOnUiThread(new Runnable(){
-
-						@Override
-						public void run() {
-							update_shops();
-							
-						}});
-				}catch(Exception e){
-					log(e);
-				}
-			}
-			break;
-		default:
-				break;
-		}
-	}
-	private void update_shops()
-	{
-		ShopOverlay overlay = new ShopOverlay(this.getResources().getDrawable(R.drawable.icon_gcoding),_mapView);
-		for(int i=0;i<items.size();i++){
-			ShopLocation sl = items.get(i);
-			OverlayItem item = new OverlayItem(sl.point(),sl.name,sl.description);
-			overlay.addItem(item);
-		}
-		_mapView.getOverlays().add(overlay);
-		_mapView.refresh();
-		
+	public class MyLocationListener implements BDLocationListener {
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			if (location == null)
+				return ;
+			
+			locData.latitude = location.getLatitude();
+			locData.longitude = location.getLongitude();
+			myLocationOverlay.setData(locData);
+			_mapView.refresh();
+			if (!isFirstLoc){
+				_mapView.getController().animateTo(new GeoPoint((int)(locData.latitude*1e6),(int)(locData.longitude*1e6)));
+				isFirstLoc = true;
 				
+			}
+			
+		}
+	
+		public void onReceivePoi(BDLocation poiLocation) {
+				if (poiLocation == null){
+					return ;
+				}
+				StringBuffer sb = new StringBuffer(256);
+				sb.append("Poi time : ");
+				sb.append(poiLocation.getTime());
+				sb.append("\nerror code : ");
+				sb.append(poiLocation.getLocType());
+				sb.append("\nlatitude : ");
+				sb.append(poiLocation.getLatitude());
+				sb.append("\nlontitude : ");
+				sb.append(poiLocation.getLongitude());
+				sb.append("\nradius : ");
+				sb.append(poiLocation.getRadius());
+				if (poiLocation.getLocType() == BDLocation.TypeNetWorkLocation){
+					sb.append("\naddr : ");
+					sb.append(poiLocation.getAddrStr());
+				} 
+				if(poiLocation.hasPoi()){
+					sb.append("\nPoi:");
+					sb.append(poiLocation.getPoi());
+				}else{				
+					sb.append("noPoi information");
+				}
+				Log.d("EasyDrive366", sb.toString());
+			}
+
 	}
 	public class ShopOverlay extends ItemizedOverlay<OverlayItem>{
 
@@ -228,101 +231,4 @@ public class ShowLocationActivity extends BaseHttpActivity {
 		
 		
 	}
-	public class ShopLocation
-	{
-		public String code;
-		public String name;
-		public String address;
-		public String phone;
-		public String description;
-		public double latitude;
-		public double longtitude;
-		public ShopLocation(JSONObject item){
-			try{
-				code = item.getString("code");
-				name = item.getString("name");
-				address = item.getString("address");
-				phone = item.getString("phone");
-				description = item.getString("description");
-				latitude = item.getDouble("y");
-				longtitude = item.getDouble("x");
-			}catch(Exception e){
-				log(e);
-			}
-		}
-		public GeoPoint point(){
-			return new GeoPoint((int)(latitude*1e6),(int)(longtitude*1e6));
-		}
-	}
-	public class MyLocationListener implements BDLocationListener {
-		@Override
-		public void onReceiveLocation(BDLocation location) {
-			if (location == null)
-				return ;
-			/*
-			StringBuffer sb = new StringBuffer(256);
-			sb.append("time : ");
-			sb.append(location.getTime());
-			sb.append("\nerror code : ");
-			sb.append(location.getLocType());
-			sb.append("\nlatitude : ");
-			sb.append(location.getLatitude());
-			sb.append("\nlontitude : ");
-			sb.append(location.getLongitude());
-			sb.append("\nradius : ");
-			sb.append(location.getRadius());
-			if (location.getLocType() == BDLocation.TypeGpsLocation){
-				sb.append("\nspeed : ");
-				sb.append(location.getSpeed());
-				sb.append("\nsatellite : ");
-				sb.append(location.getSatelliteNumber());
-			} else if (location.getLocType() == BDLocation.TypeNetWorkLocation){
-				sb.append("\naddr : ");
-				sb.append(location.getAddrStr());
-			} 
-	 
-			Log.d("EasyDrive366", sb.toString());
-			*/
-			locData.latitude = location.getLatitude();
-			locData.longitude = location.getLongitude();
-			myLocationOverlay.setData(locData);
-			_mapView.refresh();
-			if (!isFirstLoc){
-				_mapView.getController().animateTo(new GeoPoint((int)(locData.latitude*1e6),(int)(locData.longitude*1e6)));
-				isFirstLoc = true;
-				getBusiness(locData);
-			}
-			
-		}
-	
-		public void onReceivePoi(BDLocation poiLocation) {
-				if (poiLocation == null){
-					return ;
-				}
-				StringBuffer sb = new StringBuffer(256);
-				sb.append("Poi time : ");
-				sb.append(poiLocation.getTime());
-				sb.append("\nerror code : ");
-				sb.append(poiLocation.getLocType());
-				sb.append("\nlatitude : ");
-				sb.append(poiLocation.getLatitude());
-				sb.append("\nlontitude : ");
-				sb.append(poiLocation.getLongitude());
-				sb.append("\nradius : ");
-				sb.append(poiLocation.getRadius());
-				if (poiLocation.getLocType() == BDLocation.TypeNetWorkLocation){
-					sb.append("\naddr : ");
-					sb.append(poiLocation.getAddrStr());
-				} 
-				if(poiLocation.hasPoi()){
-					sb.append("\nPoi:");
-					sb.append(poiLocation.getPoi());
-				}else{				
-					sb.append("noPoi information");
-				}
-				Log.d("EasyDrive366", sb.toString());
-			}
-
-	}
 }
-

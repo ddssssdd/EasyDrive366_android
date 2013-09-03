@@ -171,6 +171,8 @@
         </activity>
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
 		</service>
+		<activity android:name="cn.count.easydrive366.baidumap.ShowShopInformationActivity" />
+		<activity android:name="cn.count.easydrive366.baidumap.BaiduMapNavigationActivity" />
     </application>
 
 </manifest>
