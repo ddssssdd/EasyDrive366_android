@@ -125,10 +125,17 @@ public class ShowLocationActivity extends BaseHttpActivity {
 
 	@Override
 	protected void onResume() {
-		_mapView.onResume();
-		if (_mapManager != null) {
-			_mapManager.start();
-		}
+		this.runOnUiThread(new Runnable(){
+
+			@Override
+			public void run() {
+				_mapView.onResume();
+				if (_mapManager != null) {
+					_mapManager.start();
+				}
+				
+			}});
+		
 		super.onResume();
 	}
 	private void popupClick(){
@@ -288,9 +295,12 @@ public class ShowLocationActivity extends BaseHttpActivity {
 			myLocationOverlay.setData(locData);
 			_mapView.refresh();
 			if (!isFirstLoc){
+				mLocationClient.stop();
+				mLocationClient.unRegisterLocationListener(myListener);
 				_mapView.getController().animateTo(new GeoPoint((int)(locData.latitude*1e6),(int)(locData.longitude*1e6)));
 				isFirstLoc = true;
 				getBusiness(locData);
+				
 			}
 			
 		}
