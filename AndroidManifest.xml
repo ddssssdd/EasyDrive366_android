@@ -173,6 +173,7 @@
 		</service>
 		<activity android:name="cn.count.easydrive366.baidumap.ShowShopInformationActivity" />
 		<activity android:name="cn.count.easydrive366.baidumap.BaiduMapNavigationActivity" />
+		<activity android:name="cn.count.easydrive366.photo.TakePhotoActivity" />
     </application>
 
 </manifest>

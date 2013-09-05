@@ -62,4 +62,9 @@
   	<string name="activate_code_example"></string>
   	<string name="next">下一步</string>
   	<string name="username_hint">手机号或者车牌号</string>
+  	<string name="take_photo">拍照</string>
+  	<string name="pick_photo">照片库</string>
+  	<string name="choose_photo">请选择来源</string>
+  	<string name="photoPickerNotFoundText">没有找到摄像头！</string>
+  	<string name="sysError">未知错误！</string>
 </resources>
