@@ -92,7 +92,7 @@ public class TakePhotoActivity extends BaseHttpActivity {
 		imageView = (ImageView) findViewById(R.id.image);
 
 		mLocationClient = new LocationClient(getApplicationContext()); // 声明LocationClient类
-		mLocationClient.setAK("30d50073a606ac3ce0b7f8a187e8248b");
+		mLocationClient.setAK(AppSettings.BAIDUMAPKEY);
 		mLocationClient.registerLocationListener(myListener); // 注册监听函数
 		LocationClientOption option = new LocationClientOption();
 		option.setOpenGps(true);

@@ -42,6 +42,7 @@ import cn.count.easydrive366.R;
 
 import cn.count.easydrive366.baidumap.ShowLocationActivity.ShopLocation;
 import cn.count.easydrive366.baidumap.ShowLocationActivity.ShopOverlay;
+import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 
 public class BaiduMapNavigationActivity extends BaseHttpActivity {
@@ -67,7 +68,7 @@ public class BaiduMapNavigationActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		// init map step1
 		_mapManager = new BMapManager(getApplication());
-		_mapManager.init("30d50073a606ac3ce0b7f8a187e8248b", null);
+		_mapManager.init(AppSettings.BAIDUMAPKEY, null);
 
 		setContentView(R.layout.modules_map_showlocation_activity);
 		
@@ -109,7 +110,7 @@ public class BaiduMapNavigationActivity extends BaseHttpActivity {
 		myLocationOverlay.enableCompass();
 		_mapView.refresh();
 		mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
-		mLocationClient.setAK("30d50073a606ac3ce0b7f8a187e8248b");
+		mLocationClient.setAK(AppSettings.BAIDUMAPKEY);
 		mLocationClient.registerLocationListener( myListener );    //注册监听函数
 		LocationClientOption option = new LocationClientOption();
 		option.setOpenGps(true);
