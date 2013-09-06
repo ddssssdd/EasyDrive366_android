@@ -5,6 +5,12 @@ import java.io.File;
 
 import org.json.JSONObject;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.platform.comapi.basestruct.GeoPoint;
+
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -28,10 +34,13 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 import cn.count.easydrive366.R;
+import cn.count.easydrive366.baidumap.ShowLocationActivity.MyLocationListener;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 
 public class TakePhotoActivity extends BaseHttpActivity {
+	private static int WIDTH = 768;
+	private static int HEIGHT = 1024;
 	protected DisplayMetrics dm;
 	protected static final String imgPath = Environment
 			.getExternalStorageDirectory().getPath() + "/DCIM/Camera";
@@ -45,13 +54,15 @@ public class TakePhotoActivity extends BaseHttpActivity {
 	private ImageView imageView;
 	protected Bitmap photo;
 	private double latitude = 0;
-	private double longtitude = 0;
+	private double longitude = 0;
 	private String FileName;
 	private File mCurrentPhotoFile;// 照相机拍照得到的图片
 	private Bitmap bm;// 需要旋转的图片资源Bitmap
 	private float scaleW = 1;// 横向缩放系数，1表示不变
 	private float scaleH = 1;// 纵向缩放系数，1表示不变
 	private float curDegrees = 90;// 当前旋转度数
+	public LocationClient mLocationClient = null;
+	public BDLocationListener myListener = new MyLocationListener();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +90,26 @@ public class TakePhotoActivity extends BaseHttpActivity {
 		dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		imageView = (ImageView) findViewById(R.id.image);
+
+		mLocationClient = new LocationClient(getApplicationContext()); // 声明LocationClient类
+		mLocationClient.setAK("30d50073a606ac3ce0b7f8a187e8248b");
+		mLocationClient.registerLocationListener(myListener); // 注册监听函数
+		LocationClientOption option = new LocationClientOption();
+		option.setOpenGps(true);
+		option.setAddrType("all");// 返回的定位结果包含地址信息
+		option.setCoorType("bd09ll");// 返回的定位结果是百度经纬度,默认值gcj02
+		option.setScanSpan(5000);// 设置发起定位请求的间隔时间为5000ms
+		option.disableCache(true);// 禁止启用缓存定位
+		option.setPoiNumber(5); // 最多返回POI个数
+		option.setPoiDistance(1000); // poi查询距离
+		option.setPoiExtraInfo(true); // 是否需要POI的电话和地址等详细信息
+		mLocationClient.setLocOption(option);
+		mLocationClient.start();
+		if (mLocationClient != null && mLocationClient.isStarted())
+			mLocationClient.requestLocation();
+		else
+			Log.d("LocSDK4", "locClient is null or not started");
+
 	}
 
 	@Override
@@ -137,7 +168,7 @@ public class TakePhotoActivity extends BaseHttpActivity {
 								doTakePhoto();// 用户点击了从照相机获取
 							} else {
 								showMessage(
-										"Your device does not have a SD card. Please check your device.",
+										"你的手机没有存储卡，无法拍照！",
 										null);
 							}
 							break;
@@ -229,7 +260,7 @@ public class TakePhotoActivity extends BaseHttpActivity {
 		if (resultCode != RESULT_OK)
 			return;
 		destoryBimap(photo);
-		String filename=null;
+		String filename = null;
 		switch (requestCode) {
 		case PHOTO_PICKED_WITH_DATA: {// 调用Gallery返回的
 			/*
@@ -240,9 +271,9 @@ public class TakePhotoActivity extends BaseHttpActivity {
 			 * photo.getHeight(),matrix, true); }
 			 */
 			Uri uri = data.getData();
-			filename = getPath(uri);			
-			imageView.setImageURI(uri);
-
+			filename = getPath(uri);
+			// imageView.setImageURI(uri);
+			imageView.setImageBitmap(getSmallBitmap(filename));
 			break;
 		}
 		case CAMERA_WITH_DATA: {// 照相机程序返回的,再次调用图片剪辑程序去修剪图片
@@ -252,18 +283,17 @@ public class TakePhotoActivity extends BaseHttpActivity {
 			 */
 			File f = new File(PHOTO_DIR, FileName);
 			filename = f.getAbsolutePath();
-			if (f.exists()) {
-				// 此外，你还可以使用BitmapFactory的decodeResource方法获得一个Bitmap对象
-				// 使用decodeResource方法时传入的是一个 drawable的资源id
-				// 还有一个decodeStream方法，这个方法传入一个图片文件的输入流即可！
-				bm = BitmapFactory.decodeFile(filename);
-				// 设置ImageView的显示图片
-				// imageViewPhoto.setImageBitmap(bm);
-			} else {
-				Toast.makeText(this, "文件不存在！", Toast.LENGTH_SHORT).show();
-				return;
-			}
-			imageView.setImageBitmap(bm);
+			/*
+			 * if (f.exists()) { //
+			 * 此外，你还可以使用BitmapFactory的decodeResource方法获得一个Bitmap对象 //
+			 * 使用decodeResource方法时传入的是一个 drawable的资源id //
+			 * 还有一个decodeStream方法，这个方法传入一个图片文件的输入流即可！ bm =
+			 * BitmapFactory.decodeFile(filename); // 设置ImageView的显示图片 //
+			 * imageViewPhoto.setImageBitmap(bm); } else { Toast.makeText(this,
+			 * "文件不存在！", Toast.LENGTH_SHORT).show(); return; }
+			 */
+
+			imageView.setImageBitmap(getSmallBitmap(filename));
 			/*
 			 * int bmpW = bm .getWidth(); int bmpH = bm .getHeight(); //
 			 * 设置图片放大比例 double scale = 0.2; // 计算出这次要放大的比例 scaleW = ( float)
@@ -275,11 +305,11 @@ public class TakePhotoActivity extends BaseHttpActivity {
 			 * 
 			 * imageView.setImageBitmap(resizeBmp);
 			 */
-			
+
 			break;
 		}
 		}
-		//photo = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+		// photo = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
 		sendImageToServer(filename);
 	}
 
@@ -289,9 +319,9 @@ public class TakePhotoActivity extends BaseHttpActivity {
 		photo.compress(Bitmap.CompressFormat.JPEG, 40, baos);
 		try {
 			String actionUrl = String.format(
-					"%supload/do_upload?userid=%d&x=%f&y=%f&from=android",
+					"%supload/do_upload?userid=%d&y=%f&x=%f&from=android",
 					AppSettings.ServerUrl, AppSettings.userid, this.latitude,
-					this.longtitude);
+					this.longitude);
 			String result = getHttpClient().uploadFile(actionUrl, "userfile",
 					baos.toByteArray());
 			JSONObject json = new JSONObject(result);
@@ -300,33 +330,58 @@ public class TakePhotoActivity extends BaseHttpActivity {
 
 		}
 	}
-	//计算图片的缩放值
-	public static int calculateInSampleSize(BitmapFactory.Options options,int reqWidth, int reqHeight) {
-	    final int height = options.outHeight;
-	    final int width = options.outWidth;
-	    int inSampleSize = 1;
 
-	    if (height > reqHeight || width > reqWidth) {
-	             final int heightRatio = Math.round((float) height/ (float) reqHeight);
-	             final int widthRatio = Math.round((float) width / (float) reqWidth);
-	             inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-	    }
-	        return inSampleSize;
+	// 计算图片的缩放值
+	public static int calculateInSampleSize(BitmapFactory.Options options,
+			int reqWidth, int reqHeight) {
+		final int height = options.outHeight;
+		final int width = options.outWidth;
+		int inSampleSize = 1;
+
+		if (height > reqHeight || width > reqWidth) {
+			final int heightRatio = Math.round((float) height
+					/ (float) reqHeight);
+			final int widthRatio = Math.round((float) width / (float) reqWidth);
+			inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+		}
+		return inSampleSize;
 	}
-	
+
 	// 根据路径获得图片并压缩，返回bitmap用于显示
 	public static Bitmap getSmallBitmap(String filePath) {
-	        final BitmapFactory.Options options = new BitmapFactory.Options();
-	        options.inJustDecodeBounds = true;
-	        BitmapFactory.decodeFile(filePath, options);
+		final BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(filePath, options);
 
-	        // Calculate inSampleSize
-	    options.inSampleSize = calculateInSampleSize(options, 480, 800);
+		// Calculate inSampleSize
+		options.inSampleSize = calculateInSampleSize(options, WIDTH, HEIGHT);
 
-	        // Decode bitmap with inSampleSize set
-	    options.inJustDecodeBounds = false;
+		// Decode bitmap with inSampleSize set
+		options.inJustDecodeBounds = false;
 
-	    return BitmapFactory.decodeFile(filePath, options);
-	    }
-	
+		return BitmapFactory.decodeFile(filePath, options);
+	}
+
+	public class MyLocationListener implements BDLocationListener {
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			if (location == null)
+				return;
+
+			latitude = location.getLatitude();
+			longitude = location.getLongitude();
+
+			mLocationClient.stop();
+			mLocationClient.unRegisterLocationListener(myListener);
+
+		}
+
+		public void onReceivePoi(BDLocation poiLocation) {
+			if (poiLocation == null) {
+				return;
+			}
+		}
+
+	}
+
 }
