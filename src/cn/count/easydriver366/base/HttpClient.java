@@ -176,7 +176,7 @@ public class HttpClient {
 		return b.toString().trim();
 	}
 	public String uploadFile(String actionUrl, String name, byte[] bytes) {
-		String newName = "image.png";
+		String newName = "upload.jpg";
 		String end = "\r\n";
 		String twoHyphens = "--";
 		String boundary = "*****";

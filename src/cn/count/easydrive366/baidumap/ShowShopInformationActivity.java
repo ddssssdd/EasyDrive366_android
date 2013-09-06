@@ -56,5 +56,6 @@ public class ShowShopInformationActivity extends BaseHttpActivity {
 		intent.putExtra("latitude", latitude);
 		intent.putExtra("longtitude", longtitude);
 		startActivity(intent);
+		finish();
 	}
 }

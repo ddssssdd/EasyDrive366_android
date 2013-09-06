@@ -150,6 +150,7 @@ public class ShowLocationActivity extends BaseHttpActivity {
 		intent.putExtra("latitude", sl.latitude);
 		intent.putExtra("longtitude", sl.longtitude);
 		startActivity(intent);
+		finish();
 	}
 	private void getBusiness(LocationData locationData){
 		get(AppSettings.get_business(locationData.latitude, locationData.longitude, "09"),1);

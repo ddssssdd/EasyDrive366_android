@@ -2,8 +2,10 @@ package cn.count.easydrive366.components;
 
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -12,9 +14,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import cn.count.easydrive366.R;
@@ -75,10 +80,6 @@ public class HomeMenuItem extends LinearLayout {
 	}
 	private void makeCall(){
 		
-		//Intent intent = new Intent(_context,ShowLocationActivity.class);
-		Intent intent = new Intent(_context,TakePhotoActivity.class);
-		_context.startActivity(intent);
-		
 		/*
 		if (_phone!=null && !_phone.equals("")){
 			Uri uri =Uri.parse(String.format("tel:%s",_phone)); 
@@ -87,6 +88,63 @@ public class HomeMenuItem extends LinearLayout {
 			_context.startActivity(it); 
 		}
 		*/
+		chooseActions();
+	}
+	private void chooseActions()
+	{
+		
+
+		// Wrap our context to inflate list items using correct theme
+		final Context dialogContext = new ContextThemeWrapper(_context,
+				android.R.style.Theme_Light);
+		String cancel = "取消";
+		String[] choices;
+		choices = new String[3];
+		choices[0] = "打电话："+this._phone;
+		choices[1] = "地图";
+		choices[2] = "拍照上传";
+		final ListAdapter adapter = new ArrayAdapter<String>(dialogContext,
+				android.R.layout.simple_list_item_1, choices);
+
+		final AlertDialog.Builder builder = new AlertDialog.Builder(
+				dialogContext);
+		builder.setTitle("请选择：");
+		builder.setSingleChoiceItems(adapter, -1,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						switch (which) {
+						case 0: 
+							if (_phone!=null && !_phone.equals("")){
+								Uri uri =Uri.parse(String.format("tel:%s",_phone)); 
+								
+								Intent it = new Intent(Intent.ACTION_VIEW,uri); 
+								_context.startActivity(it); 
+							}
+							break;
+						case 1:
+							Intent intent = new Intent(_context,ShowLocationActivity.class);
+							
+							_context.startActivity(intent);
+							break;
+						case 2:
+							
+							Intent intent2 = new Intent(_context,TakePhotoActivity.class);
+							_context.startActivity(intent2);
+							break;
+						}
+					}
+				});
+		builder.setNegativeButton(cancel,
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+
+				});
+		builder.create().show();
 		
 	}
 	private void clickHandler(){
