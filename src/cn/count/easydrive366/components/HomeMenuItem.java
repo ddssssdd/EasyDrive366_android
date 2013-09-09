@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.baidumap.ShowLocationActivity;
+import cn.count.easydrive366.barcode.ShowBarcodeActivity;
 import cn.count.easydrive366.photo.TakePhotoActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
@@ -99,10 +100,11 @@ public class HomeMenuItem extends LinearLayout {
 				android.R.style.Theme_Light);
 		String cancel = "取消";
 		String[] choices;
-		choices = new String[3];
+		choices = new String[4];
 		choices[0] = "打电话："+this._phone;
 		choices[1] = "地图";
 		choices[2] = "拍照上传";
+		choices[3] = "二维码演示";
 		final ListAdapter adapter = new ArrayAdapter<String>(dialogContext,
 				android.R.layout.simple_list_item_1, choices);
 
@@ -131,6 +133,10 @@ public class HomeMenuItem extends LinearLayout {
 							
 							Intent intent2 = new Intent(_context,TakePhotoActivity.class);
 							_context.startActivity(intent2);
+							break;
+						case 3:
+							Intent intent3 = new Intent(_context,ShowBarcodeActivity.class);
+							_context.startActivity(intent3);
 							break;
 						}
 					}

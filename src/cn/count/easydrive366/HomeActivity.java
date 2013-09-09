@@ -94,7 +94,7 @@ public class HomeActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				test();
+				logoClicked();
 				
 			}
 			
@@ -282,15 +282,7 @@ public class HomeActivity extends Activity {
 		((Button)findViewById(R.id.title_set_bn)).setText(rightButtonTitle);
 		new GetDataTask().execute();
 		
-	    IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-	    if (result != null) {
-	      String contents = result.getContents();
-	      if (contents != null) {
-	        showDialog(R.string.result_succeeded, result.toString());
-	      } else {
-	        showDialog(R.string.result_failed, getString(R.string.result_failed_why));
-	      }
-	    }
+	   
 	  }
 	private void showDialog(int title, CharSequence message) {
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -299,36 +291,9 @@ public class HomeActivity extends Activity {
 	    builder.setPositiveButton("OK", null);
 	    builder.show();
 	  }
-	private void test()
+	
+	private void logoClicked()
 	{
-				//map test
-				/*
-				Intent intent = new Intent(this,ShowLocationActivity.class);
-				startActivity(intent);
-				*/
-				//scan test;
-				/*
-				IntentIntegrator integrator = new IntentIntegrator(this);
-			    integrator.initiateScan();
-			    */
-			    
-				// show scan code test
-				/*
-				encodeBarcode("TEXT_TYPE", "i am super fool.");
-				*/
-				/*
-				Intent intent = new Intent(this,ShowBarcodeActivity.class);
-				startActivity(intent);
-				*/
 		
-	}
-	private void encodeBarcode(CharSequence type, CharSequence data) {
-	    IntentIntegrator integrator = new IntentIntegrator(this);
-	    integrator.shareText(data, type);
-	 }
-	private void encodeBarcode(CharSequence type, Bundle data) {
-		    IntentIntegrator integrator = new IntentIntegrator(this);
-		    integrator.addExtra("ENCODE_DATA", data);
-		    integrator.shareText(data.toString(), type); // data.toString() isn't used
 	}
 }

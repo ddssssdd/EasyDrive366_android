@@ -32,6 +32,10 @@ public class ShowBarcodeActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.modules_barcode_showbarcode);
+		this.setupLeftButton();
+		this.setupPhoneButtonInVisible();
+		this.setRightButtonInVisible();
+		
 		initView();
 		setListener();
 	}
