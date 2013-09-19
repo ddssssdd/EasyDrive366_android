@@ -20,6 +20,7 @@ public class Step1Activity extends BaseHttpActivity {
 	
 	private EditText edtCar_no;
 	private EditText edtId_no;
+	private EditText edt_vin;
 	
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
@@ -33,6 +34,7 @@ public class Step1Activity extends BaseHttpActivity {
 		btnNext =(Button)findViewById(R.id.btn_ok);
 		edtCar_no = (EditText)findViewById(R.id.edt_car_no);
 		edtId_no = (EditText)findViewById(R.id.edt_id_no);
+		edt_vin = (EditText)findViewById(R.id.edt_vin);
 		edtCar_no.setText("鲁");
 		btnNext.setOnClickListener(new OnClickListener(){
 
@@ -41,24 +43,43 @@ public class Step1Activity extends BaseHttpActivity {
 				nextStep();
 				
 			}});
+		this.get(String.format("api/wizardstep1?userid=%d",AppSettings.userid), 2);
 	}
 	
 	@Override
 	public void processMessage(int msgType, final Object result) {
-		super.processMessage(msgType, result);
+		
 		if (this.isSuccess(result)){
-			try{
-				Intent intent =new Intent(this,Step2Activity.class);
-				JSONObject json = (JSONObject)result;
-				AppSettings.userid = json.getJSONObject("result").getInt("userid");
-				intent.putExtra("vin", json.getJSONObject("result").getString("vin"));
-				intent.putExtra("engine_no", json.getJSONObject("result").getString("engine_no"));
-				intent.putExtra("registration_date", json.getJSONObject("result").getString("registration_date"));
-				startActivity(intent);
-				finish();
-			}catch(Exception e){
-				log(e);
+			if (msgType==1){
+				try{
+					Intent intent =new Intent(this,Step2Activity.class);
+					JSONObject json = (JSONObject)result;
+					AppSettings.userid = json.getJSONObject("result").getInt("userid");
+					intent.putExtra("vin", json.getJSONObject("result").getString("vin"));
+					intent.putExtra("engine_no", json.getJSONObject("result").getString("engine_no"));
+					intent.putExtra("registration_date", json.getJSONObject("result").getString("registration_date"));
+					startActivity(intent);
+					finish();
+				}catch(Exception e){
+					log(e);
+				}
 			}
+			if (msgType==2){
+				final JSONObject json = (JSONObject)result;
+				this.runOnUiThread(new Runnable(){
+
+					@Override
+					public void run() {
+						try{
+							edtCar_no.setText(json.getJSONObject("result").getString("car_id"));
+							edtId_no.setText(json.getJSONObject("result").getString("license_id"));
+							edt_vin.setText(json.getJSONObject("result").getString("vin"));
+						}catch(Exception e){
+							log(e);
+						}
+					}});
+			}
+			
 			
 			
 		}else{
@@ -76,7 +97,7 @@ public class Step1Activity extends BaseHttpActivity {
 	private void nextStep(){
 		String car_no= edtCar_no.getText().toString();
 		String id_no = edtId_no.getText().toString();
-		
+		String vin = edt_vin.getText().toString();
 		if (car_no.equals("")){
 			this.showMessage("请输入车牌号码！", null);
 			return;
@@ -89,7 +110,7 @@ public class Step1Activity extends BaseHttpActivity {
 			}
 		}
 		
-		String url =String.format("api/wizardstep1?userid=%d&car_id=%s&license_id=%s",AppSettings.userid,car_no.toUpperCase(),id_no);
+		String url =String.format("api/wizardstep1?userid=%d&car_id=%s&license_id=%s&vin=%s",AppSettings.userid,car_no.toUpperCase(),id_no,vin.toUpperCase());
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtCar_no.getWindowToken(), 0);
 		this.get(url, 1);

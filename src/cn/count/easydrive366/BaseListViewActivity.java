@@ -146,7 +146,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 //		convertView.setBackgroundDrawable(R.drawable.corner_list_item);
 		convertView.setBackgroundResource(R.drawable.bk2);
 	}
-	class ViewHolder{
+	public class ViewHolder{
 		
 		public TextView title;
 		public TextView detail;

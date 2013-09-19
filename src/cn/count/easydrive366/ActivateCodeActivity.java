@@ -32,6 +32,7 @@ public class ActivateCodeActivity extends BaseHttpActivity {
 	private JSONArray _contents;
 	private TableLayout _table;
 	private List<List<CodeInfo>> items;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);

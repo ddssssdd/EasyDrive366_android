@@ -44,6 +44,7 @@ public class ShowLocationActivity extends BaseHttpActivity {
 	private List<ShopLocation> items= new ArrayList<ShopLocation>();
 	private Button button =null;
 	private MapView.LayoutParams layoutParam = null;
+	private boolean _isFull;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,10 +53,12 @@ public class ShowLocationActivity extends BaseHttpActivity {
 		_mapManager.init(AppSettings.BAIDUMAPKEY, null);
 
 		setContentView(R.layout.modules_map_showlocation_activity);
-		this.setRightButtonInVisible();
 		this.setupLeftButton();
 		this.setupPhoneButtonInVisible();
-
+		
+		
+		
+		
 		// init map step2
 		_mapView = (MapView) findViewById(R.id.bmapsView);
 		_mapView.setBuiltInZoomControls(true);
@@ -102,7 +105,32 @@ public class ShowLocationActivity extends BaseHttpActivity {
 			mLocationClient.requestLocation();
 		else 
 			Log.d("LocSDK3", "locClient is null or not started");
+		
+		_isFull = this.getIntent().getBooleanExtra("isFull", true);
+		if (_isFull){
+			this.setupRightButtonWithText("搜索");
+		}else{
+			this.setRightButtonInVisible();
+			String json = getIntent().getStringExtra("shoplist");
+			try{
+				this.processMessage(1, new JSONObject(json));
+			}catch(Exception e){
+				log(e);
+			}
+		}
 	}
+	
+	
+
+	@Override
+	protected void onRightButtonPress() {
+		//goto search
+		Intent intent = new Intent(this,SearchShopActivity.class);
+		startActivity(intent);
+		finish();
+	}
+
+
 
 	@Override
 	protected void onDestroy() {
@@ -155,6 +183,7 @@ public class ShowLocationActivity extends BaseHttpActivity {
 	private void getBusiness(LocationData locationData){
 		get(AppSettings.get_business(locationData.latitude, locationData.longitude, "09"),1);
 	}
+	
 	@Override
 	public void processMessage(int msgType, final Object result) {
 		switch(msgType){
@@ -191,6 +220,9 @@ public class ShowLocationActivity extends BaseHttpActivity {
 			ShopLocation sl = items.get(i);
 			OverlayItem item = new OverlayItem(sl.point(),sl.name,sl.description);
 			overlay.addItem(item);
+			if (!_isFull && i==0){
+				_mapView.getController().setCenter(sl.point());
+			}
 		}
 		_mapView.getOverlays().add(overlay);
 		_mapView.refresh();
@@ -298,9 +330,11 @@ public class ShowLocationActivity extends BaseHttpActivity {
 			if (!isFirstLoc){
 				mLocationClient.stop();
 				mLocationClient.unRegisterLocationListener(myListener);
-				_mapView.getController().animateTo(new GeoPoint((int)(locData.latitude*1e6),(int)(locData.longitude*1e6)));
+				if (_isFull){
+					_mapView.getController().animateTo(new GeoPoint((int)(locData.latitude*1e6),(int)(locData.longitude*1e6)));					
+					getBusiness(locData);	
+				}
 				isFirstLoc = true;
-				getBusiness(locData);
 				
 			}
 			

@@ -99,7 +99,20 @@ public class HomeActivity extends Activity {
 			}
 			
 		});
-		
+		findViewById(R.id.btn_map).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				gotoMap();
+				
+			}});
+		findViewById(R.id.btn_baike).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				gotoBaike();
+				
+			}});
 		mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_refresh_scrollview);
 		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 
@@ -294,6 +307,14 @@ public class HomeActivity extends Activity {
 	
 	private void logoClicked()
 	{
+		
+	}
+	private void gotoMap(){
+		Intent intent = new Intent(this,ShowLocationActivity.class);
+		
+		startActivity(intent);
+	}
+	private void gotoBaike(){
 		
 	}
 }
