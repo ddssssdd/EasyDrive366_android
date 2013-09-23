@@ -106,13 +106,13 @@ public class HomeActivity extends Activity {
 				gotoMap();
 				
 			}});
-		findViewById(R.id.btn_baike).setOnClickListener(new OnClickListener(){
+		/*findViewById(R.id.btn_baike).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
 				gotoBaike();
 				
-			}});
+			}});*/
 		mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_refresh_scrollview);
 		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 

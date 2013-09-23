@@ -37,9 +37,9 @@ public class SearchResultActivity extends BaseListViewActivity {
 		//this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.listitem_searchresult;
 		
-		
-		reload_data();
 		mListView = (PullToRefreshListView) findViewById(this.resource_listview_id);
+		reload_data();
+		
 	}
 	@Override
 	protected void reload_data(){
@@ -66,7 +66,12 @@ public class SearchResultActivity extends BaseListViewActivity {
 	
 	@Override
 	protected void onListItemClick(final View view,final long index){
-		
+		//Map<String,Object> map = _list.get((int) index);
+		Intent intent = new Intent(this,ShowLocationActivity.class);
+		intent.putExtra("isFull", false);
+		intent.putExtra("index", (int)index);
+		intent.putExtra("shoplist",_result);
+		startActivity(intent);
 		
 	}
 	@Override

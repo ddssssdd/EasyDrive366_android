@@ -45,6 +45,7 @@ public class ShowLocationActivity extends BaseHttpActivity {
 	private Button button =null;
 	private MapView.LayoutParams layoutParam = null;
 	private boolean _isFull;
+	private int _index=-1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -112,6 +113,7 @@ public class ShowLocationActivity extends BaseHttpActivity {
 		}else{
 			this.setRightButtonInVisible();
 			String json = getIntent().getStringExtra("shoplist");
+			_index = getIntent().getIntExtra("index", -1);
 			try{
 				this.processMessage(1, new JSONObject(json));
 			}catch(Exception e){
@@ -217,11 +219,38 @@ public class ShowLocationActivity extends BaseHttpActivity {
 	{
 		ShopOverlay overlay = new ShopOverlay(this.getResources().getDrawable(R.drawable.icon_gcoding),_mapView);
 		for(int i=0;i<items.size();i++){
-			ShopLocation sl = items.get(i);
-			OverlayItem item = new OverlayItem(sl.point(),sl.name,sl.description);
-			overlay.addItem(item);
-			if (!_isFull && i==0){
-				_mapView.getController().setCenter(sl.point());
+			if (_index>-1){
+				if (i==_index){
+					ShopLocation sl = items.get(i);
+					OverlayItem item = new OverlayItem(sl.point(),sl.name,sl.description);
+					overlay.addItem(item);
+					_mapView.getController().setCenter(sl.point());	
+					_mapView.removeView(button);
+					button.setText(item.getTitle()+"\r\n"+item.getSnippet());
+					button.setTag(_index);
+					GeoPoint pt = item.getPoint();//new GeoPoint ((int)(mLat5*1E6),(int)(mLon5*1E6));
+			         //创建布局参数
+			         layoutParam  = new MapView.LayoutParams(
+			               //控件宽,继承自ViewGroup.LayoutParams
+			               MapView.LayoutParams.WRAP_CONTENT,
+			                //控件高,继承自ViewGroup.LayoutParams
+			               MapView.LayoutParams.WRAP_CONTENT,
+			               //使控件固定在某个地理位置
+			                pt,
+			                0,
+			                -64,
+			               //控件对齐方式
+			                 MapView.LayoutParams.BOTTOM_CENTER);
+			         //添加View到MapView中
+			         _mapView.addView(button,layoutParam);
+				}
+			}else{
+				ShopLocation sl = items.get(i);
+				OverlayItem item = new OverlayItem(sl.point(),sl.name,sl.description);
+				overlay.addItem(item);
+				if (!_isFull && i==0){
+					_mapView.getController().setCenter(sl.point());
+				}
 			}
 		}
 		_mapView.getOverlays().add(overlay);
@@ -251,7 +280,7 @@ public class ShowLocationActivity extends BaseHttpActivity {
 	               //使控件固定在某个地理位置
 	                pt,
 	                0,
-	                -32,
+	                -64,
 	               //控件对齐方式
 	                 MapView.LayoutParams.BOTTOM_CENTER);
 	         //添加View到MapView中
