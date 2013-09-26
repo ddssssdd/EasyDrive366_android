@@ -43,7 +43,7 @@ public class Step1Activity extends BaseHttpActivity {
 				nextStep();
 				
 			}});
-		this.get(String.format("api/wizardstep1?userid=%d",AppSettings.userid), 2);
+		this.get(String.format("api/wizardstep0?userid=%d",AppSettings.userid), 2);
 	}
 	
 	@Override

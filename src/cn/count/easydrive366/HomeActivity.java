@@ -4,13 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -20,25 +13,19 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
 
 import cn.count.easydrive366.baidumap.ShowLocationActivity;
-import cn.count.easydrive366.barcode.ShowBarcodeActivity;
 import cn.count.easydrive366.components.HomeMenuItem;
 import cn.count.easydriver366.base.AppSettings;
-import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.CheckUpdate;
 import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.base.Menus;
 import cn.count.easydriver366.service.BackendService;
-import cn.count.easydriver366.service.GetLatestReceiver;
 
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;

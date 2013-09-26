@@ -8,17 +8,17 @@
         android:id="@+id/txt_listitem_detail_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center|right"
+        android:gravity="center|left"
         android:layout_weight="1"
-        
+        android:layout_marginLeft="50dip"
         android:textSize="16sp" />
 
     <CheckBox
         android:id="@+id/chk_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center|left"
+        android:layout_weight="4"
+        android:gravity="center|right"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
         android:clickable="false"
         android:focusable="false" />

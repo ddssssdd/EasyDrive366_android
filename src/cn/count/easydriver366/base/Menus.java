@@ -29,7 +29,7 @@ public class Menus {
 		menus = new ArrayList<HomeMenu>();
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_01),"01",InformationActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_02),"02",HelpCallActivity.class));
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",RescueActivity.class));
+		//menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",RescueActivity.class));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_04),"04",MaintainActivity.class));	
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_06),"06",CarRegistrationActivity.class));
 		
