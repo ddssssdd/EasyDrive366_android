@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import cn.count.easydrive366.card.CardViewActivity;
 import cn.count.easydrive366.signup.Step1Activity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
@@ -122,6 +123,19 @@ public class SettingsActivity extends BaseHttpActivity {
 			@Override
 			public void onClick(View v) {
 				check_activate_code();
+				
+			}});
+		findViewById(R.id.row_cardview).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				cardView();
+			}});
+		findViewById(R.id.row_cardadd).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				cardAdd();
 				
 			}});
 		txtBind = (TextView)findViewById(R.id.txt_bindCellphone);
@@ -380,5 +394,12 @@ public class SettingsActivity extends BaseHttpActivity {
 	private void register_step(){
 		Intent intent = new Intent(SettingsActivity.this,Step1Activity.class);
 		startActivity(intent);
+	}
+	private void cardView(){
+		Intent intent = new Intent(this,CardViewActivity.class);
+		startActivity(intent);
+	}
+	private void cardAdd(){
+		
 	}
 }

@@ -237,11 +237,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_compulsory_insurance_2=0x7f050054;
         public static final int btn_get_code=0x7f050039;
         public static final int btn_login_login=0x7f050075;
-        public static final int btn_logout=0x7f05008f;
-        public static final int btn_map=0x7f0500a7;
+        public static final int btn_logout=0x7f050091;
+        public static final int btn_map=0x7f0500a9;
         public static final int btn_ok=0x7f05002a;
-        public static final int btn_phone=0x7f0500b4;
-        public static final int btn_signup_signup=0x7f050097;
+        public static final int btn_phone=0x7f0500b6;
+        public static final int btn_signup_signup=0x7f050099;
         public static final int btn_welcome_login=0x7f05000c;
         public static final int btn_welcome_signup=0x7f05000d;
         public static final int button=0x7f050035;
@@ -250,23 +250,23 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int code_edit=0x7f050036;
         public static final int code_img=0x7f050037;
         public static final int disabled=0x7f050000;
-        public static final int edt_car_no=0x7f050098;
-        public static final int edt_car_type=0x7f0500a0;
+        public static final int edt_car_no=0x7f05009a;
+        public static final int edt_car_type=0x7f0500a2;
         public static final int edt_carregistration_engine_no=0x7f05005f;
         public static final int edt_carregistration_plate_no=0x7f05005e;
         public static final int edt_carregistration_registration_date=0x7f050062;
         public static final int edt_carregistration_vin=0x7f050060;
         public static final int edt_cellphone=0x7f050038;
         public static final int edt_code=0x7f050029;
-        public static final int edt_contact=0x7f0500a4;
+        public static final int edt_contact=0x7f0500a6;
         public static final int edt_content=0x7f050031;
         public static final int edt_driverlicense_car_type=0x7f050066;
         public static final int edt_driverlicense_init_date=0x7f050068;
         public static final int edt_driverlicense_name=0x7f050064;
         public static final int edt_driverlicense_number=0x7f050065;
-        public static final int edt_engine_no=0x7f05009b;
-        public static final int edt_id_no=0x7f05009a;
-        public static final int edt_init_date=0x7f0500a2;
+        public static final int edt_engine_no=0x7f05009d;
+        public static final int edt_id_no=0x7f05009c;
+        public static final int edt_init_date=0x7f0500a4;
         public static final int edt_login_passwrod=0x7f050073;
         public static final int edt_login_username=0x7f050071;
         public static final int edt_maintain_average_mileage=0x7f05006a;
@@ -274,36 +274,36 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int edt_maintain_max_time=0x7f05006c;
         public static final int edt_maintain_pre_date=0x7f05006e;
         public static final int edt_maintain_pre_distance=0x7f05006d;
-        public static final int edt_name=0x7f05009e;
+        public static final int edt_name=0x7f0500a0;
         public static final int edt_oldpassword=0x7f050076;
         public static final int edt_password=0x7f050077;
-        public static final int edt_registration_date=0x7f05009d;
+        public static final int edt_registration_date=0x7f05009f;
         public static final int edt_repassword=0x7f050078;
-        public static final int edt_signup_passwrod=0x7f050095;
-        public static final int edt_signup_repasswrod=0x7f050096;
-        public static final int edt_signup_username=0x7f050094;
-        public static final int edt_vin=0x7f050099;
+        public static final int edt_signup_passwrod=0x7f050097;
+        public static final int edt_signup_repasswrod=0x7f050098;
+        public static final int edt_signup_username=0x7f050096;
+        public static final int edt_vin=0x7f05009b;
         public static final int expandableListView1=0x7f05004f;
-        public static final int fl_inner=0x7f0500c5;
+        public static final int fl_inner=0x7f0500c7;
         public static final int flip=0x7f050008;
         public static final int gridview=0x7f050009;
-        public static final int image=0x7f0500a3;
+        public static final int image=0x7f0500a5;
         public static final int imagebutton_date=0x7f05006f;
         public static final int img_choose=0x7f050072;
         public static final int img_choose1=0x7f05007d;
         public static final int img_choose2=0x7f050080;
-        public static final int img_choose4=0x7f050082;
-        public static final int img_choose_cellphone=0x7f050085;
-        public static final int img_find_password=0x7f050088;
-        public static final int img_navigationbar_logo=0x7f0500b1;
+        public static final int img_choose4=0x7f050084;
+        public static final int img_choose_cellphone=0x7f050087;
+        public static final int img_find_password=0x7f05008a;
+        public static final int img_navigationbar_logo=0x7f0500b3;
         public static final int layout_delete=0x7f050025;
-        public static final int layout_right=0x7f0500c4;
+        public static final int layout_right=0x7f0500c6;
         public static final int listitem_content=0x7f050019;
         public static final int listitem_pic=0x7f050017;
         public static final int listitem_title=0x7f050018;
         public static final int listview=0x7f050070;
         public static final int manualOnly=0x7f050004;
-        public static final int menu_settings=0x7f0500ca;
+        public static final int menu_settings=0x7f0500cc;
         public static final int modules_information_listview=0x7f050033;
         public static final int moudles_helpcall_listview=0x7f05004b;
         public static final int pullDownFromTop=0x7f050005;
@@ -311,42 +311,44 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pullFromStart=0x7f050001;
         public static final int pullUpFromBottom=0x7f050006;
         public static final int pull_refresh_scrollview=0x7f05003c;
-        public static final int pull_to_refresh_image=0x7f0500c6;
-        public static final int pull_to_refresh_progress=0x7f0500c7;
-        public static final int pull_to_refresh_sub_text=0x7f0500c9;
-        public static final int pull_to_refresh_text=0x7f0500c8;
+        public static final int pull_to_refresh_image=0x7f0500c8;
+        public static final int pull_to_refresh_progress=0x7f0500c9;
+        public static final int pull_to_refresh_sub_text=0x7f0500cb;
+        public static final int pull_to_refresh_text=0x7f0500ca;
         public static final int refresh_list_footer_progressbar=0x7f05001f;
         public static final int refresh_list_footer_text=0x7f05001e;
         public static final int rotate=0x7f050007;
-        public static final int row_activate_code=0x7f05008d;
-        public static final int row_car_type=0x7f05009f;
-        public static final int row_choose1=0x7f05007b;
-        public static final int row_choose2=0x7f05007e;
-        public static final int row_choose4=0x7f050081;
-        public static final int row_choose_cellphone=0x7f050083;
-        public static final int row_choose_check_version=0x7f05008b;
-        public static final int row_choose_findpassword=0x7f050086;
-        public static final int row_choose_user_feedback=0x7f050089;
-        public static final int row_init_date=0x7f0500a1;
-        public static final int row_registration_date=0x7f05009c;
+        public static final int row_activate_code=0x7f05008f;
+        public static final int row_car_type=0x7f0500a1;
+        public static final int row_cardadd=0x7f05007e;
+        public static final int row_cardview=0x7f05007b;
+        public static final int row_choose1=0x7f050081;
+        public static final int row_choose2=0x7f050082;
+        public static final int row_choose4=0x7f050083;
+        public static final int row_choose_cellphone=0x7f050085;
+        public static final int row_choose_check_version=0x7f05008d;
+        public static final int row_choose_findpassword=0x7f050088;
+        public static final int row_choose_user_feedback=0x7f05008b;
+        public static final int row_init_date=0x7f0500a3;
+        public static final int row_registration_date=0x7f05009e;
         public static final int scrollview=0x7f05000b;
         public static final int table_cards=0x7f05002b;
-        public static final int table_code_items=0x7f0500bd;
+        public static final int table_code_items=0x7f0500bf;
         public static final int table_items=0x7f050030;
         public static final int table_modules_businessinsurance_table=0x7f05003d;
         public static final int table_modules_businesssuggestion_table=0x7f05003e;
-        public static final int table_modules_violationsearch_table=0x7f0500a6;
-        public static final int table_partview_business_items=0x7f0500b6;
+        public static final int table_modules_violationsearch_table=0x7f0500a8;
+        public static final int table_partview_business_items=0x7f0500b8;
         public static final int tablelayout_edit_maintain=0x7f050069;
-        public static final int tablelout_in_home_activity=0x7f0500a8;
-        public static final int titile_layout_ry=0x7f0500b0;
-        public static final int title_set_bn=0x7f0500b3;
+        public static final int tablelout_in_home_activity=0x7f0500aa;
+        public static final int titile_layout_ry=0x7f0500b2;
+        public static final int title_set_bn=0x7f0500b5;
         public static final int top=0x7f050050;
         public static final int tr_choose_date=0x7f050061;
         public static final int txt_action=0x7f050022;
-        public static final int txt_activate_code=0x7f05008e;
-        public static final int txt_address=0x7f050091;
-        public static final int txt_bindCellphone=0x7f050084;
+        public static final int txt_activate_code=0x7f050090;
+        public static final int txt_address=0x7f050093;
+        public static final int txt_bindCellphone=0x7f050086;
         public static final int txt_carregistration_car_typename=0x7f050045;
         public static final int txt_carregistration_check_date=0x7f05003f;
         public static final int txt_carregistration_engine_no=0x7f050047;
@@ -360,7 +362,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txt_code=0x7f05002d;
         public static final int txt_content=0x7f050026;
         public static final int txt_date=0x7f050027;
-        public static final int txt_description=0x7f050093;
+        public static final int txt_description=0x7f050095;
         public static final int txt_driver=0x7f05007f;
         public static final int txt_driverlicense_car_type=0x7f05005b;
         public static final int txt_driverlicense_check_date=0x7f050055;
@@ -375,7 +377,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txt_driverlicense_renew_date=0x7f050056;
         public static final int txt_field1=0x7f05000e;
         public static final int txt_field2=0x7f05000f;
-        public static final int txt_findpassword=0x7f050087;
+        public static final int txt_findpassword=0x7f050089;
         public static final int txt_group_author=0x7f050016;
         public static final int txt_group_date=0x7f050015;
         public static final int txt_group_detail=0x7f050014;
@@ -393,40 +395,40 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txt_listitem_detail_right=0x7f050024;
         public static final int txt_listitem_detail_title=0x7f050020;
         public static final int txt_maintain=0x7f05007c;
-        public static final int txt_maintain_average_mileage=0x7f0500ab;
-        public static final int txt_maintain_current_date=0x7f0500a9;
-        public static final int txt_maintain_current_miles=0x7f0500aa;
-        public static final int txt_maintain_max_distance=0x7f0500ac;
-        public static final int txt_maintain_max_time=0x7f0500ad;
-        public static final int txt_maintain_pre_date=0x7f0500af;
-        public static final int txt_maintain_pre_distance=0x7f0500ae;
-        public static final int txt_name=0x7f050090;
-        public static final int txt_navigation_bar_title=0x7f0500b2;
+        public static final int txt_maintain_average_mileage=0x7f0500ad;
+        public static final int txt_maintain_current_date=0x7f0500ab;
+        public static final int txt_maintain_current_miles=0x7f0500ac;
+        public static final int txt_maintain_max_distance=0x7f0500ae;
+        public static final int txt_maintain_max_time=0x7f0500af;
+        public static final int txt_maintain_pre_date=0x7f0500b1;
+        public static final int txt_maintain_pre_distance=0x7f0500b0;
+        public static final int txt_name=0x7f050092;
+        public static final int txt_navigation_bar_title=0x7f0500b4;
         public static final int txt_no=0x7f05002c;
-        public static final int txt_partview_business_biz=0x7f0500b9;
-        public static final int txt_partview_business_companyname=0x7f0500ba;
-        public static final int txt_partview_business_compulsory=0x7f0500b8;
-        public static final int txt_partview_business_date_to_date=0x7f0500bc;
-        public static final int txt_partview_business_insurance_no=0x7f0500bb;
-        public static final int txt_partview_business_tax=0x7f0500b7;
-        public static final int txt_partview_business_title=0x7f0500b5;
-        public static final int txt_partview_verydetailitem_=0x7f0500be;
-        public static final int txt_phone=0x7f050092;
+        public static final int txt_partview_business_biz=0x7f0500bb;
+        public static final int txt_partview_business_companyname=0x7f0500bc;
+        public static final int txt_partview_business_compulsory=0x7f0500ba;
+        public static final int txt_partview_business_date_to_date=0x7f0500be;
+        public static final int txt_partview_business_insurance_no=0x7f0500bd;
+        public static final int txt_partview_business_tax=0x7f0500b9;
+        public static final int txt_partview_business_title=0x7f0500b7;
+        public static final int txt_partview_verydetailitem_=0x7f0500c0;
+        public static final int txt_phone=0x7f050094;
         public static final int txt_rescue_Address=0x7f05004e;
         public static final int txt_rescue_Description=0x7f05004d;
         public static final int txt_rescue_ShopName=0x7f05004c;
         public static final int txt_right=0x7f050028;
         public static final int txt_search=0x7f05007a;
         public static final int txt_time=0x7f05002e;
-        public static final int txt_title=0x7f0500a5;
+        public static final int txt_title=0x7f0500a7;
         public static final int txt_to=0x7f05002f;
-        public static final int txt_user_feedback=0x7f05008a;
-        public static final int txt_version=0x7f05008c;
-        public static final int txt_violationdetailitem_detail=0x7f0500c0;
-        public static final int txt_violationdetailitem_r1=0x7f0500c1;
-        public static final int txt_violationdetailitem_r2=0x7f0500c2;
-        public static final int txt_violationdetailitem_r3=0x7f0500c3;
-        public static final int txt_violationdetailitem_title=0x7f0500bf;
+        public static final int txt_user_feedback=0x7f05008c;
+        public static final int txt_version=0x7f05008e;
+        public static final int txt_violationdetailitem_detail=0x7f0500c2;
+        public static final int txt_violationdetailitem_r1=0x7f0500c3;
+        public static final int txt_violationdetailitem_r2=0x7f0500c4;
+        public static final int txt_violationdetailitem_r3=0x7f0500c5;
+        public static final int txt_violationdetailitem_title=0x7f0500c1;
         public static final int webView=0x7f05003b;
         public static final int webview=0x7f05000a;
     }
@@ -457,47 +459,48 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int modules_browser_activity=0x7f030017;
         public static final int modules_businessinsurance_activity=0x7f030018;
         public static final int modules_businesssuggestion_activity=0x7f030019;
-        public static final int modules_carregistration_activity=0x7f03001a;
-        public static final int modules_carservice_activity=0x7f03001b;
-        public static final int modules_carservice_detail_activity=0x7f03001c;
-        public static final int modules_carservice_note_activity=0x7f03001d;
-        public static final int modules_carservice_vendor_activity=0x7f03001e;
-        public static final int modules_carservice_wiki_activity=0x7f03001f;
-        public static final int modules_compulsoryinsurance_activity=0x7f030020;
-        public static final int modules_driverlicense_activity=0x7f030021;
-        public static final int modules_edit_carregistration_activity=0x7f030022;
-        public static final int modules_edit_driverlicense_activity=0x7f030023;
-        public static final int modules_edit_maintain_activity=0x7f030024;
-        public static final int modules_helpcall_activity=0x7f030025;
-        public static final int modules_information_activity=0x7f030026;
-        public static final int modules_insurance_process_list_activity=0x7f030027;
-        public static final int modules_login_activity=0x7f030028;
-        public static final int modules_map_showlocation_activity=0x7f030029;
-        public static final int modules_password_reset_activity=0x7f03002a;
-        public static final int modules_rescue_activity=0x7f03002b;
-        public static final int modules_searchshop_activity=0x7f03002c;
-        public static final int modules_settings_activity=0x7f03002d;
-        public static final int modules_showshopinformation_activity=0x7f03002e;
-        public static final int modules_signup_activity=0x7f03002f;
-        public static final int modules_step1_activity=0x7f030030;
-        public static final int modules_step2_activity=0x7f030031;
-        public static final int modules_step3_activity=0x7f030032;
-        public static final int modules_takephoto_activity=0x7f030033;
-        public static final int modules_taxforcarship_activity=0x7f030034;
-        public static final int modules_userfeedback_activity=0x7f030035;
-        public static final int modules_violationdetail_activity=0x7f030036;
-        public static final int modules_violationsearch_activity=0x7f030037;
-        public static final int moudles_home_activity=0x7f030038;
-        public static final int moudles_maintain_activity=0x7f030039;
-        public static final int navigation_bar=0x7f03003a;
-        public static final int navigation_bar_without_phone_button=0x7f03003b;
-        public static final int partview_businessinsurance=0x7f03003c;
-        public static final int partview_code_table=0x7f03003d;
-        public static final int partview_verydetailitem=0x7f03003e;
-        public static final int partview_violationdetail_items=0x7f03003f;
-        public static final int partview_violationdetail_items2=0x7f030040;
-        public static final int pull_to_refresh_header_horizontal=0x7f030041;
-        public static final int pull_to_refresh_header_vertical=0x7f030042;
+        public static final int modules_cardview_activity=0x7f03001a;
+        public static final int modules_carregistration_activity=0x7f03001b;
+        public static final int modules_carservice_activity=0x7f03001c;
+        public static final int modules_carservice_detail_activity=0x7f03001d;
+        public static final int modules_carservice_note_activity=0x7f03001e;
+        public static final int modules_carservice_vendor_activity=0x7f03001f;
+        public static final int modules_carservice_wiki_activity=0x7f030020;
+        public static final int modules_compulsoryinsurance_activity=0x7f030021;
+        public static final int modules_driverlicense_activity=0x7f030022;
+        public static final int modules_edit_carregistration_activity=0x7f030023;
+        public static final int modules_edit_driverlicense_activity=0x7f030024;
+        public static final int modules_edit_maintain_activity=0x7f030025;
+        public static final int modules_helpcall_activity=0x7f030026;
+        public static final int modules_information_activity=0x7f030027;
+        public static final int modules_insurance_process_list_activity=0x7f030028;
+        public static final int modules_login_activity=0x7f030029;
+        public static final int modules_map_showlocation_activity=0x7f03002a;
+        public static final int modules_password_reset_activity=0x7f03002b;
+        public static final int modules_rescue_activity=0x7f03002c;
+        public static final int modules_searchshop_activity=0x7f03002d;
+        public static final int modules_settings_activity=0x7f03002e;
+        public static final int modules_showshopinformation_activity=0x7f03002f;
+        public static final int modules_signup_activity=0x7f030030;
+        public static final int modules_step1_activity=0x7f030031;
+        public static final int modules_step2_activity=0x7f030032;
+        public static final int modules_step3_activity=0x7f030033;
+        public static final int modules_takephoto_activity=0x7f030034;
+        public static final int modules_taxforcarship_activity=0x7f030035;
+        public static final int modules_userfeedback_activity=0x7f030036;
+        public static final int modules_violationdetail_activity=0x7f030037;
+        public static final int modules_violationsearch_activity=0x7f030038;
+        public static final int moudles_home_activity=0x7f030039;
+        public static final int moudles_maintain_activity=0x7f03003a;
+        public static final int navigation_bar=0x7f03003b;
+        public static final int navigation_bar_without_phone_button=0x7f03003c;
+        public static final int partview_businessinsurance=0x7f03003d;
+        public static final int partview_code_table=0x7f03003e;
+        public static final int partview_verydetailitem=0x7f03003f;
+        public static final int partview_violationdetail_items=0x7f030040;
+        public static final int partview_violationdetail_items2=0x7f030041;
+        public static final int pull_to_refresh_header_horizontal=0x7f030042;
+        public static final int pull_to_refresh_header_vertical=0x7f030043;
     }
     public static final class menu {
         public static final int activity_welcome=0x7f0a0000;
@@ -675,7 +678,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrAdapterViewBackground
+          @attr name cn.count.easydrive366:ptrAdapterViewBackground
         */
         public static final int PullToRefresh_ptrAdapterViewBackground = 16;
         /**
@@ -694,7 +697,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>flip</code></td><td>0x1</td><td></td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name android:ptrAnimationStyle
+          @attr name cn.count.easydrive366:ptrAnimationStyle
         */
         public static final int PullToRefresh_ptrAnimationStyle = 12;
         /**
@@ -706,7 +709,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrDrawable
+          @attr name cn.count.easydrive366:ptrDrawable
         */
         public static final int PullToRefresh_ptrDrawable = 6;
         /**
@@ -716,7 +719,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:ptrDrawableBottom
+          @attr name cn.count.easydrive366:ptrDrawableBottom
         */
         public static final int PullToRefresh_ptrDrawableBottom = 18;
         /**
@@ -728,7 +731,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrDrawableEnd
+          @attr name cn.count.easydrive366:ptrDrawableEnd
         */
         public static final int PullToRefresh_ptrDrawableEnd = 8;
         /**
@@ -740,7 +743,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrDrawableStart
+          @attr name cn.count.easydrive366:ptrDrawableStart
         */
         public static final int PullToRefresh_ptrDrawableStart = 7;
         /**
@@ -750,7 +753,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:ptrDrawableTop
+          @attr name cn.count.easydrive366:ptrDrawableTop
         */
         public static final int PullToRefresh_ptrDrawableTop = 17;
         /**
@@ -764,7 +767,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrHeaderBackground
+          @attr name cn.count.easydrive366:ptrHeaderBackground
         */
         public static final int PullToRefresh_ptrHeaderBackground = 1;
         /**
@@ -778,7 +781,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrHeaderSubTextColor
+          @attr name cn.count.easydrive366:ptrHeaderSubTextColor
         */
         public static final int PullToRefresh_ptrHeaderSubTextColor = 3;
         /**
@@ -790,7 +793,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrHeaderTextAppearance
+          @attr name cn.count.easydrive366:ptrHeaderTextAppearance
         */
         public static final int PullToRefresh_ptrHeaderTextAppearance = 10;
         /**
@@ -804,7 +807,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrHeaderTextColor
+          @attr name cn.count.easydrive366:ptrHeaderTextColor
         */
         public static final int PullToRefresh_ptrHeaderTextColor = 2;
         /**
@@ -821,7 +824,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
           <p>This is a private symbol.
-          @attr name android:ptrListViewExtrasEnabled
+          @attr name cn.count.easydrive366:ptrListViewExtrasEnabled
         */
         public static final int PullToRefresh_ptrListViewExtrasEnabled = 14;
         /**
@@ -845,7 +848,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>pullUpFromBottom</code></td><td>0x2</td><td></td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name android:ptrMode
+          @attr name cn.count.easydrive366:ptrMode
         */
         public static final int PullToRefresh_ptrMode = 4;
         /**
@@ -858,7 +861,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
           <p>This is a private symbol.
-          @attr name android:ptrOverScroll
+          @attr name cn.count.easydrive366:ptrOverScroll
         */
         public static final int PullToRefresh_ptrOverScroll = 9;
         /**
@@ -872,7 +875,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrRefreshableViewBackground
+          @attr name cn.count.easydrive366:ptrRefreshableViewBackground
         */
         public static final int PullToRefresh_ptrRefreshableViewBackground = 0;
         /**
@@ -888,7 +891,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
           <p>This is a private symbol.
-          @attr name android:ptrRotateDrawableWhilePulling
+          @attr name cn.count.easydrive366:ptrRotateDrawableWhilePulling
         */
         public static final int PullToRefresh_ptrRotateDrawableWhilePulling = 15;
         /**
@@ -901,7 +904,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
           <p>This is a private symbol.
-          @attr name android:ptrScrollingWhileRefreshingEnabled
+          @attr name cn.count.easydrive366:ptrScrollingWhileRefreshingEnabled
         */
         public static final int PullToRefresh_ptrScrollingWhileRefreshingEnabled = 13;
         /**
@@ -914,7 +917,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
           <p>This is a private symbol.
-          @attr name android:ptrShowIndicator
+          @attr name cn.count.easydrive366:ptrShowIndicator
         */
         public static final int PullToRefresh_ptrShowIndicator = 5;
         /**
@@ -926,7 +929,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:ptrSubHeaderTextAppearance
+          @attr name cn.count.easydrive366:ptrSubHeaderTextAppearance
         */
         public static final int PullToRefresh_ptrSubHeaderTextAppearance = 11;
     };

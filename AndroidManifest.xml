@@ -176,6 +176,7 @@
 		<activity android:name="cn.count.easydrive366.photo.TakePhotoActivity" />
 		<activity android:name="cn.count.easydrive366.baidumap.SearchResultActivity" />
 		<activity android:name="cn.count.easydrive366.baidumap.SearchShopActivity" />
+		<activity android:name="cn.count.easydrive366.card.CardViewActivity" />
     </application>
 
 </manifest>

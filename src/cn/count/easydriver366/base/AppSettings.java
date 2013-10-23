@@ -124,6 +124,9 @@ public final class AppSettings {
 	static public String get_business(double latitude,double longitude,String typecode){
 		return String.format("api/get_position?userid=%d&x=%f&y=%f&type=%s", userid,latitude,longitude,typecode);
 	}
+	static public String get_cardlist(){
+		return String.format("api/get_inscard_list?userid=%d", userid);
+	}
 	static public void login(JSONObject result,Context context) {
 		try {
 			
