@@ -127,6 +127,26 @@ public final class AppSettings {
 	static public String get_cardlist(){
 		return String.format("api/get_inscard_list?userid=%d", userid);
 	}
+	static public String get_addcardstep0()
+	{
+		return String.format("api/add_inscard_step0?userid=%d", userid);
+		
+	}
+	static public String add_inscard_step1(final String code){
+		return String.format("api/add_inscard_step1?userid=%d&code=%s", userid,code);
+	}
+	static public String add_inscard_step2(final String number,final String name,final String identity,final String cell,final String address,final boolean is_agreed_bf,final String bf_name,final String bf_identity){
+		return String.format("api/add_inscard_step2?userid=%d&number=%s&insured_name=%s&insured_idcard=%s&insured_phone=%s&insured_address=%s&is_agreed_bf=%s&bf_name=%s&bf_id=%s", 
+				userid,
+				number,
+				name,
+				identity,
+				cell,
+				address,
+				is_agreed_bf?"true":"false",
+				bf_name,
+				bf_identity);
+	}
 	static public void login(JSONObject result,Context context) {
 		try {
 			

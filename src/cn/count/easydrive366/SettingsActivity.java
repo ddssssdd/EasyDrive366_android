@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import cn.count.easydrive366.card.AddCardStep1Activity;
 import cn.count.easydrive366.card.CardViewActivity;
 import cn.count.easydrive366.signup.Step1Activity;
 import cn.count.easydriver366.base.AppSettings;
@@ -400,6 +401,7 @@ public class SettingsActivity extends BaseHttpActivity {
 		startActivity(intent);
 	}
 	private void cardAdd(){
-		
+		Intent intent = new Intent(this,AddCardStep1Activity.class);
+		startActivity(intent);
 	}
 }

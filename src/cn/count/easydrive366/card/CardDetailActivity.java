@@ -52,20 +52,32 @@ public class CardDetailActivity extends BaseHttpActivity {
 			txt_identity.setText(data.getString("insured_idcard"));
 			txt_cell.setText(data.getString("insured_phone"));
 			txt_address.setText(data.getString("insured_address"));
-			boolean is_agreed_bf = data.getBoolean("is_agreed_bf");
-			if (is_agreed_bf){
-				txt_bf_name = (TextView)findViewById(R.id.txt_bf_name);
-				txt_bf_name.setText(data.getString("bf_name"));
-				txt_bf_identity.setText(data.getString("bf_id"));
-			}else{
-				txt_bf_identity_label.setText("");
-				txt_bf_identity.setText(data.getString("is_agreed_bf_label"));
-				tr_bf.setVisibility(View.GONE);
+			
+			((TextView)findViewById(R.id.txt_cardno)).setText(data.getString("po"));
+			((TextView)findViewById(R.id.txt_valid)).setText(data.getString("valid"));
+			String fieldname = "is_agreed_bf";
+			if (data.isNull(fieldname)){
+				fieldname = "is_agreed_bf ";
 			}
+			if (!data.isNull(fieldname)){
+				
+				boolean is_agreed_bf = data.getBoolean(fieldname);
+				if (is_agreed_bf){
+					txt_bf_name = (TextView)findViewById(R.id.txt_bf_name);
+					txt_bf_name.setText(data.getString("bf_name"));
+					txt_bf_identity.setText(data.getString("bf_id"));
+				}else{
+					txt_bf_identity_label.setText("");
+					txt_bf_identity.setText(data.getString("is_agreed_bf_label"));
+					tr_bf.setVisibility(View.GONE);
+				}
+			}
+			
+			
 			_contents = data.getJSONArray("list");
 			for(int i=0;i<_contents.length();i++){
 				 JSONObject item = _contents.getJSONObject(i);
-				 addTablerow(item.getString("InsuName"),item.getString("Amount"),i==_contents.length()-1);
+				 addTablerow(item.getString("InsuName"),item.getString("Amount"),i==_contents.length()-1,i==0);
 				 
 			 }
 		}catch(Exception e){
@@ -74,14 +86,17 @@ public class CardDetailActivity extends BaseHttpActivity {
 		
 		
 	}
-	private void addTablerow(final String name,final String count,final boolean isLast){
+	private void addTablerow(final String name,final String count,final boolean isLast,final boolean isFirst){
 		TableLayout table =(TableLayout)findViewById(R.id.table_items);
 		if (table!=null){
 			TableRow row = new TableRow(this);
 			InformationRow detail = new InformationRow(this,null);
-			detail.setData(name+"：  ",String.format("%s次",count));
+			detail.setData(name+"：  ",count);
 			row.addView(detail);
 			table.addView(row);
+			if (isFirst){
+				detail.setBeginBackend();
+			}
 			if (isLast){
 				detail.setEndBackend();
 			}
