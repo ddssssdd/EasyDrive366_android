@@ -94,6 +94,49 @@ public class AddCardStep2Activity extends BaseHttpActivity {
 	}
 	@Override
 	protected void onRightButtonPress() {
-		this.get(AppSettings.add_inscard_step2(number, this.edtName.getText().toString(), this.edtIdentity.getText().toString(), this.edtCell.getText().toString(), edtAddress.getText().toString(), chkBf.isChecked(), edtBf_name.getText().toString(), edtBf_identity.getText().toString()), 1);
+		String name = edtName.getText().toString().trim();
+		if (name.equals("")){
+			this.showMessage("请输入姓名！", null);
+			return;
+		}
+		String identity =this.edtIdentity.getText().toString();
+		if (identity.equals("")){
+			this.showMessage("请输入身份证!",null);
+			return;
+		}else{
+			if ( identity.length()!=18 || !personIdValidation(identity)){
+				this.showMessage(this.getResources().getString(R.string.id_is_wrong), null);
+				return;
+			}
+		}
+		String cell =this.edtCell.getText().toString();
+		if (cell.isEmpty()){
+			this.showMessage("请输入电话号码", null);
+			return;
+		}
+		String address = edtAddress.getText().toString();
+		if (address.isEmpty()){
+			this.showMessage("请输入地址！", null);
+		}
+		boolean isbf = chkBf.isChecked();
+		String bf_name = edtBf_name.getText().toString();
+		String bf_identity =edtBf_identity.getText().toString();
+		if (isbf){
+			if (bf_name.isEmpty()){
+				this.showMessage("请输入受益人姓名", null);
+				return;
+			}
+			if (bf_identity.isEmpty()){
+				this.showMessage("请输入受益人身份证!", null);
+				return;
+			}else {
+				if ( bf_identity.length()!=18 || !personIdValidation(bf_identity)){
+					this.showMessage(this.getResources().getString(R.string.id_is_wrong), null);
+					return;
+				}
+			}
+		}
+		this.get(AppSettings.add_inscard_step2(number, name,
+				identity, cell, address,isbf, bf_name, bf_identity), 1);
 	}
 }

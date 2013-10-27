@@ -69,6 +69,10 @@ public class AddCardStep1Activity extends BaseHttpActivity {
 	}
 	private void activateCode(){
 		String code = edtCode.getText().toString();
+		if (code.equals("")){
+			this.showMessage("请输入激活码！", null);
+			return;
+		}
 		this.get(AppSettings.add_inscard_step1(code), 2);
 	}
 }
