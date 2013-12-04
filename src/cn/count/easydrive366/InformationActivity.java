@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 
 import android.os.Bundle;
 import android.view.View;
@@ -116,6 +117,13 @@ public class InformationActivity extends BaseListViewActivity {
 		//holder.action.setText("");
 		if (_isInDeleting){
 			holder.selected.setChecked(info.get("selected").toString().equals("true"));
+		}
+		
+		String is_readed = info.get("is_readed").toString();
+		if (is_readed.equals("0")){
+			holder.title.setTextColor(Color.RED);
+			holder.detail.setTextColor(Color.BLUE);
+			
 		}
 	}
 	@Override
