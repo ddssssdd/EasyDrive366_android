@@ -47,5 +47,19 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:text="@string/ok" />
-
+	<View android:layout_width="match_parent"
+		    android:layout_height="20dp"></View>
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TableLayout
+        android:id="@+id/table_items"
+        style="@style/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:stretchColumns="*" >
+        </TableLayout>
+    </ScrollView>
 </LinearLayout>

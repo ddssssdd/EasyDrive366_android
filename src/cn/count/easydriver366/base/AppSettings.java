@@ -1,8 +1,19 @@
 package cn.count.easydriver366.base;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,7 +37,9 @@ public final class AppSettings {
 	static public String version = "1.06";
 	//static public String BAIDUMAPKEY="30d50073a606ac3ce0b7f8a187e8248b";//for debug
 	static public String BAIDUMAPKEY="939cb0c01d09f55edbf15645e42a1624";//for release
-	
+	public static boolean isOutputDebug = true;
+	public static final int READ_TIMEOUT = 10;
+	public static final int CONNECT_TIMEOUT = 15;
 	static public String url_for_get_news()
 	{
 		
@@ -147,6 +160,9 @@ public final class AppSettings {
 				bf_name,
 				bf_identity);
 	}
+	static public String get_userfeedback(){
+		return String.format("api/get_feedback_user?userid=%d", userid);
+	}
 	static public void login(JSONObject result,Context context) {
 		try {
 			
@@ -189,6 +205,99 @@ public final class AppSettings {
 		editor.commit();
 	}
 	
-	
+public static String readInputStream(InputStream stream) throws IOException,UnsupportedEncodingException{
+		
+		Reader reader =null;
+		reader = new InputStreamReader(stream,"UTF-8");
+		char[] buffer = new char[256];
+		StringBuilder sb = new StringBuilder();
+		while (reader.read(buffer)!=-1)
+		{
+			sb.append(buffer);
+		}
+		return sb.toString();
+	}
+	public static String getOutputParameters(List<NameValuePair> params){
+		
+		
+		StringBuilder result = new StringBuilder();
+	    boolean first = true;
+	    try
+	    {
+	    	for (NameValuePair pair : params)
+		    {
+		        if (first)
+		            first = false;
+		        else
+		            result.append("&");
+
+		        result.append(URLEncoder.encode(pair.getName(), "UTF-8"));
+		        result.append("=");
+		        result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
+		    }
+
+	    	
+	    }catch( UnsupportedEncodingException e){
+	    	log(e.getMessage());
+	    }
+	    
+	    return result.toString();
+		
+	}
+	public static void log(String logInformation)
+	{
+		if (isOutputDebug && logInformation!=null){
+			
+			Log.d("Http.Information", logInformation);
+		}
+		
+	}
+	public static boolean isSuccessJSON(final JSONObject json)
+	{
+		try
+		{
+			if (json.has("status") && !json.isNull("status")){
+				return json.getBoolean("status");
+			}
+			
+			
+		}catch(Exception e)
+		{
+			log(e.getMessage());
+		}
+		return false;
+	}
+	public static JSONObject getSuccessJSON(final String result)
+	{
+		try
+		{
+			JSONObject json = new JSONObject(result);
+			if (json.has("status") && !json.isNull("status")){
+				return json.getJSONObject("result");
+			}
+			
+			
+		}catch(Exception e)
+		{
+			log(e.getMessage());
+		}
+		return null;
+	}
+	public static JSONArray getSuccessJSONList(final String result)
+	{
+		try
+		{
+			JSONObject json = new JSONObject(result);
+			if (json.has("status") && !json.isNull("status")){
+				return json.getJSONArray("result");
+			}
+			
+			
+		}catch(Exception e)
+		{
+			log(e.getMessage());
+		}
+		return null;
+	}
 	
 }

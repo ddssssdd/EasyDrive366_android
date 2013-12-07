@@ -4,9 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
@@ -16,6 +18,7 @@ import org.json.JSONObject;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+
 
 
 import cn.count.easydrive366.HomeActivity;
@@ -491,5 +494,27 @@ public class BaseHttpActivity extends Activity implements
 			log(e);
 		}
 		editor.commit();
+	}
+	public void httpGetUrl(final String url,final HttpCallback callback)
+	{
+		new HttpExecuteGetTask(){
+			@Override
+			protected void onPostExecute(String result) {				
+				
+				callback.processResponse(result);
+			}
+		}.execute(url);
+				
+	}
+
+	public void httpPostUrl(final String url,final List<NameValuePair> params, final HttpCallback callback){
+		new HttpExecutePostTask(){
+			@Override
+			protected void onPostExecute(String result) {				
+				super.onPostExecute(result);
+				callback.processResponse(result);
+			}
+			
+		}.execute(url,AppSettings.getOutputParameters(params));
 	}
 }
