@@ -34,7 +34,7 @@ public final class AppSettings {
 	static public JSONArray driver_type_list;
 	static public int update_time=4*60*60;
 	static public boolean isquiting = false;
-	static public String version = "1.06";
+	static public String version = "1.07";
 	//static public String BAIDUMAPKEY="30d50073a606ac3ce0b7f8a187e8248b";//for debug
 	static public String BAIDUMAPKEY="939cb0c01d09f55edbf15645e42a1624";//for release
 	public static boolean isOutputDebug = true;
