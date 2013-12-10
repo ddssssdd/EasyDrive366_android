@@ -83,16 +83,25 @@ public class InformationActivity extends BaseListViewActivity {
 				
 				return;
 			}
-			
+			TextView txtTitle = (TextView)view.findViewById(R.id.txt_listitem_detail_title);
+			TextView txtDetail = (TextView)view.findViewById(R.id.txt_listitem_detail_detail);
+			if (txtTitle!=null){
+				txtTitle.setTextColor(Color.GRAY);
+			}
+			if (txtDetail!=null){
+				txtDetail.setTextColor(Color.GRAY);
+			}
+			map.put("is_readed", 1);
 			final String action = map.get("action").toString();
 			final String url = map.get("url").toString();
 			if (!url.equals("")){
 				//open browser;
+				getInformation(map.get("id").toString());
 				Intent intent = new Intent(this,BrowserActivity.class);
 				intent.putExtra("url", url);
 				startActivity(intent);
 			}else if (!action.equals("01")){
-				
+				getInformation(map.get("id").toString());
 				Menus menus = new Menus(this);
 				//Class<?> intentClass = menus.findMenuItemClassByKey(action);
 				HomeMenu item = menus.findMenuByKey(action);
@@ -108,6 +117,9 @@ public class InformationActivity extends BaseListViewActivity {
 			}
 			
 		}
+	}
+	private void getInformation(final String id){
+		this.get(String.format("api/get_news_by_id?userid=%d&newsid=%s",AppSettings.userid, id), -1);
 	}
 	@Override
 	protected void setupListItem(ViewHolder holder,Map<String,Object> info){

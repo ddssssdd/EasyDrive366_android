@@ -126,6 +126,7 @@ public class SettingsActivity extends BaseHttpActivity {
 				check_activate_code();
 				
 			}});
+		/*
 		findViewById(R.id.row_cardview).setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -139,6 +140,7 @@ public class SettingsActivity extends BaseHttpActivity {
 				cardAdd();
 				
 			}});
+			*/
 		txtBind = (TextView)findViewById(R.id.txt_bindCellphone);
 		txtVersion = (TextView)findViewById(R.id.txt_version);
 		txtCellphone = (TextView)findViewById(R.id.img_choose_cellphone);
