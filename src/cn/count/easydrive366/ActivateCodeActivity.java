@@ -37,7 +37,13 @@ public class ActivateCodeActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_activatecode_activity);
-		this.setRightButtonInVisible();
+		Intent intent = this.getIntent();
+		boolean isGuide = intent.getBooleanExtra("isGuide", false);
+		if (isGuide){
+			this.setupRightButtonWithText("完成");
+		}else{
+			this.setRightButtonInVisible();
+		}
 		this.setupLeftButton();
 		this.setupPhoneButtonInVisible();
 		edtCode = (EditText)findViewById(R.id.edt_code);
@@ -51,6 +57,10 @@ public class ActivateCodeActivity extends BaseHttpActivity {
 			}
 		});
 		this.get(AppSettings.get_activate_code_list(), 2);
+	}
+	@Override
+	protected void onRightButtonPress(){
+		this.finish();
 	}
 	private void activate_code(){
 		
