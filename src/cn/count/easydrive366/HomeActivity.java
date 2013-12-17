@@ -1,6 +1,6 @@
 package cn.count.easydrive366;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,12 +12,18 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
 
 
+import cn.count.easydrive366.article.ArticleListActivity;
 import cn.count.easydrive366.baidumap.ShowLocationActivity;
 import cn.count.easydrive366.components.HomeMenuItem;
+import cn.count.easydrive366.goods.GoodsListActivity;
+import cn.count.easydrive366.provider.ProviderListActivity;
+
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.CheckUpdate;
 import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.base.Menus;
+
+
 import cn.count.easydriver366.service.BackendService;
 
 import android.app.Activity;
@@ -29,6 +35,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -94,13 +101,27 @@ public class HomeActivity extends Activity {
 				gotoMap();
 				
 			}});
-		/*findViewById(R.id.btn_baike).setOnClickListener(new OnClickListener(){
+		findViewById(R.id.btn_goods).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				gotoBaike();
+				gotoGoods();
 				
-			}});*/
+			}});
+		findViewById(R.id.btn_provider).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				gotoProvider();
+				
+			}});
+		findViewById(R.id.btn_article).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				gotoArticle();
+				
+			}});
 		mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_refresh_scrollview);
 		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 
@@ -114,6 +135,9 @@ public class HomeActivity extends Activity {
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(mPullRefreshScrollView.getWindowToken(), 0);
 		new CheckUpdate(this,false);
+		
+		//this.addSwipeToView(this.mPullRefreshScrollView);
+		//com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url);
 	}
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
 		private boolean _needSleep=false;
@@ -302,7 +326,16 @@ public class HomeActivity extends Activity {
 		
 		startActivity(intent);
 	}
-	private void gotoBaike(){
-		
+	private void gotoGoods(){
+		Intent intent = new Intent(this,GoodsListActivity.class);
+		startActivity(intent);
+	}
+	private void gotoProvider(){
+		Intent intent = new Intent(this,ProviderListActivity.class);
+		startActivity(intent);
+	}
+	private void gotoArticle(){
+		Intent intent = new Intent(this,ArticleListActivity.class);
+		startActivity(intent);
 	}
 }

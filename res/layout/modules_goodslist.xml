@@ -3,15 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <include android:layout_width="match_parent"
-         android:layout_height="wrap_content" 
-         layout="@layout/navigation_bar" /> 
-    <EditText
-        android:id="@+id/txt_search" 
+
+    <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入查询条件"/>
+        layout="@layout/navigation_bar" />
     
+    
+
     <com.handmark.pulltorefresh.library.PullToRefreshListView 
         android:id="@+id/modules_information_listview"
         android:layout_width="match_parent"
@@ -24,5 +23,5 @@
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
         android:smoothScrollbar="true"/>
-	
+
 </LinearLayout>

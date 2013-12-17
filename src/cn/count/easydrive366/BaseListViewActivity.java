@@ -33,6 +33,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 
 
 import android.widget.TextView;
@@ -154,6 +155,11 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 		public TextView action;
 		public CheckBox selected;
 		public ImageView image;
+		public TextView detail2;
+		public TextView detail3;
+		public TextView detail4;
+		public TextView detail5;
+		public RatingBar ratingbar;
 	}
 	public class MyAdapter extends BaseAdapter
 	{

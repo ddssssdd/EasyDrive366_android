@@ -33,27 +33,37 @@
             android:text="地图"
             android:textSize="12sp" />
 
-      <!--   <Button
-            android:id="@+id/btn_baike"
+       <Button
+            android:id="@+id/btn_goods"
             style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_weight="1.0"
              android:layout_margin="0dip"
             android:padding="0dip"
-            android:text="易驾百科"
+            android:text="商品"
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/btn_help"
+            android:id="@+id/btn_provider"
             style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_weight="1.0"
              android:layout_margin="0dip"
             android:padding="0dip"
-            android:text="帮助"
-            android:textSize="12sp" /> -->
+            android:text="商户"
+            android:textSize="12sp" /> 
+        <Button
+            android:id="@+id/btn_article"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_weight="1.0"
+             android:layout_margin="0dip"
+            android:padding="0dip"
+            android:text="百科"
+            android:textSize="12sp" /> 
     </LinearLayout>
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"

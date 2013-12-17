@@ -27,6 +27,8 @@ import android.widget.TextView;
 public class SearchShopActivity extends BaseListViewActivity {
 	private ProgressDialog _dialog;
 	private EditText txtSearch;
+	private boolean _isSearching=false;
+	private String _type;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,6 +36,18 @@ public class SearchShopActivity extends BaseListViewActivity {
 		this.setupLeftButton();
 		this.setupPhoneButtonInVisible();
 		this.setupRightButtonWithText("搜索");
+		//get value from intent;
+		Intent intent = this.getIntent();
+		_isSearching = intent.getBooleanExtra("isSearching", false);
+		if (_isSearching){
+			_type = intent.getStringExtra("type");
+			String title = intent.getStringExtra("title");
+			if (title!=null && !title.isEmpty()){
+				this.setBarTitle(title);
+			}
+		}
+		
+		
 		txtSearch = (EditText)findViewById(R.id.txt_search);
 		this._isInDeleting = true;
 		this.resource_listview_id = R.id.modules_information_listview;
@@ -47,7 +61,11 @@ public class SearchShopActivity extends BaseListViewActivity {
 
 	@Override
 	protected void reload_data() {
-		this.get(String.format("api/get_service_type?userid=%d", AppSettings.userid), 1);
+		if (_isSearching){
+			this.get(String.format("api/get_service_type?userid=%d&type=%s", AppSettings.userid,_type), 1);
+		}else{
+			this.get(String.format("api/get_service_type?userid=%d", AppSettings.userid), 1);
+		}
 	}
 
 	@Override
@@ -58,7 +76,11 @@ public class SearchShopActivity extends BaseListViewActivity {
 			JSONArray obj = ((JSONObject) result).getJSONArray("result");
 			for (int i = 0; i < obj.length(); i++) {
 				JSONObject item = obj.getJSONObject(i);
-				item.put("selected", false);
+				if (item.getString("code").equals("00")){
+					item.put("selected", true);
+				}else{
+					item.put("selected", false);
+				}
 			}
 			this.initList(obj);
 
@@ -115,10 +137,19 @@ public class SearchShopActivity extends BaseListViewActivity {
 			
 		}
 		String types = sb.toString();
-		Intent intent = new Intent(this, SearchResultActivity.class);
-		intent.putExtra("key", key);
-		intent.putExtra("types",types);
-		startActivity(intent);
+		if (_isSearching){
+			Intent intent = new Intent();
+			intent.putExtra("key", key);
+			intent.putExtra("types",types);
+			this.setResult(RESULT_OK, intent);
+			finish();
+		}else{
+			Intent intent = new Intent(this, SearchResultActivity.class);
+			intent.putExtra("key", key);
+			intent.putExtra("types",types);
+			startActivity(intent);
+		}
+		
 	}
 
 	@Override

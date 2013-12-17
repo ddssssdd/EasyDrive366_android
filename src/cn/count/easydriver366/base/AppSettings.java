@@ -254,25 +254,14 @@ public static String readInputStream(InputStream stream) throws IOException,Unsu
 	}
 	public static boolean isSuccessJSON(final JSONObject json)
 	{
-		try
-		{
-			if (json.has("status") && !json.isNull("status")){
-				return json.getBoolean("status");
-			}
-			
-			
-		}catch(Exception e)
-		{
-			log(e.getMessage());
-		}
-		return false;
+		return AppTools.isSuccess(json);
 	}
 	public static JSONObject getSuccessJSON(final String result)
 	{
 		try
 		{
-			JSONObject json = new JSONObject(result);
-			if (json.has("status") && !json.isNull("status")){
+			final JSONObject json = new JSONObject(result);
+			if (AppTools.isSuccess(json)){
 				return json.getJSONObject("result");
 			}
 			
@@ -288,7 +277,7 @@ public static String readInputStream(InputStream stream) throws IOException,Unsu
 		try
 		{
 			JSONObject json = new JSONObject(result);
-			if (json.has("status") && !json.isNull("status")){
+			if (AppTools.isSuccess(json)){
 				return json.getJSONArray("result");
 			}
 			

@@ -180,6 +180,11 @@
 		<activity android:name="cn.count.easydrive366.card.CardDetailActivity" />
 		<activity android:name="cn.count.easydrive366.card.AddCardStep1Activity" />
 		<activity android:name="cn.count.easydrive366.card.AddCardStep2Activity" />
+		<activity android:name="cn.count.easydrive366.goods.GoodsListActivity" />
+		<activity android:name="cn.count.easydrive366.goods.GoodsDetailActivity" />
+		<activity android:name="cn.count.easydrive366.provider.ProviderListActivity" />
+		<activity android:name="cn.count.easydrive366.provider.ProviderDetailActivity" />
+		<activity android:name="cn.count.easydrive366.article.ArticleListActivity" />
     </application>
 
 </manifest>

@@ -48,12 +48,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
 import android.widget.TextView;
 
-public class BaseHttpActivity extends Activity implements
+public class BaseHttpActivity extends ActionActivity implements
 		HttpClient.IHttpCallback {
 	private static String BaseHttpClientTAG = "BaseHttpActivity";
 	protected HttpClient httpClient;
@@ -516,5 +517,14 @@ public class BaseHttpActivity extends Activity implements
 			}
 			
 		}.execute(url,AppSettings.getOutputParameters(params));
+	}
+	public void loadImageFromUrl(ImageView imageView,final String url){
+		if (imageView==null)
+			return;
+		if (url ==null)
+			return;
+		if (url.isEmpty())
+			return;
+		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url);
 	}
 }
