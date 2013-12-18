@@ -67,4 +67,12 @@
   	<string name="choose_photo">请选择来源</string>
   	<string name="photoPickerNotFoundText">没有找到摄像头！</string>
   	<string name="sysError">未知错误！</string>
+  	<string name="buy">购买</string>
+  	<string name="placeholder">占位符123</string>
+  	<string name="placeholder2">占位符123456789\n123456789</string>
+  	<string name="star1">1星</string>
+  	<string name="star2">2星</string>
+  	<string name="star3">3星</string>
+  	<string name="star4">4星</string>
+  	<string name="star5">5星</string>
 </resources>

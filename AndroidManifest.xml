@@ -185,6 +185,8 @@
 		<activity android:name="cn.count.easydrive366.provider.ProviderListActivity" />
 		<activity android:name="cn.count.easydrive366.provider.ProviderDetailActivity" />
 		<activity android:name="cn.count.easydrive366.article.ArticleListActivity" />
+		<activity android:name="cn.count.easydrive366.comments.ItemCommentsActivity" />
+		<activity android:name="cn.count.easydrive366.comments.DoCommentActivity" />
     </application>
 
 </manifest>

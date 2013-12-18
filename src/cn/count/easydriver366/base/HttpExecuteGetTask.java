@@ -36,6 +36,7 @@ public abstract class HttpExecuteGetTask extends AsyncTask<String, Void, String>
 		try {
 			
 			String httpUrl = AppSettings.ServerUrl+urlString;
+			Log.d(AppSettings.AppTile, httpUrl);
 			HttpClient client = new DefaultHttpClient();
 			HttpGet get = new HttpGet(httpUrl);
 			HttpResponse response = client.execute(get);

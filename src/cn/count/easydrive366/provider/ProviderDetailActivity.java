@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
+import cn.count.easydrive366.comments.ItemCommentsActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
@@ -52,6 +54,20 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 		}
 		_imageView = (ImageView)findViewById(R.id.img_picture);
 		this.addSwipeToView(_imageView);
+		findViewById(R.id.layout_rating).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				openRating();
+				
+			}
+		});
+	}
+	private void openRating(){
+		Intent intent =new Intent(this,ItemCommentsActivity.class);
+		intent.putExtra("id",code);
+		intent.putExtra("type", "provider");
+		startActivity(intent);
 	}
 	private void load_view(final String result){
 		JSONObject json =  AppSettings.getSuccessJSON(result);
@@ -184,6 +200,7 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 			holder.title.setText(info.get("name").toString());
 			holder.address.setText(info.get("buyers").toString());
 			holder.phone.setText(info.get("price").toString());
+			holder.voternum.setText("");
 			holder.ratingbar.setRating(4);
 			return convertView;
 		}

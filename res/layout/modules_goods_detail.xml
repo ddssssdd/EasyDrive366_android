@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical" >
 
     <include
@@ -14,16 +13,17 @@
         android:id="@+id/img_picture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dip"
         android:contentDescription="@string/app_name" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="30dip" />
+        android:layout_height="10dip" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_margin="10dip"
         android:orientation="horizontal" >
 
         <TextView
@@ -48,65 +48,74 @@
             android:id="@+id/txt_price"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="right" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="30dip" />
+        android:layout_height="10dip" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dip"
         android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/txt_description"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="30dip" />
+        android:layout_height="10dip" />
 
     <LinearLayout
+        android:id="@+id/layout_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_margin="10dip"
         android:orientation="horizontal" >
 
         <RatingBar
             android:id="@+id/rate_bar"
-            style="?android:attr/ratingBarStyleSmall" 
-            android:numStars="5"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginTop="2dip"
+            android:numStars="5" />
 
-        <TextView
-            android:id="@+id/txt_rate"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip" >
 
-        <TextView
-            android:id="@+id/txt_voternum"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            <TextView
+                android:id="@+id/txt_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/txt_voternum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right" />
+        </LinearLayout>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="30dip" />
+        android:layout_height="10dip" />
 
     <Button
         android:id="@+id/btn_buy"
         style="@style/button"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:text="buy" />
+        android:text="@string/buy" />
 
 </LinearLayout>
