@@ -75,4 +75,9 @@
   	<string name="star3">3星</string>
   	<string name="star4">4星</string>
   	<string name="star5">5星</string>
+  	<string name="right_arrow">></string>
+  	<string name="bound_button">做任务赚积分</string>
+  	<string name="button_weixin">微信</string>
+  	<string name="button_email">邮件</string>
+  	<string name="button_copy">复制</string>
 </resources>

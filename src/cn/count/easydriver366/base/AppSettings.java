@@ -288,5 +288,12 @@ public static String readInputStream(InputStream stream) throws IOException,Unsu
 		}
 		return null;
 	}
+	public static String getDefaultString(final String item,final String d){
+		if (item ==null)
+			return d;
+		if (item.isEmpty())
+			return d;
+		return item;
+	}
 	
 }

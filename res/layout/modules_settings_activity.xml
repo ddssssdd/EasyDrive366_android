@@ -8,320 +8,403 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/navigation_bar" />
-<com.handmark.pulltorefresh.library.PullToRefreshScrollView
-         xmlns:ptr="http://schemas.android.com/apk/res-auto"
-         android:id="@+id/pull_refresh_scrollview"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginLeft = "5dp"
-        android:layout_marginRight = "5dp"
-         ptr:ptrAnimationStyle="flip"
-         ptr:ptrMode="pullFromStart">
-    <TableLayout
-        style="@style/table"
+
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pull_refresh_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="*" >
-<!--         <View android:layout_width="match_parent" -->
-<!-- 		    android:layout_height="30dp"></View> -->
-<!--          <TableRow -->
-<!--             android:id="@+id/row_cardview" -->
-<!--             android:layout_width="match_parent" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:background="@drawable/signup_hit_input1" -->
-<!--             android:gravity="center" > -->
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="pullFromStart" >
 
-<!--             <TextView -->
-<!--                 android:id="@+id/txt_maintain" -->
-<!--                 android:layout_span="2" -->
-<!--                 android:gravity="center" -->
-<!--                 android:text="保险卡单查看" > -->
-<!--             </TextView> -->
-
-<!--             <TextView -->
-<!--                 android:id="@+id/img_choose1" -->
-<!--                 android:layout_width="wrap_content" -->
-<!--                 android:layout_height="wrap_content" -->
-<!--                 android:gravity="right" -->
-<!--                 android:layout_marginRight="20dp" -->
-<!--                 android:textSize="20dp" -->
-<!--                 android:text=">" -->
-<!--                  /> -->
-<!--         </TableRow> -->
-
-<!--         <TableRow -->
-<!--             android:id="@+id/row_cardadd" -->
-<!--             android:layout_width="match_parent" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:background="@drawable/signup_hit_input6" -->
-<!--             android:gravity="center" > -->
-
-<!--             <TextView -->
-<!--                 android:id="@+id/txt_driver" -->
-<!--                 android:layout_width="wrap_content" -->
-<!--                 android:layout_height="wrap_content" -->
-<!--                 android:layout_span="2" -->
-<!--                 android:gravity="center" -->
-<!--                 android:text="保险卡单激活" > -->
-<!--             </TextView> -->
-
-<!--             <TextView -->
-<!--                 android:id="@+id/img_choose2" -->
-<!--                 android:layout_width="wrap_content" -->
-<!--                 android:layout_height="wrap_content" -->
-<!--                 android:gravity="right" -->
-<!--                 android:layout_marginRight="20dp" -->
-<!--                 android:textSize="20dp" -->
-<!--                 android:text=">" > -->
-<!--               </TextView> -->
-<!--         </TableRow> -->
-        
-		 <View android:layout_width="match_parent"
-		    android:layout_height="30dp"></View> 
-        <TableRow
-            android:id="@+id/row_choose1"
+        <TableLayout
+            style="@style/table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/signup_hit_input1"
-            android:gravity="center" >
+            android:stretchColumns="*" >
 
-            <TextView
-                android:id="@+id/txt_maintain"
-                android:layout_span="2"
-                android:gravity="center"
-                android:text="保养设置" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/img_choose1"
-                android:layout_width="wrap_content"
+            <include
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:text=">"
-                 />
-        </TableRow>
+                layout="@layout/partview_user_profile" />
 
-        <TableRow
-            android:id="@+id/row_choose2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/signup_hit_input6"
-            android:gravity="center" >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" >
+            </View>
 
-            <TextView
-                android:id="@+id/txt_driver"
-                android:layout_width="wrap_content"
+            <TableRow
+                android:id="@+id/row_choose_user_feedback"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:gravity="center"
-                android:text="设置向导" >
-            </TextView>
+                android:background="@drawable/signup_hit_input0"
+                android:gravity="center" >
 
-            <TextView
-                android:id="@+id/img_choose2"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="用户反馈" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/txt_user_feedback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" >
+                </TextView>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" >
+            </View>
+            
+            <TableRow
+                android:id="@+id/row_order"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:text=">" >
-              </TextView>
-        </TableRow>
+                android:background="@drawable/signup_hit_input1"
+                android:gravity="center" >
 
-<!--         <TableRow -->
-<!--             android:id="@+id/row_choose3" -->
-<!--             android:layout_width="match_parent" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:gravity="center" -->
-<!--             android:background="@drawable/signup_hit_input6" > -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="我的订单" >
+                </TextView>
 
-<!--             <TextView -->
-<!--                 android:id="@+id/txt_license" -->
-<!--                 android:layout_width="wrap_content" -->
-<!--                 android:layout_height="wrap_content" -->
-<!--                 android:layout_span="2" -->
-<!--                 android:gravity="center" -->
-<!--                 android:text="我的车辆" > -->
-<!--             </TextView> -->
-
-<!--              <TextView -->
-<!--                 android:id="@+id/img_choose3" -->
-<!--                 android:layout_width="wrap_content" -->
-<!--                 android:layout_height="wrap_content" -->
-<!--                 android:gravity="right" -->
-<!--                 android:layout_marginRight="20dp" -->
-<!--                 android:textSize="20dp" -->
-<!--                 android:text=">"/> -->
-<!--         </TableRow> -->
-		<View android:layout_width="match_parent"
-		    android:layout_height="30dp"></View>
-        <TableRow
-            android:id="@+id/row_choose4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@drawable/signup_hit_input1" >
-
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txt_activate_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" >
+                </TextView>
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/row_card"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:gravity="center"
-                android:text="重设密码" >
-            </TextView>
+                android:background="@drawable/signup_hit_input2"
+                android:gravity="center" >
 
-             <TextView
-                android:id="@+id/img_choose4"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="我的卡券" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/txt_activate_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" >
+                </TextView>
+            </TableRow>
+            <TableRow
+                android:id="@+id/row_favorite"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:text=">"/>
-        </TableRow>
-        <TableRow
-            android:id="@+id/row_choose_cellphone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@drawable/signup_hit_input2" >
+                android:background="@drawable/signup_hit_input2"
+                android:gravity="center" >
 
-            <TextView
-                android:id="@+id/txt_bindCellphone"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="我的收藏" >
+                </TextView>
+
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" >
+                </TextView>
+            </TableRow>
+			<TableRow
+                android:id="@+id/row_histroy"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:gravity="center"
-                android:text="绑定手机" >
-            </TextView>
+                android:background="@drawable/signup_hit_input6"
+                android:gravity="center" >
 
-             <TextView
-                android:id="@+id/img_choose_cellphone"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="浏览历史" >
+                </TextView>
+
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" >
+                </TextView>
+            </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" >
+            </View>
+            <TableRow
+                android:id="@+id/row_car"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:text=">"/>
-        </TableRow>
-        <TableRow
-            android:id="@+id/row_choose_findpassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@drawable/signup_hit_input6" >
+                android:background="@drawable/signup_hit_input1"
+                android:gravity="center" >
 
-            <TextView
-                android:id="@+id/txt_findpassword"
-                android:layout_width="wrap_content"
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="我的车辆" >
+                </TextView>
+
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row_driver"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:gravity="center"
-                android:text="找回密码" >
-            </TextView>
+                android:background="@drawable/signup_hit_input2"
+                android:gravity="center" >
 
-             <TextView
-                android:id="@+id/img_find_password"
-                android:layout_width="wrap_content"
+                <TextView
+                    
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="驾驶证" >
+                </TextView>
+
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row_maintain"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:text=">"/>
-        </TableRow>
-		<View android:layout_width="match_parent"
-		    android:layout_height="30dp"></View>
-		<TableRow
-             android:id="@+id/row_choose_user_feedback"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@drawable/signup_hit_input1" >
+                android:background="@drawable/signup_hit_input6"
+                android:gravity="center" >
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="保养设置" >
+                </TextView>
+
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            
+
+            
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" >
+            </View>
+
+            <TableRow
+                android:id="@+id/row_resetpassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:gravity="center"
-                android:text="用户反馈" >
-            </TextView>
+                android:background="@drawable/signup_hit_input1"
+                android:gravity="center" >
 
-            <TextView
-                android:id="@+id/txt_user_feedback"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="重设密码" >
+                </TextView>
+
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row_choose_cellphone"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:text=">" >
-            </TextView>
-           
-        </TableRow>
-        <TableRow
-             android:id="@+id/row_choose_check_version"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@drawable/signup_hit_input2" >
+                android:background="@drawable/signup_hit_input2"
+                android:gravity="center" >
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txt_bindCellphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="绑定手机" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/img_choose_cellphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row_choose_findpassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:gravity="center"
-                android:text="版本号" >
-            </TextView>
+                android:background="@drawable/signup_hit_input6"
+                android:gravity="center" >
 
-            <TextView
-                android:id="@+id/txt_version"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txt_findpassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="找回密码" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/img_find_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" >
+            </View>
+
+            <TableRow
+                android:id="@+id/row_choose_check_version"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:text="V1.01" >
-            </TextView>
-           
-        </TableRow>
-        
-         <TableRow
-             android:id="@+id/row_activate_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@drawable/signup_hit_input6" >
+                android:background="@drawable/signup_hit_input0"
+                android:gravity="center" >
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="版本号" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/txt_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="V1.01"
+                    android:textSize="20sp" >
+                </TextView>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" >
+            </View>
+
+            <TableRow
+                android:id="@+id/row_setup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:gravity="center"
-                android:text="我的卡券" >
-            </TextView>
+                android:background="@drawable/signup_hit_input0"
+                android:gravity="center" >
 
-            <TextView
-                android:id="@+id/txt_activate_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:text=">" >
-            </TextView>
-           
-        </TableRow>
-         <View android:layout_width="match_parent"
-		    android:layout_height="30dp"></View>
-         <Button
-        android:id="@+id/btn_logout"
-        style="@style/button.red"
-        android:hint=""
-        android:text="Logout" >
-    </Button>
-    </TableLayout>
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="设置向导" >
+                </TextView>
 
-    
-</com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="20sp" >
+                </TextView>
+            </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" >
+            </View>
+
+            <Button
+                android:id="@+id/btn_logout"
+                style="@style/button.red"
+                android:hint=""
+                android:text="Logout" >
+            </Button>
+        </TableLayout>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
 </LinearLayout>

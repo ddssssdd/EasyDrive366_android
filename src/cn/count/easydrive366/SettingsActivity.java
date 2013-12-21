@@ -12,14 +12,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import cn.count.easydrive366.card.AddCardStep1Activity;
 import cn.count.easydrive366.card.CardViewActivity;
 import cn.count.easydrive366.signup.Step1Activity;
+import cn.count.easydrive366.user.BoundActivity;
+import cn.count.easydrive366.user.FriendActivity;
+import cn.count.easydrive366.user.TaskListActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.CheckUpdate;
+import cn.count.easydriver366.base.HttpExecuteGetTask;
 
 public class SettingsActivity extends BaseHttpActivity {
 	
@@ -37,6 +43,12 @@ public class SettingsActivity extends BaseHttpActivity {
 	private String _activate_date;
 	private String _valid_date;
 	private JSONArray _contents;
+	private TextView txtNickname;
+	private TextView txtSignature;
+	private TextView txtBound;
+	private TextView txtExp;
+	private ProgressBar pbExp;
+	private ImageView imgAvater;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -50,7 +62,7 @@ public class SettingsActivity extends BaseHttpActivity {
 	}
 	private void init_view(){
 		
-		findViewById(R.id.row_choose4).setOnClickListener(new OnClickListener(){
+		findViewById(R.id.row_resetpassword).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
@@ -60,7 +72,7 @@ public class SettingsActivity extends BaseHttpActivity {
 		
 		
 		
-		findViewById(R.id.row_choose1).setOnClickListener(new OnClickListener(){
+		findViewById(R.id.row_maintain).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
@@ -68,16 +80,22 @@ public class SettingsActivity extends BaseHttpActivity {
 				get(AppSettings.url_for_get_maintain_record(), 2);
 				
 			}});
-		findViewById(R.id.row_choose2).setOnClickListener(new OnClickListener(){
+		findViewById(R.id.row_setup).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				register_step();
+			}});
+		findViewById(R.id.row_driver).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
 //				setup_driver();
-//				get(AppSettings.url_get_driver_license(),3);
-				register_step();
+				get(AppSettings.url_get_driver_license(),3);
+				
 			}});
-		/*
-		findViewById(R.id.row_choose3).setOnClickListener(new OnClickListener(){
+		
+		findViewById(R.id.row_car).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
@@ -85,7 +103,7 @@ public class SettingsActivity extends BaseHttpActivity {
 				get(AppSettings.url_get_car_registration(),4);
 				
 			}});
-		*/
+		
 		findViewById(R.id.row_choose_cellphone).setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -119,11 +137,47 @@ public class SettingsActivity extends BaseHttpActivity {
 				user_feedback();
 				
 			}});
-		findViewById(R.id.row_activate_code).setOnClickListener(new OnClickListener(){
+		findViewById(R.id.row_card).setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
 				check_activate_code();
+				
+			}});
+		
+		findViewById(R.id.txt_bound).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				open_bound();
+				
+			}});
+		findViewById(R.id.btn_pay).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				open_pay();
+				
+			}});
+		findViewById(R.id.btn_insurance).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				open_insurance();
+				
+			}});
+		findViewById(R.id.btn_task).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				open_task();
+				
+			}});
+		findViewById(R.id.btn_friend).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				open_friend();
 				
 			}});
 		/*
@@ -141,6 +195,12 @@ public class SettingsActivity extends BaseHttpActivity {
 				
 			}});
 			*/
+		txtNickname = (TextView)findViewById(R.id.txt_nickname);
+		txtSignature = (TextView)findViewById(R.id.txt_signature);
+		txtBound = (TextView)findViewById(R.id.txt_bound);
+		txtExp = (TextView)findViewById(R.id.txt_exp);
+		imgAvater = (ImageView)findViewById(R.id.img_picture);
+		pbExp = (ProgressBar)findViewById(R.id.pb_exp);
 		txtBind = (TextView)findViewById(R.id.txt_bindCellphone);
 		txtVersion = (TextView)findViewById(R.id.txt_version);
 		txtCellphone = (TextView)findViewById(R.id.img_choose_cellphone);
@@ -159,6 +219,7 @@ public class SettingsActivity extends BaseHttpActivity {
 		
 		this.get(AppSettings.url_get_user_phone(), 1);
 		//this.get(AppSettings.url_get_activate_code(), 11,"");
+		load_user_profile();
 	}
 	private void changePassword(){
 		Intent intent = new Intent(this,PasswordResetActivity.class);
@@ -405,5 +466,46 @@ public class SettingsActivity extends BaseHttpActivity {
 	private void cardAdd(){
 		Intent intent = new Intent(this,AddCardStep1Activity.class);
 		startActivity(intent);
+	}
+	private void open_bound(){
+		Intent intent =new Intent(this,BoundActivity.class);
+		startActivity(intent);
+	}
+	private void open_pay(){
+		
+	}
+	private void open_insurance(){
+		
+	}
+	private void open_task(){
+		Intent intent = new Intent(this,TaskListActivity.class);
+		startActivity(intent);
+	}
+	private void open_friend(){
+		Intent intent = new Intent(this,FriendActivity.class);
+		startActivity(intent);
+	}
+	private void load_user_profile(){
+		String url = String.format("bound/get_user_set?userid=%d", AppSettings.userid);
+		new HttpExecuteGetTask(){
+
+			@Override
+			protected void onPostExecute(String result) {
+				load_user_view(result);
+				
+			}}.execute(url);
+	}
+	private void load_user_view(final String result){
+		JSONObject json = AppSettings.getSuccessJSON(result);
+		try{
+			txtNickname.setText(AppSettings.getDefaultString(json.getString("nickname"), "（未设置）") );
+			txtExp.setText(json.getString("exp"));
+			txtBound.setText(String.format("我的积分:%s", json.getString("bound")));
+			txtSignature.setText(AppSettings.getDefaultString(json.getString("signature"), "啥也没有说"));
+			this.loadImageFromUrl(imgAvater, json.getString("photourl"));
+			
+		}catch(Exception e){
+			log(e);
+		}
 	}
 }

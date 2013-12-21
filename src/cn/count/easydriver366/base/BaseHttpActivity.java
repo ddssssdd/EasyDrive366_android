@@ -527,4 +527,13 @@ public class BaseHttpActivity extends ActionActivity implements
 			return;
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url);
 	}
+	public void loadImageFromUrl(ImageView imageView,final String url,int resourceId){
+		if (imageView==null)
+			return;
+		if (url ==null)
+			return;
+		if (url.isEmpty())
+			return;
+		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url,resourceId);
+	}
 }
