@@ -14,7 +14,7 @@
             android:layout_width="@dimen/pic_cell_width"
             android:layout_height="@dimen/pic_cell_height"
             android:layout_margin="10dip"
-            android:src="@drawable/default_avater"
+            android:src="@drawable/m"
             android:contentDescription="@string/app_name" />
 
         <LinearLayout
@@ -80,33 +80,38 @@
         android:layout_margin="2dip"
         android:orientation="horizontal" >
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="待付款" />
+            android:contentDescription="@string/app_name"
+            android:background="@drawable/daifukuan"
+             />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_insurance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="我的保险" />
+            android:contentDescription="@string/app_name"
+            android:background="@drawable/baoxian" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="我的任务" />
+            android:contentDescription="@string/app_name"
+            android:background="@drawable/renwu" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_friend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="我的朋友" />
+            android:contentDescription="@string/app_name"
+            android:background="@drawable/pengyou" />
     </LinearLayout>
 
 </LinearLayout>

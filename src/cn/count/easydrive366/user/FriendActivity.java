@@ -28,8 +28,8 @@ public class FriendActivity extends BaseHttpActivity {
 	private TextView txt_ontent;
 	private TextView txt_invite_code;
 	private ListView lv_items;
-	private BoundAdapter _adapter;
-	private List<Bound> _list;
+	private FriendListAdapter _adapter;
+	private List<Friend> _list;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -75,18 +75,18 @@ public class FriendActivity extends BaseHttpActivity {
 			txt_invite_code.setText(json.getString("my_invite"));
 			txt_ontent.setText(json.getString("content"));
 			JSONArray tempList = json.getJSONArray("friends");
-			_list = new ArrayList<Bound>();
+			_list = new ArrayList<Friend>();
 			for(int i=0;i<tempList.length();i++){
 				JSONObject item = tempList.getJSONObject(i);
-				Bound bound = new Bound();
-				bound.bound = item.getString("registerDate");
-				bound.date = item.getString("name");
-				bound.memo = item.getString("is_bounds");
+				Friend friend = new Friend();
+				friend.date = item.getString("registerDate");
+				friend.name = item.getString("name");
+				friend.memo = item.getString("is_bounds");
 				
-				_list.add(bound);
+				_list.add(friend);
 			}
 			if (_adapter==null){
-				_adapter = new BoundAdapter(this);
+				_adapter = new FriendListAdapter(this);
 				lv_items.setAdapter(_adapter);
 				
 			}else{
@@ -96,19 +96,19 @@ public class FriendActivity extends BaseHttpActivity {
 			log(e);
 		}
 	}
-	private class Bound{
+	private class Friend{
+		public String name;
 		public String date;
-		public String bound;
 		public String memo;
 	}
 	private class ViewHolder{
+		public TextView txtName;
 		public TextView txtDate;
-		public TextView txtBound;
 		public TextView txtMemo;
 	}
-	private class BoundAdapter extends BaseAdapter{
+	private class FriendListAdapter extends BaseAdapter{
 		private LayoutInflater mLayoutInflater;
-		public BoundAdapter(Context context){
+		public FriendListAdapter(Context context){
 		
 			mLayoutInflater = LayoutInflater.from(context);
 		}
@@ -136,16 +136,16 @@ public class FriendActivity extends BaseHttpActivity {
 			if (convertView==null){
 				holder = new ViewHolder();
 				convertView = mLayoutInflater.inflate(R.layout.listitem_boundlist, null);
-				holder.txtBound = (TextView)convertView.findViewById(R.id.txtBound);
-				holder.txtDate = (TextView)convertView.findViewById(R.id.txtDate);
+				holder.txtDate = (TextView)convertView.findViewById(R.id.txtBound);
+				holder.txtName = (TextView)convertView.findViewById(R.id.txtDate);
 				holder.txtMemo = (TextView)convertView.findViewById(R.id.txtMemo);
 				convertView.setTag(holder);
 			}else{
 				holder = (ViewHolder)convertView.getTag();
 			}
-			Bound bound = _list.get(position);
-			holder.txtBound.setText(bound.bound);
+			Friend bound = _list.get(position);
 			holder.txtDate.setText(bound.date);
+			holder.txtName.setText(bound.name);
 			holder.txtMemo.setText(bound.memo);
 			return convertView;
 		}

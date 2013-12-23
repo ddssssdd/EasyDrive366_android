@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -198,6 +200,7 @@ public class SettingsActivity extends BaseHttpActivity {
 		txtNickname = (TextView)findViewById(R.id.txt_nickname);
 		txtSignature = (TextView)findViewById(R.id.txt_signature);
 		txtBound = (TextView)findViewById(R.id.txt_bound);
+		txtBound.setMovementMethod(LinkMovementMethod.getInstance());
 		txtExp = (TextView)findViewById(R.id.txt_exp);
 		imgAvater = (ImageView)findViewById(R.id.img_picture);
 		pbExp = (ProgressBar)findViewById(R.id.pb_exp);
@@ -217,7 +220,7 @@ public class SettingsActivity extends BaseHttpActivity {
 				
 			}});
 		
-		this.get(AppSettings.url_get_user_phone(), 1);
+		//this.get(AppSettings.url_get_user_phone(), 1);
 		//this.get(AppSettings.url_get_activate_code(), 11,"");
 		load_user_profile();
 	}
@@ -497,10 +500,27 @@ public class SettingsActivity extends BaseHttpActivity {
 	}
 	private void load_user_view(final String result){
 		JSONObject json = AppSettings.getSuccessJSON(result);
+		/*{"exp":"1","msg_maintain":"2013-10-31保养,请提前预约","phone":"18605328170","level":"1",
+		 * "msg_car":"违章0次计0分罚0元\n14年03月至14年05月年审","status":"02","exp_nextlevel":"10","nickname":"","photourl":"",
+		 * "msg_driver":"已扣0分2014-11-05扣分到期","signature":"","bound":"0"}*/
 		try{
+			_cellphone= json.getString("phone");
+			
+			if (json.getString("status").equals("02")){
+				txtBind.setText(getString(R.string.unbind));
+				txtCellphone.setText(String.format("%s >", _cellphone));
+				
+				
+				_isbind = 0;
+			}
+			
+			((TextView)findViewById(R.id.txt_car)).setText(json.getString("msg_car"));
+			((TextView)findViewById(R.id.txt_driver)).setText(json.getString("msg_driver"));
+			((TextView)findViewById(R.id.txt_maintain)).setText(json.getString("msg_maintain"));
 			txtNickname.setText(AppSettings.getDefaultString(json.getString("nickname"), "（未设置）") );
 			txtExp.setText(json.getString("exp"));
-			txtBound.setText(String.format("我的积分:%s", json.getString("bound")));
+			//txtBound.setText(Html.fromHtml( String.format("<a>我的积分:%s</a>", json.getString("bound"))));
+			txtBound.setText(String.format("<我的积分:%s", json.getString("bound")));
 			txtSignature.setText(AppSettings.getDefaultString(json.getString("signature"), "啥也没有说"));
 			this.loadImageFromUrl(imgAvater, json.getString("photourl"));
 			
