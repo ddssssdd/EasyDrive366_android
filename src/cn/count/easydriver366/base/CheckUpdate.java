@@ -13,6 +13,8 @@ import org.json.JSONObject;
 import cn.count.easydriver366.service.DownloadUtils;
 
 import cn.count.easydrive366.R;
+import cn.count.easydrive366.SettingsActivity;
+import cn.count.easydrive366.signup.Step1Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -63,6 +65,11 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 	private void check(final Object result){
 		try{
 			JSONObject json = ((JSONObject)result).getJSONObject("result");
+			boolean need_set =json.getBoolean("needset");
+			if (need_set && !_isSettings){
+				Intent intent = new Intent(_context,Step1Activity.class);
+				_context.startActivity(intent);
+			}
 			if (!json.getString("ver").equals(AppSettings.version)){
 				
 				final String url = json.getString("android");
