@@ -21,6 +21,7 @@ public class Step1Activity extends BaseHttpActivity {
 	private EditText edtCar_no;
 	private EditText edtId_no;
 	private EditText edt_vin;
+	private EditText edt_phone;
 	
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
@@ -35,6 +36,7 @@ public class Step1Activity extends BaseHttpActivity {
 		edtCar_no = (EditText)findViewById(R.id.edt_car_no);
 		edtId_no = (EditText)findViewById(R.id.edt_id_no);
 		edt_vin = (EditText)findViewById(R.id.edt_vin);
+		edt_phone = (EditText)findViewById(R.id.edt_phone);
 		edtCar_no.setText("鲁");
 		btnNext.setOnClickListener(new OnClickListener(){
 
@@ -74,6 +76,7 @@ public class Step1Activity extends BaseHttpActivity {
 							edtCar_no.setText(json.getJSONObject("result").getString("car_id"));
 							edtId_no.setText(json.getJSONObject("result").getString("license_id"));
 							edt_vin.setText(json.getJSONObject("result").getString("vin"));
+							edt_phone.setText(json.getJSONObject("result").getString("phone"));
 						}catch(Exception e){
 							log(e);
 						}
@@ -110,7 +113,12 @@ public class Step1Activity extends BaseHttpActivity {
 			}
 		}
 		
-		String url =String.format("api/wizardstep1?userid=%d&car_id=%s&license_id=%s&vin=%s",AppSettings.userid,car_no.toUpperCase(),id_no,vin.toUpperCase());
+		String url =String.format("api/wizardstep1?userid=%d&car_id=%s&license_id=%s&vin=%s&phone=%s",
+					AppSettings.userid,
+					car_no.toUpperCase(),
+					id_no,
+					vin.toUpperCase(),
+					edt_phone.getText().toString());
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtCar_no.getWindowToken(), 0);
 		this.get(url, 1);

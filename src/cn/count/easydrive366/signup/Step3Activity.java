@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import cn.count.easydrive366.ActivateCodeActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.SignupActivity;
 import cn.count.easydriver366.base.AppSettings;
@@ -95,6 +96,10 @@ public class Step3Activity extends BaseHttpActivity {
 				
 				startActivity(intent);
 				*/
+				Intent intent = new Intent(this,ActivateCodeActivity.class);
+				intent.putExtra("isGuide", true);
+				startActivity(intent);
+				
 				finish();
 			}catch(Exception e){
 				log(e);
