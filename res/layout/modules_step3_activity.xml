@@ -117,7 +117,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="设置向导第3步共3步"
+                android:text="设置向导第3步共4步"
                 android:textSize="24sp" />
     </TableLayout>
 
