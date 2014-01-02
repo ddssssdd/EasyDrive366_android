@@ -64,7 +64,9 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 		
 	}
 	private void needsetup(final String message){
-		
+		if (_isSettings){
+			return;
+		}
 		new AlertDialog.Builder(_context).setTitle(_context.getResources().getString(R.string.hint))
 		.setIcon(android.R.drawable.ic_dialog_alert)
 		.setMessage(message).setPositiveButton(_context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
@@ -81,7 +83,7 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 	private void check(final Object result){
 		try{
 			JSONObject json = ((JSONObject)result).getJSONObject("result");
-			final boolean need_set =json.getBoolean("needset");
+			final boolean need_set=true;//json.getBoolean("needset");
 			final String needsetmsg= json.getString("needsetmsg");
 			
 			

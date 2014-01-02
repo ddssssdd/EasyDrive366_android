@@ -31,6 +31,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 
@@ -152,6 +153,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 		public TextView detail;
 		public TextView action;
 		public CheckBox selected;
+		public ImageView image;
 	}
 	public class MyAdapter extends BaseAdapter
 	{
