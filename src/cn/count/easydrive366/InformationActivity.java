@@ -17,6 +17,7 @@ import android.view.View;
 
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.CheckBox;
@@ -83,6 +84,7 @@ public class InformationActivity extends BaseListViewActivity {
 				
 				return;
 			}
+			/*
 			TextView txtTitle = (TextView)view.findViewById(R.id.txt_listitem_detail_title);
 			TextView txtDetail = (TextView)view.findViewById(R.id.txt_listitem_detail_detail);
 			if (txtTitle!=null){
@@ -90,7 +92,8 @@ public class InformationActivity extends BaseListViewActivity {
 			}
 			if (txtDetail!=null){
 				txtDetail.setTextColor(Color.GRAY);
-			}
+			}*/
+			view.findViewById(R.id.reddot).setVisibility(View.INVISIBLE);
 			map.put("is_readed", 1);
 			final String action = map.get("action").toString();
 			final String url = map.get("url").toString();
@@ -133,9 +136,12 @@ public class InformationActivity extends BaseListViewActivity {
 		
 		String is_readed = info.get("is_readed").toString();
 		if (is_readed.equals("0")){
-			holder.title.setTextColor(Color.RED);
-			holder.detail.setTextColor(Color.BLUE);
+			//holder.title.setTextColor(Color.RED);
+			//holder.detail.setTextColor(Color.BLUE);
 			
+			
+		}else{
+			holder.image.setVisibility(View.INVISIBLE);
 		}
 	}
 	@Override
@@ -144,6 +150,7 @@ public class InformationActivity extends BaseListViewActivity {
 		holder.detail = (TextView)convertView.findViewById(R.id.txt_listitem_detail_detail);
 		//holder.action = (TextView)convertView.findViewById(R.id.txt_listitem_detail_right);
 		holder.selected = (CheckBox)convertView.findViewById(R.id.chk_item);
+		holder.image = (ImageView)convertView.findViewById(R.id.reddot);
 		convertView.setTag(holder);
 		//LinearLayout layout = (LinearLayout)convertView.findViewById(R.id.layout_delete);
 		

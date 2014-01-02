@@ -24,22 +24,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="9"
-        android:orientation="vertical">"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="9"
             android:orientation="horizontal" >
+            <ImageView  android:id="@+id/reddot"
+             android:layout_width="20dip"
+             android:layout_height="20dip"
+
+             android:layout_marginLeft="15dip"
+             android:layout_marginTop="5dip"
+             android:src="@drawable/reddot"/>
          <TextView
                 android:id="@+id/txt_listitem_detail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="15dip"
-                android:layout_marginRight="15dip"
+                android:layout_marginTop="5dip"
+                android:text="2013-12-12"
                 android:textSize="16sp" />
-        </RelativeLayout>
+         
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
