@@ -191,6 +191,10 @@
 		<activity android:name="cn.count.easydrive366.user.TaskListActivity" />
 		<activity android:name="cn.count.easydrive366.user.DoTaskActivity" />
 		<activity android:name="cn.count.easydrive366.user.FriendActivity" />
+		<activity android:name="cn.count.easydrive366.order.NewOrderActivity"></activity>
+		<activity android:name="cn.count.easydrive366.order.PayActivity"></activity>
+		<activity android:name="cn.count.easydrive366.order.NeedPayListActivity"></activity>
+		<activity android:name="cn.count.easydrive366.order.OrderDetailActivity"></activity>
     </application>
 
 </manifest>

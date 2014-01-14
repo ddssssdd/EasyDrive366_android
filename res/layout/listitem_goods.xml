@@ -75,6 +75,13 @@
                 android:text="bottom right"
                 android:textSize="12sp" />
         </LinearLayout>
+        <Button
+        android:id="@+id/btn_buy"
+        style="@style/button"
+        android:layout_height="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/buy" />
     </LinearLayout>
-
+	
 </LinearLayout>

@@ -80,4 +80,7 @@
   	<string name="button_weixin">微信</string>
   	<string name="button_email">邮件</string>
   	<string name="button_copy">复制</string>
+  	<string name="neworder_header">This is new order header</string>
+  	<string name="submit">Submit</string>
+  	<string name="delete">Delete</string>
 </resources>

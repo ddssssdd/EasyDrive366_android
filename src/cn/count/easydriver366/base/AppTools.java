@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.ImageView;
 
 public final class AppTools {
 	public static void log(Exception e){
@@ -54,5 +55,23 @@ public final class AppTools {
 		Intent intent = null;
 		intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
 		return intent;
+	}
+	public static void loadImageFromUrl(ImageView imageView,final String url){
+		if (imageView==null)
+			return;
+		if (url ==null)
+			return;
+		if (url.isEmpty())
+			return;
+		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url);
+	}
+	public static void loadImageFromUrl(ImageView imageView,final String url,int resourceId){
+		if (imageView==null)
+			return;
+		if (url ==null)
+			return;
+		if (url.isEmpty())
+			return;
+		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url,resourceId);
 	}
 }

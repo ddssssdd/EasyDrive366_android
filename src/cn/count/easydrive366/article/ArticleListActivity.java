@@ -35,6 +35,7 @@ public class ArticleListActivity extends BaseListViewActivity {
 		this.setContentView(R.layout.modules_article_list);
 		this.setupRightButtonWithText("分类");
 		this.setupPhoneButtonInVisible();
+		this.setupLeftButton();
 		this.setBarTitle("推荐百科");
 		this.resource_listview_id = R.id.modules_information_listview;
 		this.resource_listitem_id = R.layout.listitem_article;

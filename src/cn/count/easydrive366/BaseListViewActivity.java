@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -160,6 +161,9 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 		public TextView detail4;
 		public TextView detail5;
 		public RatingBar ratingbar;
+		public Button button1;
+		public Button btnDelete;
+		
 	}
 	public class MyAdapter extends BaseAdapter
 	{

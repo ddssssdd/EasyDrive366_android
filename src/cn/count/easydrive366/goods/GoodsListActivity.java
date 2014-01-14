@@ -9,11 +9,14 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import cn.count.easydrive366.BaseListViewActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
+import cn.count.easydrive366.order.NewOrderActivity;
 import cn.count.easydriver366.base.AppSettings;
 
 public class GoodsListActivity extends BaseListViewActivity {
@@ -27,6 +30,7 @@ public class GoodsListActivity extends BaseListViewActivity {
 		this.setupRightButtonWithText("分类");
 		this.setupPhoneButtonInVisible();
 		this.setBarTitle("推荐商品");
+		this.setupLeftButton();
 		this.resource_listview_id = R.id.modules_information_listview;
 		//this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.listitem_goods;
@@ -82,7 +86,7 @@ public class GoodsListActivity extends BaseListViewActivity {
 		holder.detail4.setText(info.get("discount").toString());
 		holder.detail5.setText(info.get("buyer").toString());
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
-		
+		holder.button1.setTag(info.get("id"));
 	}
 	@Override
 	protected void initListItem(ViewHolder holder,View convertView){
@@ -92,9 +96,18 @@ public class GoodsListActivity extends BaseListViewActivity {
 		holder.detail4 = (TextView)convertView.findViewById(R.id.txt_bleft);
 		holder.detail5 = (TextView)convertView.findViewById(R.id.txt_bright);
 		holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
+		holder.button1 =(Button)convertView.findViewById(R.id.btn_buy);
 		convertView.setTag(holder);
 	
-		
+		holder.button1.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				String id =(String)v.getTag();
+				Intent intent = new Intent(GoodsListActivity.this, NewOrderActivity.class);
+				intent.putExtra("id", id);
+				startActivity(intent);
+			}});
 	}
 	@Override
 	protected void onRightButtonPress() {

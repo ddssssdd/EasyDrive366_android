@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import cn.count.easydrive366.card.AddCardStep1Activity;
 import cn.count.easydrive366.card.CardViewActivity;
+import cn.count.easydrive366.order.NeedPayListActivity;
 import cn.count.easydrive366.signup.Step1Activity;
 import cn.count.easydrive366.user.BoundActivity;
 import cn.count.easydrive366.user.FriendActivity;
@@ -475,7 +476,8 @@ public class SettingsActivity extends BaseHttpActivity {
 		startActivity(intent);
 	}
 	private void open_pay(){
-		
+		Intent intent = new Intent(this,NeedPayListActivity.class);
+		startActivity(intent);
 	}
 	private void open_insurance(){
 		
