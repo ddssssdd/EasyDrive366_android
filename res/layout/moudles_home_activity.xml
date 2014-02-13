@@ -15,7 +15,8 @@
             android:layout_height="wrap_content"
             layout="@layout/navigation_bar" />
     </LinearLayout>
-	<LinearLayout
+
+    <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,48 +24,66 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/btn_map"
+            android:id="@+id/btn_home"
             style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="35dp"
-            android:layout_weight="1.0"
             android:layout_margin="0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/zhuye"
             android:padding="0dip"
-            android:text="地图"
+            android:text="主页"
             android:textSize="12sp" />
 
-       <Button
+        <Button
+            android:id="@+id/btn_map"
+            style="@style/button"
+            android:layout_width="0dip"
+            android:layout_height="35dp"
+            android:layout_margin="0dip"
+            android:layout_weight="1.0"
+            android:padding="0dip"
+            android:text="地图"
+            android:background="@drawable/shangpin"
+            android:textSize="12sp" />
+
+        <Button
             android:id="@+id/btn_goods"
             style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="35dp"
+            android:layout_margin="0dip"
             android:layout_weight="1.0"
-             android:layout_margin="0dip"
             android:padding="0dip"
             android:text="商品"
+            android:background="@drawable/shanghu"
             android:textSize="12sp" />
 
         <Button
             android:id="@+id/btn_provider"
             style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="35dp"
+            android:layout_margin="0dip"
             android:layout_weight="1.0"
-             android:layout_margin="0dip"
             android:padding="0dip"
             android:text="商户"
-            android:textSize="12sp" /> 
+            android:background="@drawable/baike"
+            android:textSize="12sp" />
+
         <Button
             android:id="@+id/btn_article"
             style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="35dp"
+            android:layout_margin="0dip"
             android:layout_weight="1.0"
-             android:layout_margin="0dip"
             android:padding="0dip"
             android:text="百科"
-            android:textSize="12sp" /> 
+            android:background="@drawable/yonghu"
+            android:textSize="12sp" />
     </LinearLayout>
+
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/pull_refresh_scrollview"
@@ -82,7 +101,5 @@
             android:stretchColumns="*" >
         </TableLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
-
-    
 
 </RelativeLayout>

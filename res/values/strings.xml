@@ -83,4 +83,5 @@
   	<string name="neworder_header">This is new order header</string>
   	<string name="submit">Submit</string>
   	<string name="delete">Delete</string>
+  	<string name="pay">Pay</string>
 </resources>

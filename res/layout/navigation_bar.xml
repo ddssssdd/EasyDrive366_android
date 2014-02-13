@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">"
+    android:orientation="vertical" >
+"
 
     <RelativeLayout
         android:id="@+id/titile_layout_ry"
@@ -36,25 +37,23 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dip"
-            android:textSize="12sp"
-            android:text="@string/edit" />
+            android:text="@string/edit"
+            android:textSize="12sp" />
     </RelativeLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <Button
-        android:id="@+id/btn_phone"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="@string/app_loading"
-        style="@style/button.green" >
-    </Button>
-        
-    </LinearLayout>
-    
+        android:layout_height="match_parent" >
 
+        <Button
+            android:id="@+id/btn_phone"
+            style="@style/button.green"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/app_loading" >
+        </Button>
+    </LinearLayout>
 
 </LinearLayout>
