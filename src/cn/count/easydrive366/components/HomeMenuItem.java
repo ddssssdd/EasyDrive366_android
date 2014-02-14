@@ -67,6 +67,7 @@ public class HomeMenuItem extends LinearLayout {
 		IntentFilter filter = new IntentFilter("cn.count.easydrive366.components.HomeMenuItem$LatestInformationReceiver");
 		LatestInformationReceiver br = new LatestInformationReceiver();
 		context.registerReceiver(br,filter);
+		
 	}
 	public void setData(HomeMenu menuItem){
 		_menuItem = menuItem;

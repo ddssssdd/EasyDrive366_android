@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.count.easydrive366"
     android:versionCode="7"
-    android:versionName="1.07" >
+    android:versionName="1.07" xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-sdk
         android:minSdkVersion="9"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="19" tools:ignore="OldTargetApi"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" >
@@ -45,9 +45,10 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+         >
         <activity
-            android:name="cn.count.easydrive366.HomeActivity"
+            android:name="cn.count.easydrive366.MainActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,6 +56,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="cn.count.easydrive366.HomeActivity"></activity>
         <activity
             android:name="cn.count.easydrive366.WelcomeActivity"
             android:label="@string/app_name" >

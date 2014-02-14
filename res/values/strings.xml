@@ -81,7 +81,12 @@
   	<string name="button_email">邮件</string>
   	<string name="button_copy">复制</string>
   	<string name="neworder_header">This is new order header</string>
-  	<string name="submit">Submit</string>
-  	<string name="delete">Delete</string>
-  	<string name="pay">Pay</string>
+  	<string name="submit">提交</string>
+  	<string name="delete">删除</string>
+  	<string name="pay">付款</string>
+  	<string name="goods">商品</string>
+  	<string name="provider">服务商</string>
+  	<string name="article">百科</string>
+  	<string name="settings">用户</string>
+  	<string name="search">分类</string>
 </resources>
