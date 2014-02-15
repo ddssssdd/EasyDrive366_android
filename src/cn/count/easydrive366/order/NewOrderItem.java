@@ -6,6 +6,7 @@ import cn.count.easydrive366.R;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -73,7 +74,9 @@ public class NewOrderItem extends LinearLayout {
 			((TextView)findViewById(R.id.txt_name)).setText(json.getString("name"));
 			((TextView)findViewById(R.id.txt_description)).setText(json.getString("description"));
 			((TextView)findViewById(R.id.txt_price)).setText(json.getString("price"));
-			((TextView)findViewById(R.id.txt_stand_price)).setText(json.getString("stand_price"));
+			TextView txt=(TextView)findViewById(R.id.txt_stand_price);
+			txt.setText(json.getString("stand_price"));
+			txt.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 			((TextView)findViewById(R.id.txt_discount)).setText(json.getString("discount"));
 			((TextView)findViewById(R.id.txt_buyer)).setText(json.getString("buyer"));
 			((TextView)findViewById(R.id.txt_price_order)).setText(json.getString("price"));

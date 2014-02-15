@@ -24,15 +24,13 @@ public class NewOrderActivity extends BaseHttpActivity {
 	private String product_id;
 	private String order_id;
 	private String order_total;
+	private String t_id;
 	private Map<String,Integer> _map= new HashMap<String,Integer>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_neworder_activity);
-		this.setBarTitle("Order");
-		this.setupLeftButton();
-		this.setupPhoneButtonInVisible();
-		this.setRightButtonInVisible();
+		
 		Intent intent= getIntent();
 		product_id = intent.getStringExtra("id");
 		load_data();
@@ -45,10 +43,12 @@ public class NewOrderActivity extends BaseHttpActivity {
 			order_id = getIntent().getStringExtra("order_id");
 			url = String.format("order/order_edit?userid=%d&orderid=%s", AppSettings.userid,order_id);
 		}
+		beginHttp();
 		new HttpExecuteGetTask(){
 
 			@Override
 			protected void onPostExecute(String result) {
+				endHttp();
 				load_view(result);
 				
 			}}.execute(url);
@@ -64,7 +64,9 @@ public class NewOrderActivity extends BaseHttpActivity {
 			for(int i=0;i<goods.length();i++){
 				TableRow tr = new TableRow(this);
 				NewOrderItem item = new NewOrderItem(this, null);
-				item.setData(goods.getJSONObject(i));
+				JSONObject json_item =goods.getJSONObject(i);
+				t_id = json_item.getString("id");
+				item.setData(json_item);
 				item.changed = new IOrderQuantityChanged(){
 
 					@Override
@@ -87,16 +89,22 @@ public class NewOrderActivity extends BaseHttpActivity {
 		}
 	}
 	private void submit(){
+		if (_map.size()==0 && t_id!=null && !t_id.isEmpty()){
+			_map.put(t_id, 1);
+		}
 		StringBuilder sb = new StringBuilder();
 		for(String key :_map.keySet()){
 			sb.append(String.format("goodsid=%s&quantity=%d&", key,_map.get(key)));
 		}
+		
 	
 		String url = String.format("order/order_save?userid=%d&%sorderid=%s", AppSettings.userid,sb.toString(),order_id);
+		beginHttp();
 		new HttpExecuteGetTask(){
 
 			@Override
 			protected void onPostExecute(String result) {
+				endHttp();
 				processResult(result);
 				
 			}}.execute(url);

@@ -16,15 +16,15 @@
 	<string name="app_uploading">正在上传...</string>
 	<string name="key_01">最新消息</string>
 	<string name="key_02">紧急救助</string>
-	<string name="key_03">事故救援</string>
+	<string name="key_03">我的保险</string>
 	<string name="key_04">保养建议</string>
 	<string name="key_05">驾驶证</string>
 	<string name="key_06">我的车辆</string>
 	<string name="key_07">车船税</string>
 	<string name="key_08">交强险</string>
 	<string name="key_09">商业险</string>
-	<string name="key_10">理赔记录</string>
-	<string name="key_11">维修记录</string>
+	<string name="key_10">购买意外险</string>
+	<string name="key_11">购买车险</string>
 	<string name="key_12">车务服务</string>
 	<string name="exit_question">再按一次退出易驾366</string>
 	<string name="current">当前保单</string>
@@ -89,4 +89,5 @@
   	<string name="article">百科</string>
   	<string name="settings">用户</string>
   	<string name="search">分类</string>
+  	<string name="agreement">请在购买之前阅读服务说明</string>
 </resources>

@@ -18,6 +18,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ import cn.count.easydrive366.photo.TakePhotoActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.HomeMenu;
+import cn.count.easydriver366.base.HttpExecuteGetTask;
 import cn.count.easydriver366.service.GetLatestReceiver;
 
 public class HomeMenuItem extends LinearLayout {
@@ -39,15 +41,18 @@ public class HomeMenuItem extends LinearLayout {
 	private TextView _description;
 	private String _company;
 	private String _phone;
+	private ImageView _img;
 	public HomeMenuItem(Context context,AttributeSet attrs){
 		super(context,attrs);
 		
 		_inflater = LayoutInflater.from(context);
 		_context = context;
 		//_inflater.inflate(R.layout.home_menu_item, this);
-		_inflater.inflate(R.layout.home_menu_items_one_line, this);
+		//_inflater.inflate(R.layout.home_menu_items_one_line, this);
+		_inflater.inflate(R.layout.home_menu_item_with_image, this);
 		_title = (TextView)findViewById(R.id.listitem_title);
 		_description =(TextView)findViewById(R.id.listitem_content);
+		_img = (ImageView)findViewById(R.id.listitem_pic);
 		findViewById(R.id.listitem_pic).setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -70,7 +75,11 @@ public class HomeMenuItem extends LinearLayout {
 		
 	}
 	public void setData(HomeMenu menuItem){
+		if (_img!=null){
+			_img.setImageDrawable(_context.getResources().getDrawable(menuItem.ImageId));
+		}
 		_menuItem = menuItem;
+		_menuItem.menuItem = this;
 		_title.setText(_menuItem.name);
 		final String oldValue = loadJson();
 		if (oldValue.equals("")){
@@ -207,6 +216,27 @@ public class HomeMenuItem extends LinearLayout {
 			
 			processJson(key,json);
 			Log.i("Receiver", json);
+		}
+		
+	}
+	public void getLatest(){
+		if (_menuItem!=null){
+			final String url = String.format("api/get_latest?userid=%d&keyname=%s",AppSettings.userid,_menuItem.key);
+			new HttpExecuteGetTask(){
+
+				@Override
+				protected void onPostExecute(String result) {
+					try{
+						JSONObject json = new JSONObject(result);
+						if (AppSettings.isSuccessJSON(json)){
+							processJson(_menuItem.key,json.getJSONObject("result").toString());
+						}
+					}catch(Exception e){
+						Log.e("Error", e.getMessage());
+					}
+					
+					
+				}}.execute(url);
 		}
 		
 	}

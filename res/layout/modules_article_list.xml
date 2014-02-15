@@ -29,6 +29,8 @@
         android:fastScrollEnabled="false"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
+        android:descendantFocusability="blocksDescendants"
+        android:fillViewport="true"
         android:smoothScrollbar="true"/>
 
 </LinearLayout>

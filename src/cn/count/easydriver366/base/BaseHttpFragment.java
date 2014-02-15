@@ -51,7 +51,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class BaseHttpFragment extends Fragment implements
-		HttpClient.IHttpCallback,OnClickListener {
+		HttpClient.IHttpCallback,OnClickListener,IRightButtonPressed {
 	private static String BaseHttpClientTAG = "BaseHttpActivity";
 	protected HttpClient httpClient;
 	// protected ImageButton _rightButton;
@@ -218,7 +218,8 @@ public class BaseHttpFragment extends Fragment implements
 	}
 
 	protected void log(Exception e) {
-		Log.e(BaseHttpClientTAG, e.getMessage());
+		if (e!=null)
+			Log.e(BaseHttpClientTAG, e.getMessage());
 	}
 
 	protected void showMessage(final String info,
@@ -270,7 +271,7 @@ public class BaseHttpFragment extends Fragment implements
 		new AlertDialog.Builder(this.getActivity()).setMessage(str).show();
 	}
 
-	protected void onRightButtonPress() {
+	public void onRightButtonPress() {
 
 	}
 

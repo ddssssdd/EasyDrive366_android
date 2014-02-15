@@ -33,10 +33,7 @@ public class ArticleListFragment extends BaseListViewFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		containerView = inflater.inflate(R.layout.modules_article_list,container,false);
-		this.setupRightButtonWithText("分类");
-		this.setupPhoneButtonInVisible();
-		this.setupLeftButton();
-		this.setBarTitle("推荐百科");
+		
 		this.resource_listview_id = R.id.modules_information_listview;
 		this.resource_listitem_id = R.layout.listitem_article;
 		restoreFromLocal(1);
@@ -129,7 +126,7 @@ public class ArticleListFragment extends BaseListViewFragment {
 		holder.detail2.setText(info.get("description").toString());
 		
 		holder.detail3.setText(info.get("star_voternum").toString());
-		holder.ratingbar.setRating(Float.parseFloat(info.get("star").toString()));
+		holder.ratingbar.setRating(3/*Float.parseFloat(info.get("star").toString())*/);
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
 		
 	}
@@ -146,7 +143,7 @@ public class ArticleListFragment extends BaseListViewFragment {
 		
 	}
 	@Override
-	protected void onRightButtonPress() {
+	public void onRightButtonPress() {
 		Intent intent = new Intent(this.getActivity(),SearchShopActivity.class);
 		intent.putExtra("isSearching", true);
 		intent.putExtra("type", "article");

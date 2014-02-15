@@ -29,10 +29,7 @@ public class ProviderListFragment extends BaseListViewFragment {
 			Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		containerView = inflater.inflate(R.layout.modules_goodslist,container,false);
-		this.setupRightButtonWithText("分类");
-		this.setupPhoneButtonInVisible();
-		this.setBarTitle("推荐商户");
-		this.setupLeftButton();
+		
 		this.resource_listview_id = R.id.modules_information_listview;
 		//this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.listitem_provider;
@@ -104,7 +101,7 @@ public class ProviderListFragment extends BaseListViewFragment {
 		
 	}
 	@Override
-	protected void onRightButtonPress() {
+	public void onRightButtonPress() {
 		Intent intent = new Intent(this.getActivity(),SearchShopActivity.class);
 		intent.putExtra("isSearching", true);
 		intent.putExtra("type", "provider");

@@ -1,5 +1,7 @@
 package cn.count.easydrive366.user;
 
+import java.util.Locale;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,6 +21,7 @@ import cn.count.easydrive366.ActivateCodeActivity;
 import cn.count.easydrive366.BindCellphoneActivity;
 import cn.count.easydrive366.CarRegistrationEditActivity;
 import cn.count.easydrive366.DriverLicenseEditActivity;
+import cn.count.easydrive366.MainActivity;
 import cn.count.easydrive366.MaintainEditActivity;
 import cn.count.easydrive366.PasswordResetActivity;
 import cn.count.easydrive366.R;
@@ -430,15 +433,9 @@ public class SettingsFragment extends BaseHttpFragment {
 	}
 
 	private void logout() {
-
-		AppSettings.logout(this.getActivity());
-		/*
-		 * Intent intent = new Intent(this,HomeActivity.class);
-		 * startActivity(intent);
-		 */
-		this.getActivity().setResult(-100, null);
-		//TODO: switch tab
-		//this.getActivity().finish();
+		
+		((MainActivity)this.getActivity()).logout();
+		
 	}
 
 	@Override
@@ -534,7 +531,10 @@ public class SettingsFragment extends BaseHttpFragment {
 		startActivity(intent);
 	}
 
-	private void load_user_profile() {
+	public void load_user_profile() {
+		if (!AppSettings.isLogin){
+			return;
+		}
 		String url = String.format("bound/get_user_set?userid=%d",
 				AppSettings.userid);
 		new HttpExecuteGetTask() {
@@ -581,6 +581,7 @@ public class SettingsFragment extends BaseHttpFragment {
 			txtSignature.setText(AppSettings.getDefaultString(
 					json.getString("signature"), "啥也没有说"));
 			this.loadImageFromUrl(imgAvater, json.getString("photourl"));
+			logoutButton.setText(String.format("注销-%s", AppSettings.username));
 
 		} catch (Exception e) {
 			log(e);

@@ -91,10 +91,10 @@ public class GoodsListActivity extends BaseListViewActivity {
 	@Override
 	protected void initListItem(ViewHolder holder,View convertView){
 		holder.title = (TextView)convertView.findViewById(R.id.txt_title);
-		holder.detail2 = (TextView)convertView.findViewById(R.id.txt_mleft);
-		holder.detail3 = (TextView)convertView.findViewById(R.id.txt_mright);
-		holder.detail4 = (TextView)convertView.findViewById(R.id.txt_bleft);
-		holder.detail5 = (TextView)convertView.findViewById(R.id.txt_bright);
+		holder.detail2 = (TextView) convertView.findViewById(R.id.txt_price);
+		holder.detail3 = (TextView) convertView.findViewById(R.id.txt_stand_price);
+		holder.detail4 = (TextView) convertView.findViewById(R.id.txt_discount);
+		holder.detail5 = (TextView) convertView.findViewById(R.id.txt_buyer);
 		holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
 		holder.button1 =(Button)convertView.findViewById(R.id.btn_buy);
 		convertView.setTag(holder);

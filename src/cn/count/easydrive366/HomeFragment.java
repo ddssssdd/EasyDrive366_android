@@ -7,6 +7,7 @@ import cn.count.easydrive366.components.HomeMenuItem;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.CheckUpdate;
 import cn.count.easydriver366.base.HomeMenu;
+import cn.count.easydriver366.base.IRightButtonPressed;
 import cn.count.easydriver366.base.Menus;
 import cn.count.easydriver366.service.BackendService;
 
@@ -36,11 +37,12 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements IRightButtonPressed{
 	private TableLayout _tableLayout;
 	private List<HomeMenu> menus;
 	private boolean _userWantQuit=false;
 	private Timer _quitTimer;
+	private Menus mainMenu;
 	private ProgressDialog _dialog;
 	PullToRefreshScrollView mPullRefreshScrollView;
 	ScrollView mScrollView;
@@ -55,34 +57,10 @@ public class HomeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState){
 		view = inflater.inflate(R.layout.moudles_home_activity,container,false);
 		
-		AppSettings.restore_login_from_device(this.getActivity());
-		startBackendService();
+	
 		setupMenu();
-		String rightButtonTitle ="登录";
-		if (AppSettings.isLogin){
-			rightButtonTitle=this.getResources().getString(R.string.menu_settings);
-		}
-		((Button)view.findViewById(R.id.title_set_bn)).setText(rightButtonTitle);
 		
-		view.findViewById(R.id.title_set_bn).setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				settingsButtonPress();
 				
-			}
-			
-		});
-		view.findViewById(R.id.img_navigationbar_logo).setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				logoClicked();
-				
-			}
-			
-		});
-		
 		mPullRefreshScrollView = (PullToRefreshScrollView) view.findViewById(R.id.pull_refresh_scrollview);
 		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 
@@ -93,12 +71,10 @@ public class HomeFragment extends Fragment {
 		});
 
 		mScrollView = mPullRefreshScrollView.getRefreshableView();
-		InputMethodManager imm = (InputMethodManager)this.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(mPullRefreshScrollView.getWindowToken(), 0);
-		new CheckUpdate(this.getActivity(),false);
+		
+		
 		return view;
-		//this.addSwipeToView(this.mPullRefreshScrollView);
-		//com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url);
+		
 	}
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
 		private boolean _needSleep=false;
@@ -119,11 +95,13 @@ public class HomeFragment extends Fragment {
 				} catch (InterruptedException e) {
 				}
 			}
+			mainMenu.updateHome();
 			
-			
+			/*
 			Intent intent = new Intent("cn.count.easydriver366.service.GetLatestReceiverr");
 			intent.putExtra("isInApp", true);
 			HomeFragment.this.getActivity().sendBroadcast(intent);
+			*/
 			
 			return null;
 		}
@@ -146,27 +124,7 @@ public class HomeFragment extends Fragment {
 		}
 		 
 	}
-	private void startBackendService(){
-		if (!isServiceRunning()){
-			Intent service = new Intent(HomeFragment.this.getActivity(),BackendService.class);
-			HomeFragment.this.getActivity().startService(service);
-		}
-		
-		
-	}
-	private boolean isServiceRunning(){
-		boolean result = false;
-		ActivityManager mActivityManager = (ActivityManager)this.getActivity().getSystemService(HomeFragment.this.getActivity().ACTIVITY_SERVICE);
-		List<ActivityManager.RunningServiceInfo> mServiceList=mActivityManager.getRunningServices(50);
-		final String serviceName =  "cn.count.easydriver366.service.BackendService";
-		for(int i=0;i<mServiceList.size();i++){
-			if (mServiceList.get(i).service.getClassName().equals(serviceName)){
-				result = true;
-				break;
-			}
-		}
-		return result;
-	}
+	
 	private void setupMenu(){
 		View v = view.findViewById(R.id.btn_phone);
 		if (v != null) {
@@ -194,23 +152,10 @@ public class HomeFragment extends Fragment {
 	}
 	
 	private void initMenuItems(){
-		menus = (new Menus(this.getActivity())).getMenus();
+		mainMenu =new Menus(this.getActivity());
+		menus = mainMenu.getMenus();
 	}
-	/*
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_welcome, menu);
-		return true;
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
-		//this.logout();
-		Intent intent = new Intent(this,SettingsActivity.class);
-		startActivity(intent);
-		return true;
-	}
-	*/
+	
 	public void logout(){
 		AppSettings.logout(this.getActivity());
 		Intent intent = new Intent(HomeFragment.this.getActivity(),WelcomeActivity.class);
@@ -222,9 +167,13 @@ public class HomeFragment extends Fragment {
 		
 		
 		if (AppSettings.isLogin){
+			/*
 			Intent intent = new Intent(this.getActivity(),SettingsActivity.class);
 			
 			startActivityForResult(intent,1);
+			*/
+			MainActivity main = (MainActivity)this.getActivity();
+			main.gotoTab(4);
 		}else{
 			Intent intent = new Intent(this.getActivity(),WelcomeActivity.class);
 			startActivityForResult(intent,2);
@@ -237,11 +186,8 @@ public class HomeFragment extends Fragment {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		String rightButtonTitle ="登录";
-		if (AppSettings.isLogin){
-			rightButtonTitle=this.getResources().getString(R.string.menu_settings);
-		}
-		((Button)view.findViewById(R.id.title_set_bn)).setText(rightButtonTitle);
+		MainActivity main = (MainActivity)this.getActivity();
+		main.login();
 		new GetDataTask().execute();
 		
 	   
@@ -254,8 +200,18 @@ public class HomeFragment extends Fragment {
 	    builder.show();
 	  }
 	
-	private void logoClicked()
-	{
+	
+	@Override
+	public void onRightButtonPress() {
+		if (AppSettings.isLogin){
+			Intent intent = new Intent(this.getActivity(),SettingsActivity.class);
+			
+			startActivityForResult(intent,1);
+		}else{
+			Intent intent = new Intent(this.getActivity(),WelcomeActivity.class);
+			startActivityForResult(intent,2);
+		}
+		
 		
 	}
 	

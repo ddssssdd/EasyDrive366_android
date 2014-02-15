@@ -69,9 +69,11 @@ public class BaseHttpActivity extends ActionActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/*
 		if (_isHideTitleBar){
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
 		}
+		*/
 
 	}
 	protected void setupScrollView(){
@@ -105,7 +107,21 @@ public class BaseHttpActivity extends ActionActivity implements
 		
 		this.get(actionAndParameters, returnType,this.getResources().getString(R.string.app_loading));
 	}
-	
+	protected void beginHttp(){
+		if (_dialog !=null){
+			_dialog.dismiss();
+			_dialog = null;
+		}
+		_dialog = new ProgressDialog(this);
+		_dialog.setMessage(this.getResources().getString(R.string.app_loading));
+		_dialog.show();
+	}
+	protected void endHttp(){
+		if (_dialog !=null){
+			_dialog.dismiss();
+			_dialog = null;
+		}
+	}
 	public void get(String actionAndParameters, final int returnType,final String hint) {
 		if (!this.isOnline()){
 			this.restoreFromLocal(returnType);

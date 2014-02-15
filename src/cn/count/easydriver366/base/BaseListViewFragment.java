@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -154,6 +155,7 @@ public abstract class BaseListViewFragment extends BaseHttpFragment {
 		public RatingBar ratingbar;
 		public Button button1;
 		public Button btnDelete;
+		public ImageButton imgButton;
 		
 	}
 	public class MyAdapter extends BaseAdapter

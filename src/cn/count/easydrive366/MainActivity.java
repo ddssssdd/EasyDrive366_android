@@ -8,10 +8,17 @@ import cn.count.easydrive366.article.ArticleListFragment;
 import cn.count.easydrive366.goods.GoodsListFragment;
 import cn.count.easydrive366.provider.ProviderListFragment;
 import cn.count.easydrive366.user.SettingsFragment;
-
+import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.CheckUpdate;
+import cn.count.easydriver366.service.BackendService;
+import cn.count.easydriver366.base.IRightButtonPressed;
 
 
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.ActivityManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -26,6 +33,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -51,15 +59,17 @@ public class MainActivity extends FragmentActivity {
     @Override  
     public void onCreate(Bundle savedInstanceState) {  
         super.onCreate(savedInstanceState);  
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main_activity);  
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);// 启动activity时不自动弹出软键盘  
-        
+        AppSettings.restore_login_from_device(this);
+		startBackendService();
         instance = this;  
         //this.getActionBar().setDisplayShowTitleEnabled(true);
         //this.setTitle("EasyDrive366");
         //this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         
+       
         mTabPager = (ViewPager) findViewById(R.id.tabpager);  
         mTabPager.setOnPageChangeListener(new MyOnPageChangeListener());  
         mTabPager.setOffscreenPageLimit(5);
@@ -81,16 +91,79 @@ public class MainActivity extends FragmentActivity {
         mSectionsPagerAdapter= new SectionsPagerAdapter(
 				getSupportFragmentManager());
         mTabPager.setAdapter(mSectionsPagerAdapter);
+        mTabPager.getCurrentItem();
         
+        new CheckUpdate(this,false);
         
     }  
+    
+    private void startBackendService(){
+		if (!isServiceRunning()){
+			Intent service = new Intent(this,BackendService.class);
+			startService(service);
+		}
+		
+		
+	}
+	private boolean isServiceRunning(){
+		boolean result = false;
+		ActivityManager mActivityManager = (ActivityManager)this.getSystemService(ACTIVITY_SERVICE);
+		List<ActivityManager.RunningServiceInfo> mServiceList=mActivityManager.getRunningServices(50);
+		final String serviceName =  "cn.count.easydriver366.service.BackendService";
+		for(int i=0;i<mServiceList.size();i++){
+			if (mServiceList.get(i).service.getClassName().equals(serviceName)){
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
+	private MenuItem rightMenu;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
       MenuInflater inflater = getMenuInflater();
       inflater.inflate(R.menu.main_menu, menu);
+      rightMenu = menu.findItem(R.id.action_settings);
+      pageChanged(0);
       return true;
     } 
+    public void pageChanged(final int index){
+    	switch(index){
+    	case 0:
+    		if (AppSettings.isLogin)
+    			rightMenu.setTitle("设置");
+    		else
+    			rightMenu.setTitle("登录");
+    		break;
+    	case 4:
+    		rightMenu.setTitle("");
+    		break;
+    	default:
+    		rightMenu.setTitle("分类");
+    	}
+    }
     
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.d("menu click", item.toString());
+		Fragment f = mSectionsPagerAdapter.getItem(mTabPager.getCurrentItem());
+		if (f instanceof IRightButtonPressed){
+			((IRightButtonPressed)f).onRightButtonPress();
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	public void login(){
+		pageChanged(0);
+		_settings.load_user_profile();
+	}
+	public void logout(){
+		AppSettings.logout(this);
+		
+		 mTabPager.setCurrentItem(0);  
+	}
+	public void gotoTab(final int index){
+		mTabPager.setCurrentItem(index);
+	}
 	/** 
      * 头标点击监听 
      */  
@@ -112,9 +185,9 @@ public class MainActivity extends FragmentActivity {
      * 页卡切换监听(原作者:D.Winter) 
      */  
     public class MyOnPageChangeListener implements OnPageChangeListener {  
-        public void onPageSelected(int arg0) {  
-            
-            switch (arg0) {  
+        public void onPageSelected(int index) {  
+            pageChanged(index);
+            switch (index) {  
             case 0:  
                 _imgHome.setImageDrawable(getResources().getDrawable(  
                         R.drawable.tab_weixin_pressed));  
@@ -261,5 +334,6 @@ public class MainActivity extends FragmentActivity {
 		}
 		*/
 	}
+	
 	
 }
