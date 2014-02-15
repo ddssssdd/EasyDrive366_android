@@ -90,4 +90,5 @@
   	<string name="settings">用户</string>
   	<string name="search">分类</string>
   	<string name="agreement">请在购买之前阅读服务说明</string>
+  	<string name="remote_call_failed">Failure calling remote service</string>
 </resources>

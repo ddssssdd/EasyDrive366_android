@@ -7,7 +7,9 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="17" tools:ignore="OldTargetApi"/>
-
+	<supports-screens android:resizeable="true"
+		android:largeScreens="true" android:smallScreens="true"
+		android:normalScreens="true" android:anyDensity="true" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" >
     </uses-permission>
@@ -49,6 +51,7 @@
          >
         <activity
             android:name="cn.count.easydrive366.MainActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -198,11 +201,11 @@
 		<activity android:name="cn.count.easydrive366.order.NeedPayListActivity"></activity>
 		<activity android:name="cn.count.easydrive366.order.OrderDetailActivity"></activity>
 		<activity android:name="cn.count.easydrive366.insurance.InsuranceMenuActivity"></activity>
+		<activity
+            android:name="com.alipay.android.app.sdk.WapPayActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
-	<supports-screens android:resizeable="true"
-                      android:smallScreens="true" 
-                      android:normalScreens="true" 
-                      android:largeScreens="true"
-
-                      android:anyDensity="true" />
+    
+	
 </manifest>
