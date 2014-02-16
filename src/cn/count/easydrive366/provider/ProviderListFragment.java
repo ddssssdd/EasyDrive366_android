@@ -84,7 +84,7 @@ public class ProviderListFragment extends BaseListViewFragment {
 		holder.detail2.setText(info.get("address").toString());
 		holder.detail3.setText(info.get("phone").toString());
 		holder.detail4.setText(info.get("star_voternum").toString());
-		//holder.ratingbar.setRating(Float.parseFloat(info.get("star").toString()));
+		holder.ratingbar.setRating(Float.parseFloat(info.get("star_num").toString()));
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
 		
 	}

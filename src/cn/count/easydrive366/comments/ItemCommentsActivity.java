@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -25,26 +27,32 @@ import cn.count.easydriver366.base.HttpExecuteGetTask;
 public class ItemCommentsActivity extends BaseHttpActivity {
 	
 	private List<Comment> _comments;
+	private MenuItem menuComment;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_itemcomments);
-		this.setupPhoneButtonInVisible();
-		this.setupRightButtonWithText("Comment");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setTitle("评论");
+		load_data();
+		((TextView)findViewById(R.id.txt_avg_star)).setText("");
+		((TextView)findViewById(R.id.txt_total_voter)).setText("");
+	}
+	private void load_data(){
 		final String item_id = getIntent().getStringExtra("id");
 		final String item_type = getIntent().getStringExtra("type");
 		if (item_id!=null && item_type!=null){
+			beginHttp();
 			new HttpExecuteGetTask(){
 
 				@Override
 				protected void onPostExecute(String result) {
+					endHttp();
 					load_view(result);
 					
 				}}.execute(String.format("comment/get_comment?userid=%d&type=%s&id=%s", AppSettings.userid,item_type,item_id));
 			
 		}
-		((TextView)findViewById(R.id.txt_avg_star)).setText("");
-		((TextView)findViewById(R.id.txt_total_voter)).setText("");
 	}
 	private void load_view(final String result){
 		JSONObject json = AppSettings.getSuccessJSON(result);
@@ -57,7 +65,7 @@ public class ItemCommentsActivity extends BaseHttpActivity {
 			((TextView)findViewById(R.id.txt_avg_star)).setText(json.getString("avg_star"));
 			((TextView)findViewById(R.id.txt_total_voter)).setText(json.getString("total_voters"));
 			RatingBar bar = (RatingBar)findViewById(R.id.rating_bar);
-			bar.setRating(json.getInt("avg_star"));
+			bar.setRating(json.getInt("avg_star_num"));
 			JSONArray list = json.getJSONArray("list");
 			
 			JSONObject stars_info = json.getJSONObject("stars_info");
@@ -119,6 +127,18 @@ public class ItemCommentsActivity extends BaseHttpActivity {
 		}
 		
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menuComment = menu.add("撰写评论");
+		menuComment.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		return super.onCreateOptionsMenu(menu);
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		onRightButtonPress();
+		return super.onOptionsItemSelected(item);
+	}
 	@Override
 	protected void onRightButtonPress() {
 		Intent intent = new Intent(this,DoCommentActivity.class);
@@ -129,7 +149,7 @@ public class ItemCommentsActivity extends BaseHttpActivity {
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
+		load_data();
 	}
 	
 	private class Comment{

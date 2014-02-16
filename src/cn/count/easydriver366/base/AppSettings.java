@@ -27,6 +27,8 @@ public final class AppSettings {
 	static public String ServerUrl = "http://m.4006678888.com:21000/index.php/";
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
+	static public String WEIXIN_ID ="wxbf4902100b6d4a69";//"wxe590795397d68fd3";
+	static public String SINA_WEIBO_ID="4031912721";
 	static public int userid=-1;
 	static public int TotalPageCount=12;
 	static public String username;

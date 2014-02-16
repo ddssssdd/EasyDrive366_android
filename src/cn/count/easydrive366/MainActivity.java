@@ -3,6 +3,11 @@ package cn.count.easydrive366;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import cn.count.easydrive366.article.ArticleListFragment;
 import cn.count.easydrive366.goods.GoodsListFragment;
@@ -44,6 +49,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 	public static MainActivity instance = null;  
@@ -51,11 +57,13 @@ public class MainActivity extends FragmentActivity {
     private ImageView _imgHome, _imgGoods, _imgProvider, _imgArticle,_imgSettings;  
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private HomeFragment _home;
+    private boolean _userWantQuit=false;
+	private Timer _quitTimer;
     private GoodsListFragment _goods;
     private ProviderListFragment _provider;
     private ArticleListFragment _article;
     private SettingsFragment _settings;
-    
+    private IWXAPI api;
     @Override  
     public void onCreate(Bundle savedInstanceState) {  
         super.onCreate(savedInstanceState);  
@@ -64,6 +72,7 @@ public class MainActivity extends FragmentActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);// 启动activity时不自动弹出软键盘  
         AppSettings.restore_login_from_device(this);
 		startBackendService();
+		regToWx();
         instance = this;  
         //this.getActionBar().setDisplayShowTitleEnabled(true);
         //this.setTitle("EasyDrive366");
@@ -96,7 +105,10 @@ public class MainActivity extends FragmentActivity {
         new CheckUpdate(this,false);
         
     }  
-    
+    private void regToWx(){
+    	api = WXAPIFactory.createWXAPI(this, AppSettings.WEIXIN_ID,true);
+    	api.registerApp(AppSettings.WEIXIN_ID);
+    }
     private void startBackendService(){
 		if (!isServiceRunning()){
 			Intent service = new Intent(this,BackendService.class);
@@ -164,9 +176,33 @@ public class MainActivity extends FragmentActivity {
 	public void gotoTab(final int index){
 		mTabPager.setCurrentItem(index);
 	}
-	/** 
-     * 头标点击监听 
-     */  
+	@Override
+	public void onBackPressed() {
+		if (_userWantQuit){
+			AppSettings.isquiting = true;
+			this.finish();
+			System.exit(0);
+		}else{
+			Toast.makeText(this, this.getResources().getString(R.string.exit_question), Toast.LENGTH_LONG).show();
+			_userWantQuit = true;
+			if (_quitTimer==null){
+				_quitTimer = new Timer();
+			}
+			TimerTask task = new TimerTask(){
+
+				@Override
+				public void run() {
+					_userWantQuit = false;
+					
+				};
+			};
+			_quitTimer.schedule(task, 2000);
+
+							
+		}
+		
+	}
+	  
     public class MyOnClickListener implements View.OnClickListener {  
         private int index = 0;  
   

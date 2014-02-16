@@ -320,8 +320,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class id {
         public static final int AlipayTitle=0x7f080010;
         public static final int FlashBarLayout=0x7f08004b;
+        public static final int action_favor=0x7f080143;
         public static final int action_search=0x7f080142;
         public static final int action_settings=0x7f080141;
+        public static final int action_share=0x7f080144;
+        public static final int action_share_email=0x7f080148;
+        public static final int action_share_friends=0x7f080146;
+        public static final int action_share_text=0x7f080149;
+        public static final int action_share_weibo=0x7f080147;
+        public static final int action_share_weixin=0x7f080145;
         public static final int bmapsView=0x7f08007b;
         public static final int both=0x7f080003;
         public static final int bottom=0x7f08009f;
@@ -754,6 +761,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_welcome=0x7f0a0000;
         public static final int main_menu=0x7f0a0001;
         public static final int search_menu=0x7f0a0002;
+        public static final int share_menu=0x7f0a0003;
     }
     public static final class string {
         public static final int Login=0x7f060014;
@@ -787,6 +795,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int edit=0x7f060019;
         public static final int ensure=0x7f060001;
         public static final int exit_question=0x7f06002c;
+        public static final int favor=0x7f06006c;
         public static final int feedback=0x7f060046;
         public static final int get_code=0x7f060043;
         public static final int goods=0x7f060065;
@@ -796,6 +805,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int id_is_wrong=0x7f060038;
         public static final int input_activate_code=0x7f06004b;
         public static final int input_cellphone=0x7f060044;
+        public static final int input_comment=0x7f060073;
         public static final int input_verify_code=0x7f060045;
         public static final int install_alipay=0x7f06000c;
         public static final int install_msp=0x7f06000b;
@@ -855,6 +865,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int save=0x7f060018;
         public static final int search=0x7f060069;
         public static final int settings=0x7f060068;
+        public static final int share=0x7f06006d;
+        public static final int share_email=0x7f060070;
+        public static final int share_text=0x7f060071;
+        public static final int share_weibo=0x7f060072;
+        public static final int share_weixin=0x7f06006e;
+        public static final int share_weixin_friends=0x7f06006f;
         public static final int star1=0x7f060057;
         public static final int star2=0x7f060058;
         public static final int star3=0x7f060059;

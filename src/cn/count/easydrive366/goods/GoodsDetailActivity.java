@@ -3,9 +3,18 @@ package cn.count.easydrive366.goods;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.SendMessageToWX;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.mm.sdk.openapi.WXMediaMessage;
+import com.tencent.mm.sdk.openapi.WXTextObject;
+
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,12 +45,16 @@ public class GoodsDetailActivity extends BaseHttpActivity {
 	private JSONArray _albums;
 	private int _index = 0;
 	private String _id;
+	private MenuItem _menuFavor;
+	
+	private IWXAPI api;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_goods_detail);
-		this.setupPhoneButtonInVisible();
-		this.setupRightButtonWithText("buy");
+		
+		api = WXAPIFactory.createWXAPI(this, AppSettings.WEIXIN_ID);
+    	api.registerApp(AppSettings.WEIXIN_ID);
 		_goods_id = getIntent().getIntExtra("id", 0);
 		if (_goods_id>0){
 			beginHttp();
@@ -146,5 +159,37 @@ public class GoodsDetailActivity extends BaseHttpActivity {
     		_index=0;
     	showPicture();
     }
-
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+	      inflater.inflate(R.menu.share_menu, menu);
+	      _menuFavor = menu.findItem(R.id.action_favor);
+	     
+	      
+	      return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case R.id.action_favor:
+			break;
+		case R.id.action_share_weixin:
+			doShare();
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	private void doShare(){
+		WXTextObject text = new WXTextObject();
+		text.text="Share ...";
+		WXMediaMessage msg = new WXMediaMessage();
+		msg.mediaObject = text;
+		msg.description = "Share something";
+		
+		SendMessageToWX.Req req = new SendMessageToWX.Req();
+		req.transaction = String.valueOf(System.currentTimeMillis());
+		req.message = msg;
+		req.scene =  SendMessageToWX.Req.WXSceneTimeline ;//SendMessageToWX.Req.WXSceneSession;
+		api.sendReq(req);
+	}
 }

@@ -91,4 +91,13 @@
   	<string name="search">分类</string>
   	<string name="agreement">请在购买之前阅读服务说明</string>
   	<string name="remote_call_failed">Failure calling remote service</string>
+  	<string name="favor">收藏</string>
+  	<string name="share">分享</string>
+  	<string name="share_weixin">分享到微信</string>
+  	<string name="share_weixin_friends">分享到微信朋友圈</string>
+  	<string name="share_email">分享给朋友邮件</string>
+  	<string name="share_text">通过短信分享</string>
+  	<string name="share_weibo">分享到新浪微博</string>
+  	<string name="input_comment">请输入评论信息</string>
+  	
 </resources>

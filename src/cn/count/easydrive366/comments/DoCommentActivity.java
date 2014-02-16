@@ -40,10 +40,12 @@ public class DoCommentActivity extends BaseHttpActivity {
 		int rating = (int) rb.getRating();
 		String url = String.format("comment/edit_comment?userid=%d&id=%s&type=%s&comment=%s&star=%d", AppSettings.userid,_item_id,
 				_item_type,comment,rating);
+		beginHttp();
 		new HttpExecuteGetTask(){
 
 			@Override
 			protected void onPostExecute(String result) {
+				endHttp();
 				processResult(result);
 				
 			}}.execute(url);
@@ -51,7 +53,10 @@ public class DoCommentActivity extends BaseHttpActivity {
 	private void processResult(final String result){
 		try{
 			JSONObject json = new JSONObject(result);
-			finish();
+			if (AppSettings.isSuccessJSON(json)){
+				this.setResult(RESULT_OK);
+				finish();
+			}
 		}catch(Exception e){
 			log(e);
 		}

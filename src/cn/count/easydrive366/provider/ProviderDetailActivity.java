@@ -43,10 +43,12 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 		this.setRightButtonInVisible();
 		code = getIntent().getStringExtra("code");
 		if (code!=null && !code.isEmpty()){
+			beginHttp();
 			new HttpExecuteGetTask(){
 
 				@Override
 				protected void onPostExecute(String result) {
+					endHttp();
 					load_view(result);
 					
 				}}.execute(String.format("api/get_service_info?userid=%d&code=%s", AppSettings.userid,code));
@@ -77,7 +79,7 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 			((TextView)findViewById(R.id.txt_address)).setText(json.getString("address"));
 			((TextView)findViewById(R.id.txt_star)).setText(json.getString("star"));
 			((TextView)findViewById(R.id.txt_voternum)).setText(json.getString("star_voternum"));
-			((RatingBar)findViewById(R.id.rating_bar)).setRating(json.getInt("star"));
+			((RatingBar)findViewById(R.id.rating_bar)).setRating(json.getInt("star_num"));
 			JSONArray list = json.getJSONArray("goods");
 			_list = new ArrayList<Map<String,Object>>();
 			for(int i=0;i<list.length();i++){

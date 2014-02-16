@@ -51,7 +51,7 @@
          >
         <activity
             android:name="cn.count.easydrive366.MainActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,6 +62,7 @@
         <activity android:name="cn.count.easydrive366.HomeActivity"></activity>
         <activity
             android:name="cn.count.easydrive366.WelcomeActivity"
+            
             android:label="@string/app_name" >
         </activity>
         <activity android:name="cn.count.easydrive366.InformationActivity" >
