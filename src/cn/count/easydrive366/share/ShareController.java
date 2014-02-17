@@ -13,10 +13,14 @@ import com.tencent.mm.sdk.openapi.WXWebpageObject;
 
 import cn.count.easydrive366.R;
 import cn.count.easydriver366.base.AppSettings;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Telephony;
 import android.util.Log;
 
 public class ShareController {
@@ -102,12 +106,44 @@ public class ShareController {
 		
 	}
 	private void share_email(){
-		
+		String[] email = {}; // 需要注意，email必须以数组形式传入  
+		Intent intent = new Intent(Intent.ACTION_SEND);  
+		intent.setType("message/rfc822"); // 设置邮件格式  
+		intent.putExtra(Intent.EXTRA_EMAIL, email); // 接收人  
+		intent.putExtra(Intent.EXTRA_CC, email); // 抄送人  
+		intent.putExtra(Intent.EXTRA_SUBJECT, _title); // 主题  
+		intent.putExtra(Intent.EXTRA_TEXT, String.format("%s(%s)",_description,_url)); // 正文  
+		_context.startActivity(Intent.createChooser(intent, "请选择邮件类应用")); 
 	}
+	@SuppressLint("NewApi")
 	private void share_text(){
+		/*
 		Intent smsIntent = new Intent(Intent.ACTION_SEND);
 		smsIntent.putExtra("sms_body", String.format("%s - %s(%s)",_title,_description,_url));
 		_context.startActivity(smsIntent);
+		*/
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) //At least KitKat
+	    {
+			String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(_context); //Need to change the build to API 19
+
+	        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+	        sendIntent.setType("text/plain");
+	        sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("%s - %s(%s)",_title,_description,_url));
+
+	        if (defaultSmsPackageName != null)//Can be null in case that there is no default, then the user would be able to choose any app that support this intent.
+	        {
+	            sendIntent.setPackage(defaultSmsPackageName);
+	        }
+	        _context.startActivity(sendIntent);
+	    }else
+	    {
+	    	Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+	        sendIntent.setData(Uri.parse("sms:"));
+	        sendIntent.putExtra("sms_body", String.format("%s - %s(%s)",_title,_description,_url));
+	        _context.startActivity(sendIntent);
+	    	
+	    }
+		
 				
 	}
 }
