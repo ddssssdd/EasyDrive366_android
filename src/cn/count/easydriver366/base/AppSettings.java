@@ -37,8 +37,8 @@ public final class AppSettings {
 	static public int update_time=4*60*60;
 	static public boolean isquiting = false;
 	static public String version = "1.07";
-	//static public String BAIDUMAPKEY="30d50073a606ac3ce0b7f8a187e8248b";//for debug
-	static public String BAIDUMAPKEY="939cb0c01d09f55edbf15645e42a1624";//for release
+	static public String BAIDUMAPKEY="nu9WO5Zg0SBHQXvegwM60DWH";//for debug   //old:30d50073a606ac3ce0b7f8a187e8248b
+	//static public String BAIDUMAPKEY="939cb0c01d09f55edbf15645e42a1624";//for release
 	public static boolean isOutputDebug = true;
 	public static final int READ_TIMEOUT = 10;
 	public static final int CONNECT_TIMEOUT = 15;

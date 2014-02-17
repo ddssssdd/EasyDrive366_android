@@ -34,5 +34,7 @@ public class DateUtils {
 		int hours = today.get(Calendar.HOUR_OF_DAY);
 		return hours<8 || hours>19;
 	}
-
+	public static int dateDiff(){
+		return 1;
+	}
 }

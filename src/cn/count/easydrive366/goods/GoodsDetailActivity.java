@@ -3,11 +3,7 @@ package cn.count.easydrive366.goods;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.SendMessageToWX;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
-import com.tencent.mm.sdk.openapi.WXMediaMessage;
-import com.tencent.mm.sdk.openapi.WXTextObject;
+
 
 import android.content.Intent;
 import android.graphics.Paint;
@@ -24,6 +20,7 @@ import android.widget.Toast;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.comments.ItemCommentsActivity;
 import cn.count.easydrive366.order.NewOrderActivity;
+import cn.count.easydrive366.share.ShareController;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
@@ -47,14 +44,13 @@ public class GoodsDetailActivity extends BaseHttpActivity {
 	private String _id;
 	private MenuItem _menuFavor;
 	
-	private IWXAPI api;
+	private ShareController _share;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_goods_detail);
 		
-		api = WXAPIFactory.createWXAPI(this, AppSettings.WEIXIN_ID);
-    	api.registerApp(AppSettings.WEIXIN_ID);
+		_share = new ShareController(this);
 		_goods_id = getIntent().getIntExtra("id", 0);
 		if (_goods_id>0){
 			beginHttp();
@@ -110,7 +106,7 @@ public class GoodsDetailActivity extends BaseHttpActivity {
 			txtVoternum.setText(_json.getString("star_voternum"));
 			rateBar.setRating(3/*_json.getInt("star")*/);
 			_albums = _json.getJSONArray("album");
-			
+			_share.setContent(_json.getString("share_title"), _json.getString("share_intro"),_json.getString("share_url"));
 			_index = 0;
 			showPicture();
 			this.addSwipeToView(imgPicture);
@@ -170,26 +166,14 @@ public class GoodsDetailActivity extends BaseHttpActivity {
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()){
-		case R.id.action_favor:
-			break;
-		case R.id.action_share_weixin:
-			doShare();
-			break;
+		if (R.id.action_favor==item.getItemId()){
+			
+		}else{
+			_share.share(item.getItemId());
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
-	private void doShare(){
-		WXTextObject text = new WXTextObject();
-		text.text="Share ...";
-		WXMediaMessage msg = new WXMediaMessage();
-		msg.mediaObject = text;
-		msg.description = "Share something";
-		
-		SendMessageToWX.Req req = new SendMessageToWX.Req();
-		req.transaction = String.valueOf(System.currentTimeMillis());
-		req.message = msg;
-		req.scene =  SendMessageToWX.Req.WXSceneTimeline ;//SendMessageToWX.Req.WXSceneSession;
-		api.sendReq(req);
-	}
+	
+	
 }

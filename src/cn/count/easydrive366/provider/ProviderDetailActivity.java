@@ -11,8 +11,12 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -23,7 +27,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
+import cn.count.easydrive366.baidumap.ShowLocationActivity;
 import cn.count.easydrive366.comments.ItemCommentsActivity;
+import cn.count.easydrive366.share.ShareController;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
@@ -35,12 +41,14 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 	private List<Album> _imageList;
 	private int _index=-1;
 	private ImageView _imageView;
+	private TextView txtIndex;
+	private ShareController _share;
+	private MenuItem _menuFavor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_provider_detail);
-		this.setupPhoneButtonInVisible();
-		this.setRightButtonInVisible();
+		_share = new ShareController(this);
 		code = getIntent().getStringExtra("code");
 		if (code!=null && !code.isEmpty()){
 			beginHttp();
@@ -64,11 +72,55 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 				
 			}
 		});
+		findViewById(R.id.layout_phone).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				openPhone();
+				
+			}
+		});
+		findViewById(R.id.layout_address).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				openAddress();
+				
+			}
+		});
+		txtIndex = (TextView)findViewById(R.id.txt_index);
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+	      inflater.inflate(R.menu.share_menu, menu);
+	      _menuFavor = menu.findItem(R.id.action_favor);
+	      return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (R.id.action_favor==item.getItemId()){
+			
+		}else{
+			_share.share(item.getItemId());
+		}
+		
+		return super.onOptionsItemSelected(item);
 	}
 	private void openRating(){
 		Intent intent =new Intent(this,ItemCommentsActivity.class);
 		intent.putExtra("id",code);
 		intent.putExtra("type", "provider");
+		startActivity(intent);
+	}
+	private void openPhone(){
+		Uri uri =Uri.parse(String.format("tel:%s",_phone)); 
+		
+		Intent it = new Intent(Intent.ACTION_VIEW,uri); 
+		startActivity(it); 
+	}
+	private void openAddress(){
+		Intent intent = new Intent(this,ShowLocationActivity.class);
 		startActivity(intent);
 	}
 	private void load_view(final String result){
@@ -80,6 +132,8 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 			((TextView)findViewById(R.id.txt_star)).setText(json.getString("star"));
 			((TextView)findViewById(R.id.txt_voternum)).setText(json.getString("star_voternum"));
 			((RatingBar)findViewById(R.id.rating_bar)).setRating(json.getInt("star_num"));
+			_phone =json.getString("phone");
+			_share.setContent(json);
 			JSONArray list = json.getJSONArray("goods");
 			_list = new ArrayList<Map<String,Object>>();
 			for(int i=0;i<list.length();i++){
@@ -117,7 +171,8 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 	}
 	private void showPicture(){
 		String url = _imageList.get(_index).pic_url;
-		this.loadImageFromUrl(_imageView, url);
+		this.loadImageFromUrl(_imageView, url,R.drawable.default_640x234);
+		txtIndex.setText(String.format("%d/%d", _index+1,_imageList.size()));
 	}
 	@Override
 	public void onLeftSwipe(){
@@ -181,14 +236,13 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 			ProviderHolderView holder = null;
 			if (convertView==null){
 				holder = new ProviderHolderView();
-				convertView = mInflater.inflate(R.layout.listitem_provider, null);
+				convertView = mInflater.inflate(R.layout.listitem_provider_detail, null);
 				//initListItem(holder,convertView);
 				holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
 				holder.title = (TextView)convertView.findViewById(R.id.txt_title);
 				holder.phone = (TextView)convertView.findViewById(R.id.txt_phone);
 				holder.address  = (TextView)convertView.findViewById(R.id.txt_address);
-				holder.voternum = (TextView)convertView.findViewById(R.id.txt_voternum);
-				holder.ratingbar =(RatingBar)convertView.findViewById(R.id.rating_bar);
+				
 				convertView.setTag(holder);
 			}else{
 				holder = (ProviderHolderView)convertView.getTag();
@@ -200,10 +254,9 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 			//com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
 			loadImageFromUrl(holder.image,info.get("pic_url").toString());
 			holder.title.setText(info.get("name").toString());
-			holder.address.setText(info.get("buyers").toString());
+			holder.address.setText(info.get("buyer").toString());
 			holder.phone.setText(info.get("price").toString());
-			holder.voternum.setText("");
-			holder.ratingbar.setRating(4);
+			
 			return convertView;
 		}
 		
