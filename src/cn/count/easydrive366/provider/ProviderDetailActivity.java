@@ -19,7 +19,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -29,6 +35,9 @@ import cn.count.easydrive366.R;
 import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
 import cn.count.easydrive366.baidumap.ShowLocationActivity;
 import cn.count.easydrive366.comments.ItemCommentsActivity;
+import cn.count.easydrive366.goods.GoodsDetailActivity;
+import cn.count.easydrive366.goods.GoodsListFragment;
+import cn.count.easydrive366.order.NewOrderActivity;
 import cn.count.easydrive366.share.ShareController;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
@@ -150,6 +159,23 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 			_adapter = new ProviderAdapter(this);
 			ListView lv = (ListView)findViewById(R.id.lv_items);
 			lv.setAdapter(_adapter);
+			lv.setOnItemClickListener(new OnItemClickListener(){
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id2) {
+					if (_list != null) {
+
+						Map<String, Object> map = _list.get( position);
+						int id = Integer.parseInt(map.get("id").toString());
+						Intent intent = new Intent(ProviderDetailActivity.this,
+								GoodsDetailActivity.class);
+						intent.putExtra("id", id);
+						startActivity(intent);
+
+					}
+					
+				}});
 			_imageList = new ArrayList<Album>();
 			list = json.getJSONArray("album");
 			for(int i=0;i<list.length();i++){
@@ -196,12 +222,19 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 		}
     }
 	private class ProviderHolderView{
-		public ImageView image;
 		public TextView title;
-		public TextView address;
-		public TextView phone;
-		public TextView voternum;
+		public TextView detail;
+		public TextView action;
+		public CheckBox selected;
+		public ImageView image;
+		public TextView detail2;
+		public TextView detail3;
+		public TextView detail4;
+		public TextView detail5;
 		public RatingBar ratingbar;
+		public Button button1;
+		public Button btnDelete;
+		public ImageButton imgButton;
 		
 	}
 	private class ProviderAdapter extends BaseAdapter
@@ -236,13 +269,35 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 			ProviderHolderView holder = null;
 			if (convertView==null){
 				holder = new ProviderHolderView();
-				convertView = mInflater.inflate(R.layout.listitem_provider_detail, null);
-				//initListItem(holder,convertView);
+				convertView = mInflater.inflate(R.layout.listitem_goods, null);
+				/*
 				holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
 				holder.title = (TextView)convertView.findViewById(R.id.txt_title);
 				holder.phone = (TextView)convertView.findViewById(R.id.txt_phone);
 				holder.address  = (TextView)convertView.findViewById(R.id.txt_address);
-				
+				*/
+				holder.title = (TextView) convertView.findViewById(R.id.txt_title);
+				holder.detail2 = (TextView) convertView.findViewById(R.id.txt_price);
+				holder.detail3 = (TextView) convertView.findViewById(R.id.txt_stand_price);
+				holder.detail4 = (TextView) convertView.findViewById(R.id.txt_discount);
+				holder.detail5 = (TextView) convertView.findViewById(R.id.txt_buyer);
+				holder.detail =(TextView) convertView.findViewById(R.id.txt_description);
+				holder.image = (ImageView) convertView.findViewById(R.id.img_picture);
+				holder.button1 = (Button) convertView.findViewById(R.id.btn_buy);
+				convertView.setTag(holder);
+
+				holder.button1.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						String id = (String) v.getTag();
+						Intent intent = new Intent(
+								ProviderDetailActivity.this,
+								NewOrderActivity.class);
+						intent.putExtra("id", id);
+						startActivity(intent);
+					}
+				});
 				convertView.setTag(holder);
 			}else{
 				holder = (ProviderHolderView)convertView.getTag();
@@ -252,11 +307,21 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 			Map<String,Object> info = _list.get(position);
 			//setupListItem(holder,info);
 			//com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
+			/*
 			loadImageFromUrl(holder.image,info.get("pic_url").toString());
 			holder.title.setText(info.get("name").toString());
 			holder.address.setText(info.get("buyer").toString());
 			holder.phone.setText(info.get("price").toString());
-			
+			*/
+			holder.title.setText(info.get("name").toString());
+			holder.detail.setText(info.get("description").toString());
+			holder.detail2.setText(info.get("price").toString());
+			holder.detail3.setText(info.get("stand_price").toString());
+			holder.detail4.setText(info.get("discount").toString());
+			holder.detail5.setText(info.get("buyer").toString());
+			com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(
+					holder.image, info.get("pic_url").toString());
+			holder.button1.setTag(info.get("id"));
 			return convertView;
 		}
 		

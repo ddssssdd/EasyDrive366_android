@@ -232,7 +232,8 @@ public class HomeMenuItem extends LinearLayout {
 							processJson(_menuItem.key,json.getJSONObject("result").toString());
 						}
 					}catch(Exception e){
-						Log.e("Error", e.getMessage());
+						
+						//Log.e("Error", e.getMessage());
 					}
 					
 					

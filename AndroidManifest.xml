@@ -202,6 +202,7 @@
 		<activity android:name="cn.count.easydrive366.order.NeedPayListActivity"></activity>
 		<activity android:name="cn.count.easydrive366.order.OrderDetailActivity"></activity>
 		<activity android:name="cn.count.easydrive366.insurance.InsuranceMenuActivity"></activity>
+		<activity android:name="cn.count.easydrive366.user.SetupUserActivity"></activity>
 		<activity
             android:name="com.alipay.android.app.sdk.WapPayActivity"
             android:screenOrientation="portrait" >

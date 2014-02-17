@@ -11,6 +11,8 @@
 	<string name="password">密码：</string>
 	<string name="repassword">再输密码：</string>
 	<string name="username">用户名：</string>
+	<string name="name">姓名：</string>
+	<string name="sign">签名：</string>
 	<string name="app_loading_fail">装载失败</string>
 	<string name="app_loading">正在装载...</string>
 	<string name="app_uploading">正在上传...</string>
@@ -99,5 +101,7 @@
   	<string name="share_text">通过短信分享</string>
   	<string name="share_weibo">分享到新浪微博</string>
   	<string name="input_comment">请输入评论信息</string>
-  	
+  	<string name="setup_avatar">设置头像：</string>
+  	<string name="bounds">积分：</string>
+  	<string name="experience">经验值：</string>
 </resources>

@@ -131,7 +131,21 @@ public class BaseHttpFragment extends Fragment implements
 		reload = 0;
 
 	}
-
+	protected void beginHttp(){
+		if (_dialog !=null){
+			_dialog.dismiss();
+			_dialog = null;
+		}
+		_dialog = new ProgressDialog(this.getActivity());
+		_dialog.setMessage(this.getResources().getString(R.string.app_loading));
+		_dialog.show();
+	}
+	protected void endHttp(){
+		if (_dialog !=null){
+			_dialog.dismiss();
+			_dialog = null;
+		}
+	}
 	
 
 	@Override

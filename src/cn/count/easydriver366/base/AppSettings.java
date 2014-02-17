@@ -258,6 +258,11 @@ public static String readInputStream(InputStream stream) throws IOException,Unsu
 	{
 		return AppTools.isSuccess(json);
 	}
+	public static boolean isSuccessJSON(final String result,Context context)
+	{
+		return AppTools.isSuccess(result,context);
+	}
+	
 	public static JSONObject getSuccessJSON(final String result)
 	{
 		try

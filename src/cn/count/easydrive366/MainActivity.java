@@ -6,8 +6,7 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
+
 
 import cn.count.easydrive366.article.ArticleListFragment;
 import cn.count.easydrive366.goods.GoodsListFragment;
@@ -63,7 +62,7 @@ public class MainActivity extends FragmentActivity {
     private ProviderListFragment _provider;
     private ArticleListFragment _article;
     private SettingsFragment _settings;
-    private IWXAPI api;
+    
     @Override  
     public void onCreate(Bundle savedInstanceState) {  
         super.onCreate(savedInstanceState);  
@@ -72,7 +71,7 @@ public class MainActivity extends FragmentActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);// 启动activity时不自动弹出软键盘  
         AppSettings.restore_login_from_device(this);
 		startBackendService();
-		regToWx();
+		
         instance = this;  
         //this.getActionBar().setDisplayShowTitleEnabled(true);
         //this.setTitle("EasyDrive366");
@@ -105,10 +104,7 @@ public class MainActivity extends FragmentActivity {
         new CheckUpdate(this,false);
         
     }  
-    private void regToWx(){
-    	api = WXAPIFactory.createWXAPI(this, AppSettings.WEIXIN_ID,true);
-    	api.registerApp(AppSettings.WEIXIN_ID);
-    }
+    
     private void startBackendService(){
 		if (!isServiceRunning()){
 			Intent service = new Intent(this,BackendService.class);
@@ -130,6 +126,13 @@ public class MainActivity extends FragmentActivity {
 		}
 		return result;
 	}
+	/*
+	@Override
+	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+	
+		super.onActivityResult(arg0, arg1, arg2);
+	}
+	*/
 	private MenuItem rightMenu;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

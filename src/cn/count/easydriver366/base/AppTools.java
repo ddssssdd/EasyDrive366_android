@@ -3,15 +3,32 @@ package cn.count.easydriver366.base;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public final class AppTools {
 	public static void log(Exception e){
-		Log.e("Application Log", e.getMessage());
+		if (e !=null)
+			Log.e("Application Log", e.getMessage());
 	}
+	public static boolean isSuccess(final String result,Context context){
+		try{
+			JSONObject json = new JSONObject(result);
+			boolean r = isSuccess(json);
+			if (!json.isNull("alertmsg")){
+				Toast.makeText(context, json.getString("alertmsg"), Toast.LENGTH_LONG).show();
+			}
+			return r;
+		}catch(Exception e){
+			log(e);
+		}
+		return false;
+	}
+	
 	public static boolean isSuccess(final Object jsonobj){
 		boolean result= false;
 		if (jsonobj==null){

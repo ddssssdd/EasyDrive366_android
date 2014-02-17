@@ -248,12 +248,22 @@ public class SettingsFragment extends BaseHttpFragment {
 
 			}
 		});
+		imgAvater.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				openSetupUser();
+				
+			}});
 
 		// this.get(AppSettings.url_get_user_phone(), 1);
 		// this.get(AppSettings.url_get_activate_code(), 11,"");
 		load_user_profile();
 	}
-
+	private void openSetupUser(){
+		Intent intent = new Intent(this.getActivity(),SetupUserActivity.class);
+		startActivityForResult(intent, android.app.Activity.RESULT_OK);
+	}
 	private void changePassword() {
 		Intent intent = new Intent(this.getActivity(), PasswordResetActivity.class);
 		startActivity(intent);
@@ -453,6 +463,8 @@ public class SettingsFragment extends BaseHttpFragment {
 			 * 
 			 * }});
 			 */
+		}else{
+			this.load_user_profile();
 		}
 	}
 
@@ -537,10 +549,12 @@ public class SettingsFragment extends BaseHttpFragment {
 		}
 		String url = String.format("bound/get_user_set?userid=%d",
 				AppSettings.userid);
+		beginHttp();
 		new HttpExecuteGetTask() {
 
 			@Override
 			protected void onPostExecute(String result) {
+				endHttp();
 				load_user_view(result);
 
 			}
@@ -587,4 +601,5 @@ public class SettingsFragment extends BaseHttpFragment {
 			log(e);
 		}
 	}
+	
 }
