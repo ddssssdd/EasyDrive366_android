@@ -37,12 +37,11 @@ public class ArticleListFragment extends BaseListViewV4Fragment {
 		
 		this.resource_listview_id = R.id.modules_information_listview;
 		this.resource_listitem_id = R.layout.listitem_article;
-		restoreFromLocal(1);
 		
-		reload_data();
 		this.setupPullToRefresh();
 		_imageView = (ImageView)containerView.findViewById(R.id.img_picture);
 		this.addSwipeToView(_imageView);
+		this.cache_load(1);
 		return containerView;
 	}
 	@Override

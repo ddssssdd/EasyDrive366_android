@@ -34,10 +34,11 @@ public class ProviderListFragment extends BaseListViewV4Fragment {
 		this.resource_listview_id = R.id.modules_information_listview;
 		//this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.listitem_provider;
-		restoreFromLocal(1);
 		
-		reload_data();
+		
+		
 		this.setupPullToRefresh();
+		this.cache_load(1);
 		return containerView;
 	}
 	@Override

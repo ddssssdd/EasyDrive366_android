@@ -199,10 +199,29 @@ public class HomeMenuItem extends LinearLayout {
 		String result = prefs.getString(_menuItem.key, "");
 		return result;
 	}
+	private long lastUpdateTime(){
+		SharedPreferences prefs =_context.getSharedPreferences(getKey(), Context.MODE_PRIVATE);
+		long result = prefs.getLong(_menuItem.key+"_datetime", 0);
+		return result;
+	}
+	private boolean is_update_expired(){
+		long lastTime = this.lastUpdateTime();
+		if (lastTime==0)
+			return false;
+		else{
+			float diff = (System.currentTimeMillis()-lastTime)/1000/60;
+			if (diff>AppSettings.update_time){
+				//Log.e("Time diff", String.valueOf(diff));
+				return true;
+			}else
+				return false;
+		}
+	}
 	private void saveJson(final String json){
 		SharedPreferences prefs =_context.getSharedPreferences(getKey(), Context.MODE_PRIVATE);
 		Editor editor = prefs.edit();
 		editor.putString(_menuItem.key, json);
+		editor.putLong(_menuItem.key+"_datetime", System.currentTimeMillis());
 		editor.commit();
 		
 	}
@@ -222,11 +241,13 @@ public class HomeMenuItem extends LinearLayout {
 	
 	public void getLatest(final boolean fromCache){
 		if (_menuItem!=null){
-			if (fromCache){
+			if (fromCache && !this.is_update_expired()){
+				
 				final String oldValue = loadJson();
 				if (oldValue!=null && !oldValue.isEmpty()){
 				
 					processData(oldValue);
+					return;
 				}
 			}
 				

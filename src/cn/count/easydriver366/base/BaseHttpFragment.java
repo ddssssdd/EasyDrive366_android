@@ -188,7 +188,25 @@ public class BaseHttpFragment extends Fragment implements
 		return result;
 
 	}
-
+	private long lastUpdateTime(final int msgType){
+		final String key =getKey(msgType); 
+		SharedPreferences prefs =this.getActivity().getSharedPreferences(key, Context.MODE_PRIVATE);
+		long result = prefs.getLong(key+"_datetime", 0);
+		return result;
+	}
+	protected boolean is_update_expired(final int msgType){
+		long lastTime = this.lastUpdateTime(msgType);
+		if (lastTime==0)
+			return false;
+		else{
+			float diff = (System.currentTimeMillis()-lastTime)/1000/60;
+			if (diff>AppSettings.update_time){
+				//Log.e("Time diff", String.valueOf(diff));
+				return true;
+			}else
+				return false;
+		}
+	}
 	private String getKey(final int msgType) {
 		
 		return String.format("json_%d_by_userid_%d__%s", msgType,
@@ -200,7 +218,9 @@ public class BaseHttpFragment extends Fragment implements
 		if (this.isSuccess(result)) {
 			SharedPreferences prefs = this.getActivity().getPreferences(android.app.Activity.MODE_PRIVATE);
 			Editor editor = prefs.edit();
-			editor.putString(getKey(msgType), result.toString());
+			final String key =getKey(msgType); 
+			editor.putString(key, result.toString());
+			editor.putLong(key+"_datetime", System.currentTimeMillis());
 			editor.commit();
 			JSONObject jsonResult = (JSONObject) result;
 			if (jsonResult.optJSONObject("result") != null) {

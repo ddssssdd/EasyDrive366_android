@@ -50,7 +50,7 @@ public class GoodsListFragment extends BaseListViewV4Fragment {
 
 		
 		this.setupPullToRefresh();
-		reload_data();
+		this.cache_load(1);
 
 		return containerView;
 	}

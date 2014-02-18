@@ -55,6 +55,23 @@ public abstract class BaseListViewV4Fragment extends BaseHttpV4Fragment {
 	
 		
 	}
+	protected void cache_load(final int msgType){
+		if (this.is_update_expired(msgType)){
+			reload_data();
+			return;
+		}
+		String result = this.getOfflineResult(msgType);
+		if (result!=null && !result.isEmpty()){
+			try{
+				processMessage(msgType, new JSONObject(result));
+			}catch(Exception e){
+				reload_data();
+			}
+			
+		}else{
+			reload_data();
+		}
+	}
 	
 	@Override
 	public void processMessage(int msgType,final Object result){
