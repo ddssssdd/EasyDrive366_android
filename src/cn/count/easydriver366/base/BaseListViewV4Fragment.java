@@ -31,7 +31,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
-public abstract class BaseListViewFragment extends BaseHttpFragment {
+public abstract class BaseListViewV4Fragment extends BaseHttpV4Fragment {
 	protected List<Map<String,Object>> _list=null;
 	protected MyAdapter _adapter;
 	protected int resource_listview_id;
@@ -51,22 +51,9 @@ public abstract class BaseListViewFragment extends BaseHttpFragment {
 				
 			}
 		});
-		
+
 	
 		
-	}
-	protected void cache_load(final int msgType){
-		String result = this.getOfflineResult(msgType);
-		if (result!=null && !result.isEmpty()){
-			try{
-				processMessage(msgType, new JSONObject(result));
-			}catch(Exception e){
-				reload_data();
-			}
-			
-		}else{
-			reload_data();
-		}
 	}
 	
 	@Override
@@ -123,31 +110,21 @@ public abstract class BaseListViewFragment extends BaseHttpFragment {
 		}
 	}
 	protected void initView(){
-//		if (_adapter==null){
-//			
-//			_adapter =new MyAdapter(this.getActivity());
-//			mListView.setAdapter(_adapter);
-//			mListView.setOnItemClickListener(new OnItemClickListener(){
-//
-//				@Override
-//				public void onItemClick(AdapterView<?> arg0, View arg1,
-//						int arg2, long arg3) {
-//					onListItemClick(arg1,arg3);
-//					
-//				}});
-//		}else{
-//			_adapter.notifyDataSetChanged();
-//		}
-		_adapter =new MyAdapter(this.getActivity());
-		mListView.setAdapter(_adapter);
-		mListView.setOnItemClickListener(new OnItemClickListener(){
+		if (_adapter==null){
+			//ListView lv = (ListView)findViewById(resource_listview_id);
+			_adapter =new MyAdapter(this.getActivity());
+			mListView.setAdapter(_adapter);
+			mListView.setOnItemClickListener(new OnItemClickListener(){
 
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				onListItemClick(arg1,arg3);
-				
-			}});
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					onListItemClick(arg1,arg3);
+					
+				}});
+		}else{
+			_adapter.notifyDataSetChanged();
+		}
 		mListView.onRefreshComplete();
 	}
 	protected void onListItemClick(final View view,final long index){

@@ -54,17 +54,17 @@ public class Menus {
 	public List<HomeMenu> getInsuranceMenus(){
 		return insurance_menus;
 	}
-	public void updateHome(){
+	public void updateHome(boolean fromCache){
 		for(HomeMenu item:menus){
 			if (item.menuItem!=null){
-				item.menuItem.getLatest();
+				item.menuItem.getLatest(fromCache);
 			}
 		}
 	}
-	public void updateInsurance(){
+	public void updateInsurance(boolean fromCache){
 		for(HomeMenu item:insurance_menus){
 			if (item.menuItem!=null){
-				item.menuItem.getLatest();
+				item.menuItem.getLatest(fromCache);
 			}
 		}
 	}

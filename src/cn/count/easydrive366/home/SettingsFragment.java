@@ -1,4 +1,4 @@
-package cn.count.easydrive366.user;
+package cn.count.easydrive366.home;
 
 import java.util.Locale;
 
@@ -31,14 +31,17 @@ import cn.count.easydrive366.card.AddCardStep1Activity;
 import cn.count.easydrive366.card.CardViewActivity;
 import cn.count.easydrive366.order.NeedPayListActivity;
 import cn.count.easydrive366.signup.Step1Activity;
+import cn.count.easydrive366.user.BoundActivity;
+import cn.count.easydrive366.user.FriendActivity;
+import cn.count.easydrive366.user.SetupUserActivity;
+import cn.count.easydrive366.user.TaskListActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.BaseHttpFragment;
-import cn.count.easydriver366.base.BaseHttpV4Fragment;
 import cn.count.easydriver366.base.CheckUpdate;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
-public class SettingsFragment extends BaseHttpV4Fragment {
+public class SettingsFragment extends BaseHttpFragment {
 	private Button logoutButton;
 	private TextView txtVersion;
 	private TextView txtBind;
@@ -64,11 +67,9 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		containerView = inflater.inflate(R.layout.modules_settings_activity,container,false);
-		this.setupLeftButton();
-		this.setRightButtonInVisible();
-		this.setupPhoneButtonInVisible();
+		
 		this.init_view();
-		this.setBarTitle(this.getResources().getString(R.string.menu_settings));
+		
 		return containerView;
 
 	}
@@ -564,13 +565,11 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 
 	private void load_user_view(final String result) {
 		JSONObject json = AppSettings.getSuccessJSON(result);
-		/*
-		 * {"exp":"1","msg_maintain":"2013-10-31保养,请提前预约","phone":"18605328170",
-		 * "level":"1",
-		 * "msg_car":"违章0次计0分罚0元\n14年03月至14年05月年审","status":"02","exp_nextlevel"
-		 * :"10","nickname":"","photourl":"",
-		 * "msg_driver":"已扣0分2014-11-05扣分到期","signature":"","bound":"0"}
-		 */
+		if (json!=null){
+			//
+		}else{
+			return;
+		}
 		try {
 			_cellphone = json.getString("phone");
 

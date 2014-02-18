@@ -1,4 +1,4 @@
-package cn.count.easydrive366.article;
+package cn.count.easydrive366.home;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +21,8 @@ import cn.count.easydrive366.R;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseListViewFragment;
-import cn.count.easydriver366.base.BaseListViewV4Fragment;
 
-public class ArticleListFragment extends BaseListViewV4Fragment {
+public class ArticleListFragment extends BaseListViewFragment {
 	private boolean _isSearching=false;
 	private String _types;
 	private String _key;
@@ -37,12 +36,11 @@ public class ArticleListFragment extends BaseListViewV4Fragment {
 		
 		this.resource_listview_id = R.id.modules_information_listview;
 		this.resource_listitem_id = R.layout.listitem_article;
-		restoreFromLocal(1);
 		
-		reload_data();
 		this.setupPullToRefresh();
 		_imageView = (ImageView)containerView.findViewById(R.id.img_picture);
 		this.addSwipeToView(_imageView);
+		this.cache_load(1);
 		return containerView;
 	}
 	@Override

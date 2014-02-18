@@ -27,13 +27,14 @@ public class InsuranceMenuActivity extends Activity {
 	PullToRefreshScrollView mPullRefreshScrollView;
 	ScrollView mScrollView;
 	private Menus mainMenu;
-
+	private boolean _fromCache=true;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.moudles_home_activity);
 		this.getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		setupMenu();
 
 		mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_refresh_scrollview);
@@ -43,6 +44,7 @@ public class InsuranceMenuActivity extends Activity {
 					@Override
 					public void onRefresh(
 							PullToRefreshBase<ScrollView> refreshView) {
+						_fromCache = false;
 						new GetDataTask().execute();
 					}
 				});
@@ -51,7 +53,7 @@ public class InsuranceMenuActivity extends Activity {
 
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
 		private boolean _needSleep = false;
-
+		
 		public GetDataTask() {
 			super();
 		}
@@ -72,7 +74,7 @@ public class InsuranceMenuActivity extends Activity {
 				}
 			}
 
-			mainMenu.updateInsurance();
+			mainMenu.updateInsurance(_fromCache);
 
 			return null;
 		}

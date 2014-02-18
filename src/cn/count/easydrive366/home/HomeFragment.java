@@ -1,33 +1,45 @@
-package cn.count.easydrive366;
+package cn.count.easydrive366.home;
 
 import java.util.List;
 import java.util.Timer;
 
+import cn.count.easydrive366.R;
+import cn.count.easydrive366.SettingsActivity;
+import cn.count.easydrive366.WelcomeActivity;
 import cn.count.easydrive366.components.HomeMenuItem;
 import cn.count.easydriver366.base.AppSettings;
-
+import cn.count.easydriver366.base.CheckUpdate;
 import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.base.IRightButtonPressed;
 import cn.count.easydriver366.base.Menus;
+import cn.count.easydriver366.service.BackendService;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
-
+import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-
+import android.widget.Toast;
 
 public class HomeFragment extends Fragment implements IRightButtonPressed{
 	private TableLayout _tableLayout;
@@ -36,7 +48,8 @@ public class HomeFragment extends Fragment implements IRightButtonPressed{
 	private Timer _quitTimer;
 	private Menus mainMenu;
 	private ProgressDialog _dialog;
-	private boolean _fromCache=true;
+	private boolean _isLoaded=false;
+	private boolean _fromCache;
 	PullToRefreshScrollView mPullRefreshScrollView;
 	ScrollView mScrollView;
 	View view;
@@ -59,7 +72,7 @@ public class HomeFragment extends Fragment implements IRightButtonPressed{
 
 			@Override
 			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-				_fromCache= false;
+				_fromCache = false;
 				new GetDataTask().execute();
 			}
 		});
@@ -90,7 +103,7 @@ public class HomeFragment extends Fragment implements IRightButtonPressed{
 				}
 			}
 			mainMenu.updateHome(_fromCache);
-			
+			_isLoaded = true;
 			/*
 			Intent intent = new Intent("cn.count.easydriver366.service.GetLatestReceiverr");
 			intent.putExtra("isInApp", true);
@@ -128,7 +141,8 @@ public class HomeFragment extends Fragment implements IRightButtonPressed{
 		_tableLayout = (TableLayout)view.findViewById(R.id.tablelout_in_home_activity);
 		initMenuItems();
 		fillMenu();
-		new GetDataTask(true).execute();
+		if (!_isLoaded)
+			new GetDataTask(true).execute();
 		
 	}
 	private void addTableRow(HomeMenu menu){

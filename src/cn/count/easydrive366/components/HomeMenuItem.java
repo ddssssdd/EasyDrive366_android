@@ -219,8 +219,17 @@ public class HomeMenuItem extends LinearLayout {
 		}
 		
 	}
-	public void getLatest(){
+	
+	public void getLatest(final boolean fromCache){
 		if (_menuItem!=null){
+			if (fromCache){
+				final String oldValue = loadJson();
+				if (oldValue!=null && !oldValue.isEmpty()){
+				
+					processData(oldValue);
+				}
+			}
+				
 			final String url = String.format("api/get_latest?userid=%d&keyname=%s",AppSettings.userid,_menuItem.key);
 			new HttpExecuteGetTask(){
 

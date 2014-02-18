@@ -1,4 +1,4 @@
-package cn.count.easydrive366.goods;
+package cn.count.easydrive366.home;
 
 import java.util.Map;
 
@@ -20,12 +20,12 @@ import android.widget.TextView;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
+import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydrive366.order.NewOrderActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseListViewFragment;
-import cn.count.easydriver366.base.BaseListViewV4Fragment;
 
-public class GoodsListFragment extends BaseListViewV4Fragment {
+public class GoodsListFragment extends BaseListViewFragment {
 
 	private boolean _isSearching = false;
 	private String _types;
@@ -50,7 +50,7 @@ public class GoodsListFragment extends BaseListViewV4Fragment {
 
 		
 		this.setupPullToRefresh();
-		reload_data();
+		this.cache_load(1);
 
 		return containerView;
 	}

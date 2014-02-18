@@ -1,4 +1,4 @@
-package cn.count.easydrive366.provider;
+package cn.count.easydrive366.home;
 
 import java.util.Map;
 
@@ -17,11 +17,11 @@ import android.widget.TextView;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
+import cn.count.easydrive366.provider.ProviderDetailActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseListViewFragment;
-import cn.count.easydriver366.base.BaseListViewV4Fragment;
 
-public class ProviderListFragment extends BaseListViewV4Fragment {
+public class ProviderListFragment extends BaseListViewFragment {
 	private boolean _isSearching=false;
 	private String _types;
 	private String _key;
@@ -34,10 +34,9 @@ public class ProviderListFragment extends BaseListViewV4Fragment {
 		this.resource_listview_id = R.id.modules_information_listview;
 		//this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.listitem_provider;
-		restoreFromLocal(1);
 		
-		reload_data();
 		this.setupPullToRefresh();
+		this.cache_load(1);
 		return containerView;
 	}
 	@Override

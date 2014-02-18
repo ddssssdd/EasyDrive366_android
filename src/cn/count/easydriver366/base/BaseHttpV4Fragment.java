@@ -21,7 +21,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.Fragment;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,6 +31,7 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -46,7 +47,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BaseHttpFragment extends Fragment implements
+public class BaseHttpV4Fragment extends Fragment implements
 		HttpClient.IHttpCallback,OnClickListener,IRightButtonPressed {
 	private static String BaseHttpClientTAG = "BaseHttpActivity";
 	protected HttpClient httpClient;

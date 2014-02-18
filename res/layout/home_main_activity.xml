@@ -1,5 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainweixin"
+    
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#eee"
@@ -140,19 +140,21 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/main_bottom"
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/tabpager"
+       <!--  <fragment
+            android:name="cn.count.easydrive366.home.HomeFragment"
+            android:id="@+id/container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" >
-        </android.support.v4.view.ViewPager>
-    </LinearLayout>
+        </fragment> -->
+    </FrameLayout>
 
 </RelativeLayout>
