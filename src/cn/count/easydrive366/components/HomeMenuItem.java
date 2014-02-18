@@ -2,6 +2,7 @@ package cn.count.easydrive366.components;
 
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -42,6 +43,7 @@ public class HomeMenuItem extends LinearLayout {
 	private String _company;
 	private String _phone;
 	private ImageView _img;
+	public LatestInformationReceiver _br;
 	public HomeMenuItem(Context context,AttributeSet attrs){
 		super(context,attrs);
 		
@@ -70,10 +72,11 @@ public class HomeMenuItem extends LinearLayout {
 			
 		});
 		IntentFilter filter = new IntentFilter("cn.count.easydrive366.components.HomeMenuItem$LatestInformationReceiver");
-		LatestInformationReceiver br = new LatestInformationReceiver();
-		context.registerReceiver(br,filter);
+		_br = new LatestInformationReceiver();
+		_context.registerReceiver(_br,filter);
 		
 	}
+	
 	public void setData(HomeMenu menuItem){
 		if (_img!=null){
 			_img.setImageDrawable(_context.getResources().getDrawable(menuItem.ImageId));
@@ -173,10 +176,17 @@ public class HomeMenuItem extends LinearLayout {
 	}
 	private void processData(final String json){
 		try{
-			JSONObject result = new JSONObject(json);
+			final JSONObject result = new JSONObject(json);
 			_company = result.getString("company");
 			_phone = result.getString("phone");
-			_description.setText(result.getString("latest"));
+			final String d = result.getString("latest");
+			((Activity) _context).runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					_description.setText(d);
+				}});
+			
 			
 			
 		}catch(Exception e){

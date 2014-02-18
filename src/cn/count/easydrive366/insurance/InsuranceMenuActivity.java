@@ -1,5 +1,6 @@
 package cn.count.easydrive366.insurance;
 
+import java.util.ArrayList;
 import java.util.List;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.components.HomeMenuItem;
@@ -13,6 +14,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import android.app.Activity;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ScrollView;
@@ -22,7 +24,7 @@ import android.widget.TableRow;
 public class InsuranceMenuActivity extends Activity {
 	private TableLayout _tableLayout;
 	private List<HomeMenu> menus;
-
+	
 	private ProgressDialog _dialog;
 	PullToRefreshScrollView mPullRefreshScrollView;
 	ScrollView mScrollView;
@@ -50,6 +52,18 @@ public class InsuranceMenuActivity extends Activity {
 				});
 
 	}
+	
+
+	@Override
+	protected void onDestroy() {
+		for(HomeMenu item : menus){
+			if (item.menuItem!=null && item.menuItem._br!=null){
+				this.unregisterReceiver(item.menuItem._br);
+			}
+		}
+		super.onDestroy();
+	}
+
 
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
 		private boolean _needSleep = false;
@@ -105,12 +119,12 @@ public class InsuranceMenuActivity extends Activity {
 		initMenuItems();
 		fillMenu();
 		new GetDataTask(true).execute();
-
 	}
 
 	private void addTableRow(HomeMenu menu) {
 		TableRow tr = new TableRow(this);
 		HomeMenuItem item = new HomeMenuItem(this, null);
+		
 		item.setData(menu);
 		tr.addView(item);
 		_tableLayout.addView(tr);
