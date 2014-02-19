@@ -262,7 +262,22 @@ public static String readInputStream(InputStream stream) throws IOException,Unsu
 	{
 		return AppTools.isSuccess(result,context);
 	}
-	
+	public static JSONObject getSuccessJSON(final String result,Context context)
+	{
+		try
+		{
+			final JSONObject json = new JSONObject(result);
+			if (AppTools.isSuccess(json,context)){
+				return json.getJSONObject("result");
+			}
+			
+			
+		}catch(Exception e)
+		{
+			log(e.getMessage());
+		}
+		return null;
+	}
 	public static JSONObject getSuccessJSON(final String result)
 	{
 		try

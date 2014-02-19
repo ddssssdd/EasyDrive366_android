@@ -1,13 +1,22 @@
 package cn.count.easydriver366.base;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import cn.count.easydrive366.R;
+
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public final class AppTools {
@@ -19,8 +28,11 @@ public final class AppTools {
 		try{
 			JSONObject json = new JSONObject(result);
 			boolean r = isSuccess(json);
-			if (!json.isNull("alertmsg")){
+			if (!json.isNull("alertmsg") && !json.getString("alertmsg").isEmpty()){
 				Toast.makeText(context, json.getString("alertmsg"), Toast.LENGTH_LONG).show();
+			}
+			if (!r && !json.isNull("message") && !json.getString("message").isEmpty()){
+				Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
 			}
 			return r;
 		}catch(Exception e){
@@ -28,7 +40,22 @@ public final class AppTools {
 		}
 		return false;
 	}
-	
+	public static boolean isSuccess(final JSONObject result,Context context){
+		try{
+			
+			boolean r = isSuccess(result);
+			if (!result.isNull("alertmsg") && !result.getString("alertmsg").isEmpty()){
+				Toast.makeText(context, result.getString("alertmsg"), Toast.LENGTH_LONG).show();
+			}
+			if (!r && !result.isNull("message") && !result.getString("message").isEmpty()){
+				Toast.makeText(context, result.getString("message"), Toast.LENGTH_LONG).show();
+			}
+			return r;
+		}catch(Exception e){
+			log(e);
+		}
+		return false;
+	}
 	public static boolean isSuccess(final Object jsonobj){
 		boolean result= false;
 		if (jsonobj==null){
@@ -90,5 +117,43 @@ public final class AppTools {
 		if (url.isEmpty())
 			return;
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url,resourceId);
+	}
+	public static void chooseDate(String d,Context context,final ISetDate callback){
+		
+		if (d==null)
+			return;
+		d = d.trim();
+		if (d.equals("")){
+			d = "2000-01-01";
+		}
+		if (d.length()>10)
+			d = d.substring(0, 9);
+		
+		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		final Calendar c  = Calendar.getInstance();
+		
+		try{
+			c.setTime(sdf.parse(d));
+			
+			Dialog dialog = new DatePickerDialog(context,
+					new DatePickerDialog.OnDateSetListener() {
+						
+						@Override
+						public void onDateSet(DatePicker view, int year, int monthOfYear,
+								int dayOfMonth) {
+								c.set(Calendar.YEAR, year);
+								c.set(Calendar.MONTH,monthOfYear);
+								c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+								
+								callback.setDate( sdf.format(c.getTime()));
+						}
+					},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
+			dialog.show();
+		}catch(Exception e){
+			log(e);
+		}
+	}
+	public interface ISetDate{
+		void setDate(final String date);
 	}
 }

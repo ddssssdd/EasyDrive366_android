@@ -552,4 +552,10 @@ public class BaseHttpActivity extends ActionActivity implements
 			return;
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url,resourceId);
 	}
+	protected void setupTitle(final String title,final String subtitle){
+		this.getActionBar().setTitle(title);
+		if (subtitle!=null && !subtitle.isEmpty()){
+			this.getActionBar().setSubtitle(subtitle);
+		}
+	}
 }

@@ -17,6 +17,8 @@ import cn.count.easydrive366.MaintainActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.RescueActivity;
 import cn.count.easydrive366.TaxForCarShipActivity;
+import cn.count.easydrive366.card.AddCardStep1Activity;
+import cn.count.easydrive366.insurance.BuyInsuranceStep1;
 import cn.count.easydrive366.insurance.InsuranceMenuActivity;
 
 public class Menus {
@@ -44,8 +46,8 @@ public class Menus {
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_07),"07",TaxForCarShipActivity.class,R.drawable.q));
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_08),"08",CompulsoryInsuranceActivity.class,R.drawable.s));
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_09),"09",BusinessInsuranceActivity.class,R.drawable.t));	
-		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_11),"11",null,R.drawable.r));
-		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_10),"10",InsuranceProcessListActivity.class,R.drawable.n));
+		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_11),"11",BuyInsuranceStep1.class,R.drawable.r));
+		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_10),"10",AddCardStep1Activity.class,R.drawable.n));
 		//
 	}
 	public List<HomeMenu> getMenus(){

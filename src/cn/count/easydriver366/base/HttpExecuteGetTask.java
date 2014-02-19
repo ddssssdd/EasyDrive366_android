@@ -1,5 +1,6 @@
 package cn.count.easydriver366.base;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -45,8 +46,18 @@ public abstract class HttpExecuteGetTask extends AsyncTask<String, Void, String>
 				return null;
 			}
 			HttpEntity entity = response.getEntity();
-			return EntityUtils.toString(entity);
+			//return EntityUtils.toString(entity);
+			InputStream inputStream = entity.getContent();
+			ByteArrayOutputStream content = new ByteArrayOutputStream();
+			int readBytes =0;
+			byte[] sBuffer = new byte[512];
+			while ((readBytes=inputStream.read(sBuffer))!=-1){
+				content.write(sBuffer, 0, readBytes);
+			}
+			return new String(content.toByteArray());
 		} catch (Exception e) {
+			if (e!=null)
+				Log.e("HttpExecuteGetTaskError", e.getMessage());
 			return null;
 		}
 	}
