@@ -564,6 +564,8 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 
 	private void load_user_view(final String result) {
 		JSONObject json = AppSettings.getSuccessJSON(result);
+		if (json==null)
+			return;
 		/*
 		 * {"exp":"1","msg_maintain":"2013-10-31保养,请提前预约","phone":"18605328170",
 		 * "level":"1",

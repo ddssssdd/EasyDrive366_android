@@ -1,5 +1,8 @@
 package cn.count.easydrive366.insurance;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.json.JSONObject;
 
 import android.content.Intent;
@@ -72,17 +75,23 @@ public class BuyInsuranceStep2 extends BaseHttpActivity{
 			this.showMessage("手机号码不能为空！",null);
 			return;
 		}
-		String url = String.format("ins/carins_confirm?userid=%d&car_id=%s&vin=%s&engine_no=%s&registration_date=%s&owner_name=%s&name=%s&license_id=%s&phone=%s", 
-				AppSettings.userid,
-				edt_license.getText().toString(),
-				edt_vin.getText().toString(),
-				edt_engine_no.getText().toString(),
-				edt_init_date.getText().toString(),
-				edt_owner.getText().toString(),
-				edt_name.getText().toString(),
-				edt_identity.getText().toString(),
-				edt_cellphone.getText().toString()
-				);
+		String url=null;
+		try {
+			url = String.format("ins/carins_confirm?userid=%d&car_id=%s&vin=%s&engine_no=%s&registration_date=%s&owner_name=%s&name=%s&license_id=%s&phone=%s", 
+					AppSettings.userid,
+					URLEncoder.encode(edt_license.getText().toString(),"utf-8"),
+					edt_vin.getText().toString(),
+					edt_engine_no.getText().toString(),
+					edt_init_date.getText().toString(),
+					URLEncoder.encode(edt_owner.getText().toString(),"utf-8"),
+					URLEncoder.encode(edt_name.getText().toString(),"utf-8"),
+					edt_identity.getText().toString(),
+					edt_cellphone.getText().toString()
+					);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//this.get(url, 1);
 		
 		beginHttp();

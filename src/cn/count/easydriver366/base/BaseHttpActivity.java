@@ -262,7 +262,8 @@ public class BaseHttpActivity extends ActionActivity implements
 	}
 
 	protected void log(Exception e) {
-		Log.e(BaseHttpClientTAG, e.getMessage());
+		if (e!=null)
+			Log.e(BaseHttpClientTAG, e.getMessage());
 	}
 
 	protected void showMessage(final String info,

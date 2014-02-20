@@ -57,8 +57,8 @@ public class BuyInsuranceStep3 extends BaseHttpActivity {
 		}
 		String url = String.format("ins/carins_clause?userid=%d&biz_valid=%s&com_valid=%s", 
 				AppSettings.userid,
-				txt_biz_date.getText().toString(),
-				txt_com_date.getText().toString());
+				txt_biz_date.getText().toString().trim(),
+				txt_com_date.getText().toString().trim());
 		beginHttp();
 		new HttpExecuteGetTask(){
 
