@@ -26,23 +26,26 @@ import cn.count.easydriver366.base.HttpExecuteGetTask;
 
 public class NeedPayListActivity extends BaseListViewActivity{
 	private JSONArray results;
+	private String _status;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_goodslist);
-		this.setupLeftButton();
-		this.setupPhoneButtonInVisible();
+		getActionBar().setDisplayUseLogoEnabled(true);
+		
 		this.resource_listview_id = R.id.modules_information_listview;
 		
 		this.resource_listitem_id = R.layout.listitem_needpay;
-		restoreFromLocal(1);
+		
 		
 		reload_data();
 		this.setupPullToRefresh();
 	}
 	@Override
 	protected void reload_data(){
-		this.get(String.format("order/order_list?userid=%d&status=notpay", AppSettings.userid), 1);
+		_status = getIntent().getStringExtra("status");
+		this.get(String.format("order/order_list?userid=%d&status=%s", AppSettings.userid,_status), 1);
 		
 	}
 	@Override
@@ -56,6 +59,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 				JSONObject good = item.getJSONArray("goods").getJSONObject(0);
 				good.put("order_id", item.getString("order_id"));
 				good.put("order_total", item.getString("order_total"));
+				good.put("order_time", item.getString("order_time"));
 				results.put(i,good);
 			}
 			
@@ -88,11 +92,14 @@ public class NeedPayListActivity extends BaseListViewActivity{
 		holder.title.setText(info.get("name").toString());
 		holder.detail.setText(info.get("description").toString());
 		holder.detail3.setText(info.get("order_total").toString());
-		holder.detail4.setText(info.get("quantity").toString());
+	//	holder.detail4.setText(info.get("quantity").toString());
 		
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
 		holder.button1.setTag(info.get("order_id"));
 		holder.btnDelete.setTag(info.get("order_id"));
+		if (!_status.equals("notpay")){
+			holder.detail4.setText(info.get("order_time").toString());
+		}
 		
 	}
 	@Override
@@ -100,23 +107,30 @@ public class NeedPayListActivity extends BaseListViewActivity{
 		holder.title = (TextView)convertView.findViewById(R.id.txt_name);
 		holder.detail = (TextView)convertView.findViewById(R.id.txt_description);
 		holder.detail3 = (TextView)convertView.findViewById(R.id.txt_total);
-		holder.detail4 = (TextView)convertView.findViewById(R.id.txt_quantity);
+		holder.detail4 = (TextView)convertView.findViewById(R.id.txt_order_time);
 		
 		holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
 		holder.button1 =(Button)convertView.findViewById(R.id.btn_buy);
 		holder.btnDelete =(Button)convertView.findViewById(R.id.btn_delete);
 		holder.btnDelete.setVisibility(View.GONE);
 		convertView.setTag(holder);
-		
-		holder.button1.setOnClickListener(new OnClickListener(){
+		if (_status.equals("notpay")){
+			holder.detail4.setVisibility(View.GONE);
+			holder.button1.setVisibility(View.VISIBLE);
+			holder.button1.setOnClickListener(new OnClickListener(){
 
-			@Override
-			public void onClick(View v) {
-				String id =(String)v.getTag();
-				Intent intent = new Intent(NeedPayListActivity.this, NewOrderActivity.class);
-				intent.putExtra("order_id", id);
-				startActivity(intent);
-			}});
+				@Override
+				public void onClick(View v) {
+					String id =(String)v.getTag();
+					Intent intent = new Intent(NeedPayListActivity.this, NewOrderActivity.class);
+					intent.putExtra("order_id", id);
+					startActivity(intent);
+				}});
+		}else{
+			holder.detail4.setVisibility(View.VISIBLE);
+			holder.button1.setVisibility(View.GONE);
+		}
+		
 		holder.btnDelete.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -185,7 +199,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	    
 	    private final class GestureListener extends SimpleOnGestureListener implements OnGestureListener {
 
-	        private static final int SWIPE_THRESHOLD = 100;
+	        private static final int SWIPE_THRESHOLD = 50;
 	        private static final int SWIPE_VELOCITY_THRESHOLD = 100;
 
 	        @Override

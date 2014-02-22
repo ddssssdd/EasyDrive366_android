@@ -215,6 +215,9 @@
 		<activity android:name="cn.count.easydrive366.insurance.BuyInsuranceStep5"></activity>
 		<activity android:name="cn.count.easydrive366.insurance.BuyInsuranceStep6"></activity>
 		<activity android:name="cn.count.easydrive366.insurance.BuyInsuranceStep7"></activity>
+		
+		<activity android:name="cn.count.easydrive366.user.MyFavorActivity"></activity>
+		<activity android:name="cn.count.easydrive366.user.MyHistroyActivity"></activity>
     </application>
     
 	

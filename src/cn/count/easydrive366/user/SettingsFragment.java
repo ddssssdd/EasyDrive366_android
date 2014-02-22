@@ -75,6 +75,33 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 
 	private void init_view() {
 
+		containerView.findViewById(R.id.row_order).setOnClickListener(
+				new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						open_my_order();
+
+					}
+				});
+		containerView.findViewById(R.id.row_favorite).setOnClickListener(
+				new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						open_my_favor();
+
+					}
+				});
+		containerView.findViewById(R.id.row_histroy).setOnClickListener(
+				new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						open_my_histroy();
+
+					}
+				});
 		containerView.findViewById(R.id.row_resetpassword).setOnClickListener(
 				new OnClickListener() {
 
@@ -524,9 +551,24 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 		Intent intent = new Intent(this.getActivity(), BoundActivity.class);
 		startActivity(intent);
 	}
-
+	private void open_my_order(){
+		Intent intent = new Intent(this.getActivity(), NeedPayListActivity.class);
+		intent.putExtra("status", "finished");
+		startActivity(intent);
+	}
+	private void open_my_favor(){
+		Intent intent = new Intent(this.getActivity(), MyFavorActivity.class);
+		
+		startActivity(intent);
+	}
+	private void open_my_histroy(){
+		Intent intent = new Intent(this.getActivity(), MyHistroyActivity.class);
+		
+		startActivity(intent);
+	}
 	private void open_pay() {
 		Intent intent = new Intent(this.getActivity(), NeedPayListActivity.class);
+		intent.putExtra("status", "notpay");
 		startActivity(intent);
 	}
 
