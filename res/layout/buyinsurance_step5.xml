@@ -5,10 +5,126 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:id="@+id/txt_section0"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="第五步"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_margin="10dip"
+        android:text="商业险（元）" />
+
+    <TableLayout
+        android:id="@+id/table_biz"
+        style="@style/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:gravity="center"
+        android:stretchColumns="*" >
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/txt_section1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:text="交强险及车船税（元）" />
+
+    <TableLayout
+        android:id="@+id/table_com"
+        style="@style/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:gravity="center"
+        android:stretchColumns="*" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signup_hit_input1" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:text="选择交强险和车船税" />
+
+            <CheckBox
+                android:id="@+id/chb_com"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                 />
+        </TableRow>
+         <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signup_hit_input2" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:text="交强险" />
+
+            <TextView
+                android:id="@+id/txt_com_com"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:text="交强险及车船税（元）" />
+        </TableRow>
+         <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signup_hit_input2" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:text="车船税" />
+
+            <TextView
+                android:id="@+id/txt_com_tax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:text="交强险及车船税（元）" />
+        </TableRow>
+         <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/signup_hit_input6" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:text="小计" />
+
+            <TextView
+                android:id="@+id/txt_com_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:text="交强险及车船税（元）" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/txt_section2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:text="交强险及车船税（元）" />
+
+    <TextView
+        android:id="@+id/txt_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:background="@drawable/signup_hit_input0"
+        android:gravity="center_vertical"
+        android:text="交强险及车船税（元）" />
 
 </LinearLayout>

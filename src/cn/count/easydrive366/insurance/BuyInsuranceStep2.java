@@ -174,7 +174,7 @@ public class BuyInsuranceStep2 extends BaseHttpActivity{
 			try{
 				String d = json.getString("registration_date").trim();
 				if (!d.isEmpty() && d.length()>10)
-					d = d.substring(0,9);
+					d = d.substring(0,10);
 				edt_license.setText(json.getString("car_id"));
 				edt_vin.setText(json.getString("vin"));
 				edt_engine_no.setText(json.getString("engine_no"));

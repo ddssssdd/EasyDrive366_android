@@ -20,6 +20,7 @@ import cn.count.easydrive366.TaxForCarShipActivity;
 import cn.count.easydrive366.card.AddCardStep1Activity;
 import cn.count.easydrive366.insurance.BuyInsuranceStep1;
 import cn.count.easydrive366.insurance.BuyInsuranceStep4;
+import cn.count.easydrive366.insurance.BuyInsuranceStep7;
 import cn.count.easydrive366.insurance.InsuranceMenuActivity;
 
 public class Menus {
@@ -42,7 +43,7 @@ public class Menus {
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_06),"06",CarRegistrationActivity.class,R.drawable.e));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_05),"05",DriverLicenseActivity.class,R.drawable.f));
 		//menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",InsuranceMenuActivity.class,R.drawable.p));
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",BuyInsuranceStep4.class,R.drawable.p));
+		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",BuyInsuranceStep7.class,R.drawable.p));
 		
 		
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_07),"07",TaxForCarShipActivity.class,R.drawable.q));
