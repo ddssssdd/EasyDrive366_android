@@ -219,6 +219,12 @@
 		
 		<activity android:name="cn.count.easydrive366.user.MyFavorActivity"></activity>
 		<activity android:name="cn.count.easydrive366.user.MyHistroyActivity"></activity>
+		
+		
+		<activity android:name="cn.count.easydrive366.afterpay.AddressActivity"></activity>
+		<activity android:name="cn.count.easydrive366.afterpay.AccidentActivity"></activity>
+		<activity android:name="cn.count.easydrive366.afterpay.ContentsActivity"></activity>
+		<activity android:name="cn.count.easydrive366.afterpay.FinishedActivity"></activity>
     </application>
     
 	

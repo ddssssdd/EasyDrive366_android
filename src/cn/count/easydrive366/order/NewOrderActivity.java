@@ -117,6 +117,7 @@ public class NewOrderActivity extends BaseHttpActivity {
 				Intent intent = new Intent(this,PayActivity.class);
 				intent.putExtra("json", result);
 				startActivity(intent);
+				finish();
 				
 			}
 		}catch(Exception e){

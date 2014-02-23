@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.alipay.android.app.sdk.AliPay;
 
 
+import cn.count.easydrive366.afterpay.AfterPayController;
 import cn.count.easydrive366.alipay.*;
 
 import android.content.Intent;
@@ -147,6 +148,8 @@ public class PayActivity extends BaseHttpActivity {
 								bankid="00001";
 								bankname=pay.getString("bank_name");
 								alipayStart();
+							}else{
+								afterPay();
 							}
 						}catch(Exception e){
 							log(e);
@@ -272,14 +275,10 @@ public class PayActivity extends BaseHttpActivity {
 			protected void onPostExecute(String result) {
 				endHttp();
 				JSONObject json = AppSettings.getSuccessJSON(result);
-				try{
-					if (json.getString("next_form").equals("finished")){
-						PayActivity.this.showDialog("Open Finish");
-					}else{
-						PayActivity.this.showDialog("Open Address");
-					}
-				}catch(Exception e){
-					log(e);
+				if (json!=null){
+					AfterPayController controller = new AfterPayController(PayActivity.this);
+					controller.dispatch(json);
+					finish();
 				}
 				
 				

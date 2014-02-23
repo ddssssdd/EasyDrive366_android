@@ -121,6 +121,7 @@ public class GoodsDetailActivity extends BaseHttpActivity {
 				NewOrderActivity.class);
 		intent.putExtra("id", _id);
 		startActivity(intent);
+		finish();
 	}
 	private void openRating(){
 		Intent intent =new Intent(this,ItemCommentsActivity.class);

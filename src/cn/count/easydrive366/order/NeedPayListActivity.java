@@ -83,6 +83,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 			Intent intent = new Intent(this,OrderDetailActivity.class);
 			intent.putExtra("order_id", order_id);
 			startActivity(intent);
+			finish();
 			
 		}
 	}
@@ -125,6 +126,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 					Intent intent = new Intent(NeedPayListActivity.this, NewOrderActivity.class);
 					intent.putExtra("order_id", id);
 					startActivity(intent);
+					NeedPayListActivity.this.finish();
 				}});
 		}else{
 			holder.detail4.setVisibility(View.VISIBLE);
