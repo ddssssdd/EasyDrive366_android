@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         layout="@layout/navigation_bar" />
 
-    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+    
+         <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/pull_refresh_scrollview"
         android:layout_width="match_parent"
@@ -18,12 +19,15 @@
         android:layout_marginRight="5dp"
         ptr:ptrAnimationStyle="flip"
         ptr:ptrMode="pullFromStart" >
+    
+
+    
 
         <TableLayout
             style="@style/table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*" >
+            android:stretchColumns="2" >
 
             <include
                 android:layout_width="match_parent"
@@ -42,11 +46,18 @@
                 android:background="@drawable/signup_hit_input0"
                 android:gravity="center" >
 
+                <ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                     />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="用户反馈" >
                 </TextView>
 
@@ -73,11 +84,17 @@
                 android:background="@drawable/signup_hit_input1"
                 android:gravity="center" >
 
+                <ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/a" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="我的订单" >
                 </TextView>
 
@@ -99,11 +116,17 @@
                 android:background="@drawable/signup_hit_input2"
                 android:gravity="center" >
 
+                <ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/b" />
+                
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="我的卡券" >
                 </TextView>
 
@@ -125,11 +148,16 @@
                 android:background="@drawable/signup_hit_input2"
                 android:gravity="center" >
 
+                <ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/c" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="我的收藏" >
                 </TextView>
 
@@ -149,12 +177,16 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input6"
                 android:gravity="center" >
-
+				<ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/d" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="浏览历史" >
                 </TextView>
 
@@ -179,16 +211,18 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input1"
                 android:gravity="center" >
-
+				<ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/e" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="我的车辆" >
                 </TextView>
-
-                
 
                 <TextView
                     android:id="@+id/txt_car"
@@ -206,10 +240,14 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input2"
                 android:gravity="center" >
-
+				<ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/f" />
                 <TextView
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="驾驶证" >
                 </TextView>
 
@@ -229,10 +267,14 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input6"
                 android:gravity="center" >
-
+				<ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/g" />
                 <TextView
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="保养设置" >
                 </TextView>
 
@@ -257,12 +299,16 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input1"
                 android:gravity="center" >
-
+				<ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/h" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="重设密码" >
                 </TextView>
 
@@ -281,13 +327,17 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input2"
                 android:gravity="center" >
-
+				<ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/i" />
                 <TextView
                     android:id="@+id/txt_bindCellphone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="绑定手机" >
                 </TextView>
 
@@ -307,13 +357,17 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input6"
                 android:gravity="center" >
-
+				<ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/j" />
                 <TextView
                     android:id="@+id/txt_findpassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="找回密码" >
                 </TextView>
 
@@ -400,6 +454,7 @@
                 android:text="Logout" >
             </Button>
         </TableLayout>
-    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+    
+     </com.handmark.pulltorefresh.library.PullToRefreshScrollView> 
 
 </LinearLayout>

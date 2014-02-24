@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
@@ -132,7 +133,9 @@ public class PayActivity extends BaseHttpActivity {
 				else
 					index =1;
 				TableRow tr = new TableRow(this);
+				tr.setGravity(Gravity.CENTER_VERTICAL);
 				PayPayItem payItem = new PayPayItem(this,null);
+				
 				payItem.setData(pay.getString("bank_name"), pay.getString("account"), index);
 				tr.addView(payItem);
 				tblPays.addView(tr);

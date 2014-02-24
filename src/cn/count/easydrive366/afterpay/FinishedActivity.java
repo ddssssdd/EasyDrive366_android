@@ -53,7 +53,7 @@ public class FinishedActivity extends BaseHttpActivity {
 	}
 	private void goto_order(){
 		Intent intent = new Intent(this,OrderDetailActivity.class);
-		intent.putExtra("id", order_id);
+		intent.putExtra("order_id", order_id);
 		startActivity(intent);
 		finish();
 	}

@@ -14,8 +14,8 @@
             android:layout_width="@dimen/pic_cell_width"
             android:layout_height="@dimen/pic_cell_height"
             android:layout_margin="10dip"
-            android:src="@drawable/m"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/m" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,42 +76,45 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dip"
         android:layout_margin="2dip"
         android:orientation="horizontal" >
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_pay"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@string/app_name"
-            android:background="@drawable/daifukuan"
-             />
+            android:scaleType="centerInside"
+            android:src="@drawable/daifukuan" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_insurance"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:contentDescription="@string/app_name"
-            android:background="@drawable/baoxian" />
+            android:src="@drawable/baoxian"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/app_name" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_task"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:contentDescription="@string/app_name"
-            android:background="@drawable/renwu" />
+            android:src="@drawable/renwu"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/app_name" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_friend"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:contentDescription="@string/app_name"
-            android:background="@drawable/pengyou" />
+            android:src="@drawable/pengyou"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/app_name" />
     </LinearLayout>
 
 </LinearLayout>
