@@ -46,16 +46,13 @@ public class GoodsListFragment extends BaseListViewV4Fragment {
 		this.resource_listview_id = R.id.modules_information_listview;
 		// this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.listitem_goods;
-		
 
-		
 		this.setupPullToRefresh();
 		this.cache_load(1);
 
 		return containerView;
 	}
-	
-	
+
 	@Override
 	protected void reload_data() {
 		if (_isSearching) {
@@ -116,10 +113,12 @@ public class GoodsListFragment extends BaseListViewV4Fragment {
 	protected void initListItem(ViewHolder holder, View convertView) {
 		holder.title = (TextView) convertView.findViewById(R.id.txt_title);
 		holder.detail2 = (TextView) convertView.findViewById(R.id.txt_price);
-		holder.detail3 = (TextView) convertView.findViewById(R.id.txt_stand_price);
+		holder.detail3 = (TextView) convertView
+				.findViewById(R.id.txt_stand_price);
 		holder.detail4 = (TextView) convertView.findViewById(R.id.txt_discount);
 		holder.detail5 = (TextView) convertView.findViewById(R.id.txt_buyer);
-		holder.detail =(TextView) convertView.findViewById(R.id.txt_description);
+		holder.detail = (TextView) convertView
+				.findViewById(R.id.txt_description);
 		holder.image = (ImageView) convertView.findViewById(R.id.img_picture);
 		holder.button1 = (Button) convertView.findViewById(R.id.btn_buy);
 		convertView.setTag(holder);

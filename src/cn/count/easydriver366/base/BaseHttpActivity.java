@@ -42,6 +42,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -66,6 +68,8 @@ public class BaseHttpActivity extends ActionActivity implements
 	protected ProgressDialog _dialog;
 	protected PullToRefreshScrollView mPullRefreshScrollView;
 	protected int reload =0;
+	private String topRightButtonText;
+	protected MenuItem rightTopMenu;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,6 +92,25 @@ public class BaseHttpActivity extends ActionActivity implements
 		});
 	}
 	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		if (this.topRightButtonText!=null){
+			rightTopMenu = menu.add(0, 1, 0, topRightButtonText);
+			rightTopMenu.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		}
+		return super.onCreateOptionsMenu(menu);
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (this.topRightButtonText!=null && item.getItemId()==1){
+			this.onRightButtonPress();
+		}
+		if (item.getItemId()==android.R.id.home){
+			this.onLeftButtonPress();
+		}
+		return super.onOptionsItemSelected(item);
+	}
 	protected void reload_data(){
 		
 	}
@@ -318,6 +341,8 @@ public class BaseHttpActivity extends ActionActivity implements
 		_rightButton = (Button) findViewById(R.id.title_set_bn);
 		if (_rightButton != null) {
 			_rightButton.setVisibility(View.GONE);
+		}else{
+			this.topRightButtonText=null;
 		}
 	}
 
@@ -338,6 +363,8 @@ public class BaseHttpActivity extends ActionActivity implements
 				}
 
 			});
+		}else{
+			this.topRightButtonText = buttonText;
 		}
 
 	}
@@ -357,6 +384,8 @@ public class BaseHttpActivity extends ActionActivity implements
 
 				}
 			});
+		}else{
+			this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 	}
 	protected void setupPhoneButtonInVisible(){

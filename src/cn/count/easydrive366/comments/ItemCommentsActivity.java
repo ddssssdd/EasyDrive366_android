@@ -32,8 +32,8 @@ public class ItemCommentsActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_itemcomments);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setTitle("评论");
+		this.setupLeftButton();
+		this.setupRightButtonWithText("撰写评论");
 		load_data();
 		((TextView)findViewById(R.id.txt_avg_star)).setText("");
 		((TextView)findViewById(R.id.txt_total_voter)).setText("");
@@ -128,17 +128,8 @@ public class ItemCommentsActivity extends BaseHttpActivity {
 		
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		menuComment = menu.add("撰写评论");
-		menuComment.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		onRightButtonPress();
-		return super.onOptionsItemSelected(item);
-	}
+	
+	
 	@Override
 	protected void onRightButtonPress() {
 		Intent intent = new Intent(this,DoCommentActivity.class);

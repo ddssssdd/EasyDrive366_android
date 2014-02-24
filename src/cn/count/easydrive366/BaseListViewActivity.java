@@ -14,6 +14,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
+
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpClient;
 
@@ -25,6 +26,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -46,7 +48,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 	protected int resource_listitem_id;
 	protected PullToRefreshListView mListView;
 	protected boolean _isInDeleting=false;
-	
+	protected SwipeDetector swipeDetector= new SwipeDetector();
 	protected void setupPullToRefresh(){
 		mListView = (PullToRefreshListView) findViewById(this.resource_listview_id);
 		
@@ -122,6 +124,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 			//ListView lv = (ListView)findViewById(resource_listview_id);
 			_adapter =new MyAdapter(this);
 			mListView.setAdapter(_adapter);
+			mListView.setOnTouchListener(swipeDetector);
 			mListView.setOnItemClickListener(new OnItemClickListener(){
 
 				@Override
@@ -218,5 +221,79 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 			return convertView;
 		}
 		
+	}
+	public static enum Action {
+        LR, // Left to Right
+        RL, // Right to Left
+        TB, // Top to bottom
+        BT, // Bottom to Top
+        None // when no action was detected
+    }
+	public class SwipeDetector implements View.OnTouchListener {
+
+	    
+
+	    private static final String logTag = "SwipeDetector";
+	    private static final int MIN_DISTANCE = 100;
+	    private float downX, downY, upX, upY;
+	    private Action mSwipeDetected = Action.None;
+
+	    public boolean swipeDetected() {
+	        return mSwipeDetected != Action.None;
+	    }
+
+	    public Action getAction() {
+	        return mSwipeDetected;
+	    }
+
+	    public boolean onTouch(View v, MotionEvent event) {
+	        switch (event.getAction()) {
+	        case MotionEvent.ACTION_DOWN: {
+	            downX = event.getX();
+	            downY = event.getY();
+	            mSwipeDetected = Action.None;
+	            return false; // allow other events like Click to be processed
+	        }
+	        case MotionEvent.ACTION_MOVE: {
+	            upX = event.getX();
+	            upY = event.getY();
+
+	            float deltaX = downX - upX;
+	            float deltaY = downY - upY;
+
+	            // horizontal swipe detection
+	            if (Math.abs(deltaX) > MIN_DISTANCE) {
+	                // left or right
+	                if (deltaX < 0) {
+	                    //Logger.show(Log.INFO,logTag, "Swipe Left to Right");
+	                    mSwipeDetected = Action.LR;
+	                    return true;
+	                }
+	                if (deltaX > 0) {
+	                    //Logger.show(Log.INFO,logTag, "Swipe Right to Left");
+	                    mSwipeDetected = Action.RL;
+	                    return true;
+	                }
+	            } else 
+
+	                // vertical swipe detection
+	                if (Math.abs(deltaY) > MIN_DISTANCE) {
+	                    // top or down
+	                    if (deltaY < 0) {
+	                        //Logger.show(Log.INFO,logTag, "Swipe Top to Bottom");
+	                        mSwipeDetected = Action.TB;
+	                        return false;
+	                    }
+	                    if (deltaY > 0) {
+	                       // Logger.show(Log.INFO,logTag, "Swipe Bottom to Top");
+	                        mSwipeDetected = Action.BT;
+	                        return false;
+	                    }
+	                } 
+	            return true;
+	        }
+	        }
+	        return false;
+	    }
 	}
 }

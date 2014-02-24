@@ -20,6 +20,7 @@ public class DoCommentActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_docomment);
+		this.setupLeftButton();
 		this.setupPhoneButtonInVisible();
 		this.setupRightButtonWithText("Comment");
 		_item_id = getIntent().getStringExtra("id");

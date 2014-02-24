@@ -29,6 +29,7 @@ public class MaintainActivity extends BaseListViewActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moudles_maintain_activity);
+		this.setupRightButtonWithText("编辑");
 		this.setupLeftButton();
 		restoreFromLocal(1);
 		reload_data();

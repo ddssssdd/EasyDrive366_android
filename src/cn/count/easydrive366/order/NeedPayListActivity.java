@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -32,7 +33,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_goodslist);
-		getActionBar().setDisplayUseLogoEnabled(true);
+		this.setupLeftButton();
 		
 		this.resource_listview_id = R.id.modules_information_listview;
 		
@@ -74,7 +75,13 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	
 	@Override
 	protected void onListItemClick(final View view,final long index){
-		
+		if (swipeDetector.swipeDetected()){
+			if (swipeDetector.getAction()==Action.RL){
+				
+			}else if (swipeDetector.getAction()==Action.LR){
+			
+			}
+		}
 		if (_list!=null){
 			
 			Map<String,Object> map = _list.get((int) index);
@@ -83,7 +90,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 			Intent intent = new Intent(this,OrderDetailActivity.class);
 			intent.putExtra("order_id", order_id);
 			startActivity(intent);
-			finish();
+			
 			
 		}
 	}
@@ -140,7 +147,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 				String id =(String)v.getTag();
 				deleteOrder(id);
 			}});
-
+		/*
 		convertView.setOnTouchListener(new OnSwipeTouchListener(){
 
 			@Override
@@ -161,6 +168,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 			
 			
 		});
+		*/
 	}
 	private void deleteOrder(final String order_id){
 		String url = String.format("order/order_del?userid=%d&orderid=%s", AppSettings.userid,order_id);
@@ -230,6 +238,8 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	                        } else {
 	                            onSwipeTop(sender);
 	                        }
+	                    }else{
+	                    	Log.e("Touch","this is a touch");
 	                    }
 	                }
 	            } catch (Exception exception) {
@@ -249,6 +259,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	    }
 	    
 	}
+	
 	
 
 }

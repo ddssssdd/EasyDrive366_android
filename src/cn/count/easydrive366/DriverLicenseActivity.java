@@ -23,6 +23,7 @@ public class DriverLicenseActivity extends BaseListViewActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_driverlicense_activity);
 		this.setupLeftButton();
+		this.setupRightButtonWithText("编辑");
 		restoreFromLocal(1);
 		this.get(AppSettings.url_get_license_type(), 2,"");
 		reload_data();

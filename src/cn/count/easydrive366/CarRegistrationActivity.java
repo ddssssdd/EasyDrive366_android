@@ -21,6 +21,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_carregistration_activity);
 		this.setupLeftButton();
+		this.setupRightButtonWithText("编辑");
 		restoreFromLocal(1);
 		this.reload_data();
 		this.setupScrollView();
