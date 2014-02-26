@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
+import cn.count.easydrive366.share.FavorController;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseListViewFragment;
 import cn.count.easydriver366.base.BaseListViewV4Fragment;
@@ -119,6 +121,17 @@ public class ArticleListFragment extends BaseListViewV4Fragment {
 			
 		}
 	}
+	private void do_share_on(final Object obj){
+		// pop up share choose;
+	}
+	private void do_favor_on(final Object obj,ImageView view){
+		FavorController favor = new FavorController(this);
+		Map<String,Object> map = (Map<String,Object>)obj;
+		int is_favor = Integer.parseInt(map.get("is_favor").toString());
+		favor.init(is_favor, view, map.get("id").toString(), "ATL");
+		favor.click_menu();
+		map.put("is_favor", is_favor==1?0:1);
+	}
 	
 	@Override
 	protected void setupListItem(ViewHolder holder,Map<String,Object> info){
@@ -128,6 +141,14 @@ public class ArticleListFragment extends BaseListViewV4Fragment {
 		holder.detail3.setText(info.get("star_voternum").toString());
 		holder.ratingbar.setRating(3/*Float.parseFloat(info.get("star").toString())*/);
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
+		int is_favor = Integer.parseInt( info.get("is_favor").toString());
+		if (is_favor==1){
+			holder.image3.setImageResource(R.drawable.favor);
+		}else{
+			holder.image3.setImageResource(R.drawable.favorno);
+		}
+		holder.image3.setTag(info);
+		holder.image2.setTag(info);
 		
 	}
 	@Override
@@ -138,8 +159,23 @@ public class ArticleListFragment extends BaseListViewV4Fragment {
 		holder.detail3 = (TextView)convertView.findViewById(R.id.txt_voternum);
 		holder.ratingbar =(RatingBar)convertView.findViewById(R.id.rating_bar);
 		holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
+		holder.image2 = (ImageView)convertView.findViewById(R.id.img_share);
+		holder.image3 = (ImageView)convertView.findViewById(R.id.img_favor);
 		convertView.setTag(holder);
-	
+		holder.image2.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				do_share_on(v.getTag());
+				
+			}});
+		holder.image3.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				do_favor_on(v.getTag(),(ImageView)v);
+				
+			}});
 		
 	}
 	@Override

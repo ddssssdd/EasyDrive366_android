@@ -157,7 +157,14 @@ public class BuyInsuranceStep2 extends BaseHttpActivity{
 			}});
 	}
 	private void load_data(){
-		String url = String.format("ins/carins_info?userid=%d", AppSettings.userid);
+		String id = getIntent().getStringExtra("id");
+		
+		String url;
+		if (id!=null && !id.isEmpty()){
+			url  = String.format("ins/carins_info?userid=%d&id=%s", AppSettings.userid,id);
+		}else{
+			url  = String.format("ins/carins_info?userid=%d", AppSettings.userid);
+		}
 		beginHttp();
 		new HttpExecuteGetTask(){
 
@@ -169,7 +176,7 @@ public class BuyInsuranceStep2 extends BaseHttpActivity{
 			}}.execute(url);
 	}
 	private void process_data(final String result){
-		JSONObject json = AppSettings.getSuccessJSON(result);
+		JSONObject json = AppSettings.getSuccessJSON(result,this);
 		if (json!=null){
 			try{
 				String d = json.getString("registration_date").trim();

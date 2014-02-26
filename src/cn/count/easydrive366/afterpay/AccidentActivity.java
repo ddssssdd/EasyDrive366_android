@@ -74,7 +74,7 @@ public class AccidentActivity extends BaseHttpActivity {
 			@Override
 			protected void onPostExecute(String result) {
 				endHttp();
-				JSONObject json = AppSettings.getSuccessJSON(result);
+				JSONObject json = AppSettings.getSuccessJSON(result,AccidentActivity.this);
 				if (json!=null){
 					Intent intent = new Intent(AccidentActivity.this,FinishedActivity.class);
 					intent.putExtra("data", json.toString());

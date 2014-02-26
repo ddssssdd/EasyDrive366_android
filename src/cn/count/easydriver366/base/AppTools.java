@@ -28,12 +28,15 @@ public final class AppTools {
 		try{
 			JSONObject json = new JSONObject(result);
 			boolean r = isSuccess(json);
-			if (!json.isNull("alertmsg") && !json.getString("alertmsg").isEmpty()){
-				Toast.makeText(context, json.getString("alertmsg"), Toast.LENGTH_LONG).show();
+			if (context!=null){
+				if (!json.isNull("alertmsg") && !json.getString("alertmsg").isEmpty()){
+					Toast.makeText(context, json.getString("alertmsg"), Toast.LENGTH_LONG).show();
+				}
+				if (!r && !json.isNull("message") && !json.getString("message").isEmpty()){
+					Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+				}
 			}
-			if (!r && !json.isNull("message") && !json.getString("message").isEmpty()){
-				Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
-			}
+			
 			return r;
 		}catch(Exception e){
 			log(e);

@@ -57,7 +57,7 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 public class BaseHttpActivity extends ActionActivity implements
-		HttpClient.IHttpCallback {
+		HttpClient.IHttpCallback,IExecuteHttp {
 	private static String BaseHttpClientTAG = "BaseHttpActivity";
 	protected HttpClient httpClient;
 	// protected ImageButton _rightButton;
@@ -130,7 +130,7 @@ public class BaseHttpActivity extends ActionActivity implements
 		
 		this.get(actionAndParameters, returnType,this.getResources().getString(R.string.app_loading));
 	}
-	protected void beginHttp(){
+	public void beginHttp(){
 		if (_dialog !=null){
 			_dialog.dismiss();
 			_dialog = null;
@@ -139,7 +139,7 @@ public class BaseHttpActivity extends ActionActivity implements
 		_dialog.setMessage(this.getResources().getString(R.string.app_loading));
 		_dialog.show();
 	}
-	protected void endHttp(){
+	public void endHttp(){
 		if (_dialog !=null){
 			_dialog.dismiss();
 			_dialog = null;
@@ -160,54 +160,15 @@ public class BaseHttpActivity extends ActionActivity implements
 			_dialog.show();
 		}
 		final String url = String.format("%s&reload=%d", actionAndParameters,reload);
-		Log.e("Reload", url);
+		
 		this.getHttpClient().requestServer(url, returnType);
 		reload = 0;
 		
 	}
 	
-	public Object sendHttp(final String urlParams,final int msgType){
-		String url =AppSettings.ServerUrl +urlParams+"&timestamp="+String.valueOf(System.currentTimeMillis());
-		
-		
-		
-		HttpGet httpGet = new HttpGet(url);
-		DefaultHttpClient client = new DefaultHttpClient();
-		try{
-		
-			HttpResponse response = client.execute(httpGet);
-			if (response.getStatusLine().getStatusCode()==200){
-				HttpEntity entity = response.getEntity();
-				InputStream inputStream = entity.getContent();
-				ByteArrayOutputStream content = new ByteArrayOutputStream();
-				int readBytes =0;
-				byte[] sBuffer = new byte[512];
-				while ((readBytes=inputStream.read(sBuffer))!=-1){
-					content.write(sBuffer, 0, readBytes);
-				}
-				String result = new String(content.toByteArray());
-				
-				Object resultObj=null;
-				if (result.startsWith("[")){
-					resultObj=new JSONArray(result);
-				}else{
-					resultObj = new JSONObject(result);
-				}
-				return resultObj;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			client.getConnectionManager().shutdown();
-		}
-		return null;
-		
-	}
+	
 	@Override
 	public void processMessage(int msgType, final Object result) {
-
-		Log.e(BaseHttpClientTAG, result.toString());
-		
 	}
 
 	protected void setupCompanyAndPhone(final Object json) {

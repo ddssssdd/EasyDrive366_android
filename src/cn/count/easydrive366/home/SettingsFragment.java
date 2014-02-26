@@ -564,7 +564,7 @@ public class SettingsFragment extends BaseHttpFragment {
 	}
 
 	private void load_user_view(final String result) {
-		JSONObject json = AppSettings.getSuccessJSON(result);
+		JSONObject json = AppSettings.getSuccessJSON(result,this.getActivity());
 		if (json!=null){
 			//
 		}else{

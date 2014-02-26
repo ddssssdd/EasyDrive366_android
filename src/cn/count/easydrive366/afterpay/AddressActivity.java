@@ -84,7 +84,7 @@ public class AddressActivity extends BaseHttpActivity {
 			@Override
 			protected void onPostExecute(String result) {
 				endHttp();
-				JSONObject json = AppSettings.getSuccessJSON(result);
+				JSONObject json = AppSettings.getSuccessJSON(result,AddressActivity.this);
 				if (json!=null){
 					Intent intent = new Intent(AddressActivity.this,FinishedActivity.class);
 					intent.putExtra("data", json.toString());

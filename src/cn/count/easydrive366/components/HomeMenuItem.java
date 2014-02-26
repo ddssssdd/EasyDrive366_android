@@ -268,7 +268,7 @@ public class HomeMenuItem extends LinearLayout {
 				protected void onPostExecute(String result) {
 					try{
 						JSONObject json = new JSONObject(result);
-						if (AppSettings.isSuccessJSON(json)){
+						if (AppSettings.isSuccessJSON(json,_context)){
 							processJson(_menuItem.key,json.getJSONObject("result").toString());
 						}
 					}catch(Exception e){

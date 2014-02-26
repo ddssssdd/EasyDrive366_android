@@ -35,9 +35,7 @@ public class TaskListActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_standard_listview);
-		
-		this.setupPhoneButtonInVisible();
-		this.setRightButtonInVisible();
+	
 		this.setupLeftButton();
 		init_view();
 		load_data();
@@ -48,17 +46,19 @@ public class TaskListActivity extends BaseHttpActivity {
 	}
 	private void load_data(){
 		String url = String.format("bound/get_task_list?userid=%d", AppSettings.userid);
+		beginHttp();
 		new HttpExecuteGetTask(){
 
 			@Override
 			protected void onPostExecute(String result) {
+				endHttp();
 				load_view(result);
 				
 			}}.execute(url);
 		
 	}
 	private void load_view(final String result){
-		JSONObject json = AppSettings.getSuccessJSON(result);
+		JSONObject json = AppSettings.getSuccessJSON(result,this);
 		try{
 		
 			JSONArray tempList = json.getJSONArray("data");
@@ -72,7 +72,7 @@ public class TaskListActivity extends BaseHttpActivity {
 				task.ation_url = item.getString("action_url");
 				task.pic_url = item.getString("pic_url");
 				task.id= item.getInt("id");
-				
+				task.page_id = item.getString("page_id");
 				
 				_list.add(task);
 			}
@@ -98,16 +98,15 @@ public class TaskListActivity extends BaseHttpActivity {
 	}
 	private void onListItemClick(final int index){
 		Task task = _list.get(index);
-		Intent intent = new Intent(this,DoTaskActivity.class);
-		intent.putExtra("task_id", task.id);
-		startActivity(intent);
+		new TaskDispatch(this,task).execute();
 	}
-	private class Task{
+	public class Task{
 		public String title;
 		public String remark;
 		public String bounds;
 		public String pic_url;
 		public String ation_url;
+		public String page_id;
 		public int id;
 		
 	}

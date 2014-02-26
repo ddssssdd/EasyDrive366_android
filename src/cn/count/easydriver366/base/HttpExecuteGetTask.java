@@ -43,7 +43,13 @@ public abstract class HttpExecuteGetTask extends
 		try {
 
 			String httpUrl = AppSettings.ServerUrl + urlString;
-			Log.e(AppSettings.AppTile, httpUrl);
+			if (AppSettings.task_id>0){
+				httpUrl = String.format("%s&taskid=%d", httpUrl,AppSettings.task_id);
+				AppSettings.task_id =0;
+			}
+			if (AppSettings.isOutputDebug)
+				Log.e("Http begin", httpUrl);
+			
 			HttpClient client = new DefaultHttpClient();
 			HttpGet get = new HttpGet(httpUrl);
 			HttpResponse response = client.execute(get);
@@ -54,6 +60,8 @@ public abstract class HttpExecuteGetTask extends
 			HttpEntity entity = response.getEntity();
 			// return EntityUtils.toString(entity);
 			String result = retrieveInputStream(entity);
+			if (AppSettings.isOutputDebug)
+				Log.e("Http end", result);
 			return result;
 			/*
 			 * InputStream inputStream = entity.getContent();

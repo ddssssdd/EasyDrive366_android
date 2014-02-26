@@ -56,7 +56,8 @@ public class NewOrderActivity extends BaseHttpActivity {
 	private void load_view(final String result){
 		tblItems = (TableLayout)findViewById(R.id.tb_items);
 		tblItems.removeAllViews();
-		JSONObject json = AppSettings.getSuccessJSON(result);
+		JSONObject json = AppSettings.getSuccessJSON(result,this);
+		if (json==null) return;
 		try{
 			order_id = json.getString("order_id");
 			order_total = json.getString("order_total");
@@ -113,7 +114,7 @@ public class NewOrderActivity extends BaseHttpActivity {
 	private void processResult(final String result){
 		try{
 			JSONObject json = new JSONObject(result);
-			if (AppSettings.isSuccessJSON(json)){
+			if (AppSettings.isSuccessJSON(json,this)){
 				Intent intent = new Intent(this,PayActivity.class);
 				intent.putExtra("json", result);
 				startActivity(intent);

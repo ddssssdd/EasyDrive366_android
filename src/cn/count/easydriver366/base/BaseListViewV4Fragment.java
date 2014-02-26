@@ -173,6 +173,8 @@ public abstract class BaseListViewV4Fragment extends BaseHttpV4Fragment {
 		public Button button1;
 		public Button btnDelete;
 		public ImageButton imgButton;
+		public ImageView image2;
+		public ImageView image3;
 		
 	}
 	public class MyAdapter extends BaseAdapter

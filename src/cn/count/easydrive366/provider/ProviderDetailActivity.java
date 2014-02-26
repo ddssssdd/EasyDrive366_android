@@ -9,6 +9,12 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.sina.weibo.sdk.api.share.BaseResponse;
+import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
+import com.sina.weibo.sdk.api.share.WeiboShareSDK;
+import com.sina.weibo.sdk.api.share.IWeiboHandler.Response;
+import com.sina.weibo.sdk.constant.WBConstants;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -38,12 +44,13 @@ import cn.count.easydrive366.comments.ItemCommentsActivity;
 import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydrive366.goods.GoodsListFragment;
 import cn.count.easydrive366.order.NewOrderActivity;
+import cn.count.easydrive366.share.FavorController;
 import cn.count.easydrive366.share.ShareController;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
-public class ProviderDetailActivity extends BaseHttpActivity {
+public class ProviderDetailActivity extends BaseHttpActivity  implements Response {
 	protected List<Map<String,Object>> _list=null;
 	private String code;
 	private ProviderAdapter _adapter;
@@ -53,11 +60,20 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 	private TextView txtIndex;
 	private ShareController _share;
 	private MenuItem _menuFavor;
+	private FavorController _favor;
+	private IWeiboShareAPI _weibo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_provider_detail);
-		_share = new ShareController(this);
+		this.setupLeftButton();
+		this.setTitle("详情");
+		_favor = new FavorController(this);
+		_weibo = WeiboShareSDK.createWeiboAPI(this, AppSettings.SINA_WEIBO_ID);
+		if (savedInstanceState != null) {
+			_weibo.handleWeiboResponse(getIntent(), this);
+		}
+		_share = new ShareController(this,_weibo);
 		code = getIntent().getStringExtra("code");
 		if (code!=null && !code.isEmpty()){
 			beginHttp();
@@ -133,7 +149,8 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 		startActivity(intent);
 	}
 	private void load_view(final String result){
-		JSONObject json =  AppSettings.getSuccessJSON(result);
+		JSONObject json =  AppSettings.getSuccessJSON(result,this);
+		if (json==null) return;
 		try{
 			((TextView)findViewById(R.id.txt_name)).setText(json.getString("name"));
 			((TextView)findViewById(R.id.txt_phone)).setText(json.getString("phone"));
@@ -143,6 +160,7 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 			((RatingBar)findViewById(R.id.rating_bar)).setRating(json.getInt("star_num"));
 			_phone =json.getString("phone");
 			_share.setContent(json);
+			_favor.init(json.getInt("is_favor"), _menuFavor, code, "SPV");
 			JSONArray list = json.getJSONArray("goods");
 			_list = new ArrayList<Map<String,Object>>();
 			for(int i=0;i<list.length();i++){
@@ -329,5 +347,27 @@ public class ProviderDetailActivity extends BaseHttpActivity {
 	private class Album{
 		public String pic_url;
 		public String remark;
+	}
+	@Override
+	protected void onNewIntent(Intent intent) {
+		//super.onNewIntent(intent);
+
+		// 从当前应用唤起微博并进行分享后，返回到当前应用时，需要在此处调用该函数
+		// 来接收微博客户端返回的数据；执行成功，返回 true，并调用
+		// {@link IWeiboHandler.Response#onResponse}；失败返回 false，不调用上述回调
+		_weibo.handleWeiboResponse(intent, this);
+	}
+
+	@Override
+	public void onResponse(BaseResponse arg0) {
+		switch (arg0.errCode) {
+		case WBConstants.ErrorCode.ERR_OK:
+			break;
+		case WBConstants.ErrorCode.ERR_CANCEL:
+			break;
+		case WBConstants.ErrorCode.ERR_FAIL:
+			break;
+		}
+
 	}
 }

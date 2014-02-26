@@ -4,6 +4,13 @@ package cn.count.easydrive366.share;
 
 import org.json.JSONObject;
 
+import com.sina.weibo.sdk.api.TextObject;
+import com.sina.weibo.sdk.api.WebpageObject;
+import com.sina.weibo.sdk.api.WeiboMultiMessage;
+import com.sina.weibo.sdk.api.share.IWeiboDownloadListener;
+import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
+import com.sina.weibo.sdk.api.share.SendMultiMessageToWeiboRequest;
+import com.sina.weibo.sdk.utils.Utility;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.SendMessageToWX;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -12,16 +19,20 @@ import com.tencent.mm.sdk.openapi.WXTextObject;
 import com.tencent.mm.sdk.openapi.WXWebpageObject;
 
 import cn.count.easydrive366.R;
+import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydriver366.base.AppSettings;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Telephony;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ShareController {
 	private Context _context;
@@ -29,10 +40,14 @@ public class ShareController {
 	private String _description;
 	private String _url;
 	private IWXAPI api;
-	public ShareController(Context context){
+	private IWeiboShareAPI _weibo;
+	public ShareController(Context context,IWeiboShareAPI w){
 		_context = context;
+		_weibo = w;
 		api = WXAPIFactory.createWXAPI(_context, AppSettings.WEIXIN_ID);
     	api.registerApp(AppSettings.WEIXIN_ID);
+    	
+    	
 	}
 	public void setContent(final String title,final String description,final String url){
 		_title = title;
@@ -103,7 +118,8 @@ public class ShareController {
 	}
 	
 	private void share_weibo(){
-		
+		this.checkWithWeibo();
+		this.sendMultiMessage();
 	}
 	private void share_email(){
 		String[] email = {}; // 需要注意，email必须以数组形式传入  
@@ -145,5 +161,50 @@ public class ShareController {
 	    }
 		
 				
+	}
+	private TextObject getTextObj() {
+		TextObject textObject = new TextObject();
+		textObject.text = "Just test.";
+		return textObject;
+	}
+	private WebpageObject getWebpageObj(final String title,final String description,final String url) {
+        WebpageObject mediaObject = new WebpageObject();
+        mediaObject.identify = Utility.generateGUID();
+        mediaObject.title = title;
+        mediaObject.description = description;
+        
+        // 设置 Bitmap 类型的图片到视频对象里
+        
+        Bitmap bitmap = ((BitmapDrawable)_context.getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
+        mediaObject.setThumbImage(bitmap);
+        mediaObject.actionUrl = url;
+        mediaObject.defaultText = title;
+        return mediaObject;
+    }
+
+	private void sendMultiMessage() {
+		WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
+		//weiboMessage.textObject = getTextObj();
+		weiboMessage.mediaObject = getWebpageObj(_title,_description,_url);
+		SendMultiMessageToWeiboRequest request = new SendMultiMessageToWeiboRequest();
+		request.transaction = String.valueOf(System.currentTimeMillis());
+		request.multiMessage = weiboMessage;
+		_weibo.sendRequest(request);
+	}
+	private void checkWithWeibo(){
+		if (!_weibo.isWeiboAppInstalled()) {
+			_weibo.registerWeiboDownloadListener(new IWeiboDownloadListener() {
+
+				@Override
+				public void onCancel() {
+					Toast.makeText(_context, "用户取消了安装新浪微博",
+							Toast.LENGTH_SHORT).show();
+
+				}
+			});
+		}
+		if (_weibo.checkEnvironment(true)) {
+			_weibo.registerApp();
+		}
 	}
 }

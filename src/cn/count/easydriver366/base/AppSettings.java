@@ -28,7 +28,8 @@ public final class AppSettings {
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
 	static public String WEIXIN_ID ="wxbf4902100b6d4a69";//"wxe590795397d68fd3";
-	static public String SINA_WEIBO_ID="4031912721";
+	
+	static public String SINA_WEIBO_ID="4276960189";
 	static public int userid=-1;
 	static public int TotalPageCount=12;
 	static public String username;
@@ -42,6 +43,9 @@ public final class AppSettings {
 	public static boolean isOutputDebug = true;
 	public static final int READ_TIMEOUT = 10;
 	public static final int CONNECT_TIMEOUT = 15;
+	
+	
+	public static int task_id =0;
 	static public String url_for_get_news()
 	{
 		
@@ -254,9 +258,9 @@ public static String readInputStream(InputStream stream) throws IOException,Unsu
 		}
 		
 	}
-	public static boolean isSuccessJSON(final JSONObject json)
+	public static boolean isSuccessJSON(final JSONObject json,Context context)
 	{
-		return AppTools.isSuccess(json);
+		return AppTools.isSuccess(json,context);
 	}
 	public static boolean isSuccessJSON(final String result,Context context)
 	{
@@ -278,7 +282,7 @@ public static String readInputStream(InputStream stream) throws IOException,Unsu
 		}
 		return null;
 	}
-	public static JSONObject getSuccessJSON(final String result)
+	private static JSONObject getSuccessJSON(final String result)
 	{
 		try
 		{

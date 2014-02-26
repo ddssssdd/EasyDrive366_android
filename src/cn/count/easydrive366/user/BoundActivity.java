@@ -65,7 +65,7 @@ public class BoundActivity extends BaseHttpActivity {
 		
 	}
 	private void load_view(final String result){
-		JSONObject json = AppSettings.getSuccessJSON(result);
+		JSONObject json = AppSettings.getSuccessJSON(result,this);
 		try{
 			txtContent.setText(json.getString("content"));
 			JSONArray tempList = json.getJSONArray("data");

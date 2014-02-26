@@ -91,7 +91,8 @@ public class HelpCallActivity extends BaseListViewActivity {
 		if (_list!=null){
 			Map<String,Object> map = _list.get((int) index);
 			final String code = map.get("Code").toString();
-			Intent intent = new Intent(this,CarServiceDetailActivity.class);
+			//Intent intent = new Intent(this,CarServiceDetailActivity.class);
+			Intent intent = new Intent(this,CarServiceNoteActivity.class);
 			intent.putExtra("code", code);
 			intent.putExtra("pageId", "02");
 			startActivity(intent);

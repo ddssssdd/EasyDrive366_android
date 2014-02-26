@@ -184,7 +184,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	private void processDeleteResult(final String result,final String order_id){
 		try{
 			JSONObject json = new JSONObject(result);
-			if (AppSettings.isSuccessJSON(json)){
+			if (AppSettings.isSuccessJSON(json,this)){
 				for(Map<String,Object> map : _list){
 					if (map.get("order_id").toString().equals(order_id)){
 						_list.remove(map);

@@ -89,6 +89,7 @@ public class SetupUserActivity extends BaseHttpActivity {
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_setupuser_activity);
+		this.setupLeftButton();
 		setupView();
 		load_data();
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
@@ -169,7 +170,9 @@ public class SetupUserActivity extends BaseHttpActivity {
 			}}.execute(url);
 	}
 	private void processData(final String result){
-		JSONObject json = AppSettings.getSuccessJSON(result);
+		JSONObject json = AppSettings.getSuccessJSON(result,this);
+		if (json==null)
+			return;
 		try{
 			_txtUsername.setText(json.getString("username"));
 			_txtBound.setText(json.getString("bound"));

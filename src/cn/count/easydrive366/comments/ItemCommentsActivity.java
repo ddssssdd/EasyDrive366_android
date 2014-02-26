@@ -55,7 +55,8 @@ public class ItemCommentsActivity extends BaseHttpActivity {
 		}
 	}
 	private void load_view(final String result){
-		JSONObject json = AppSettings.getSuccessJSON(result);
+		JSONObject json = AppSettings.getSuccessJSON(result,this);
+		if (json==null) return;
 		try{
 			/*
 			_total_stars = json.getInt("total_star");

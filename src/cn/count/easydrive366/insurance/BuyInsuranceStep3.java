@@ -123,7 +123,7 @@ public class BuyInsuranceStep3 extends BaseHttpActivity {
 			}});
 	}
 	private void load_data(){
-		JSONObject json = AppSettings.getSuccessJSON(data);
+		JSONObject json = AppSettings.getSuccessJSON(data,this);
 		if (json!=null){
 			try{
 				txt_brand.setText(json.getString("brand"));

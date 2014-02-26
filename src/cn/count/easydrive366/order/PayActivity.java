@@ -96,7 +96,7 @@ public class PayActivity extends BaseHttpActivity {
 				
 			}});
 		
-		data = AppSettings.getSuccessJSON(result);
+		data = AppSettings.getSuccessJSON(result,this);
 		try{
 			isUseDiscount =true;
 			order_id = data.getString("order_id");
@@ -277,7 +277,7 @@ public class PayActivity extends BaseHttpActivity {
 			@Override
 			protected void onPostExecute(String result) {
 				endHttp();
-				JSONObject json = AppSettings.getSuccessJSON(result);
+				JSONObject json = AppSettings.getSuccessJSON(result,PayActivity.this);
 				if (json!=null){
 					AfterPayController controller = new AfterPayController(PayActivity.this);
 					controller.dispatch(json);

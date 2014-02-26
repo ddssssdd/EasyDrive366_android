@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
 public class HttpClient {
@@ -46,8 +47,12 @@ public class HttpClient {
 			@Override
 			public void run() {
 				String url =serverUrl +urlParams+"&timestamp="+String.valueOf(System.currentTimeMillis());
-				
-			
+				if (AppSettings.task_id>0){
+					url = String.format("%s&taskid=%d", url,AppSettings.task_id);
+					AppSettings.task_id =0;
+				}
+				if (AppSettings.isOutputDebug)
+					Log.e("Http Begin", url);
 				HttpGet httpGet = new HttpGet(url);
 				DefaultHttpClient client = new DefaultHttpClient();
 				try{
@@ -63,7 +68,8 @@ public class HttpClient {
 							content.write(sBuffer, 0, readBytes);
 						}
 						String result = new String(content.toByteArray());
-						
+						if (AppSettings.isOutputDebug)
+							Log.e("Http end", result);
 						processResponse(msgType,result);
 					}
 				}catch(Exception e){

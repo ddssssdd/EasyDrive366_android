@@ -72,7 +72,7 @@ public class ContentsActivity extends BaseHttpActivity {
 			@Override
 			protected void onPostExecute(String result) {
 				endHttp();
-				JSONObject json = AppSettings.getSuccessJSON(result);
+				JSONObject json = AppSettings.getSuccessJSON(result,ContentsActivity.this);
 				if (json!=null){
 					Intent intent = new Intent(ContentsActivity.this,FinishedActivity.class);
 					intent.putExtra("data", json.toString());

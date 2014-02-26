@@ -68,7 +68,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 	
 	@Override
 	public void processMessage(int msgType,final Object result){
-		Log.e("Http", result.toString());
+		
 		try{
 			if (this.isSuccess(result)){
 				initData(result,msgType);

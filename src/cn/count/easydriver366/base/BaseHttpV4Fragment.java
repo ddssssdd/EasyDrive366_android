@@ -48,7 +48,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class BaseHttpV4Fragment extends Fragment implements
-		HttpClient.IHttpCallback,OnClickListener,IRightButtonPressed {
+		HttpClient.IHttpCallback,OnClickListener,IRightButtonPressed ,IExecuteHttp {
 	private static String BaseHttpClientTAG = "BaseHttpActivity";
 	protected HttpClient httpClient;
 	// protected ImageButton _rightButton;
@@ -128,7 +128,7 @@ public class BaseHttpV4Fragment extends Fragment implements
 		reload = 0;
 
 	}
-	protected void beginHttp(){
+	public void beginHttp(){
 		if (_dialog !=null){
 			_dialog.dismiss();
 			_dialog = null;
@@ -137,7 +137,7 @@ public class BaseHttpV4Fragment extends Fragment implements
 		_dialog.setMessage(this.getResources().getString(R.string.app_loading));
 		_dialog.show();
 	}
-	protected void endHttp(){
+	public void endHttp(){
 		if (_dialog !=null){
 			_dialog.dismiss();
 			_dialog = null;

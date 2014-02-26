@@ -44,7 +44,7 @@ public class DoTaskActivity extends BaseHttpActivity {
 			}}.execute(url);
 	}
 	private void load_view(final String result){
-		JSONObject json = AppSettings.getSuccessJSON(result);
+		JSONObject json = AppSettings.getSuccessJSON(result,this);
 		try{
 			txt_title.setText(json.getString("title"));
 			txt_content.setText(json.getString("content"));

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import cn.count.easydrive366.BaseListViewActivity.MyAdapter;
 import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
+import cn.count.easydrive366.carservice.ServiceDetailActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.base.Menus;
@@ -55,7 +56,8 @@ public class CarServiceActivity extends BaseListViewActivity {
 		if (_list!=null){
 			Map<String,Object> map = _list.get((int) index);
 			final String code = map.get("Code").toString();
-			Intent intent = new Intent(this,CarServiceDetailActivity.class);
+			//Intent intent = new Intent(this,CarServiceDetailActivity.class);
+			Intent intent = new Intent(this,CarServiceNoteActivity.class);
 			intent.putExtra("code", code);
 			intent.putExtra("pageId", "12");
 			startActivity(intent);

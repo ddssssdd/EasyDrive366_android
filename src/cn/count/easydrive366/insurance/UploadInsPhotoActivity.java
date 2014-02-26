@@ -126,7 +126,7 @@ public class UploadInsPhotoActivity extends BaseHttpActivity {
 			}});
 		
 		data  = this.getIntent().getStringExtra("data");
-		JSONObject json = AppSettings.getSuccessJSON(data);
+		JSONObject json = AppSettings.getSuccessJSON(data,this);
 		if (json!=null){
 			try{
 				JSONArray helps = json.getJSONArray("help");

@@ -54,7 +54,7 @@ public class DoCommentActivity extends BaseHttpActivity {
 	private void processResult(final String result){
 		try{
 			JSONObject json = new JSONObject(result);
-			if (AppSettings.isSuccessJSON(json)){
+			if (AppSettings.isSuccessJSON(json,this)){
 				this.setResult(RESULT_OK);
 				finish();
 			}

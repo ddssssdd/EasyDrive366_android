@@ -501,7 +501,8 @@ public class SettingsActivity extends BaseHttpActivity {
 			}}.execute(url);
 	}
 	private void load_user_view(final String result){
-		JSONObject json = AppSettings.getSuccessJSON(result);
+		JSONObject json = AppSettings.getSuccessJSON(result,this);
+		if (json==null) return;
 		/*{"exp":"1","msg_maintain":"2013-10-31保养,请提前预约","phone":"18605328170","level":"1",
 		 * "msg_car":"违章0次计0分罚0元\n14年03月至14年05月年审","status":"02","exp_nextlevel":"10","nickname":"","photourl":"",
 		 * "msg_driver":"已扣0分2014-11-05扣分到期","signature":"","bound":"0"}*/

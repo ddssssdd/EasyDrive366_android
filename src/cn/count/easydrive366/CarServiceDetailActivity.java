@@ -28,7 +28,8 @@ public class CarServiceDetailActivity extends TabActivity {
     private TabWidget mTabWidget;
 
     /** Called when the activity is first created. */
-    @Override
+    
+	@Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,8 @@ public class CarServiceDetailActivity extends TabActivity {
         code = intent.getStringExtra("code");
         pageId = intent.getStringExtra("pageId");
         setContentView(R.layout.modules_carservice_detail_activity);
-        mTabHost = this.getTabHost();
+        mTabHost = this.getTabHost(); 
+        mTabHost.setup();
         /* 去除标签下方的白线 */
         mTabHost.setPadding(mTabHost.getPaddingLeft(),
                 mTabHost.getPaddingTop(), mTabHost.getPaddingRight(),
