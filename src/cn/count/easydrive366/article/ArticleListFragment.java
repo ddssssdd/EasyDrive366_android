@@ -7,6 +7,14 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.sina.weibo.sdk.api.share.BaseResponse;
+import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
+import com.sina.weibo.sdk.api.share.WeiboShareSDK;
+import com.sina.weibo.sdk.api.share.IWeiboHandler.Response;
+import com.sina.weibo.sdk.constant.WBConstants;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,17 +29,20 @@ import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
 import cn.count.easydrive366.share.FavorController;
+import cn.count.easydrive366.share.ShareController;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseListViewFragment;
 import cn.count.easydriver366.base.BaseListViewV4Fragment;
 
-public class ArticleListFragment extends BaseListViewV4Fragment {
+public class ArticleListFragment extends BaseListViewV4Fragment implements Response {
 	private boolean _isSearching=false;
 	private String _types;
 	private String _key;
 	private ImageView _imageView;
 	private List<Album> _imageList;
 	private int _index;
+	private ShareController _share;
+	private IWeiboShareAPI _weibo;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -39,7 +50,12 @@ public class ArticleListFragment extends BaseListViewV4Fragment {
 		
 		this.resource_listview_id = R.id.modules_information_listview;
 		this.resource_listitem_id = R.layout.listitem_article;
+		_weibo = WeiboShareSDK.createWeiboAPI(this.getActivity(), AppSettings.SINA_WEIBO_ID);
+		_share = new ShareController(this.getActivity(),_weibo);
 		
+		if (savedInstanceState != null) {
+			_weibo.handleWeiboResponse(this.getActivity().getIntent(), this);
+		}
 		this.setupPullToRefresh();
 		_imageView = (ImageView)containerView.findViewById(R.id.img_picture);
 		this.addSwipeToView(_imageView);
@@ -121,8 +137,45 @@ public class ArticleListFragment extends BaseListViewV4Fragment {
 			
 		}
 	}
+	private int _select_share_index=-1;
+	private void begin_share(final Object obj){
+		Map<String,Object> map = (Map<String,Object>)obj;
+		_share.setContent(map.get("share_title").toString(),
+				map.get("share_intro").toString(),
+				map.get("share_url").toString());
+		_share.shareByIndex(_select_share_index);
+	}
 	private void do_share_on(final Object obj){
 		// pop up share choose;
+		String[] items = {this.getActivity().getResources().getString(R.string.share_weixin),
+				this.getActivity().getResources().getString(R.string.share_weixin_friends),
+				this.getActivity().getResources().getString(R.string.share_weibo),
+				this.getActivity().getResources().getString(R.string.share_email),
+				this.getActivity().getResources().getString(R.string.share_text)};
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+		_select_share_index=-1;
+		builder.setSingleChoiceItems(items, _select_share_index, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				_select_share_index = which;
+				
+			}
+		});
+		builder.setPositiveButton(this.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				begin_share(obj);
+			}
+		});
+		builder.setNegativeButton(this.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+            }
+        });
+		builder.show();
 	}
 	private void do_favor_on(final Object obj,ImageView view){
 		FavorController favor = new FavorController(this);
@@ -200,5 +253,18 @@ public class ArticleListFragment extends BaseListViewV4Fragment {
 		public String url;
 		public int sortid;
 	}
+	
 
+	@Override
+	public void onResponse(BaseResponse arg0) {
+		switch (arg0.errCode) {
+		case WBConstants.ErrorCode.ERR_OK:
+			break;
+		case WBConstants.ErrorCode.ERR_CANCEL:
+			break;
+		case WBConstants.ErrorCode.ERR_FAIL:
+			break;
+		}
+
+	}
 }

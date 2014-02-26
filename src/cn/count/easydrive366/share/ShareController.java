@@ -61,6 +61,25 @@ public class ShareController {
 			Log.e("Parse JSON Error", e.getMessage());
 		}
 	}
+	public void shareByIndex(final int index){
+		switch(index){
+		case 0:
+			share_weixin(false);
+			break;
+		case 1:
+			share_weixin(true);
+			break;
+		case 2:
+			share_weibo();
+			break;
+		case 4:
+			share_text();
+			break;
+		case 3:
+			share_email();
+			break;
+		}
+	}
 	public void share(final int menuId){
 		switch(menuId){
 		case R.id.action_share_weixin:
@@ -68,6 +87,7 @@ public class ShareController {
 			break;
 		case R.id.action_share_friends:
 			share_weixin(true);
+			break;
 		case R.id.action_share_weibo:
 			share_weibo();
 			break;
