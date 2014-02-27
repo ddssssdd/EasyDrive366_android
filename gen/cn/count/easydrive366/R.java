@@ -184,7 +184,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f090008;
+        public static final int activity_horizontal_margin=0x7f090009;
+        public static final int goods_item_height=0x7f090008;
         public static final int header_footer_left_right_padding=0x7f090003;
         public static final int header_footer_top_bottom_padding=0x7f090004;
         public static final int indicator_corner_radius=0x7f090001;

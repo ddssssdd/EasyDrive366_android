@@ -23,6 +23,8 @@
         style="@style/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft ="10dip"
+        android:layout_marginRight ="10dip"
         android:stretchColumns="*" >
     </TableLayout>
 	<View android:layout_width="match_parent"

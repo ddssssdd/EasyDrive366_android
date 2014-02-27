@@ -95,8 +95,27 @@ public class UploadInsPhotoActivity extends BaseHttpActivity {
 		setContentView(R.layout.modules_upload_ins_phone_activity);
 		this.setupTitle("在线购买保险", "图片上传");
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		init_view();
 		
+		data = getIntent().getStringExtra("data");
+		
+		
+		String order_id = null;
+		order_id = getIntent().getStringExtra("order_id");
+		if (order_id!=null && !order_id.isEmpty()){
+			String url = String.format("order/order_upload?userid=%d&orderid=%s", AppSettings.userid,order_id);
+			beginHttp();
+			new HttpExecuteGetTask(){
+
+				@Override
+				protected void onPostExecute(String result) {
+					endHttp();
+					data = result;
+					init_view();
+					
+				}}.execute(url);
+		}else{
+			init_view();
+		}
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
@@ -125,7 +144,7 @@ public class UploadInsPhotoActivity extends BaseHttpActivity {
 				
 			}});
 		
-		data  = this.getIntent().getStringExtra("data");
+		//data  = this.getIntent().getStringExtra("data");
 		JSONObject json = AppSettings.getSuccessJSON(data,this);
 		if (json!=null){
 			try{

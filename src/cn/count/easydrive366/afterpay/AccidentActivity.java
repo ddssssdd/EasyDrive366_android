@@ -31,6 +31,7 @@ public class AccidentActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_afterpay_accident);
+		this.setupLeftButton();
 		getActionBar().setTitle("保险信息");
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		init_view();
@@ -38,12 +39,13 @@ public class AccidentActivity extends BaseHttpActivity {
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
-		menu.add("完成").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menu.add(0,100,0,"完成").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
-		doSave();
+		if (item.getItemId()==100)
+			doSave();	
 		return super.onOptionsItemSelected(item);
 	}
 	private void doSave(){
@@ -102,9 +104,13 @@ public class AccidentActivity extends BaseHttpActivity {
 			
 			edt_idcard.setText(json.getString("idcard"));
 			JSONArray list = json.getJSONArray("list_type");
+			final String current_type = json.getString("type_name");
 			types = new String[list.length()];
 			for(int i=0;i<list.length();i++){
 				types[i] = list.getJSONObject(i).getString("label");
+				if (current_type.equals(list.getJSONObject(i).getString("label"))){
+					index =i;
+				}
 			}
 			findViewById(R.id.row_job).setOnClickListener(new OnClickListener(){
 

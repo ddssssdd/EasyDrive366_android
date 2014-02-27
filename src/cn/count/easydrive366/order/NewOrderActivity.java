@@ -30,7 +30,7 @@ public class NewOrderActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_neworder_activity);
-		
+		this.setupLeftButton();
 		Intent intent= getIntent();
 		product_id = intent.getStringExtra("id");
 		load_data();

@@ -20,6 +20,7 @@ public class FinishedActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_afterpay_finished);
 		getActionBar().setTitle("订单完成");
+		this.setupLeftButton();
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		init_view();
 		

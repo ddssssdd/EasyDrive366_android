@@ -27,18 +27,21 @@ public class ContentsActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_afterpay_contents);
 		getActionBar().setTitle("保险信息");
+		this.setupLeftButton();
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		init_view();
 		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
-		menu.add("完成").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		menu.add(0,100,0,"完成").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
-		doSave();
+		if (item.getItemId()==100){
+			doSave();
+		}
 		return super.onOptionsItemSelected(item);
 	}
 	private void doSave(){

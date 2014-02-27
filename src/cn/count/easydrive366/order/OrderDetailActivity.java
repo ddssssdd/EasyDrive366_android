@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.os.Bundle;
 import cn.count.easydrive366.R;
+import cn.count.easydrive366.afterpay.AfterPayController;
+import cn.count.easydrive366.insurance.UploadInsPhotoActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.BaseHttpActivity;
@@ -27,6 +29,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 	private String next_form;
 	private boolean is_upload;
 	private int order_count;
+	private JSONObject json;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -51,7 +54,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 		
 	}
 	private void load_view(final String result){
-		JSONObject json = AppSettings.getSuccessJSON(result,this);
+		json = AppSettings.getSuccessJSON(result,this);
 		if (json!=null){
 			try{
 				order_status = json.getString("order_status");
@@ -83,6 +86,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 				((TextView)findViewById(R.id.txt_count)).setText(String.format("%d", order_count));
 				((TextView)findViewById(R.id.txt_order_total)).setText(json.getString("order_total"));
 				if (order_status.equals("notpay")){
+					this.rightTopMenu.setVisible(false);
 					findViewById(R.id.layout_contents).setVisibility(View.GONE);
 					findViewById(R.id.layout_accident).setVisibility(View.GONE);
 					findViewById(R.id.layout_finished).setVisibility(View.GONE);
@@ -181,10 +185,19 @@ public class OrderDetailActivity extends BaseHttpActivity {
 		
 	}
 	private void doPay(){
-		
+		Intent intent = new Intent(this,NewOrderActivity.class);
+		intent.putExtra("order_id", this.order_id);
+		startActivity(intent);
 	}
 	private void doUpload(){
-		
+		Intent intent = new Intent(this,UploadInsPhotoActivity.class);
+		intent.putExtra("order_id", this.order_id);
+		startActivity(intent);
+	}
+	@Override
+	protected void onRightButtonPress() {
+		AfterPayController controller = new AfterPayController(this);
+		controller.dispatch(json);
 	}
 }
 
