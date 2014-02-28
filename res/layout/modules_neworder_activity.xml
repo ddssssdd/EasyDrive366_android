@@ -18,7 +18,7 @@
         android:text="@string/neworder_header" >
     </TextView>
 
-    <TableLayout
+    <!-- <TableLayout
         android:id="@+id/tb_items"
         style="@style/table"
         android:layout_width="match_parent"
@@ -26,7 +26,17 @@
         android:layout_marginLeft ="10dip"
         android:layout_marginRight ="10dip"
         android:stretchColumns="*" >
-    </TableLayout>
+    </TableLayout> -->
+    <LinearLayout
+        android:id="@+id/tb_items"
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft ="10dip"
+        android:layout_marginRight ="10dip"
+        android:orientation="vertical"
+         >
+    </LinearLayout>
 	<View android:layout_width="match_parent"
 	    android:layout_height="20dp"/>
     <Button

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Button;
@@ -20,11 +21,13 @@ import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
 public class NewOrderActivity extends BaseHttpActivity {
-	private TableLayout tblItems;
+	private LinearLayout tblItems;
 	private String product_id;
 	private String order_id;
 	private String order_total;
 	private String t_id;
+	private int min_quantity;
+	private int max_quantity;
 	private Map<String,Integer> _map= new HashMap<String,Integer>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -54,7 +57,7 @@ public class NewOrderActivity extends BaseHttpActivity {
 			}}.execute(url);
 	}
 	private void load_view(final String result){
-		tblItems = (TableLayout)findViewById(R.id.tb_items);
+		tblItems = (LinearLayout)findViewById(R.id.tb_items);
 		tblItems.removeAllViews();
 		JSONObject json = AppSettings.getSuccessJSON(result,this);
 		if (json==null) return;
@@ -62,12 +65,15 @@ public class NewOrderActivity extends BaseHttpActivity {
 			order_id = json.getString("order_id");
 			order_total = json.getString("order_total");
 			JSONArray goods = json.getJSONArray("goods");
+			
 			for(int i=0;i<goods.length();i++){
-				TableRow tr = new TableRow(this);
+				//TableRow tr = new TableRow(this);
 				NewOrderItem item = new NewOrderItem(this, null);
 				JSONObject json_item =goods.getJSONObject(i);
+				min_quantity = json_item.getInt("min_quantity");
+				max_quantity = json_item.getInt("max_quantity");
 				t_id = json_item.getString("id");
-				item.setData(json_item);
+				item.setData(json_item,min_quantity,max_quantity);
 				item.changed = new IOrderQuantityChanged(){
 
 					@Override
@@ -75,8 +81,8 @@ public class NewOrderActivity extends BaseHttpActivity {
 						_map.put(id, quantity);
 						
 					}};
-				tr.addView(item);
-				tblItems.addView(tr);
+				//tr.addView(item);
+				tblItems.addView(item);
 			}
 			findViewById(R.id.btn_submit).setOnClickListener(new OnClickListener(){
 
