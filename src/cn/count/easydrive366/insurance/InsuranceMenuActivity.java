@@ -17,6 +17,7 @@ import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -53,6 +54,13 @@ public class InsuranceMenuActivity extends Activity {
 
 	}
 	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		this.finish();
+		return super.onOptionsItemSelected(item);
+	}
+
 
 	@Override
 	protected void onDestroy() {

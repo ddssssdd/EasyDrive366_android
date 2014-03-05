@@ -850,6 +850,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_header_horizontal=0x7f03007c;
         public static final int pull_to_refresh_header_vertical=0x7f03007d;
         public static final int showpicture_dialog=0x7f03007e;
+        public static final int splash_activity=0x7f03007f;
     }
     public static final class menu {
         public static final int activity_welcome=0x7f0a0000;
