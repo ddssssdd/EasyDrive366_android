@@ -9,8 +9,7 @@
         android:layout_height="wrap_content"
         layout="@layout/navigation_bar" />
 
-    
-         <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/pull_refresh_scrollview"
         android:layout_width="match_parent"
@@ -19,9 +18,6 @@
         android:layout_marginRight="5dp"
         ptr:ptrAnimationStyle="flip"
         ptr:ptrMode="pullFromStart" >
-    
-
-    
 
         <TableLayout
             style="@style/table"
@@ -50,8 +46,7 @@
                     android:layout_width="30dip"
                     android:layout_height="30dip"
                     android:layout_marginLeft="10dip"
-                    android:layout_marginRight="10dip"
-                     />
+                    android:layout_marginRight="10dip" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -121,7 +116,7 @@
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/b" />
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -153,6 +148,7 @@
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/c" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,11 +173,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input6"
                 android:gravity="center" >
-				<ImageView
+
+                <ImageView
                     android:layout_width="30dip"
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/d" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -211,11 +209,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input1"
                 android:gravity="center" >
-				<ImageView
+
+                <ImageView
                     android:layout_width="30dip"
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/e" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -240,11 +240,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input2"
                 android:gravity="center" >
-				<ImageView
+
+                <ImageView
                     android:layout_width="30dip"
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/f" />
+
                 <TextView
                     android:layout_span="2"
                     android:gravity="left"
@@ -267,11 +269,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input6"
                 android:gravity="center" >
-				<ImageView
+
+                <ImageView
                     android:layout_width="30dip"
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/g" />
+
                 <TextView
                     android:layout_span="2"
                     android:gravity="left"
@@ -299,11 +303,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input1"
                 android:gravity="center" >
-				<ImageView
+
+                <ImageView
                     android:layout_width="30dip"
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/h" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -327,11 +333,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input2"
                 android:gravity="center" >
-				<ImageView
+
+                <ImageView
                     android:layout_width="30dip"
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/i" />
+
                 <TextView
                     android:id="@+id/txt_bindCellphone"
                     android:layout_width="wrap_content"
@@ -348,7 +356,7 @@
                     android:layout_marginRight="20dp"
                     android:gravity="right"
                     android:text="@string/right_arrow"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
             </TableRow>
 
             <TableRow
@@ -357,11 +365,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input6"
                 android:gravity="center" >
-				<ImageView
+
+                <ImageView
                     android:layout_width="30dip"
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/j" />
+
                 <TextView
                     android:id="@+id/txt_findpassword"
                     android:layout_width="wrap_content"
@@ -393,6 +403,12 @@
                 android:background="@drawable/signup_hit_input0"
                 android:gravity="center" >
 
+                <ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -408,7 +424,7 @@
                     android:layout_marginRight="20dp"
                     android:gravity="right"
                     android:text="V1.01"
-                    android:textSize="20sp" >
+                    android:textSize="16sp" >
                 </TextView>
             </TableRow>
 
@@ -423,6 +439,12 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/signup_hit_input0"
                 android:gravity="center" >
+
+                <ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -454,7 +476,6 @@
                 android:text="Logout" >
             </Button>
         </TableLayout>
-    
-     </com.handmark.pulltorefresh.library.PullToRefreshScrollView> 
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
 </LinearLayout>

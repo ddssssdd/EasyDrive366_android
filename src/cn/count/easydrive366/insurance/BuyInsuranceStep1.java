@@ -20,14 +20,19 @@ import cn.count.easydriver366.base.HttpExecuteGetTask;
 public class BuyInsuranceStep1 extends BaseHttpActivity {
 	private WebView _webView;
 	private Handler mHandler = new Handler();
-
+	@Override
+	protected void onRightButtonPress() {
+		startActivity(new Intent(this,BuyInsuranceStep2.class));
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.modules_browser_activity);
 		this.setupTitle("在线购买保险", "第一步");
-		
+		this.setupLeftButton();
+		this.setupRightButtonWithText("下一步");
 		_webView = (WebView) findViewById(R.id.webView);
 		WebSettings webSettings = _webView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
@@ -83,18 +88,8 @@ public class BuyInsuranceStep1 extends BaseHttpActivity {
 			log(e);
 		}
 	}
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuItem item = menu.add("下一步");
-		//MenuInflater inflater = this.getMenuInflater();
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		startActivity(new Intent(this,BuyInsuranceStep2.class));
-		return super.onOptionsItemSelected(item);
-	}
+	
+	
 	
 
 }

@@ -610,8 +610,10 @@ public class BaseHttpV4Fragment extends Fragment implements
                 // right to left swipe
                 if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
                 	onLeftSwipe();
+                	return true;
                 }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
                 	onRightSwipe();
+                	return true;
                     
                 }
             } catch (Exception e) {

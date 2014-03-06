@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/goods_item_height"
+    android:layout_height="match_parent"
     android:orientation="horizontal" >
 
     <ImageView
         android:id="@+id/img_picture"
         android:layout_width="0dip"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:layout_marginLeft="10dip"
         android:layout_marginTop="10dip"
         android:layout_marginBottom="10dip"
-        android:layout_weight="3"
-        android:scaleType="centerInside"
+        android:layout_weight="4"
+        android:scaleType="fitXY"
         android:src="@drawable/default_640x234"
         android:contentDescription="@string/app_name" />
 
     <LinearLayout
         android:layout_width="0dip"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="10dip"
-        android:layout_weight="7"
+        android:layout_weight="6"
         android:orientation="vertical" >
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginLeft="10dip"
-            android:layout_marginRight="20dip"
+            android:layout_marginRight="10dip"
             android:layout_marginBottom="5dip"
             android:text="title"
             android:textSize="14sp" />
@@ -38,9 +38,9 @@
             android:id="@+id/txt_description"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:layout_marginLeft="10dip"
-            android:layout_marginRight="20dip"
+            android:layout_marginRight="10dip"
             android:layout_marginBottom="5dip"
             android:text="description"
             android:textSize="10sp" />
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="10dip"
-            android:layout_marginRight="20dip"
+            android:layout_marginRight="10dip"
             android:layout_marginBottom="5dip"
             android:layout_weight="1"
             android:orientation="horizontal" >
@@ -85,9 +85,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_marginLeft="10dip"
-            android:layout_marginRight="20dip"
+            android:layout_marginRight="10dip"
+            android:gravity="center_vertical"
             android:orientation="horizontal" >
 
             <TextView
@@ -102,7 +103,7 @@
             <Button
                 android:id="@+id/btn_buy"
                 android:layout_width="100dip"
-                android:layout_height="wrap_content"
+                android:layout_height="30dip"
                 android:layout_marginBottom="5dip"
                 
                 android:layout_alignParentRight="true"

@@ -32,19 +32,15 @@ public class BuyInsuranceStep3 extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.buyinsurance_step3);
 		this.setupTitle("在线购买保险", "第三步");
+		this.setupLeftButton();
+		this.setupRightButtonWithText("下一步");
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		init_view();
 		
 	}
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu){
-		menu.add("下一步").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
+	protected void onRightButtonPress() {
 		doSave();
-		return super.onOptionsItemSelected(item);
 	}
 	private void doSave(){
 		if (txt_biz_date.getText().toString().trim().isEmpty()){

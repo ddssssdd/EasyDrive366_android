@@ -9,6 +9,7 @@ import java.util.TimerTask;
 
 
 import cn.count.easydrive366.article.ArticleListFragment;
+import cn.count.easydrive366.components.EDViewPager;
 import cn.count.easydrive366.goods.GoodsListFragment;
 import cn.count.easydrive366.provider.ProviderListFragment;
 import cn.count.easydrive366.user.SettingsFragment;
@@ -30,7 +31,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.Display;
@@ -52,7 +53,7 @@ import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 	public static MainActivity instance = null;  
-    private ViewPager mTabPager;//声明对象  
+    private EDViewPager mTabPager;//声明对象  
     private ImageView _imgHome, _imgGoods, _imgProvider, _imgArticle,_imgSettings;  
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private HomeFragment _home;
@@ -71,14 +72,14 @@ public class MainActivity extends FragmentActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);// 启动activity时不自动弹出软键盘  
         AppSettings.restore_login_from_device(this);
 		startBackendService();
-		
+		getActionBar().setCustomView(R.layout.actionbar);
         instance = this;  
         //this.getActionBar().setDisplayShowTitleEnabled(true);
         //this.setTitle("EasyDrive366");
         //this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         
        
-        mTabPager = (ViewPager) findViewById(R.id.tabpager);  
+        mTabPager = (EDViewPager) findViewById(R.id.tabpager);  
         mTabPager.setOnPageChangeListener(new MyOnPageChangeListener());  
         mTabPager.setOffscreenPageLimit(5);
         
@@ -143,6 +144,7 @@ public class MainActivity extends FragmentActivity {
       return true;
     } 
     public void pageChanged(final int index){
+    	this.mTabPager.setEnabled(index!=3);
     	switch(index){
     	case 0:
     		if (AppSettings.isLogin)
@@ -151,6 +153,7 @@ public class MainActivity extends FragmentActivity {
     			rightMenu.setTitle("登录");
     		break;
     	case 4:
+    		
     		rightMenu.setTitle("");
     		break;
     	default:

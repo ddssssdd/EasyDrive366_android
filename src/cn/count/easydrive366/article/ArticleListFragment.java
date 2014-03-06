@@ -43,6 +43,7 @@ public class ArticleListFragment extends BaseListViewV4Fragment implements Respo
 	private int _index;
 	private ShareController _share;
 	private IWeiboShareAPI _weibo;
+	private TextView txt_index;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -58,9 +59,16 @@ public class ArticleListFragment extends BaseListViewV4Fragment implements Respo
 		}
 		this.setupPullToRefresh();
 		_imageView = (ImageView)containerView.findViewById(R.id.img_picture);
+		txt_index = (TextView)containerView.findViewById(R.id.txt_index);
+		
 		this.addSwipeToView(_imageView);
 		this.cache_load(1);
 		return containerView;
+	}
+	@Override
+	public void onClick(View v) {
+		show_url();
+		
 	}
 	@Override
 	protected void reload_data(){
@@ -93,14 +101,23 @@ public class ArticleListFragment extends BaseListViewV4Fragment implements Respo
 				_index =0;
 				showPicture();
 			}
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
 	}
+	private void show_url(){
+		String url =_imageList.get(_index).url;
+		Intent intent = new Intent(this.getActivity(),BrowserActivity.class);
+		intent.putExtra("url", url);
+		this.getActivity().startActivity(intent);
+	}
 	private void showPicture(){
 		String url = _imageList.get(_index).pic_url;
 		this.loadImageFromUrl(_imageView, url);
+		String p = String.format("%d/%d", _index+1,_imageList.size());
+		txt_index.setText(p);
 	}
 	@Override
 	public void onLeftSwipe(){

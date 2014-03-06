@@ -147,12 +147,12 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
 
-        <android.support.v4.view.ViewPager
+        <cn.count.easydrive366.components.EDViewPager
             android:id="@+id/tabpager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" >
-        </android.support.v4.view.ViewPager>
+        </cn.count.easydrive366.components.EDViewPager>
     </LinearLayout>
 
 </RelativeLayout>

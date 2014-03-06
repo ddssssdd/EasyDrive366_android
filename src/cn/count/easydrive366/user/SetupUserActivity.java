@@ -5,6 +5,7 @@ import java.io.File;
 
 import org.json.JSONObject;
 
+import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
@@ -48,6 +49,7 @@ public class SetupUserActivity extends BaseHttpActivity {
 	private EditText _edtSign;
 	private ImageView _imgAvatar;
 	private String _pictureUrl;
+	private String exp_url;
 	
 	
 	private static int WIDTH = 640;
@@ -185,6 +187,7 @@ public class SetupUserActivity extends BaseHttpActivity {
 			}else{
 				// load local image
 			}
+			exp_url = json.getString("exp_url");
 		}catch(Exception e){
 			log(e);
 		}
@@ -224,7 +227,9 @@ public class SetupUserActivity extends BaseHttpActivity {
 		startActivity(intent);
 	}
 	private void gotoExperience(){
-		
+		Intent intent = new Intent(this,BrowserActivity.class);
+		intent.putExtra("url", exp_url);
+		startActivity(intent);
 	}
 	protected boolean checkSoftStage() {
 		if (Environment.getExternalStorageState().equals(

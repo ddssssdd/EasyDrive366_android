@@ -73,6 +73,7 @@ public class BaseHttpActivity extends ActionActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getActionBar().setCustomView(R.layout.actionbar);
 		/*
 		if (_isHideTitleBar){
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
