@@ -232,66 +232,66 @@ public class MainActivity extends FragmentActivity {
             switch (index) {  
             case 0:  
                 _imgHome.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_weixin_pressed));  
+                        R.drawable.zhuye_pressed));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
                         R.drawable.tab_address_normal)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_find_frd_normal)); 
+                        R.drawable.shanghu_normal)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_normal)); 
+                        R.drawable.baike_normal)); 
                 _imgSettings.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_normal)); 
+                        R.drawable.yonghu_normal)); 
                 break;
             case 1:  
             	_imgHome.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_weixin_normal));  
+                        R.drawable.zhuye_normal));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
                         R.drawable.tab_address_pressed)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_find_frd_normal)); 
+                        R.drawable.shanghu_normal)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_normal)); 
+                        R.drawable.baike_normal)); 
                 _imgSettings.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_normal)); 
+                        R.drawable.yonghu_normal)); 
                 
                 break;  
             case 2:  
             	_imgHome.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_weixin_normal));  
+                        R.drawable.zhuye_normal));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
                         R.drawable.tab_address_normal)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_find_frd_pressed)); 
+                        R.drawable.shanghu_pressed)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_normal)); 
+                        R.drawable.baike_normal)); 
                 _imgSettings.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_normal));  
+                        R.drawable.yonghu_normal));  
                 
                 break;  
             case 3:  
             	_imgHome.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_weixin_normal));  
+                        R.drawable.zhuye_normal));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
                         R.drawable.tab_address_normal)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_find_frd_normal)); 
+                        R.drawable.shanghu_normal)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_pressed)); 
+                        R.drawable.baike_pressed)); 
                 _imgSettings.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_normal)); 
+                        R.drawable.yonghu_normal)); 
                 
                 break; 
             case 4:  
             	_imgHome.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_weixin_normal));  
+                        R.drawable.zhuye_normal));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
                         R.drawable.tab_address_normal)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_find_frd_normal)); 
+                        R.drawable.shanghu_normal)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_normal)); 
+                        R.drawable.baike_normal)); 
                 _imgSettings.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_settings_pressed)); 
+                        R.drawable.yonghu_pressed)); 
                 
                 break; 
             }  

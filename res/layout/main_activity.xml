@@ -29,7 +29,7 @@
                 android:clickable="false"
                 android:contentDescription="@string/app_name"
                 android:scaleType="matrix"
-                android:src="@drawable/tab_weixin_pressed" />
+                android:src="@drawable/zhuye_pressed" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                 android:clickable="false"
                 android:contentDescription="@string/provider"
                 android:scaleType="matrix"
-                android:src="@drawable/tab_find_frd_normal" />
+                android:src="@drawable/shanghu_normal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                 android:clickable="false"
                 android:contentDescription="@string/article"
                 android:scaleType="matrix"
-                android:src="@drawable/tab_settings_normal" />
+                android:src="@drawable/baike_normal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -129,7 +129,7 @@
                 android:clickable="false"
                 android:contentDescription="@string/settings"
                 android:scaleType="matrix"
-                android:src="@drawable/tab_settings_normal" />
+                android:src="@drawable/yonghu_normal" />
 
             <TextView
                 android:layout_width="wrap_content"
