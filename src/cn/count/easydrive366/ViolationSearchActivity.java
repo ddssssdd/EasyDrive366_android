@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -17,7 +18,7 @@ import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.AppSettings;
 
 public class ViolationSearchActivity extends BaseHttpActivity {
-	private TableLayout _tableLayout;
+	private LinearLayout _tableLayout;
 	private JSONObject _result;
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
@@ -64,7 +65,7 @@ public class ViolationSearchActivity extends BaseHttpActivity {
 	}
 	private void initView(){
 		this.endRefresh();
-		_tableLayout = (TableLayout)findViewById(R.id.table_modules_violationsearch_table);
+		_tableLayout = (LinearLayout)findViewById(R.id.table_modules_violationsearch_table);
 		_tableLayout.removeAllViewsInLayout();
 		try{
 			JSONArray list= _result.getJSONArray("data");
@@ -80,12 +81,12 @@ public class ViolationSearchActivity extends BaseHttpActivity {
 		}
 	}
 	private void addTableRow(final String address,final String reason,final String fine,final String mark,final String occurTime,final String id){
-		TableRow tr = new TableRow(this);
+		
 		ViolationDetailItem item = new ViolationDetailItem(this,null);
 		item.setData(address,reason,fine,mark,occurTime);
-		tr.addView(item);
-		_tableLayout.addView(tr);
-		tr.setOnClickListener(new View.OnClickListener() {
+		
+		_tableLayout.addView(item);
+		item.setOnClickListener(new View.OnClickListener() {
 			
 			
 			@Override

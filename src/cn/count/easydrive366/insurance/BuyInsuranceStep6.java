@@ -85,7 +85,7 @@ public class BuyInsuranceStep6 extends BaseHttpActivity {
 			JSONArray list = json.getJSONArray("pay");
 			for(int i=0;i<list.length();i++){
 				final JSONObject pay = list.getJSONObject(i);
-				bank_id = pay.getString("back_id"); 
+				bank_id = pay.getString("bank_id"); 
 				TableRow tr = new TableRow(this);
 				KeyValueItem kv = new KeyValueItem(this,null);
 				kv.setData(pay.getString("bank_name"), pay.getString("account"));

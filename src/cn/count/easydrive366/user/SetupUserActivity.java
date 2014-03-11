@@ -92,6 +92,7 @@ public class SetupUserActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_setupuser_activity);
 		this.setupLeftButton();
+		this.setupRightButtonWithText("保存");
 		setupView();
 		load_data();
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
@@ -135,18 +136,12 @@ public class SetupUserActivity extends BaseHttpActivity {
 			}});
 	}
 	
+	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuItem item = menu.add("保存");
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		return super.onCreateOptionsMenu(menu);
+	protected void onRightButtonPress() {
+		doSave();
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		doSave();
-		return super.onOptionsItemSelected(item);
-	}
 	private void doSave(){
 		String url = String.format("bound/save_user_info?userid=%d&nickname=%s&signature=%s",AppSettings.userid,_edtName.getText().toString(),_edtSign.getText().toString());
 		beginHttp();

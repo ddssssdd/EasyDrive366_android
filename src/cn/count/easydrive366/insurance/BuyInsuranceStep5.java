@@ -20,7 +20,7 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
-public abstract class BuyInsuranceStep5 extends BaseHttpActivity {
+public class BuyInsuranceStep5 extends BaseHttpActivity {
 	private String data;
 	private boolean is_com;
 	private String total;
@@ -44,7 +44,7 @@ public abstract class BuyInsuranceStep5 extends BaseHttpActivity {
 		
 		
 		String url = String.format("ins/carins_check?userid=%d&is_comm=%d",
-				AppSettings.userid,is_com?"1":"0");
+				AppSettings.userid,is_com?1:0);
 				
 		beginHttp();
 		new HttpExecuteGetTask(){

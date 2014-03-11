@@ -234,7 +234,7 @@ public class MainActivity extends FragmentActivity {
                 _imgHome.setImageDrawable(getResources().getDrawable(  
                         R.drawable.zhuye_pressed));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_address_normal)); 
+                        R.drawable.shangpin_normal)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
                         R.drawable.shanghu_normal)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  
@@ -246,7 +246,7 @@ public class MainActivity extends FragmentActivity {
             	_imgHome.setImageDrawable(getResources().getDrawable(  
                         R.drawable.zhuye_normal));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_address_pressed)); 
+                        R.drawable.shangpin_pressed)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
                         R.drawable.shanghu_normal)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  
@@ -259,7 +259,7 @@ public class MainActivity extends FragmentActivity {
             	_imgHome.setImageDrawable(getResources().getDrawable(  
                         R.drawable.zhuye_normal));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_address_normal)); 
+                        R.drawable.shangpin_normal)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
                         R.drawable.shanghu_pressed)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  
@@ -272,7 +272,7 @@ public class MainActivity extends FragmentActivity {
             	_imgHome.setImageDrawable(getResources().getDrawable(  
                         R.drawable.zhuye_normal));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_address_normal)); 
+                        R.drawable.shangpin_normal)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
                         R.drawable.shanghu_normal)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  
@@ -285,7 +285,7 @@ public class MainActivity extends FragmentActivity {
             	_imgHome.setImageDrawable(getResources().getDrawable(  
                         R.drawable.zhuye_normal));  
                 _imgGoods.setImageDrawable(getResources().getDrawable(  
-                        R.drawable.tab_address_normal)); 
+                        R.drawable.shangpin_normal)); 
                 _imgProvider.setImageDrawable(getResources().getDrawable(  
                         R.drawable.shanghu_normal)); 
                 _imgArticle.setImageDrawable(getResources().getDrawable(  

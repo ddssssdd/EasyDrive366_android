@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
@@ -54,6 +55,14 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 		
 		
 	
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		if (item.getItemId()==android.R.id.home){
+			this.onLeftButtonPress();
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	protected void setBarTitle(final String title) {
 		TextView txt = (TextView) findViewById(R.id.txt_navigation_bar_title);
@@ -174,6 +183,8 @@ public class BaseExpandableListActivity extends ExpandableListActivity implement
 
 				}
 			});
+		}else{
+			this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 	}
 	@Override

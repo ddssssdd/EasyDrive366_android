@@ -26,7 +26,7 @@ public class InsuranceList extends BaseListViewActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.modules_goodslist);
-		
+		this.setupPhoneButtonInVisible();
 		this.setupLeftButton();
 		this.resource_listview_id = R.id.modules_information_listview;
 		//this.resource_listitem_id = R.layout.module_listitem;
@@ -63,7 +63,7 @@ public class InsuranceList extends BaseListViewActivity {
 		if (_list!=null){
 			
 			Map<String,Object> map = _list.get((int) index);
-			int id = Integer.parseInt(map.get("id").toString());
+			String id =map.get("id").toString();
 			Intent intent = new Intent(this,BuyInsuranceStep2.class);
 			intent.putExtra("id", id);
 			startActivity(intent);

@@ -53,7 +53,7 @@ public class FriendActivity extends BaseHttpActivity implements Response{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_userfriend);
 		this.setBarTitle("friends");
-		
+		this.setupPhoneButtonInVisible();
 		
 		this.setupLeftButton();
 		_favor = new FavorController(this);

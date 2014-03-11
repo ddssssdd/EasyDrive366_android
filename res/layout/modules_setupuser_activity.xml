@@ -88,7 +88,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dip"
             
-            android:hint="@string/name" />
+            android:hint="姓名" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dip"
-            android:hint="@string/name" />
+            android:hint="签名" />
     </RelativeLayout>
 
     <RelativeLayout

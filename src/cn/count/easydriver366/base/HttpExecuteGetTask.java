@@ -9,11 +9,15 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
@@ -38,7 +42,7 @@ public abstract class HttpExecuteGetTask extends
 
 	@Override
 	abstract protected void onPostExecute(String result);
-
+	private static String session_id="";
 	private String httpGetUrl(final String urlString) {
 		try {
 
@@ -51,7 +55,11 @@ public abstract class HttpExecuteGetTask extends
 				Log.e("Http begin", httpUrl);
 			
 			HttpClient client = new DefaultHttpClient();
+			
 			HttpGet get = new HttpGet(httpUrl);
+			if (session_id!=null && !session_id.isEmpty()){
+				get.setHeader("Cookie", "ci_session="+session_id);
+			}
 			HttpResponse response = client.execute(get);
 			int status_code = response.getStatusLine().getStatusCode();
 			if (status_code >= 300) {
@@ -60,6 +68,18 @@ public abstract class HttpExecuteGetTask extends
 			HttpEntity entity = response.getEntity();
 			// return EntityUtils.toString(entity);
 			String result = retrieveInputStream(entity);
+			//session_id="";
+			try{
+				CookieStore cs = ((AbstractHttpClient) client).getCookieStore();
+				List<Cookie> cookies = cs.getCookies();
+				for(int i=0;i<cookies.size();i++){
+					if ("ci_session".equals(cookies.get(i).getName())){
+						session_id = cookies.get(i).getValue();
+					}
+				}
+			}catch(Exception e){
+				
+			}
 			if (AppSettings.isOutputDebug)
 				Log.e("Http end", result);
 			return result;

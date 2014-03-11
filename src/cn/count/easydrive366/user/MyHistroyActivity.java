@@ -24,6 +24,8 @@ public class MyHistroyActivity extends BaseListViewActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_information_activity);
+		this.setupLeftButton();
+		this.setupPhoneButtonInVisible();
 		getActionBar().setSubtitle("浏览历史");
 		this.resource_listview_id = R.id.modules_information_listview;
 		

@@ -40,6 +40,7 @@ public abstract class BaseListViewV4Fragment extends BaseHttpV4Fragment {
 	protected boolean _isInDeleting=false;
 	
 	protected void setupPullToRefresh(){
+		this.setupPhoneButtonInVisible();
 		mListView = (PullToRefreshListView)containerView.findViewById(this.resource_listview_id);
 		
 		mListView.setOnRefreshListener(new OnRefreshListener<ListView>() {

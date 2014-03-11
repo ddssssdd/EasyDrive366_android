@@ -3,14 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/navigation_bar" />
-    
-    
-
     <com.handmark.pulltorefresh.library.PullToRefreshListView 
         android:id="@+id/modules_information_listview"
         android:layout_width="match_parent"

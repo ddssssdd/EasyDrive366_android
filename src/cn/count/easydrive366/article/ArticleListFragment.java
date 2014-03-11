@@ -18,8 +18,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -28,6 +30,7 @@ import android.widget.TextView;
 import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
+import cn.count.easydrive366.comments.ItemCommentsActivity;
 import cn.count.easydrive366.share.FavorController;
 import cn.count.easydrive366.share.ShareController;
 import cn.count.easydriver366.base.AppSettings;
@@ -202,7 +205,13 @@ public class ArticleListFragment extends BaseListViewV4Fragment implements Respo
 		favor.click_menu();
 		map.put("is_favor", is_favor==1?0:1);
 	}
-	
+	private void openRating(final Object obj){
+		Map<String,Object> map = (Map<String,Object>)obj;
+		Intent intent =new Intent(this.getActivity(),ItemCommentsActivity.class);
+		intent.putExtra("id",map.get("id").toString());
+		intent.putExtra("type", "article");
+		startActivity(intent);
+	}
 	@Override
 	protected void setupListItem(ViewHolder holder,Map<String,Object> info){
 		holder.title.setText(info.get("title").toString());
@@ -219,7 +228,7 @@ public class ArticleListFragment extends BaseListViewV4Fragment implements Respo
 		}
 		holder.image3.setTag(info);
 		holder.image2.setTag(info);
-		
+		holder.ratingbar.setTag(info);
 	}
 	@Override
 	protected void initListItem(ViewHolder holder,View convertView){
@@ -246,6 +255,29 @@ public class ArticleListFragment extends BaseListViewV4Fragment implements Respo
 				do_favor_on(v.getTag(),(ImageView)v);
 				
 			}});
+		
+		holder.ratingbar.setOnTouchListener(new OnTouchListener() {
+          
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_UP) {
+					openRating(v.getTag());
+               }
+               if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                   v.setPressed(true);
+               }
+
+               if (event.getAction() == MotionEvent.ACTION_CANCEL) {
+                   v.setPressed(false);
+               }
+
+
+
+
+               return true;
+			}});
+		
 		
 	}
 	@Override
