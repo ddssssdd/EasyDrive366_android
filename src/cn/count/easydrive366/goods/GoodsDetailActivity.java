@@ -63,7 +63,7 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_goods_detail);
 		this.setupLeftButton();
-		
+	
 		_favor = new FavorController(this);
 		_goods_id = getIntent().getIntExtra("id", 0);
 		_weibo = WeiboShareSDK.createWeiboAPI(this, AppSettings.SINA_WEIBO_ID);

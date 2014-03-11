@@ -33,6 +33,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -53,7 +54,7 @@ import cn.count.easydriver366.base.HttpExecuteGetTask;
 public class ProviderDetailActivity extends BaseHttpActivity  implements Response {
 	protected List<Map<String,Object>> _list=null;
 	private String code;
-	private ProviderAdapter _adapter;
+	
 	private List<Album> _imageList;
 	private int _index=-1;
 	private ImageView _imageView;
@@ -152,6 +153,8 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 		JSONObject json =  AppSettings.getSuccessJSON(result,this);
 		if (json==null) return;
 		try{
+			LinearLayout items = (LinearLayout)findViewById(R.id.layout_items);
+			items.removeAllViewsInLayout();
 			((TextView)findViewById(R.id.txt_name)).setText(json.getString("name"));
 			((TextView)findViewById(R.id.txt_phone)).setText(json.getString("phone"));
 			((TextView)findViewById(R.id.txt_address)).setText(json.getString("address"));
@@ -165,7 +168,7 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 			_list = new ArrayList<Map<String,Object>>();
 			for(int i=0;i<list.length();i++){
 				JSONObject item = list.getJSONObject(i);
-				Map<String,Object> map = new HashMap<String,Object>();
+				final Map<String,Object> map = new HashMap<String,Object>();
 				
 				for(Iterator<String> it = item.keys();it.hasNext();){
 					String key = it.next();
@@ -173,27 +176,23 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 					
 				}
 				_list.add(map);
-			}
-			_adapter = new ProviderAdapter(this);
-			ListView lv = (ListView)findViewById(R.id.lv_items);
-			lv.setAdapter(_adapter);
-			lv.setOnItemClickListener(new OnItemClickListener(){
+				ProviderItem g = new ProviderItem(this,null);
+				g.setData(map);
+				items.addView(g);
+				g.setOnClickListener(new OnClickListener(){
 
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id2) {
-					if (_list != null) {
-
-						Map<String, Object> map = _list.get( position);
+					@Override
+					public void onClick(View v) {
+						
 						int id = Integer.parseInt(map.get("id").toString());
 						Intent intent = new Intent(ProviderDetailActivity.this,
 								GoodsDetailActivity.class);
 						intent.putExtra("id", id);
 						startActivity(intent);
-
-					}
-					
-				}});
+						
+					}});
+			}
+			
 			_imageList = new ArrayList<Album>();
 			list = json.getJSONArray("album");
 			for(int i=0;i<list.length();i++){
@@ -239,111 +238,8 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 	    	showPicture();
 		}
     }
-	private class ProviderHolderView{
-		public TextView title;
-		public TextView detail;
-		public TextView action;
-		public CheckBox selected;
-		public ImageView image;
-		public TextView detail2;
-		public TextView detail3;
-		public TextView detail4;
-		public TextView detail5;
-		public RatingBar ratingbar;
-		public Button button1;
-		public Button btnDelete;
-		public ImageButton imgButton;
-		
-	}
-	private class ProviderAdapter extends BaseAdapter
-	{
-		private LayoutInflater mInflater = null;
-		public ProviderAdapter(Context context){
-			this.mInflater = LayoutInflater.from(context);
-		}
-		
-		@Override
-		public int getCount() {
-			if (_list==null)
-				return 0;
-			else
-				return _list.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
 	
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
 	
-            return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			ProviderHolderView holder = null;
-			if (convertView==null){
-				holder = new ProviderHolderView();
-				convertView = mInflater.inflate(R.layout.listitem_goods, null);
-				/*
-				holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
-				holder.title = (TextView)convertView.findViewById(R.id.txt_title);
-				holder.phone = (TextView)convertView.findViewById(R.id.txt_phone);
-				holder.address  = (TextView)convertView.findViewById(R.id.txt_address);
-				*/
-				holder.title = (TextView) convertView.findViewById(R.id.txt_title);
-				holder.detail2 = (TextView) convertView.findViewById(R.id.txt_price);
-				holder.detail3 = (TextView) convertView.findViewById(R.id.txt_stand_price);
-				holder.detail4 = (TextView) convertView.findViewById(R.id.txt_discount);
-				holder.detail5 = (TextView) convertView.findViewById(R.id.txt_buyer);
-				holder.detail =(TextView) convertView.findViewById(R.id.txt_description);
-				holder.image = (ImageView) convertView.findViewById(R.id.img_picture);
-				holder.button1 = (Button) convertView.findViewById(R.id.btn_buy);
-				convertView.setTag(holder);
-
-				holder.button1.setOnClickListener(new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						String id = (String) v.getTag();
-						Intent intent = new Intent(
-								ProviderDetailActivity.this,
-								NewOrderActivity.class);
-						intent.putExtra("id", id);
-						startActivity(intent);
-					}
-				});
-				convertView.setTag(holder);
-			}else{
-				holder = (ProviderHolderView)convertView.getTag();
-			}
-			
-			//{id=1, price=¥200, buyers=100人购买, name=[青岛]油猴精致保养\n洗车护理套装, stand_price=¥1000, miles=20KM, pic_url=http://m.yijia366.com/images/3.png, discount=2折}
-			Map<String,Object> info = _list.get(position);
-			//setupListItem(holder,info);
-			//com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
-			/*
-			loadImageFromUrl(holder.image,info.get("pic_url").toString());
-			holder.title.setText(info.get("name").toString());
-			holder.address.setText(info.get("buyer").toString());
-			holder.phone.setText(info.get("price").toString());
-			*/
-			holder.title.setText(info.get("name").toString());
-			holder.detail.setText(info.get("description").toString());
-			holder.detail2.setText(info.get("price").toString());
-			holder.detail3.setText(info.get("stand_price").toString());
-			holder.detail4.setText(info.get("discount").toString());
-			holder.detail5.setText(info.get("buyer").toString());
-			com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(
-					holder.image, info.get("pic_url").toString());
-			holder.button1.setTag(info.get("id"));
-			return convertView;
-		}
-		
-	}
 	private class Album{
 		public String pic_url;
 		public String remark;

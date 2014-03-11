@@ -22,7 +22,7 @@ public class DoCommentActivity extends BaseHttpActivity {
 		setContentView(R.layout.modules_docomment);
 		this.setupLeftButton();
 		this.setupPhoneButtonInVisible();
-		this.setupRightButtonWithText("Comment");
+		
 		_item_id = getIntent().getStringExtra("id");
 		_item_type = getIntent().getStringExtra("type");
 		rb =(RatingBar)findViewById(R.id.rating_bar);

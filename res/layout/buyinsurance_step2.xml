@@ -11,8 +11,7 @@
         android:layout_marginBottom="5dip"
         android:layout_marginLeft="20dip"
         android:layout_marginTop="20dip"
-        android:text="@string/car_information"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="@string/car_information" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,17 +27,16 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/license"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="@string/license" />
 
         <EditText
             android:id="@+id/edt_license"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:ems="10"
             android:hint="@string/license"
-            android:inputType="textCapCharacters" >
+            android:inputType="textCapCharacters"
+            android:textSize="@dimen/txtsize" >
 
             <requestFocus />
         </EditText>
@@ -58,17 +56,16 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/vin"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="@string/vin" />
 
         <EditText
             android:id="@+id/edt_vin"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:ems="10"
             android:hint="@string/vin"
-            android:inputType="textCapCharacters" >
+            android:inputType="textCapCharacters"
+            android:textSize="@dimen/txtsize" >
 
             <requestFocus />
         </EditText>
@@ -88,17 +85,16 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/engine_no"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="@string/engine_no" />
 
         <EditText
             android:id="@+id/edt_engine_no"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:ems="10"
             android:hint="@string/engine_no"
-            android:inputType="textCapCharacters" >
+            android:inputType="textCapCharacters"
+            android:textSize="@dimen/txtsize" >
 
             <requestFocus />
         </EditText>
@@ -117,11 +113,10 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dip"
             android:layout_weight="1"
             android:gravity="right"
-            android:layout_marginTop="5dip"
-            android:text="@string/init_date"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="@string/init_date" />
 
         <RelativeLayout
             android:layout_width="0dip"
@@ -131,29 +126,28 @@
 
             <EditText
                 android:id="@+id/edt_init_date"
+                style="@android:style/Widget.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                
-                android:ems="10"
-                style="@android:style/Widget.TextView"
-				android:editable="false"
-				android:cursorVisible="false"
-				android:longClickable="false"
+                android:cursorVisible="false"
+                android:editable="false"
                 android:hint="@string/init_date"
-                android:inputType="date" >
+                android:inputType="date"
+                android:longClickable="false"
+                android:textSize="@dimen/txtsize" >
             </EditText>
-            <ImageButton 
+
+            <ImageButton
                 android:layout_width="20dip"
                 android:layout_height="20dip"
-                android:layout_marginTop="5dip"
-                android:layout_marginRight="10dip"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="5dip"
                 android:clickable="false"
+                android:contentDescription="@string/init_date"
                 android:focusable="false"
-                android:src="@drawable/jiantou"
-                android:contentDescription="@string/init_date">
-                
+                android:background="@drawable/jiantou" >
             </ImageButton>
         </RelativeLayout>
     </LinearLayout>
@@ -172,17 +166,16 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/owner"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="@string/owner" />
 
         <EditText
             android:id="@+id/edt_owner"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:ems="10"
             android:hint="@string/owner"
-            android:inputType="textCapCharacters" >
+            android:inputType="textCapCharacters"
+            android:textSize="@dimen/txtsize" >
 
             <requestFocus />
         </EditText>
@@ -194,8 +187,7 @@
         android:layout_marginBottom="5dip"
         android:layout_marginLeft="20dip"
         android:layout_marginTop="20dip"
-        android:text="@string/buyer_information"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="@string/buyer_information" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -211,17 +203,16 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/name"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="@string/name" />
 
         <EditText
             android:id="@+id/edt_name"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:ems="10"
             android:hint="@string/name"
-            android:inputType="textCapCharacters" >
+            android:inputType="textCapCharacters"
+            android:textSize="@dimen/txtsize" >
 
             <requestFocus />
         </EditText>
@@ -241,17 +232,16 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/identity"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="@string/identity" />
 
         <EditText
             android:id="@+id/edt_identity"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:ems="10"
             android:hint="@string/identity"
-            android:inputType="textCapCharacters" >
+            android:inputType="textCapCharacters"
+            android:textSize="@dimen/txtsize" >
 
             <requestFocus />
         </EditText>
@@ -271,17 +261,16 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/cellphone"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="@string/cellphone" />
 
         <EditText
             android:id="@+id/edt_cellphone"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:ems="10"
             android:hint="@string/cellphone"
-            android:inputType="phone" >
+            android:inputType="phone"
+            android:textSize="@dimen/txtsize" >
 
             <requestFocus />
         </EditText>

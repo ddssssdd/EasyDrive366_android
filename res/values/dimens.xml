@@ -4,5 +4,5 @@
 	<dimen name="pic_cell_height">120dip</dimen>  
 	<dimen name="pic_icon">50dip</dimen>
 	<dimen name="goods_item_height">120dip</dimen>
-	   
+	<dimen name="txtsize">14sp</dimen>
 </resources>

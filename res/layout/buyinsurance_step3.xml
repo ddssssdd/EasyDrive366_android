@@ -12,7 +12,7 @@
         android:layout_marginLeft="20dip"
         android:layout_marginTop="20dip"
         android:text="车辆基本信息－确认"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textSize="@dimen/txtsize" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="品牌型号："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
 
         <TextView
             android:id="@+id/txt_brand"
@@ -39,7 +39,7 @@
             android:layout_marginLeft="10dip"
             android:layout_weight="2"
             android:text="@string/placeholder"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
     </LinearLayout>
 
     <LinearLayout
@@ -58,7 +58,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="车款："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
 
         <TextView
             android:id="@+id/txt_model"
@@ -67,7 +67,7 @@
             android:layout_marginLeft="10dip"
             android:layout_weight="2"
             android:text="@string/placeholder"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
     </LinearLayout>
 
     <LinearLayout
@@ -86,7 +86,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="排气量："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
 
         <TextView
             android:id="@+id/txt_exhause"
@@ -95,7 +95,7 @@
             android:layout_marginLeft="10dip"
             android:layout_weight="2"
             android:text="@string/placeholder"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
     </LinearLayout>
 
     <LinearLayout
@@ -113,8 +113,8 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="排挡："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="乘客数："
+            android:textSize="@dimen/txtsize" />
 
         <TextView
             android:id="@+id/txt_gear"
@@ -123,7 +123,7 @@
             android:layout_marginLeft="10dip"
             android:layout_weight="2"
             android:text="@string/placeholder"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
     </LinearLayout>
 
     <LinearLayout
@@ -142,7 +142,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="参考价格："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
 
         <TextView
             android:id="@+id/txt_price"
@@ -151,7 +151,7 @@
             android:layout_marginLeft="10dip"
             android:layout_weight="2"
             android:text="@string/placeholder"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
     </LinearLayout>
 
     <TextView
@@ -161,7 +161,7 @@
         android:layout_marginLeft="20dip"
         android:layout_marginTop="20dip"
         android:text="上年保险"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textSize="@dimen/txtsize" />
 
     <LinearLayout
         android:id="@+id/layout_biz_valid"
@@ -180,7 +180,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="商业险起期："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
 
         <RelativeLayout
             android:layout_width="0dip"
@@ -195,7 +195,7 @@
                 android:layout_marginLeft="10dip"
                 android:layout_weight="2"
                 android:text="@string/placeholder"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textSize="@dimen/txtsize" />
 
             <ImageButton
                 android:layout_width="20dip"
@@ -206,7 +206,7 @@
                 android:clickable="false"
                 android:contentDescription="@string/init_date"
                 android:focusable="false"
-                android:src="@drawable/jiantou" >
+                android:background="@drawable/jiantou" >
             </ImageButton>
         </RelativeLayout>
     </LinearLayout>
@@ -228,7 +228,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="交强险起期："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="@dimen/txtsize" />
 
         <RelativeLayout
             android:layout_width="0dip"
@@ -243,7 +243,7 @@
                 android:layout_marginLeft="10dip"
                 android:layout_weight="2"
                 android:text="@string/placeholder"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textSize="@dimen/txtsize" />
 
             <ImageButton
                 android:layout_width="20dip"
@@ -254,7 +254,7 @@
                 android:clickable="false"
                 android:contentDescription="@string/init_date"
                 android:focusable="false"
-                android:src="@drawable/jiantou" >
+                android:background="@drawable/jiantou" >
             </ImageButton>
         </RelativeLayout>
     </LinearLayout>

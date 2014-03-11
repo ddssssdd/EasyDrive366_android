@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="right"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="@dimen/txtsize" />
 
     <TextView
         android:id="@+id/txt_value"
@@ -19,13 +19,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="right"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="@dimen/txtsize" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        
         android:orientation="horizontal" >
 
         <CheckBox
@@ -37,9 +36,9 @@
 
         <Button
             android:id="@+id/btn_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=">" />
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:background="@drawable/jiantou" />
     </LinearLayout>
 
 </LinearLayout>
