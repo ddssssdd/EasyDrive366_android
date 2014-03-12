@@ -4,24 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/signup_hit_input0"
-        android:gravity="center"
-        android:text="@string/neworder_header" >
-    </TextView>
-
-    <!-- <TableLayout
-        android:id="@+id/tb_items"
-        style="@style/table"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft ="10dip"
-        android:layout_marginRight ="10dip"
-        android:stretchColumns="*" >
-    </TableLayout> -->
+    
     <LinearLayout
         android:id="@+id/tb_items"
         

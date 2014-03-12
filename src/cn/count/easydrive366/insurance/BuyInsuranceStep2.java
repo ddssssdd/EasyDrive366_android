@@ -112,6 +112,7 @@ public class BuyInsuranceStep2 extends BaseHttpActivity{
 			Intent intent = new Intent(this,BuyInsuranceStep3.class);
 			intent.putExtra("data", result);
 			startActivity(intent);
+			finish();
 		}
 	}
 	private void init_view(){

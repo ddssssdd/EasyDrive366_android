@@ -63,6 +63,7 @@ public class BuyInsuranceStep5 extends BaseHttpActivity {
 			Intent intent = new Intent(this,BuyInsuranceStep6.class);
 			intent.putExtra("data", result);
 			startActivity(intent);
+			finish();
 		}
 	}
 	private TextView txt_section0;

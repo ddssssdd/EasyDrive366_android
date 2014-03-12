@@ -23,6 +23,7 @@ public class BuyInsuranceStep1 extends BaseHttpActivity {
 	@Override
 	protected void onRightButtonPress() {
 		startActivity(new Intent(this,BuyInsuranceStep2.class));
+		finish();
 	}
 	
 	@Override

@@ -52,8 +52,8 @@ public class FriendActivity extends BaseHttpActivity implements Response{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_userfriend);
-		this.setBarTitle("friends");
-		this.setupPhoneButtonInVisible();
+		this.setBarTitle("我的朋友");
+		
 		
 		this.setupLeftButton();
 		_favor = new FavorController(this);
@@ -147,10 +147,13 @@ public class FriendActivity extends BaseHttpActivity implements Response{
 
 				is_can_invite = json.getInt("is_can_invite") == 1;
 			}
+			/*
 			if (is_can_invite) {
 				txt_invite_code.setText(json.getString("invite_code"));
 
 			}
+			*/
+			txt_invite_code.setText(json.getString("invite_code"));
 			edt_code.setEnabled(is_can_invite);
 			btn_save.setEnabled(is_can_invite);
 

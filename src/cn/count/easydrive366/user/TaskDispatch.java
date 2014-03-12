@@ -91,6 +91,7 @@ public class TaskDispatch {
 	public void execute(){
 		if (task.ation_url!=null && !task.ation_url.isEmpty()){
 			Intent intent = new Intent(context,BrowserActivity.class);
+			intent.putExtra("url", task.ation_url);
 			context.startActivity(intent);
 			return;
 		}else if (task.page_id!=null && !task.page_id.isEmpty()){

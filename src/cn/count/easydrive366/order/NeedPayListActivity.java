@@ -33,6 +33,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_goodslist);
+		
 		this.setupLeftButton();
 		
 		this.resource_listview_id = R.id.modules_information_listview;
@@ -47,6 +48,11 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	protected void reload_data(){
 		_status = getIntent().getStringExtra("status");
 		this.get(String.format("order/order_list?userid=%d&status=%s", AppSettings.userid,_status), 1);
+		if ("finished".equals(_status)){
+			this.setBarTitle("我的订单");
+		}else{
+			this.setBarTitle("待付款");
+		}
 		
 	}
 	@Override

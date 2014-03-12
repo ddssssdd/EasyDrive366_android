@@ -296,6 +296,8 @@ public class BaseHttpActivity extends ActionActivity implements
 		TextView txt = (TextView) findViewById(R.id.txt_navigation_bar_title);
 		if (txt != null) {
 			txt.setText(title);
+		}else{
+			this.getActionBar().setSubtitle(title);
 		}
 	}
 

@@ -21,11 +21,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.comments.ItemCommentsActivity;
 import cn.count.easydrive366.order.NewOrderActivity;
@@ -52,6 +54,7 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 	private JSONArray _albums;
 	private int _index = 0;
 	private String _id;
+	private String clause_url;
 	private MenuItem _menuFavor;
 	private FavorController _favor;
 
@@ -122,6 +125,8 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 		if (_json == null) return;
 		try {
 			_id = _json.getString("id");
+			setBarTitle(_json.getString("name"));
+			clause_url = _json.getString("clause_url");
 			txtBuyer.setText(_json.getString("buyer"));
 			txtDiscount.setText(_json.getString("discount"));
 			txtStand_price.setText(_json.getString("stand_price"));
@@ -140,6 +145,17 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 			_favor.init(_json.getInt("is_favor"), _menuFavor, _id, "GDS");
 			showPicture();
 			this.addSwipeToView(imgPicture);
+			if (clause_url!=null && !clause_url.isEmpty()){
+				findViewById(R.id.layout_agreement).setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						Intent intent = new Intent(GoodsDetailActivity.this,BrowserActivity.class);
+						intent.putExtra("url", clause_url);
+						startActivity(intent);
+						
+					}});
+			}
 		} catch (Exception e) {
 			log(e);
 		}

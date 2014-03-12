@@ -35,7 +35,7 @@ public class TaskListActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_standard_listview);
-	
+		setBarTitle("我的任务");
 		this.setupLeftButton();
 		init_view();
 		load_data();

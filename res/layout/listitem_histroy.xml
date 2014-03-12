@@ -7,19 +7,20 @@
     <ImageView
         android:id="@+id/img_picture"
         android:layout_width="0dip"
-        android:layout_height="wrap_content"
+        android:layout_height="120dip"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginTop="10dip"
-        android:layout_weight="3"
+        android:layout_weight="4"
+        android:scaleType="fitXY"
         android:contentDescription="@string/app_name"
         android:src="@drawable/default_640x234" />
 
     <LinearLayout
         android:layout_width="0dip"
-        android:layout_height="@dimen/pic_cell_height"
+        android:layout_height="match_parent"
         android:layout_margin="10dip"
-        android:layout_weight="7"
+        android:layout_weight="6"
         android:orientation="vertical" >
 
         <TextView
@@ -27,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="5dip"
-            android:layout_marginRight="20dip"
+            
             android:layout_weight="1"
             android:text="title"
             android:textSize="14sp" />
@@ -37,8 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="5dip"
-            android:layout_marginRight="20dip"
+            
             android:layout_weight="3"
+            android:maxLines="3"
             android:text="description"
             android:textSize="12sp" />
 
@@ -46,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="5dip"
-            android:layout_marginRight="20dip"
+            
             android:layout_weight="1"
             android:orientation="horizontal" >
 
@@ -56,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="price"
+                android:textColor="@color/red"
                 android:textSize="14sp" />
 
             <TextView
@@ -63,8 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dip"
-                android:textSize="14sp" />
+                
+                android:textSize="12sp" />
         </RelativeLayout>
     </LinearLayout>
 

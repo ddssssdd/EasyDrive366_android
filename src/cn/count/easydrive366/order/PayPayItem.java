@@ -20,14 +20,7 @@ public class PayPayItem extends LinearLayout {
 	public void setData(final String title,final String detail,final int index){
 		((TextView)findViewById(R.id.txt_title)).setText(title);
 		((TextView)findViewById(R.id.txt_detail)).setText(detail);
-		if (index==0){
-			this.setBackgroundResource(R.drawable.signup_hit_input1);
-		}else if (index==1){
-			this.setBackgroundResource(R.drawable.signup_hit_input2);
-			
-		}else if (index==-1){
-			this.setBackgroundResource(R.drawable.signup_hit_input6);
-		}
+		
 	}
 
 }

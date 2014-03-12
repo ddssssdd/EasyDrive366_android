@@ -34,7 +34,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_orderdetail_activity);
-		this.setBarTitle("Order Detail");
+		this.setBarTitle("订单详情");
 		this.setupLeftButton();
 		
 		this.setupRightButtonWithText("编辑");
@@ -146,7 +146,8 @@ public class OrderDetailActivity extends BaseHttpActivity {
 						
 					}
 					//should pay
-					((TextView)findViewById(R.id.txt_discount)).setText(json.getString("discount"));
+					String temp = json.getString("discount");
+					((TextView)findViewById(R.id.txt_pay_discount)).setText(temp);
 					((TextView)findViewById(R.id.txt_bounds)).setText(json.getString("bounds"));
 					((TextView)findViewById(R.id.txt_order_pay)).setText(json.getString("order_pay"));
 					//pay

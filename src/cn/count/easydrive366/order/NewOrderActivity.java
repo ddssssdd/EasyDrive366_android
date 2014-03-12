@@ -34,6 +34,7 @@ public class NewOrderActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_neworder_activity);
 		this.setupLeftButton();
+		setBarTitle("新订单");
 		Intent intent= getIntent();
 		product_id = intent.getStringExtra("id");
 		load_data();

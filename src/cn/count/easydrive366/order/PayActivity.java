@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ import cn.count.easydriver366.base.HttpExecuteGetTask;
 
 public class PayActivity extends BaseHttpActivity {
 	private TableLayout tblItems;
-	private TableLayout tblPays;
+	private LinearLayout tblPays;
 	private CheckBox chbUse;
 	private TextView txtOrderPay;
 	private String order_id;
@@ -52,10 +53,10 @@ public class PayActivity extends BaseHttpActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_needpay_activity);
-		this.setBarTitle("Pay");
+		this.setBarTitle("付款");
 		this.setupLeftButton();
-		this.setupPhoneButtonInVisible();
-		this.setRightButtonInVisible();
+		
+		
 		Intent intent= getIntent();
 		json = intent.getStringExtra("json");
 		if (json==null || json.isEmpty()){
@@ -106,12 +107,13 @@ public class PayActivity extends BaseHttpActivity {
 			bounds_num = data.getString("bounds_num");
 			txtOrderPay.setText(data.getString("order_pay"));
 			tblItems = (TableLayout)findViewById(R.id.tb_items);
-			tblPays = (TableLayout)findViewById(R.id.tb_pays);
+			tblPays = (LinearLayout)findViewById(R.id.tb_pays);
 			tblItems.removeAllViews();
 			tblPays.removeAllViews();
 			
 			JSONArray goods = data.getJSONArray("goods");
-			JSONArray pays = data.getJSONArray("pay");
+			
+			/*
 			for(int i=0;i<goods.length();i++){
 				JSONObject item = goods.getJSONObject(i);
 				TableRow tr = new TableRow(this);
@@ -123,6 +125,8 @@ public class PayActivity extends BaseHttpActivity {
 				body  = item.getString("name");
 				price = item.getString("price");
 			}
+			*/
+			JSONArray pays = data.getJSONArray("pay");
 			for(int i=0;i<pays.length();i++){
 				final JSONObject pay = pays.getJSONObject(i);
 				int index;
@@ -132,24 +136,25 @@ public class PayActivity extends BaseHttpActivity {
 					index=-1;
 				else
 					index =1;
-				TableRow tr = new TableRow(this);
-				tr.setGravity(Gravity.CENTER_VERTICAL);
+				
+				
 				PayPayItem payItem = new PayPayItem(this,null);
 				
 				payItem.setData(pay.getString("bank_name"), pay.getString("account"), index);
-				tr.addView(payItem);
-				tblPays.addView(tr);
-				tr.setTag(pay);
-				tr.setOnClickListener(new OnClickListener(){
+				
+				tblPays.addView(payItem);
+				payItem.setTag(pay);
+				payItem.setOnClickListener(new OnClickListener(){
 
 					@Override
 					public void onClick(View v) {
 						try{
 							JSONObject pay = (JSONObject)v.getTag();
-							Log.d("JSON", pay.toString());
+							
+							bankid=pay.getString("bank_id");
+							bankname=pay.getString("bank_name");
 							if (pay.getString("bank_id").equals("00001")){
-								bankid="00001";
-								bankname=pay.getString("bank_name");
+								
 								alipayStart();
 							}else{
 								afterPay();

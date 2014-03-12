@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -14,27 +13,29 @@
 
         <ImageView
             android:id="@+id/img_picture"
-            android:layout_width="@dimen/pic_cell_width"
-            android:layout_height="@dimen/pic_cell_height"
-            android:layout_margin="10dip"
+            android:layout_width="0dip"
+            android:layout_height="120dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dip"
+            android:layout_weight="3"
             android:contentDescription="@string/app_name" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/pic_cell_height"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="10dip"
-            android:layout_marginBottom="10dip"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5dip"
+            android:layout_weight="7"
             android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="5dip"
                 android:layout_weight="1"
                 android:text="title"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txt_description"
@@ -58,7 +59,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_weight="1"
                     android:text="1000.0$"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/txt_discount"
@@ -68,7 +69,7 @@
                     android:layout_weight="1"
                     android:text="2zhe"
                     android:textColor="@color/red"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txt_price"
@@ -77,7 +78,7 @@
                     android:layout_weight="1"
                     android:text="200.0$"
                     android:textColor="@color/red"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txt_buyer"
@@ -86,8 +87,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_weight="1"
                     android:text="8 peoper buy"
-                    android:textColor="@color/red"
-                    android:textSize="12sp" />
+                    android:textSize="8sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
