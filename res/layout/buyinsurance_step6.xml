@@ -5,14 +5,12 @@
     android:orientation="vertical" >
 
     <TextView
-        
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
         android:text="结算信息" />
 
     <TableLayout
-        
         style="@style/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,19 +28,18 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dip"
                 android:text="保费总额" />
-			 <TextView
-                
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
-                 />
-			  <TextView
+                android:layout_margin="10dip" />
+
+            <TextView
                 android:id="@+id/txt_order_total"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dip"
                 android:text="交强险及车船税（元）" />
-           
         </TableRow>
 
         <TableRow
@@ -62,7 +59,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dip"
                 android:text="交强险及车船税（元）" />
-             <CheckBox
+
+            <CheckBox
                 android:id="@+id/chb_usediscount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,20 +79,17 @@
                 android:text="还需支付" />
 
             <TextView
-                
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
-                 />
-             <TextView
+                android:layout_margin="10dip" />
+
+            <TextView
                 android:id="@+id/txt_order_pay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dip"
                 android:text="交强险及车船税（元）" />
         </TableRow>
-
-        
     </TableLayout>
 
     <TextView
@@ -103,14 +98,13 @@
         android:layout_margin="10dip"
         android:text="付款方式" />
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/table_pay"
-        style="@style/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
-        android:gravity="center"
-        android:stretchColumns="*" >
-    </TableLayout>
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+    </LinearLayout>
 
 </LinearLayout>

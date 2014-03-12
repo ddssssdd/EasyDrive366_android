@@ -126,7 +126,7 @@ public class BuyInsuranceStep3 extends BaseHttpActivity {
 				txt_model.setText(json.getString("model"));
 				txt_exhause.setText(json.getString("exhause"));
 				txt_biz_date.setText(json.getString("biz_valid"));
-				txt_gear.setText(json.getString("gear"));
+				txt_gear.setText(json.getString("passengers"));
 				txt_price.setText(json.getString("price"));
 				txt_com_date.setText(json.getString("com_valid"));
 				

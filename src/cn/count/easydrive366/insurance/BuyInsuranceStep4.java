@@ -264,13 +264,14 @@ public class BuyInsuranceStep4 extends BaseHttpActivity {
 				holder.chbItem.setOnCheckedChangeListener(null);
 				
 			}
-			final Detail d = list.get(index).list.get(position);
+			Detail d = list.get(index).list.get(position);
 			holder.txtTitle.setText(d.insu_name);
 			DecimalFormat df = new DecimalFormat("¥###,###.##");
 			holder.txtValue.setText(df.format( d.amount));
 			holder.chbItem.setChecked(d.is_enabled);
 			holder.chbItem.setTag(d);
 			holder.btnMore.setTag(d);
+			convertView.setTag(d);
 			holder.detail =d;
 			if (d.items.size()>0){
 				holder.btnMore.setVisibility(View.VISIBLE);
@@ -279,7 +280,7 @@ public class BuyInsuranceStep4 extends BaseHttpActivity {
 					@Override
 					public void onClick(View v) {
 						
-						chooseItems(d);
+						chooseItems((Detail)v.getTag());
 						
 					}});
 				convertView.setOnClickListener(new OnClickListener(){
@@ -287,7 +288,7 @@ public class BuyInsuranceStep4 extends BaseHttpActivity {
 					@Override
 					public void onClick(View v) {
 						
-						chooseItems(d);
+						chooseItems((Detail)v.getTag());
 						
 					}});
 			}else
@@ -297,6 +298,7 @@ public class BuyInsuranceStep4 extends BaseHttpActivity {
 				@Override
 				public void onClick(View v) {
 					boolean isChecked = ((CheckBox)v).isChecked();
+					Detail d = (Detail)v.getTag();
 					if (isChecked){
 						d.is_enabled = true;
 						d.amount = d.original_amount;

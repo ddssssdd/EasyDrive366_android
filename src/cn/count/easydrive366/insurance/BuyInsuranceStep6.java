@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -81,17 +82,18 @@ public class BuyInsuranceStep6 extends BaseHttpActivity {
 					price =useDiscount?order_pay:order_pay2;
 					txt_pay.setText(price);
 				}});
-			TableLayout table = (TableLayout)findViewById(R.id.table_pay);
+			LinearLayout table = (LinearLayout)findViewById(R.id.table_pay);
+			table.removeAllViewsInLayout();
 			JSONArray list = json.getJSONArray("pay");
 			for(int i=0;i<list.length();i++){
 				final JSONObject pay = list.getJSONObject(i);
 				bank_id = pay.getString("bank_id"); 
-				TableRow tr = new TableRow(this);
+				
 				KeyValueItem kv = new KeyValueItem(this,null);
 				kv.setData(pay.getString("bank_name"), pay.getString("account"));
-				tr.addView(kv);
-				table.addView(tr);
-				tr.setOnClickListener(new OnClickListener(){
+				
+				table.addView(kv);
+				kv.setOnClickListener(new OnClickListener(){
 
 					@Override
 					public void onClick(View v) {
