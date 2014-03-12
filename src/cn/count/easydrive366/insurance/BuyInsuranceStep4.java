@@ -35,6 +35,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -181,6 +182,7 @@ public class BuyInsuranceStep4 extends BaseHttpActivity {
 		public Button btnMore;
 		public CheckBox chbItem;
 		public Detail detail;
+		public LinearLayout container;
 	}
 	private void selectSubIndex(Detail d,int pos){
 		d.subindex = pos;
@@ -257,6 +259,7 @@ public class BuyInsuranceStep4 extends BaseHttpActivity {
 				holder.txtValue = (TextView)convertView.findViewById(R.id.txt_value);
 				holder.chbItem = (CheckBox)convertView.findViewById(R.id.chbItem);
 				holder.btnMore =(Button)convertView.findViewById(R.id.btn_more);
+				holder.container =(LinearLayout)convertView.findViewById(R.id.layout_row);
 				convertView.setTag(holder);
 				
 			}else{
@@ -271,7 +274,7 @@ public class BuyInsuranceStep4 extends BaseHttpActivity {
 			holder.chbItem.setChecked(d.is_enabled);
 			holder.chbItem.setTag(d);
 			holder.btnMore.setTag(d);
-			convertView.setTag(d);
+			final int p = position;
 			holder.detail =d;
 			if (d.items.size()>0){
 				holder.btnMore.setVisibility(View.VISIBLE);
@@ -283,14 +286,7 @@ public class BuyInsuranceStep4 extends BaseHttpActivity {
 						chooseItems((Detail)v.getTag());
 						
 					}});
-				convertView.setOnClickListener(new OnClickListener(){
-
-					@Override
-					public void onClick(View v) {
-						
-						chooseItems((Detail)v.getTag());
-						
-					}});
+				
 			}else
 				holder.btnMore.setVisibility(View.GONE);
 			holder.chbItem.setOnClickListener(new OnClickListener(){
