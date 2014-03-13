@@ -44,10 +44,12 @@ public class OrderDetailActivity extends BaseHttpActivity {
 	}
 	private void load_data(){
 		String url = String.format("order/order_detail?userid=%d&orderid=%s", AppSettings.userid,order_id);
+		beginHttp();
 		new HttpExecuteGetTask(){
 
 			@Override
 			protected void onPostExecute(String result) {
+				endHttp();
 				load_view(result);
 				
 			}}.execute(url);
@@ -81,7 +83,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 					
 				}
 				//sets order informaiton
-				((TextView)findViewById(R.id.txt_order_id)).setText(json.getString("name"));
+				((TextView)findViewById(R.id.txt_order_id)).setText(json.getString("order_id"));
 				((TextView)findViewById(R.id.txt_order_time)).setText(json.getString("order_time"));
 				((TextView)findViewById(R.id.txt_count)).setText(String.format("%d", order_count));
 				((TextView)findViewById(R.id.txt_order_total)).setText(json.getString("order_total"));
@@ -119,24 +121,24 @@ public class OrderDetailActivity extends BaseHttpActivity {
 						findViewById(R.id.layout_accident).setVisibility(View.GONE);
 						findViewById(R.id.layout_finished).setVisibility(View.GONE);
 						((TextView)findViewById(R.id.txt_shipping)).setText(json.getString("shipping"));
-						((TextView)findViewById(R.id.txt_name)).setText(json.getString("name"));
-						((TextView)findViewById(R.id.txt_phone)).setText(json.getString("phone"));
-						((TextView)findViewById(R.id.txt_address)).setText(json.getString("address"));
+						((TextView)findViewById(R.id.txt_name1)).setText(json.getString("name"));
+						((TextView)findViewById(R.id.txt_phone1)).setText(json.getString("phone"));
+						((TextView)findViewById(R.id.txt_address1)).setText(json.getString("address"));
 					}else if (next_form.equals("ins_contents")){
 						findViewById(R.id.layout_address).setVisibility(View.GONE);
 						findViewById(R.id.layout_accident).setVisibility(View.GONE);
 						findViewById(R.id.layout_finished).setVisibility(View.GONE);
-						((TextView)findViewById(R.id.txt_idcard)).setText(json.getString("idcard"));
-						((TextView)findViewById(R.id.txt_name)).setText(json.getString("name"));
-						((TextView)findViewById(R.id.txt_phone)).setText(json.getString("phone"));
-						((TextView)findViewById(R.id.txt_address)).setText(json.getString("address"));
+						((TextView)findViewById(R.id.txt_idcard2)).setText(json.getString("idcard"));
+						((TextView)findViewById(R.id.txt_name2)).setText(json.getString("name"));
+						((TextView)findViewById(R.id.txt_phone2)).setText(json.getString("phone"));
+						((TextView)findViewById(R.id.txt_address2)).setText(json.getString("address"));
 					}else if (next_form.equals("ins_accident")){
 						findViewById(R.id.layout_contents).setVisibility(View.GONE);
 						findViewById(R.id.layout_address).setVisibility(View.GONE);
 						findViewById(R.id.layout_finished).setVisibility(View.GONE);
-						((TextView)findViewById(R.id.txt_idcard)).setText(json.getString("idcard"));
-						((TextView)findViewById(R.id.txt_name)).setText(json.getString("name"));
-						((TextView)findViewById(R.id.txt_phone)).setText(json.getString("phone"));
+						((TextView)findViewById(R.id.txt_idcard3)).setText(json.getString("idcard"));
+						((TextView)findViewById(R.id.txt_name3)).setText(json.getString("name"));
+						((TextView)findViewById(R.id.txt_phone3)).setText(json.getString("phone"));
 						((TextView)findViewById(R.id.txt_typename)).setText(json.getString("typename"));
 					}else if (next_form.equals("finished")){
 						findViewById(R.id.layout_contents).setVisibility(View.GONE);

@@ -203,7 +203,7 @@ public class UploadInsPhotoActivity extends BaseInsurance {
 	private void goto_help(){
 		Intent intent = new Intent(this,BrowserActivity.class);
 		intent.putExtra("url", url);
-		intent.putExtra("title", this.txt_help_title.getText().toString());
+		//intent.putExtra("title", this.txt_help_title.getText().toString());
 		startActivity(intent);
 	}
 	private void onCellItemClick(Object obj,ImageView img){

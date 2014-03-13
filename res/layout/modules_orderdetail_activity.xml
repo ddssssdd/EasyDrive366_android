@@ -22,8 +22,8 @@
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="10dip"
                 android:layout_marginRight="10dip"
-                android:layout_weight="3"
-                android:scaleType="centerInside"
+                android:layout_weight="4"
+                android:scaleType="fitXY"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/default_640x234" />
 
@@ -33,7 +33,7 @@
                 android:layout_marginBottom="10dip"
                 android:layout_marginRight="10dip"
                 android:layout_marginTop="10dip"
-                android:layout_weight="7"
+                android:layout_weight="6"
                 android:orientation="vertical" >
 
                 <TextView
@@ -116,7 +116,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:text="订单号" />
 
             <TextView
@@ -124,7 +124,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dip"
-                android:layout_weight="7"
+                android:layout_weight="8"
                 android:gravity="right"
                 android:text="@string/placeholder" />
         </LinearLayout>
@@ -299,7 +299,7 @@
                     android:text="联系人" />
 
                 <TextView
-                    android:id="@+id/txt_name"
+                    android:id="@+id/txt_name1"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -323,7 +323,7 @@
                     android:text="电话" />
 
                 <TextView
-                    android:id="@+id/txt_phone"
+                    android:id="@+id/txt_phone1"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -347,7 +347,7 @@
                     android:text="地址" />
 
                 <TextView
-                    android:id="@+id/txt_address"
+                    android:id="@+id/txt_address1"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -388,7 +388,7 @@
                     android:text="被保险人姓名" />
 
                 <TextView
-                    android:id="@+id/txt_name"
+                    android:id="@+id/txt_name2"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -412,7 +412,7 @@
                     android:text="电话" />
 
                 <TextView
-                    android:id="@+id/txt_phone"
+                    android:id="@+id/txt_phone2"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -436,7 +436,7 @@
                     android:text="地址" />
 
                 <TextView
-                    android:id="@+id/txt_address"
+                    android:id="@+id/txt_address2"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -460,7 +460,7 @@
                     android:text="身份证号" />
 
                 <TextView
-                    android:id="@+id/txt_idcard"
+                    android:id="@+id/txt_idcard2"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -502,7 +502,7 @@
                     android:text="被保险人姓名" />
 
                 <TextView
-                    android:id="@+id/txt_name"
+                    android:id="@+id/txt_name3"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -526,7 +526,7 @@
                     android:text="身份证号" />
 
                 <TextView
-                    android:id="@+id/txt_idcard"
+                    android:id="@+id/txt_idcard3"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"
@@ -550,7 +550,7 @@
                     android:text="电话" />
 
                 <TextView
-                    android:id="@+id/txt_phone"
+                    android:id="@+id/txt_phone3"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dip"

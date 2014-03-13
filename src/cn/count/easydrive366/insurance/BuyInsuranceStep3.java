@@ -1,5 +1,7 @@
 package cn.count.easydrive366.insurance;
 
+import java.net.URLEncoder;
+
 import org.json.JSONObject;
 
 import android.content.Intent;
@@ -51,19 +53,24 @@ public class BuyInsuranceStep3 extends BaseInsurance {
 			this.showMessage("交强险起期不能为空！",null);
 			return;
 		}
-		String url = String.format("ins/carins_clause?userid=%d&biz_valid=%s&com_valid=%s", 
-				AppSettings.userid,
-				txt_biz_date.getText().toString().trim(),
-				txt_com_date.getText().toString().trim());
-		beginHttp();
-		new HttpExecuteGetTask(){
+		try{
+			String url = String.format("ins/carins_clause?userid=%d&biz_valid=%s&com_valid=%s", 
+					AppSettings.userid,
+					URLEncoder.encode(txt_biz_date.getText().toString().trim(),"utf-8"),
+					URLEncoder.encode(txt_com_date.getText().toString().trim(),"utf-8"));
+			beginHttp();
+			new HttpExecuteGetTask(){
 
-			@Override
-			protected void onPostExecute(String result) {
-				endHttp();
-				process_result(result);
-				
-			}}.execute(url);
+				@Override
+				protected void onPostExecute(String result) {
+					endHttp();
+					process_result(result);
+					
+				}}.execute(url);
+		}catch(Exception e){
+			this.showDialog("日期格式不对！");
+		}
+		
 			
 	}
 	private void process_result(final String result){

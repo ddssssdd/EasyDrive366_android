@@ -80,7 +80,7 @@ public class BuyInsuranceStep7 extends BaseInsurance {
 				AppSettings.userid,
 				getIntent().getStringExtra("orderid"),
 				getIntent().getStringExtra("bounds"),
-				getIntent().getStringExtra("bankid"),
+				getIntent().getStringExtra("bank_id"),
 				getIntent().getStringExtra("account")
 				);
 		beginHttp();

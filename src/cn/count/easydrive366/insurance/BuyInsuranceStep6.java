@@ -226,7 +226,7 @@ public class BuyInsuranceStep6 extends BaseInsurance {
 	};
 	private void afterPay(){
 		Intent intent = new Intent(this,BuyInsuranceStep7.class);
-		account = "";
+		
 		intent.putExtra("orderid", this.order_id);
 		intent.putExtra("bounds", this.bounds);
 		intent.putExtra("bank_id", this.bank_id);
