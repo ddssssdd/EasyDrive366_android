@@ -199,8 +199,24 @@ public class OrderDetailActivity extends BaseHttpActivity {
 	}
 	@Override
 	protected void onRightButtonPress() {
-		AfterPayController controller = new AfterPayController(this);
-		controller.dispatch(json);
+		String url = String.format("order/order_exform?userid=%d&orderid=%s",AppSettings.userid,this.order_id);
+		beginHttp();
+		new HttpExecuteGetTask(){
+
+			@Override
+			protected void onPostExecute(String result) {
+				endHttp();
+				process_result(result);
+				
+			}}.execute(url);
+		
+	}
+	private void process_result(final String result){
+		JSONObject j = AppSettings.getSuccessJSON(result, this);
+		if (j!=null){
+			AfterPayController controller = new AfterPayController(this);
+			controller.dispatch(j);
+		}
 	}
 }
 

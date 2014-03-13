@@ -26,6 +26,8 @@ public class AccidentActivity extends BaseHttpActivity {
 	private EditText edt_cellphone;
 	private TextView txt_job;
 	private EditText edt_idcard;
+	private JSONArray type_list;
+	private String current_type;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -61,13 +63,22 @@ public class AccidentActivity extends BaseHttpActivity {
 			this.showMessage("手机不能为空！",null);
 			return;
 		}
+		if (index==-1){
+			this.showMessage("请选择类型！",null);
+			return;
+		}
+		try{
+			current_type =type_list.getJSONObject(index).getString("value");
+		}catch(Exception e){
+			
+		}
 		
 		String url = String.format("order/order_ins_accident?userid=%d&orderid=%s&name=%s&phone=%s&type=%s&idcard=%s",
 				AppSettings.userid,
 				order_id,
 				edt_name.getText().toString(),
 				edt_cellphone.getText().toString(),
-				txt_job.getText().toString(),
+				current_type,
 				edt_idcard.getText().toString());
 				
 		beginHttp();
@@ -103,12 +114,14 @@ public class AccidentActivity extends BaseHttpActivity {
 			edt_cellphone.setText(json.getString("phone"));
 			
 			edt_idcard.setText(json.getString("idcard"));
-			JSONArray list = json.getJSONArray("list_type");
-			final String current_type = json.getString("type_name");
-			types = new String[list.length()];
-			for(int i=0;i<list.length();i++){
-				types[i] = list.getJSONObject(i).getString("label");
-				if (current_type.equals(list.getJSONObject(i).getString("label"))){
+			txt_job.setText(json.getString("type_name"));
+			type_list = json.getJSONArray("list_type");
+			current_type = json.getString("type");
+			
+			types = new String[type_list.length()];
+			for(int i=0;i<type_list.length();i++){
+				types[i] = type_list.getJSONObject(i).getString("label");
+				if (current_type.equals(type_list.getJSONObject(i).getString("value"))){
 					index =i;
 				}
 			}

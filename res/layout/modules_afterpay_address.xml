@@ -26,7 +26,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:gravity="center"
                 android:text="收件人" />
 
@@ -34,7 +33,6 @@
                 android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:inputType="text" />
         </TableRow>
 
@@ -46,7 +44,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:gravity="center"
                 android:text="手机" />
 
@@ -54,7 +51,6 @@
                 android:id="@+id/edt_cellphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:inputType="text" />
         </TableRow>
 
@@ -66,7 +62,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:gravity="center"
                 android:text="地址" />
 
@@ -74,7 +69,6 @@
                 android:id="@+id/edt_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:inputType="text" />
         </TableRow>
     </TableLayout>
@@ -84,8 +78,8 @@
         style="@style/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dip"
         android:gravity="center"
+        android:layout_margin="10dip"
         android:stretchColumns="*" >
 
         <TableRow
@@ -96,15 +90,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:gravity="center"
                 android:text="选择自提" />
 
             <CheckBox
                 android:id="@+id/chb_auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dip" />
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow
@@ -115,7 +107,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:gravity="center"
                 android:text="联系人" />
 
@@ -123,7 +114,6 @@
                 android:id="@+id/edt_name1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:inputType="text" />
         </TableRow>
 
@@ -135,7 +125,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:gravity="center"
                 android:text="手机" />
 
@@ -143,7 +132,6 @@
                 android:id="@+id/edt_cellphone1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:inputType="text" />
         </TableRow>
 
@@ -155,7 +143,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:gravity="center"
                 android:text="地址" />
 
@@ -163,7 +150,6 @@
                 android:id="@+id/edt_address1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
                 android:inputType="text" />
         </TableRow>
     </TableLayout>
