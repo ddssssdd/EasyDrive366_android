@@ -26,8 +26,9 @@ public class InsuranceList extends BaseListViewActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.modules_goodslist);
-		this.setupPhoneButtonInVisible();
+		
 		this.setupLeftButton();
+		this.setBarTitle("投保单");
 		this.resource_listview_id = R.id.modules_information_listview;
 		//this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.listitem_insurance;
@@ -83,7 +84,7 @@ public class InsuranceList extends BaseListViewActivity {
 		holder.title = (TextView)convertView.findViewById(R.id.txt_car_id);
 		holder.detail2 = (TextView) convertView.findViewById(R.id.txt_price_time);
 		holder.detail3 = (TextView) convertView.findViewById(R.id.txt_status_name);
-		
+		convertView.setTag(holder);
 	}
 
 }
