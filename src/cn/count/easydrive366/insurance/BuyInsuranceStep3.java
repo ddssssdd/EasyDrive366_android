@@ -18,7 +18,7 @@ import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 import cn.count.easydriver366.base.AppTools.ISetDate;
 
-public class BuyInsuranceStep3 extends BaseHttpActivity {
+public class BuyInsuranceStep3 extends BaseInsurance {
 	private TextView txt_brand;
 	private TextView txt_model;
 	private TextView txt_exhause;
@@ -72,7 +72,7 @@ public class BuyInsuranceStep3 extends BaseHttpActivity {
 			Intent intent = new Intent(this,BuyInsuranceStep4.class);
 			intent.putExtra("data", result);
 			startActivity(intent);
-			finish();
+			stack_push();
 		}
 	}
 	private void init_view(){

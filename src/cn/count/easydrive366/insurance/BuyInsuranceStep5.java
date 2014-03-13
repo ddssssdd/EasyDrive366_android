@@ -20,7 +20,7 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
-public class BuyInsuranceStep5 extends BaseHttpActivity {
+public class BuyInsuranceStep5 extends BaseInsurance {
 	private String data;
 	private boolean is_com;
 	private String total;
@@ -63,7 +63,7 @@ public class BuyInsuranceStep5 extends BaseHttpActivity {
 			Intent intent = new Intent(this,BuyInsuranceStep6.class);
 			intent.putExtra("data", result);
 			startActivity(intent);
-			finish();
+			stack_push();
 		}
 	}
 	private TextView txt_section0;

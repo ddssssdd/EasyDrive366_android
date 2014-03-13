@@ -20,7 +20,7 @@ import cn.count.easydriver366.base.AppTools.ISetDate;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
-public class BuyInsuranceStep2 extends BaseHttpActivity{
+public class BuyInsuranceStep2 extends BaseInsurance{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -30,7 +30,10 @@ public class BuyInsuranceStep2 extends BaseHttpActivity{
 		this.setupRightButtonWithText("下一步");
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		init_view();
-		
+		boolean is_list = getIntent().getBooleanExtra("is_list", false);
+		if (is_list){
+			stack_init();
+		}
 	}
 	@Override
 	protected void onRightButtonPress() {
@@ -112,7 +115,7 @@ public class BuyInsuranceStep2 extends BaseHttpActivity{
 			Intent intent = new Intent(this,BuyInsuranceStep3.class);
 			intent.putExtra("data", result);
 			startActivity(intent);
-			finish();
+			stack_push();
 		}
 	}
 	private void init_view(){

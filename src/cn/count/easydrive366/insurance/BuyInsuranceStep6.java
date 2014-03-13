@@ -36,7 +36,7 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
-public class BuyInsuranceStep6 extends BaseHttpActivity {
+public class BuyInsuranceStep6 extends BaseInsurance {
 	private String data;
 	private boolean useDiscount=true;
 	private String order_pay;
@@ -93,11 +93,12 @@ public class BuyInsuranceStep6 extends BaseHttpActivity {
 				kv.setData(pay.getString("bank_name"), pay.getString("account"));
 				
 				table.addView(kv);
+				kv.setTag(pay);
 				kv.setOnClickListener(new OnClickListener(){
 
 					@Override
 					public void onClick(View v) {
-						order_pay_by();
+						order_pay_by(v.getTag());
 						
 					}});
 			}
@@ -107,13 +108,20 @@ public class BuyInsuranceStep6 extends BaseHttpActivity {
 			log(e);
 		}
 	}
-	private void order_pay_by(){
-		//dothing pay and after pay;
-		if (bank_id.equals("00001")){
-			alipayStart();
-		}else{
-			afterPay();
+	private void order_pay_by(final Object pay){
+		try{
+			JSONObject json = (JSONObject)pay;
+			this.bank_id = json.getString("bank_id");
+			this.account = json.getString("account");
+			if (bank_id.equals("00001")){
+				alipayStart();
+			}else{
+				afterPay();
+			}
+		}catch(Exception e){
+			
 		}
+		
 	}
 	private static String TAG = "Alipay";
 	private static final int RQF_PAY = 1;

@@ -66,6 +66,7 @@ public class InsuranceList extends BaseListViewActivity {
 			String id =map.get("id").toString();
 			Intent intent = new Intent(this,BuyInsuranceStep2.class);
 			intent.putExtra("id", id);
+			intent.putExtra("is_list", true);
 			startActivity(intent);
 			
 		}

@@ -17,17 +17,18 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
-public class BuyInsuranceStep1 extends BaseHttpActivity {
+public class BuyInsuranceStep1 extends BaseInsurance {
 	private WebView _webView;
 	private Handler mHandler = new Handler();
 	@Override
 	protected void onRightButtonPress() {
 		startActivity(new Intent(this,BuyInsuranceStep2.class));
-		finish();
+		stack_push();
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		stack_init();
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.modules_browser_activity);

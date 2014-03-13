@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -45,7 +46,7 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
-public class UploadInsPhotoActivity extends BaseHttpActivity {
+public class UploadInsPhotoActivity extends BaseInsurance {
 	private String data;
 	private TableLayout table;
 	private TextView txt_help_title;
@@ -94,6 +95,8 @@ public class UploadInsPhotoActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_upload_ins_phone_activity);
 		this.setupTitle("在线购买保险", "图片上传");
+		this.setupLeftButton();
+		this.setupRightButtonWithText("完成");
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
 		data = getIntent().getStringExtra("data");
@@ -117,21 +120,26 @@ public class UploadInsPhotoActivity extends BaseHttpActivity {
 			init_view();
 		}
 	}
+	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu){
-		menu.add("完成").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
-		doSave();
-		return super.onOptionsItemSelected(item);
-	}
-	private void doSave(){
-		
-		this.finish();
+	protected void onRightButtonPress() {
+		if (stacks!=null){
+			try{
+				Activity a = stacks.pop();
+				while(a!=null){
+					
+					a.finish();
+					a = stacks.pop();
+				}
+			}catch(Exception e){
+				
+			}
 			
+		}
+		finish();
+		
 	}
+
 	
 	private void init_view(){
 		table = (TableLayout)findViewById(R.id.table_actions);

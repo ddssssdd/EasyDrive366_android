@@ -13,28 +13,28 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
-public class BuyInsuranceStep7 extends BaseHttpActivity {
+public class BuyInsuranceStep7 extends BaseInsurance {
 	private String data;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.buyinsurance_step7);
+		this.setupLeftButton();
+		this.setupRightButtonWithText("下一步");
 		this.setupTitle("在线购买保险", "填写配送地址");
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		init_view();
 		
 	}
+	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu){
-		menu.add("下一步").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
+	protected void onRightButtonPress() {
 		doSave();
-		return super.onOptionsItemSelected(item);
 	}
+
+	
+
 	private void doSave(){
 		
 		if (edt_name.getText().toString().trim().isEmpty()){
@@ -72,15 +72,16 @@ public class BuyInsuranceStep7 extends BaseHttpActivity {
 			Intent intent = new Intent(this,UploadInsPhotoActivity.class);
 			intent.putExtra("data", result);
 			startActivity(intent);
+			stack_push();
 		}
 	}
 	private void init_view(){
 		String url = String.format("ins/carins_address?userid=%d&orderid=%s&bounds=%s&bankid=%s&account=%s", 
 				AppSettings.userid,
-				"f6e5cea9c610a35ffcf11539fd16049a",//getIntent().getStringExtra("orderid"),
-				"0",//getIntent().getStringExtra("bounds"),
-				"00001",//getIntent().getStringExtra("bankid"),
-				""//getIntent().getStringExtra("account")
+				getIntent().getStringExtra("orderid"),
+				getIntent().getStringExtra("bounds"),
+				getIntent().getStringExtra("bankid"),
+				getIntent().getStringExtra("account")
 				);
 		beginHttp();
 		new HttpExecuteGetTask(){
