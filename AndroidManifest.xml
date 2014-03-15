@@ -63,10 +63,9 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> 
+            </intent-filter>
         </activity>
         <activity android:name="cn.count.easydrive366.Splash" >
-           
         </activity>
         <activity android:name="cn.count.easydrive366.HomeActivity" >
         </activity>
@@ -203,19 +202,25 @@
         <activity android:name="cn.count.easydrive366.card.AddCardStep2Activity" />
         <activity android:name="cn.count.easydrive366.goods.GoodsListActivity" />
         <activity android:name="cn.count.easydrive366.goods.GoodsDetailActivity" >
-           <!--  <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter> -->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name="cn.count.easydrive366.provider.ProviderListActivity" />
         <activity android:name="cn.count.easydrive366.provider.ProviderDetailActivity" >
-          <!--   <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter> -->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name="cn.count.easydrive366.article.ArticleListActivity" />
         <activity android:name="cn.count.easydrive366.comments.ItemCommentsActivity" />
@@ -224,11 +229,14 @@
         <activity android:name="cn.count.easydrive366.user.TaskListActivity" />
         <activity android:name="cn.count.easydrive366.user.DoTaskActivity" />
         <activity android:name="cn.count.easydrive366.user.FriendActivity" >
-          <!--   <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter> -->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name="cn.count.easydrive366.order.NewOrderActivity" >
         </activity>
@@ -260,7 +268,7 @@
         </activity>
         <activity android:name="cn.count.easydrive366.insurance.BuyInsuranceStep7" >
         </activity>
-         <activity android:name="cn.count.easydrive366.insurance.InsuranceList" >
+        <activity android:name="cn.count.easydrive366.insurance.InsuranceList" >
         </activity>
         <activity android:name="cn.count.easydrive366.insurance.UploadInsPhotoActivity" >
         </activity>
@@ -277,6 +285,16 @@
         <activity android:name="cn.count.easydrive366.afterpay.FinishedActivity" >
         </activity>
         <activity android:name="cn.count.easydrive366.carservice.ServiceDetailActivity" >
+        </activity>
+        <activity android:name="cn.count.easydrive366.share.OpenActivity" >
+            <intent-filter>
+                <data android:scheme="easydrive366" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
         </activity>
     </application>
 
