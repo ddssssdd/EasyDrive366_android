@@ -336,15 +336,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class id {
         public static final int AlipayTitle=0x7f080011;
         public static final int FlashBarLayout=0x7f080084;
-        public static final int action_favor=0x7f080194;
-        public static final int action_search=0x7f080193;
-        public static final int action_settings=0x7f080192;
-        public static final int action_share=0x7f080195;
-        public static final int action_share_email=0x7f080199;
-        public static final int action_share_friends=0x7f080197;
-        public static final int action_share_text=0x7f08019a;
-        public static final int action_share_weibo=0x7f080198;
-        public static final int action_share_weixin=0x7f080196;
+        public static final int action_favor=0x7f080196;
+        public static final int action_search=0x7f080195;
+        public static final int action_settings=0x7f080194;
+        public static final int action_share=0x7f080197;
+        public static final int action_share_email=0x7f080192;
+        public static final int action_share_friends=0x7f080199;
+        public static final int action_share_text=0x7f080193;
+        public static final int action_share_weibo=0x7f08019a;
+        public static final int action_share_weixin=0x7f080198;
         public static final int bmapsView=0x7f0800b1;
         public static final int both=0x7f080003;
         public static final int bottom=0x7f0800d5;

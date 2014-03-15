@@ -169,9 +169,9 @@ public class ArticleListFragment extends BaseListViewV4Fragment implements Respo
 		// pop up share choose;
 		String[] items = {this.getActivity().getResources().getString(R.string.share_weixin),
 				this.getActivity().getResources().getString(R.string.share_weixin_friends),
-				this.getActivity().getResources().getString(R.string.share_weibo),
+				this.getActivity().getResources().getString(R.string.share_weibo),/*
 				this.getActivity().getResources().getString(R.string.share_email),
-				this.getActivity().getResources().getString(R.string.share_text)};
+				this.getActivity().getResources().getString(R.string.share_text)*/};
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
 		_select_share_index=-1;

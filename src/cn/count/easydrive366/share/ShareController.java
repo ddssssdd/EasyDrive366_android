@@ -190,7 +190,7 @@ public class ShareController {
 	private WebpageObject getWebpageObj(final String title,final String description,final String url) {
         WebpageObject mediaObject = new WebpageObject();
         mediaObject.identify = Utility.generateGUID();
-        mediaObject.title = title;
+        mediaObject.title = String.format("%s:%s", title,description);
         mediaObject.description = description;
         
         // 设置 Bitmap 类型的图片到视频对象里
@@ -206,6 +206,10 @@ public class ShareController {
 		WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
 		//weiboMessage.textObject = getTextObj();
 		weiboMessage.mediaObject = getWebpageObj(_title,_description,_url);
+		TextObject textObject = new TextObject();
+	    textObject.text = String.format("%s:%s", _title,_description);
+	        
+		weiboMessage.textObject =textObject; 
 		SendMultiMessageToWeiboRequest request = new SendMultiMessageToWeiboRequest();
 		request.transaction = String.valueOf(System.currentTimeMillis());
 		request.multiMessage = weiboMessage;

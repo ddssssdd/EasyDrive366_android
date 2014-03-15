@@ -22,14 +22,14 @@
                 android:id="@+id/action_share_weibo"
                 android:showAsAction="ifRoom"
                 android:title="@string/share_weibo"/>
-            <item
+           <!--  <item
                 android:id="@+id/action_share_email"
                 android:showAsAction="ifRoom"
                 android:title="@string/share_email"/>
             <item
                 android:id="@+id/action_share_text"
                 android:showAsAction="ifRoom"
-                android:title="@string/share_text"/>
+                android:title="@string/share_text"/> -->
         </menu>
     </item>
 
