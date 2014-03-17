@@ -104,6 +104,7 @@
             android:text="订单信息" />
 
         <LinearLayout
+            android:id="@+id/layout_order_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
@@ -128,7 +129,31 @@
                 android:gravity="right"
                 android:text="@string/placeholder" />
         </LinearLayout>
+		<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/signup_hit_input2"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="3"
+                android:text="消费码" />
+
+            <TextView
+                android:id="@+id/txt_coupon_code"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dip"
+                android:layout_weight="7"
+                android:gravity="right"
+                android:text="@string/placeholder" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

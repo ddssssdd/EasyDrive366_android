@@ -573,7 +573,10 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 	}
 
 	private void open_insurance() {
-
+		Intent intent = new Intent(this.getActivity(), NeedPayListActivity.class);
+		intent.putExtra("status", "finished");
+		intent.putExtra("type", "ins");
+		startActivity(intent);
 	}
 
 	private void open_task() {

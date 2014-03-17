@@ -47,7 +47,12 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	@Override
 	protected void reload_data(){
 		_status = getIntent().getStringExtra("status");
-		this.get(String.format("order/order_list?userid=%d&status=%s", AppSettings.userid,_status), 1);
+		String type = getIntent().getStringExtra("type");
+		String url =String.format("order/order_list?userid=%d&status=%s", AppSettings.userid,_status);
+		if (type!=null && !type.isEmpty()){
+			url = String.format("%s&type=%s", url,type);
+		}
+		this.get(url, 1);
 		if ("finished".equals(_status)){
 			this.setBarTitle("我的订单");
 		}else{

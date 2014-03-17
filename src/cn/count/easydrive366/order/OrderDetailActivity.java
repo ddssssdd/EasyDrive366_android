@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.afterpay.AfterPayController;
 import cn.count.easydrive366.insurance.UploadInsPhotoActivity;
@@ -30,6 +31,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 	private boolean is_upload;
 	private int order_count;
 	private JSONObject json;
+	private String order_url;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -64,6 +66,18 @@ public class OrderDetailActivity extends BaseHttpActivity {
 				next_form = json.getString("next_form");
 				is_upload = json.getInt("is_upload")==1;
 				is_exform = json.getInt("is_exform")==1;
+				order_url = json.getString("order_url");
+				if (order_url!=null && !order_url.isEmpty()){
+					findViewById(R.id.layout_order_id).setOnClickListener(new OnClickListener(){
+
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent(OrderDetailActivity.this,BrowserActivity.class);
+							intent.putExtra("url", order_url);
+							startActivity(intent);
+							
+						}});
+				}
 				if (!is_exform){
 					this.rightTopMenu.setVisible(false);
 				}
@@ -85,6 +99,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 				//sets order informaiton
 				((TextView)findViewById(R.id.txt_order_id)).setText(json.getString("order_id"));
 				((TextView)findViewById(R.id.txt_order_time)).setText(json.getString("order_time"));
+				((TextView)findViewById(R.id.txt_coupon_code)).setText(json.getString("coupon_code"));
 				((TextView)findViewById(R.id.txt_count)).setText(String.format("%d", order_count));
 				((TextView)findViewById(R.id.txt_order_total)).setText(json.getString("order_total"));
 				if (order_status.equals("notpay")){
