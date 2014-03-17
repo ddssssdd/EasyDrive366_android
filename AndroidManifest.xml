@@ -60,9 +60,18 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
+                
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="easydrive366" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
         <activity android:name="cn.count.easydrive366.Splash" >
@@ -286,7 +295,8 @@
         </activity>
         <activity android:name="cn.count.easydrive366.carservice.ServiceDetailActivity" >
         </activity>
-        <activity android:name="cn.count.easydrive366.share.OpenActivity" >
+        
+        <!-- <activity android:name="cn.count.easydrive366.share.OpenActivity" >
             <intent-filter>
                 <data android:scheme="easydrive366" />
 
@@ -295,7 +305,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-        </activity>
+        </activity> -->
     </application>
 
 </manifest>

@@ -10,7 +10,9 @@ import java.util.TimerTask;
 
 import cn.count.easydrive366.article.ArticleListFragment;
 import cn.count.easydrive366.components.EDViewPager;
+import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydrive366.goods.GoodsListFragment;
+import cn.count.easydrive366.provider.ProviderDetailActivity;
 import cn.count.easydrive366.provider.ProviderListFragment;
 import cn.count.easydrive366.user.SettingsFragment;
 import cn.count.easydriver366.base.AppSettings;
@@ -24,6 +26,7 @@ import android.app.ActionBar.Tab;
 import android.app.ActivityManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -103,8 +106,30 @@ public class MainActivity extends FragmentActivity {
         mTabPager.getCurrentItem();
         
         new CheckUpdate(this,false);
+        handle_extra_call();
         
     }  
+    private void handle_extra_call(){
+    	Intent intent = this.getIntent();
+		Uri uri = intent.getData();
+		if (uri==null){
+			return;
+		}
+		String type = uri.getQueryParameter("type").toLowerCase();
+		String id = uri.getQueryParameter("id");
+		String name = uri.getQueryParameter("name");
+		
+		if (type.equals("spv")){
+			Intent i = new Intent(this,ProviderDetailActivity.class);
+			i.putExtra("code", id);
+			startActivity(i);
+		}else if (type.equals("gds")){
+			Intent i = new Intent(this,
+					GoodsDetailActivity.class);
+			i.putExtra("id",Integer.parseInt( id));
+			startActivity(i);
+		}
+    }
     
     private void startBackendService(){
 		if (!isServiceRunning()){
