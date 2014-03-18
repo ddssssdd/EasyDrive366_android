@@ -79,7 +79,8 @@ public class PayActivity extends BaseHttpActivity {
 	private void setupUseDiscount(final boolean isUsed){
 		try{
 			isUseDiscount = isUsed;
-			txtOrderPay.setText(data.getString(isUsed?"order_pay":"order_pay_2"));
+			price = data.getString(isUsed?"order_pay":"order_pay_2");
+			txtOrderPay.setText(price);
 		}catch(Exception e){
 			log(e);
 		}
@@ -110,22 +111,25 @@ public class PayActivity extends BaseHttpActivity {
 			tblPays = (LinearLayout)findViewById(R.id.tb_pays);
 			tblItems.removeAllViews();
 			tblPays.removeAllViews();
-			
+			price = data.getString(isUseDiscount?"order_pay":"order_pay_2");
 			JSONArray goods = data.getJSONArray("goods");
 			
-			/*
+			
 			for(int i=0;i<goods.length();i++){
 				JSONObject item = goods.getJSONObject(i);
+				/*
 				TableRow tr = new TableRow(this);
 				PayGoodsItem goodsItem = new PayGoodsItem(this,null);
 				goodsItem.setData(item.getString("name"), item.getString("price"), item.getString("quantity"));
 				tr.addView(goodsItem);
 				tblItems.addView(tr);
+				*/
 				title = item.getString("name");
 				body  = item.getString("name");
-				price = item.getString("price");
+				//price = item.getString("price");
+				break;
 			}
-			*/
+			
 			JSONArray pays = data.getJSONArray("pay");
 			for(int i=0;i<pays.length();i++){
 				final JSONObject pay = pays.getJSONObject(i);
@@ -210,7 +214,8 @@ public class PayActivity extends BaseHttpActivity {
 		}
 	}
 	private String getNewOrderInfo(int position) {
-		price = "0.01";
+		//price = "0.01";
+		price = price.replace("元", "");
 		StringBuilder sb = new StringBuilder();
 		sb.append("partner=\"");
 		sb.append(Keys.DEFAULT_PARTNER);

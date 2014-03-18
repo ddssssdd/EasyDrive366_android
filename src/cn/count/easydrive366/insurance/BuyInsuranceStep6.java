@@ -162,7 +162,8 @@ public class BuyInsuranceStep6 extends BaseInsurance {
 		}
 	}
 	private String getNewOrderInfo(int position) {
-		price = "0.01";
+		//price = "0.01";
+		price = price.replace("元", "");
 		String title = "在线购买保险";
 		String body = order_id;
 		StringBuilder sb = new StringBuilder();
