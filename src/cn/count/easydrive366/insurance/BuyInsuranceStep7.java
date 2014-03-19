@@ -15,7 +15,7 @@ import cn.count.easydriver366.base.HttpExecuteGetTask;
 
 public class BuyInsuranceStep7 extends BaseInsurance {
 	private String data;
-	
+	private String order_id;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -71,11 +71,13 @@ public class BuyInsuranceStep7 extends BaseInsurance {
 		if (AppSettings.isSuccessJSON(result, this)){
 			Intent intent = new Intent(this,UploadInsPhotoActivity.class);
 			intent.putExtra("data", result);
+			intent.putExtra("o_id", this.order_id);
 			startActivity(intent);
 			stack_push();
 		}
 	}
 	private void init_view(){
+		this.order_id = getIntent().getStringExtra("orderid");
 		String url = String.format("ins/carins_address?userid=%d&orderid=%s&bounds=%s&bankid=%s&account=%s", 
 				AppSettings.userid,
 				getIntent().getStringExtra("orderid"),

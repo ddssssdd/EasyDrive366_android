@@ -56,7 +56,7 @@ public class UploadInsPhotoActivity extends BaseInsurance {
 	private static int WIDTH = 640;
 	private static int HEIGHT = 480;
 	protected DisplayMetrics dm;
-	private String orderid;
+	private String order_id;
 	protected static final String imgPath = Environment
 			.getExternalStorageDirectory().getPath() + "/DCIM/Camera";
 	protected static final File PHOTO_DIR = new File(imgPath);
@@ -102,7 +102,7 @@ public class UploadInsPhotoActivity extends BaseInsurance {
 		data = getIntent().getStringExtra("data");
 		
 		
-		String order_id = null;
+		
 		order_id = getIntent().getStringExtra("order_id");
 		if (order_id!=null && !order_id.isEmpty()){
 			String url = String.format("order/order_upload?userid=%d&orderid=%s", AppSettings.userid,order_id);
@@ -117,6 +117,7 @@ public class UploadInsPhotoActivity extends BaseInsurance {
 					
 				}}.execute(url);
 		}else{
+			this.order_id = getIntent().getStringExtra("o_id");
 			init_view();
 		}
 	}
@@ -156,6 +157,9 @@ public class UploadInsPhotoActivity extends BaseInsurance {
 		JSONObject json = AppSettings.getSuccessJSON(data,this);
 		if (json!=null){
 			try{
+				if (!json.isNull("order_id")){
+					this.order_id = json.getString("order_id");
+				}
 				JSONArray helps = json.getJSONArray("help");
 				if (helps.length()>0){
 					JSONObject help = helps.getJSONObject(0);
@@ -465,7 +469,7 @@ public class UploadInsPhotoActivity extends BaseInsurance {
 		try {
 			String actionUrl = String.format(
 					"%supload/upload_carins?userid=%d&typeid=%d&orderid=%s",
-					AppSettings.ServerUrl, AppSettings.userid,_typeid,this.orderid);
+					AppSettings.ServerUrl, AppSettings.userid,_typeid,this.order_id);
 			String result = getHttpClient().uploadFile(actionUrl, "userfile",
 					baos.toByteArray());
 			JSONObject json = new JSONObject(result);

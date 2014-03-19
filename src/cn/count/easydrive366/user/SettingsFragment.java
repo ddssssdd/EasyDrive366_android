@@ -636,10 +636,10 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 					.getString("msg_maintain"));
 			txtNickname.setText(AppSettings.getDefaultString(
 					json.getString("nickname"), "（未设置）"));
-			txtExp.setText(json.getString("exp"));
+			txtExp.setText(json.getString("exp_label"));
 			// txtBound.setText(Html.fromHtml( String.format("<a>我的积分:%s</a>",
 			// json.getString("bound"))));
-			txtBound.setText(String.format("<我的积分:%s", json.getString("bound")));
+			txtBound.setText(String.format("我的积分:%s", json.getString("bound")));
 			txtSignature.setText(AppSettings.getDefaultString(
 					json.getString("signature"), "啥也没有说"));
 			this.loadImageFromUrl(imgAvater, json.getString("photourl"));
