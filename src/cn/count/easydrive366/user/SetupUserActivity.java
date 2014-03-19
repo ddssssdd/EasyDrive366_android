@@ -446,8 +446,10 @@ public class SetupUserActivity extends BaseHttpActivity {
 					AppSettings.ServerUrl, AppSettings.userid);
 			String result = getHttpClient().uploadFile(actionUrl, "userfile",
 					baos.toByteArray());
-			JSONObject json = new JSONObject(result);
-			this.showMessage("上传成功！", null);
+			//JSONObject json = new JSONObject(result);
+			if (AppSettings.isSuccessJSON(result, this)){
+				this.showMessage("上传成功！", null);
+			}
 		} catch (Exception e) {
 
 		}

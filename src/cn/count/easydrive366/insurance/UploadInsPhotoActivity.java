@@ -472,8 +472,10 @@ public class UploadInsPhotoActivity extends BaseInsurance {
 					AppSettings.ServerUrl, AppSettings.userid,_typeid,this.order_id);
 			String result = getHttpClient().uploadFile(actionUrl, "userfile",
 					baos.toByteArray());
-			JSONObject json = new JSONObject(result);
-			this.showMessage("上传成功！", null);
+			if (AppSettings.isSuccessJSON(result, this)){
+				//JSONObject json = new JSONObject(result);
+				this.showMessage("上传成功！", null);
+			}
 		} catch (Exception e) {
 
 		}
