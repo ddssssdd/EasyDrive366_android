@@ -152,13 +152,13 @@ public class MainActivity extends FragmentActivity {
 		}
 		return result;
 	}
-	/*
+	
 	@Override
 	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
 	
 		super.onActivityResult(arg0, arg1, arg2);
 	}
-	*/
+	
 	private MenuItem rightMenu;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -48,6 +48,7 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 	private int _isbind = 1;
 	private String _cellphone;
 	private int BINDCELLPHONE = 1;
+	private int SETUP_USER =2;
 	private String _number;
 	private String _code;
 	private String _activate_date;
@@ -290,7 +291,7 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 	}
 	private void openSetupUser(){
 		Intent intent = new Intent(this.getActivity(),SetupUserActivity.class);
-		startActivityForResult(intent, android.app.Activity.RESULT_OK);
+		startActivityForResult(intent, this.SETUP_USER);
 	}
 	private void changePassword() {
 		Intent intent = new Intent(this.getActivity(), PasswordResetActivity.class);

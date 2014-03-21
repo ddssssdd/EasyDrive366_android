@@ -2,6 +2,8 @@ package cn.count.easydrive366.user;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import org.json.JSONObject;
 
@@ -11,6 +13,7 @@ import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -143,16 +146,30 @@ public class SetupUserActivity extends BaseHttpActivity {
 	}
 
 	private void doSave(){
-		String url = String.format("bound/save_user_info?userid=%d&nickname=%s&signature=%s",AppSettings.userid,_edtName.getText().toString(),_edtSign.getText().toString());
-		beginHttp();
-		new HttpExecuteGetTask(){
+		String url;
+		try {
+			url = String.format("bound/save_user_info?userid=%d&nickname=%s&signature=%s",
+					
+					AppSettings.userid,
+					URLEncoder.encode(_edtName.getText().toString(),"utf-8"),
+					URLEncoder.encode(_edtSign.getText().toString(),"utf-8"));
+			beginHttp();
+			new HttpExecuteGetTask(){
 
-			@Override
-			protected void onPostExecute(String result) {
-				endHttp();
-				AppSettings.isSuccessJSON(result,SetupUserActivity.this);
-				
-			}}.execute(url);
+				@Override
+				protected void onPostExecute(String result) {
+					endHttp();
+					//AppSettings.isSuccessJSON(result,SetupUserActivity.this);
+					if (AppSettings.isSuccessJSON(result, SetupUserActivity.this)){
+						SetupUserActivity.this.setResult(Activity.RESULT_OK);
+						finish();
+						
+					}
+				}}.execute(url);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void load_data(){

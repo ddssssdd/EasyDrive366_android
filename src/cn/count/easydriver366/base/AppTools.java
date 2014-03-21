@@ -39,7 +39,8 @@ public final class AppTools {
 			
 			return r;
 		}catch(Exception e){
-			log(e);
+			if (e!=null)
+				log(e);
 		}
 		return false;
 	}
