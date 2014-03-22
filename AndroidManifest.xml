@@ -295,7 +295,10 @@
         </activity>
         <activity android:name="cn.count.easydrive366.carservice.ServiceDetailActivity" >
         </activity>
-        
+        <activity android:name="cn.count.easydrive366.afterpay.JobSelectActivity" >
+        </activity>
+        <activity android:name="cn.count.easydrive366.afterpay.JobDetailActivity" >
+        </activity>
         <!-- <activity android:name="cn.count.easydrive366.share.OpenActivity" >
             <intent-filter>
                 <data android:scheme="easydrive366" />

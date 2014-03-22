@@ -26,8 +26,11 @@ public class AccidentActivity extends BaseHttpActivity {
 	private EditText edt_cellphone;
 	private TextView txt_job;
 	private EditText edt_idcard;
+	/*
 	private JSONArray type_list;
 	private String current_type;
+	*/
+	private int job_id;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -63,22 +66,18 @@ public class AccidentActivity extends BaseHttpActivity {
 			this.showMessage("手机不能为空！",null);
 			return;
 		}
-		if (index==-1){
-			this.showMessage("请选择类型！",null);
+		if (job_id==0){
+			this.showMessage("请选择职业分类！",null);
 			return;
 		}
-		try{
-			current_type =type_list.getJSONObject(index).getString("value");
-		}catch(Exception e){
-			
-		}
 		
-		String url = String.format("order/order_ins_accident?userid=%d&orderid=%s&name=%s&phone=%s&type=%s&idcard=%s",
+		
+		String url = String.format("order/order_ins_accident?userid=%d&orderid=%s&name=%s&phone=%s&type=%d&idcard=%s",
 				AppSettings.userid,
 				order_id,
 				edt_name.getText().toString(),
 				edt_cellphone.getText().toString(),
-				current_type,
+				job_id,
 				edt_idcard.getText().toString());
 				
 		beginHttp();
@@ -115,6 +114,7 @@ public class AccidentActivity extends BaseHttpActivity {
 			
 			edt_idcard.setText(json.getString("idcard"));
 			txt_job.setText(json.getString("type_name"));
+			/*
 			type_list = json.getJSONArray("list_type");
 			current_type = json.getString("type");
 			
@@ -125,6 +125,7 @@ public class AccidentActivity extends BaseHttpActivity {
 					index =i;
 				}
 			}
+			*/
 			findViewById(R.id.row_job).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -132,11 +133,30 @@ public class AccidentActivity extends BaseHttpActivity {
 					choose_job();
 					
 				}});
+			job_id = json.getInt("type");
 		}catch(Exception e){
 			log(e);
 		}
 	}
 	private void choose_job(){
+		Intent intent = new Intent(this,JobSelectActivity.class);
+		intent.putExtra("order_id", this.order_id);
+		intent.putExtra("job_id", job_id);
+		startActivityForResult(intent,1);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+		//super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode==1){
+			job_id =data.getIntExtra("job_id", job_id);
+			txt_job.setText(data.getStringExtra("job_name"));
+			
+		}
+	}
+	/*
+	private void choose_job_old(){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		
 		
@@ -162,4 +182,5 @@ public class AccidentActivity extends BaseHttpActivity {
         });
 		builder.show();
 	}
+	*/
 }
