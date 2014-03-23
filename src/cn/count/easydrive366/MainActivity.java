@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 
 
+import cn.count.easydrive366.article.ArticleFragment;
 import cn.count.easydrive366.article.ArticleListFragment;
 import cn.count.easydrive366.components.EDViewPager;
 import cn.count.easydrive366.goods.GoodsDetailActivity;
@@ -64,8 +65,9 @@ public class MainActivity extends FragmentActivity {
 	private Timer _quitTimer;
     private GoodsListFragment _goods;
     private ProviderListFragment _provider;
-    private ArticleListFragment _article;
+    //private ArticleListFragment _article;
     private SettingsFragment _settings;
+    private ArticleFragment _article2;
     
     @Override  
     public void onCreate(Bundle savedInstanceState) {  
@@ -365,10 +367,15 @@ public class MainActivity extends FragmentActivity {
 				}
 				return _provider;
 			}else if (position ==3){
+				/*
 				if (_article==null){
 					_article = new ArticleListFragment();
 				}
-				return _article;
+				*/
+				if (_article2==null){
+					_article2 = new ArticleFragment();
+				}
+				return _article2;
 			}else if (position ==4){
 				if (_settings==null){
 					_settings = new SettingsFragment();

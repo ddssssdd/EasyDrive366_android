@@ -67,7 +67,23 @@ public class BaseHttpV4Fragment extends Fragment implements
 		
 
 	}
-
+	protected void cache_load(final int msgType){
+		if (this.is_update_expired(msgType)){
+			reload_data();
+			return;
+		}
+		String result = this.getOfflineResult(msgType);
+		if (result!=null && !result.isEmpty()){
+			try{
+				processMessage(msgType, new JSONObject(result));
+			}catch(Exception e){
+				reload_data();
+			}
+			
+		}else{
+			reload_data();
+		}
+	}
 	protected void setupScrollView() {
 		mPullRefreshScrollView = (PullToRefreshScrollView) containerView.findViewById(R.id.pull_refresh_scrollview);
 		mPullRefreshScrollView
