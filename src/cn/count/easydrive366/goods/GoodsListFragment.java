@@ -57,7 +57,7 @@ public class GoodsListFragment extends BaseListViewV4Fragment {
 	protected void reload_data() {
 		if (_isSearching) {
 			this.get(String.format(
-					"library/get_list?userid=%d&type=%s&keyword=%s",
+					"goods/get_goods_list?userid=%d&type=%s&keyword=%s",
 					AppSettings.userid, _types, _key), 1);
 			_isSearching = false;
 
