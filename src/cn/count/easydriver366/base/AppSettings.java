@@ -45,7 +45,7 @@ public final class AppSettings {
 	static public JSONArray driver_type_list;
 	static public int update_time=4*60*60;
 	static public boolean isquiting = false;
-	static public String version = "1.07";
+	static public String version = "2.0";
 	
 	public static boolean isOutputDebug = true;
 	public static final int READ_TIMEOUT = 10;
