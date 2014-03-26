@@ -179,6 +179,11 @@ public class PayActivity extends BaseHttpActivity {
 	private static final int RQF_PAY = 1;
 	private static final int RQF_LOGIN = 2;
 	private void alipayStart(){
+		price = price.replace("元", "");
+		if (Float.parseFloat(price)<0.009){
+			this.showMessage("应付金额为0不能使用支付宝支付。", null);
+			return;
+		}
 		try {
 			
 			String info = getNewOrderInfo(0);
