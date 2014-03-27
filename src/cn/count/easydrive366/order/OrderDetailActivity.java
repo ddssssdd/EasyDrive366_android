@@ -9,6 +9,7 @@ import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.afterpay.AfterPayController;
 import cn.count.easydrive366.insurance.UploadInsPhotoActivity;
+import cn.count.easydrive366.user.BoundActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.BaseHttpActivity;
@@ -66,7 +67,10 @@ public class OrderDetailActivity extends BaseHttpActivity {
 				next_form = json.getString("next_form");
 				is_upload = json.getInt("is_upload")==1;
 				is_exform = json.getInt("is_exform")==1;
-				order_url = json.getString("order_url");
+				order_url = json.getString("order_url").trim();
+				
+				final String status_url = json.getString("status_url").trim();
+				
 				if (order_url!=null && !order_url.isEmpty()){
 					findViewById(R.id.layout_order_id).setOnClickListener(new OnClickListener(){
 
@@ -102,6 +106,19 @@ public class OrderDetailActivity extends BaseHttpActivity {
 				((TextView)findViewById(R.id.txt_coupon_code)).setText(json.getString("coupon_code"));
 				((TextView)findViewById(R.id.txt_count)).setText(String.format("%d", order_count));
 				((TextView)findViewById(R.id.txt_order_total)).setText(json.getString("order_total"));
+				((TextView)findViewById(R.id.txt_order_status)).setText(json.getString("order_status_name"));
+				findViewById(R.id.layout_status).setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						if (status_url!=null && !status_url.isEmpty()){
+							Intent intent = new Intent(OrderDetailActivity.this,BrowserActivity.class);
+							intent.putExtra("url", status_url);
+							OrderDetailActivity.this.startActivity(intent);
+							
+						}
+						
+					}});
 				if (order_status.equals("notpay")){
 					this.rightTopMenu.setVisible(false);
 					findViewById(R.id.layout_contents).setVisibility(View.GONE);
@@ -111,6 +128,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 					findViewById(R.id.layout_shouldpay).setVisibility(View.GONE);
 					findViewById(R.id.layout_pay).setVisibility(View.GONE);
 					findViewById(R.id.layout_upload).setVisibility(View.GONE);
+					findViewById(R.id.layout_get_bounds).setVisibility(View.GONE);
 					findViewById(R.id.btn_pay).setOnClickListener(new OnClickListener(){
 
 						@Override
@@ -167,6 +185,20 @@ public class OrderDetailActivity extends BaseHttpActivity {
 					((TextView)findViewById(R.id.txt_pay_discount)).setText(temp);
 					((TextView)findViewById(R.id.txt_bounds)).setText(json.getString("bounds"));
 					((TextView)findViewById(R.id.txt_order_pay)).setText(json.getString("order_pay"));
+					//bounds
+					((TextView)findViewById(R.id.txt_get_bounds)).setText(json.getString("get_bounds"));
+					findViewById(R.id.layout_get_bounds).setOnClickListener(new OnClickListener(){
+
+						@Override
+						public void onClick(View v) {
+							if (status_url!=null && !status_url.isEmpty()){
+								Intent intent = new Intent(OrderDetailActivity.this,BoundActivity.class);
+								
+								OrderDetailActivity.this.startActivity(intent);
+								
+							}
+							
+						}});
 					//pay
 					JSONArray pays = json.getJSONArray("pay");
 					TableLayout tblPays = (TableLayout)findViewById(R.id.tb_pays);

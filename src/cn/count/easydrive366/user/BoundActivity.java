@@ -34,8 +34,7 @@ public class BoundActivity extends BaseHttpActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_userbound);
 		this.setBarTitle("积分交易明细");
-		this.setupPhoneButtonInVisible();
-		this.setRightButtonInVisible();
+		
 		this.setupLeftButton();
 		init_view();
 		load_data();
@@ -55,10 +54,12 @@ public class BoundActivity extends BaseHttpActivity {
 	}
 	private void load_data(){
 		String url = String.format("bound/get_bounds_his?userid=%d", AppSettings.userid);
+		beginHttp();
 		new HttpExecuteGetTask(){
 
 			@Override
 			protected void onPostExecute(String result) {
+				endHttp();
 				load_view(result);
 				
 			}}.execute(url);
@@ -66,6 +67,9 @@ public class BoundActivity extends BaseHttpActivity {
 	}
 	private void load_view(final String result){
 		JSONObject json = AppSettings.getSuccessJSON(result,this);
+		if (json==null){
+			return;
+		}
 		try{
 			txtContent.setText(json.getString("content"));
 			JSONArray tempList = json.getJSONArray("data");
@@ -76,7 +80,7 @@ public class BoundActivity extends BaseHttpActivity {
 				bound.bound = item.getString("bounds");
 				bound.date = item.getString("from_time");
 				bound.memo = item.getString("from_type");
-				
+				bound.left = item.getString("this_bounds");
 				_list.add(bound);
 			}
 			if (_adapter==null){
@@ -94,11 +98,13 @@ public class BoundActivity extends BaseHttpActivity {
 		public String date;
 		public String bound;
 		public String memo;
+		public String left;
 	}
 	private class ViewHolder{
 		public TextView txtDate;
 		public TextView txtBound;
 		public TextView txtMemo;
+		public TextView txtLeft;
 	}
 	private class BoundAdapter extends BaseAdapter{
 		private LayoutInflater mLayoutInflater;
@@ -133,6 +139,7 @@ public class BoundActivity extends BaseHttpActivity {
 				holder.txtBound = (TextView)convertView.findViewById(R.id.txtBound);
 				holder.txtDate = (TextView)convertView.findViewById(R.id.txtDate);
 				holder.txtMemo = (TextView)convertView.findViewById(R.id.txtMemo);
+				holder.txtLeft = (TextView)convertView.findViewById(R.id.txtLeft);
 				convertView.setTag(holder);
 			}else{
 				holder = (ViewHolder)convertView.getTag();
@@ -141,6 +148,7 @@ public class BoundActivity extends BaseHttpActivity {
 			holder.txtBound.setText(bound.bound);
 			holder.txtDate.setText(bound.date);
 			holder.txtMemo.setText(bound.memo);
+			holder.txtLeft.setText(bound.left);
 			return convertView;
 		}
 		

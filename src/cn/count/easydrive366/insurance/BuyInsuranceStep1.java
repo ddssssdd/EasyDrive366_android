@@ -83,7 +83,11 @@ public class BuyInsuranceStep1 extends BaseInsurance {
 		try{
 			JSONObject json =AppSettings.getSuccessJSON(result,this);
 			if (json!=null){
+				this.rightTopMenu.setEnabled(true);
 				_webView.loadUrl(json.getString("web_url"));
+			}else{
+				this.rightTopMenu.setEnabled(false);
+				
 			}
 		}
 		catch(Exception e){

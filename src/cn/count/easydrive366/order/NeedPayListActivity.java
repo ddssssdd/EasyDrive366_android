@@ -35,10 +35,14 @@ public class NeedPayListActivity extends BaseListViewActivity{
 		setContentView(R.layout.modules_goodslist);
 		
 		this.setupLeftButton();
+		_status = getIntent().getStringExtra("status");
 		
 		this.resource_listview_id = R.id.modules_information_listview;
 		
-		this.resource_listitem_id = R.layout.listitem_needpay;
+		if (_status.equals("notpay"))
+			this.resource_listitem_id = R.layout.listitem_needpay;
+		else
+			this.resource_listitem_id = R.layout.listitem_needpay2;
 		
 		
 		reload_data();
@@ -46,7 +50,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	}
 	@Override
 	protected void reload_data(){
-		_status = getIntent().getStringExtra("status");
+		
 		String type = getIntent().getStringExtra("type");
 		String url =String.format("order/order_list?userid=%d&status=%s", AppSettings.userid,_status);
 		if (type!=null && !type.isEmpty()){
@@ -72,6 +76,8 @@ public class NeedPayListActivity extends BaseListViewActivity{
 				good.put("order_id", item.getString("order_id"));
 				good.put("order_total", item.getString("order_total"));
 				good.put("order_time", item.getString("order_time"));
+				good.put("po", item.getString("po"));
+				good.put("order_status_name", item.getString("order_status_name"));
 				results.put(i,good);
 			}
 			
@@ -114,10 +120,14 @@ public class NeedPayListActivity extends BaseListViewActivity{
 	//	holder.detail4.setText(info.get("quantity").toString());
 		
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
-		holder.button1.setTag(info.get("order_id"));
+		
 		holder.btnDelete.setTag(info.get("order_id"));
 		if (!_status.equals("notpay")){
 			holder.detail4.setText(info.get("order_time").toString());
+			holder.detail2.setText(info.get("po").toString());
+			holder.detail5.setText(info.get("order_status_name").toString());
+		}else{
+			holder.button1.setTag(info.get("order_id"));
 		}
 		
 	}
@@ -126,16 +136,12 @@ public class NeedPayListActivity extends BaseListViewActivity{
 		holder.title = (TextView)convertView.findViewById(R.id.txt_name);
 		holder.detail = (TextView)convertView.findViewById(R.id.txt_description);
 		holder.detail3 = (TextView)convertView.findViewById(R.id.txt_total);
-		holder.detail4 = (TextView)convertView.findViewById(R.id.txt_order_time);
-		
 		holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
-		holder.button1 =(Button)convertView.findViewById(R.id.btn_buy);
 		holder.btnDelete =(Button)convertView.findViewById(R.id.btn_delete);
 		holder.btnDelete.setVisibility(View.GONE);
 		convertView.setTag(holder);
 		if (_status.equals("notpay")){
-			holder.detail4.setVisibility(View.GONE);
-			holder.button1.setVisibility(View.VISIBLE);
+			holder.button1 =(Button)convertView.findViewById(R.id.btn_buy);
 			holder.button1.setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -147,8 +153,9 @@ public class NeedPayListActivity extends BaseListViewActivity{
 					NeedPayListActivity.this.finish();
 				}});
 		}else{
-			holder.detail4.setVisibility(View.VISIBLE);
-			holder.button1.setVisibility(View.GONE);
+			holder.detail4 = (TextView)convertView.findViewById(R.id.txt_order_time);
+			holder.detail2 = (TextView)convertView.findViewById(R.id.txt_po);
+			holder.detail5 = (TextView)convertView.findViewById(R.id.txt_order_status);
 		}
 		
 		holder.btnDelete.setOnClickListener(new OnClickListener(){

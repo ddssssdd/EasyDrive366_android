@@ -263,19 +263,7 @@ public class HomeActivity extends Activity {
 		}
 		
 	}
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_welcome, menu);
-		return true;
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
-		//this.logout();
-		Intent intent = new Intent(this,SettingsActivity.class);
-		startActivity(intent);
-		return true;
-	}
+	
 	public void logout(){
 		AppSettings.logout(this);
 		Intent intent = new Intent(this,WelcomeActivity.class);
