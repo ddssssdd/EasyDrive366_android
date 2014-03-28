@@ -212,9 +212,8 @@ public class HomeFragment extends Fragment implements IRightButtonPressed{
 	@Override
 	public void onRightButtonPress() {
 		if (AppSettings.isLogin){
-			Intent intent = new Intent(this.getActivity(),SettingsActivity.class);
-			
-			startActivityForResult(intent,1);
+			MainActivity main = (MainActivity)this.getActivity();
+			main.gotoTab(4);
 		}else{
 			Intent intent = new Intent(this.getActivity(),WelcomeActivity.class);
 			startActivityForResult(intent,2);

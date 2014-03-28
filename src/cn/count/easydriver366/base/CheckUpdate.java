@@ -1,5 +1,4 @@
 package cn.count.easydriver366.base;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,6 +12,8 @@ import org.json.JSONObject;
 import cn.count.easydriver366.service.DownloadUtils;
 
 import cn.count.easydrive366.R;
+import cn.count.easydrive366.SettingsActivity;
+import cn.count.easydrive366.signup.Step1Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,6 +22,7 @@ import android.app.DownloadManager.Request;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
@@ -55,21 +57,40 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 				@Override
 				public void run() {
 					check(json);
-					
+
 			}});
 		}
-		
+
+	}
+	private void needsetup(final String message){
+
+		new AlertDialog.Builder(_context).setTitle(_context.getResources().getString(R.string.hint))
+		.setIcon(android.R.drawable.ic_dialog_alert)
+		.setMessage(message).setPositiveButton(_context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent(_context,Step1Activity.class);
+				_context.startActivity(intent);
+
+			}
+		})
+		.setNegativeButton(_context.getResources().getString(R.string.cancel), null).show();
 	}
 	private void check(final Object result){
 		try{
 			JSONObject json = ((JSONObject)result).getJSONObject("result");
+			final boolean need_set =json.getBoolean("needset");
+			final String needsetmsg= json.getString("needsetmsg");
+
+
 			if (!json.getString("ver").equals(AppSettings.version)){
-				
+
 				final String url = json.getString("android");
 				new AlertDialog.Builder(_context).setTitle(_context.getResources().getString(R.string.hint))
 				.setIcon(android.R.drawable.ic_dialog_alert)
 				.setMessage(json.getString("msg")).setPositiveButton(_context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
-					
+
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						/*
@@ -81,27 +102,42 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 						File updateApk = downLoadFile(url);
 						openFile(updateApk);
 						*/
-						
+
 						//download("http://192.168.1.102/EasyDrive366_1_03.apk");
 						download(url);
+						if (need_set){
+							needsetup(needsetmsg);
+						}
 					}
 				})
-				.setNegativeButton(_context.getResources().getString(R.string.cancel), null).show();
+				.setNegativeButton(_context.getResources().getString(R.string.cancel), new OnClickListener(){
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						if (need_set){
+							needsetup(needsetmsg);
+						}
+
+					}}).show();
 			}else{
 				if (_isSettings){
 					new AlertDialog.Builder(_context).setMessage(json.getString("msg")).show();
+				}else{
+					if (need_set){
+						needsetup(needsetmsg);
+					}
 				}
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
-		
+
+
 	}
 	@Override
 	public void recordResult(int msgType, Object result) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	private void download(final String url){
 		downloadManager = (DownloadManager) _context.getSystemService(android.content.Context.DOWNLOAD_SERVICE);
@@ -181,7 +217,7 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
         }  
     }  
 	protected File downLoadFile(String httpUrl) {
-		
+
         // TODO Auto-generated method stub
         final String fileName = "updata.apk";
         String sdpath = Environment.getExternalStorageDirectory() + "/";
@@ -260,7 +296,7 @@ public class CheckUpdate implements HttpClient.IHttpCallback {
 	@Override
 	public void showFailureMessage(String msg) {
 		//Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-		
+
 	}
 
 

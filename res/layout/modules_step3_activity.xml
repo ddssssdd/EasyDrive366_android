@@ -78,7 +78,7 @@
 
             <TextView
                 style="@style/textview.right"
-                android:text="初登日期：" />
+                android:text="初领日期：" />
 
             <EditText
                 android:id="@+id/edt_init_date"
