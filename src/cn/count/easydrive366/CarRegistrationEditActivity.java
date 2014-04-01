@@ -48,6 +48,7 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 			((EditText)findViewById(R.id.edt_carregistration_engine_no  )).setText(json.getString("engine_no").toUpperCase());
 			((EditText)findViewById(R.id.edt_carregistration_vin  )).setText(json.getString("vin").toUpperCase());
 			((TextView)findViewById(R.id.edt_carregistration_registration_date  )).setText(json.getString("registration_date"));
+			((EditText)findViewById(R.id.edt_carregistration_owner_name  )).setText(json.getString("owner_name").toUpperCase());
 			this.setupRightButtonWithText(this.getResources().getString(R.string.save));
 			/*
 			findViewById(R.id.btn_carregistration_save).setOnClickListener(new OnClickListener(){
@@ -94,12 +95,13 @@ public class CarRegistrationEditActivity extends BaseHttpActivity {
 			this.showMessage(this.getResources().getString(R.string.no_network), null);
 			return;
 		}
-		String url =String.format("api/add_car_registration?user_id=%d&car_id=%s&engine_no=%s&vin=%s&init_date=%s",
+		String url =String.format("api/add_car_registration?user_id=%d&car_id=%s&engine_no=%s&vin=%s&init_date=%s&owner_name=%s",
 				AppSettings.userid,
 				((EditText)findViewById(R.id.edt_carregistration_plate_no)).getText().toString().toUpperCase(),
 				((EditText)findViewById(R.id.edt_carregistration_engine_no)).getText().toString().toUpperCase(),
 				((EditText)findViewById(R.id.edt_carregistration_vin)).getText().toString().toUpperCase(),
-				((TextView)findViewById(R.id.edt_carregistration_registration_date)).getText()
+				((TextView)findViewById(R.id.edt_carregistration_registration_date)).getText(),
+				((EditText)findViewById(R.id.edt_carregistration_owner_name)).getText().toString().toUpperCase()
 				);
 		this.get(url, 2,this.getResources().getString(R.string.app_uploading));
 	}

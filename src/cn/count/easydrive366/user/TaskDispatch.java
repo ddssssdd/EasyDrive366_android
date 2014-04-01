@@ -29,7 +29,7 @@ import cn.count.easydrive366.insurance.InsuranceMenuActivity;
 import cn.count.easydrive366.order.NeedPayListActivity;
 import cn.count.easydrive366.provider.ProviderListActivity;
 import cn.count.easydrive366.signup.Step1Activity;
-import cn.count.easydrive366.user.TaskListActivity.Task;
+import cn.count.easydrive366.user.Task;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.Menus;
 

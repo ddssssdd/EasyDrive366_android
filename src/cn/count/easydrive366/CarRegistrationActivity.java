@@ -2,6 +2,7 @@ package cn.count.easydrive366;
 
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,13 +10,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Button;
+import cn.count.easydrive366.components.CarShopItem;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.AppSettings;
 
 public class CarRegistrationActivity extends BaseListViewActivity {
 	private JSONObject _result;
+	private JSONArray _shops;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -35,6 +39,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 		try{
 			if (msgType==1){
 				_result= (((JSONObject)result).getJSONObject("result")).getJSONObject("data");
+				_shops= (((JSONObject)result).getJSONObject("result")).getJSONArray("list");
 				this.saveWithKey("car_registration", _result);
 			}
 		}catch(Exception e){
@@ -59,6 +64,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 			((TextView)findViewById(R.id.txt_carregistration_untreated_mark  )).setText(_result.getString("untreated_mark"));
 			((TextView)findViewById(R.id.txt_carregistration_untreated_number  )).setText(_result.getString("untreated_number"));
 			((TextView)findViewById(R.id.txt_carregistration_vin  )).setText(_result.getString("vin"));
+			((TextView)findViewById(R.id.txt_carregistration_owner_name  )).setText(_result.getString("owner_name"));
 			this.setupRightButton();
 			/*
 			((Button)findViewById(R.id.btn_carregistration_edit)).setOnClickListener(new OnClickListener(){
@@ -80,6 +86,27 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 					startActivityForResult(intent,1);
 					
 				}});
+			LinearLayout items = (LinearLayout)findViewById(R.id.layout_shops);
+			items.removeAllViews();
+			for(int i=0;i<_shops.length();i++){
+				JSONObject obj = _shops.getJSONObject(i);
+				CarShopItem item = new CarShopItem(this,null,obj.getString("name"),String.format("%s(%s)", obj.getString("address"),obj.get("phone")));
+				item.setTag(obj.getString("url"));
+				item.setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						String url = (String)v.getTag();
+						if (url!=null && !url.isEmpty()){
+							Intent intent = new Intent(CarRegistrationActivity.this,BrowserActivity.class);
+							intent.putExtra("url", url);
+							CarRegistrationActivity.this.startActivity(intent);
+							
+						}
+						
+					}});
+				items.addView(item);
+			}
 			this.endRefresh();
 		}catch(Exception e){
 			log(e);

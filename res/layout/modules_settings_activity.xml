@@ -267,7 +267,7 @@
                 android:id="@+id/row_maintain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/signup_hit_input6"
+                android:background="@drawable/signup_hit_input2"
                 android:gravity="center" >
 
                 <ImageView
@@ -291,7 +291,34 @@
                     android:text="@string/right_arrow"
                     android:textSize="10sp" />
             </TableRow>
+			<TableRow
+                android:id="@+id/row_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/signup_hit_input6"
+                android:gravity="center" >
 
+                <ImageView
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/g" />
+
+                <TextView
+                    android:layout_span="2"
+                    android:gravity="left"
+                    android:text="我的资料" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/txt_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/right_arrow"
+                    android:textSize="10sp" />
+            </TableRow>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="30dp" >

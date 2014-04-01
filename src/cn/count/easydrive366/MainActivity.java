@@ -171,7 +171,7 @@ public class MainActivity extends FragmentActivity {
       return true;
     } 
     public void pageChanged(final int index){
-    	this.mTabPager.setEnabled(index!=3);
+    	this.mTabPager.setEnabled(index!=3 && index!=0);
     	switch(index){
     	case 0:
     		if (AppSettings.isLogin)

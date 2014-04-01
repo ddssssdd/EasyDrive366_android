@@ -75,7 +75,15 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 	}
 
 	private void init_view() {
+		containerView.findViewById(R.id.row_profile).setOnClickListener(
+				new OnClickListener() {
 
+					@Override
+					public void onClick(View v) {
+						open_my_profile();
+
+					}
+				});
 		containerView.findViewById(R.id.row_order).setOnClickListener(
 				new OnClickListener() {
 
@@ -555,6 +563,11 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 	private void open_my_order(){
 		Intent intent = new Intent(this.getActivity(), NeedPayListActivity.class);
 		intent.putExtra("status", "finished");
+		startActivity(intent);
+	}
+	private void open_my_profile(){
+		Intent intent = new Intent(this.getActivity(), UesrProfileActivity.class);
+		
 		startActivity(intent);
 	}
 	private void open_my_favor(){

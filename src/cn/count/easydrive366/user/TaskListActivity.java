@@ -100,16 +100,7 @@ public class TaskListActivity extends BaseHttpActivity {
 		Task task = _list.get(index);
 		new TaskDispatch(this,task).execute();
 	}
-	public class Task{
-		public String title;
-		public String remark;
-		public String bounds;
-		public String pic_url;
-		public String ation_url;
-		public String page_id;
-		public int id;
-		
-	}
+	
 	private class ViewHolder{
 		public TextView txtTitle;
 		public TextView txtRemark;
