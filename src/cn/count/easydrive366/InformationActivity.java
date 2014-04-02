@@ -24,6 +24,8 @@ import android.widget.CheckBox;
 
 
 
+import cn.count.easydrive366.user.Task;
+import cn.count.easydrive366.user.TaskDispatch;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.base.Menus;
@@ -104,6 +106,12 @@ public class InformationActivity extends BaseListViewActivity {
 				intent.putExtra("url", url);
 				startActivity(intent);
 			}else if (!action.equals("01")){
+				Task task = new Task();
+				task.ation_url = "";
+				task.page_id = action;
+				task.id =Integer.parseInt(map.get("id").toString());
+				new TaskDispatch(this,task).execute();
+				/*
 				getInformation(map.get("id").toString());
 				Menus menus = new Menus(this);
 				//Class<?> intentClass = menus.findMenuItemClassByKey(action);
@@ -113,6 +121,7 @@ public class InformationActivity extends BaseListViewActivity {
 					intent.putExtra("title", item.name);
 					startActivity(intent);
 				}
+				*/
 			}else{
 				Intent intent = new Intent(this,InformationDetailActivity.class);
 				intent.putExtra("id", map.get("id").toString());

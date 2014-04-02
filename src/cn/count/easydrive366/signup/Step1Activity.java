@@ -59,6 +59,7 @@ public class Step1Activity extends BaseHttpActivity {
 					AppSettings.userid = json.getJSONObject("result").getInt("userid");
 					intent.putExtra("vin", json.getJSONObject("result").getString("vin"));
 					intent.putExtra("engine_no", json.getJSONObject("result").getString("engine_no"));
+					intent.putExtra("owner_name", json.getJSONObject("result").getString("owner_name"));
 					intent.putExtra("registration_date", json.getJSONObject("result").getString("registration_date"));
 					startActivity(intent);
 					finish();

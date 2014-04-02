@@ -26,7 +26,7 @@ public class BuyInsuranceStep3 extends BaseInsurance {
 	private TextView txt_exhause;
 	private TextView txt_biz_date;
 	private TextView txt_gear;
-	private TextView txt_price;
+	private EditText edt_price;
 	private TextView txt_com_date;
 	private String data;
 	@Override
@@ -45,6 +45,10 @@ public class BuyInsuranceStep3 extends BaseInsurance {
 		doSave();
 	}
 	private void doSave(){
+		if (edt_price.getText().toString().trim().isEmpty()){
+			this.showMessage("参考价格不能为空！",null);
+			return;
+		}
 		if (txt_biz_date.getText().toString().trim().isEmpty()){
 			this.showMessage("商业险起期不能为空！",null);
 			return;
@@ -54,10 +58,11 @@ public class BuyInsuranceStep3 extends BaseInsurance {
 			return;
 		}
 		try{
-			String url = String.format("ins/carins_clause?userid=%d&biz_valid=%s&com_valid=%s", 
+			String url = String.format("ins/carins_clause?userid=%d&biz_valid=%s&com_valid=%s&price=%s", 
 					AppSettings.userid,
 					URLEncoder.encode(txt_biz_date.getText().toString().trim(),"utf-8"),
-					URLEncoder.encode(txt_com_date.getText().toString().trim(),"utf-8"));
+					URLEncoder.encode(txt_com_date.getText().toString().trim(),"utf-8"),
+					edt_price.getText().toString().trim());
 			beginHttp();
 			new HttpExecuteGetTask(){
 
@@ -98,7 +103,7 @@ public class BuyInsuranceStep3 extends BaseInsurance {
 		txt_exhause = (TextView)findViewById(R.id.txt_exhause);
 		txt_biz_date = (TextView)findViewById(R.id.txt_biz_valid);
 		txt_gear = (TextView)findViewById(R.id.txt_gear);
-		txt_price = (TextView)findViewById(R.id.txt_price);
+		edt_price = (EditText)findViewById(R.id.edt_price);
 		txt_com_date = (TextView)findViewById(R.id.txt_com_valid);
 		
 		findViewById(R.id.layout_biz_valid).setOnClickListener(new OnClickListener(){
@@ -135,7 +140,7 @@ public class BuyInsuranceStep3 extends BaseInsurance {
 				txt_exhause.setText(json.getString("exhause"));
 				txt_biz_date.setText(json.getString("biz_valid"));
 				txt_gear.setText(json.getString("passengers"));
-				txt_price.setText(json.getString("price"));
+				edt_price.setText(json.getString("price"));
 				txt_com_date.setText(json.getString("com_valid"));
 				
 			}catch(Exception e){

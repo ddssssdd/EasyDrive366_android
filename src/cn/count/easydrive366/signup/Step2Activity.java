@@ -28,7 +28,7 @@ public class Step2Activity extends BaseHttpActivity {
 	private EditText edtVIN;
 	private EditText edtEngine_no;
 	private EditText edtRegistration_date;
-	
+	private EditText edtOwner_name;
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
 		this._isHideTitleBar = true;
@@ -42,7 +42,7 @@ public class Step2Activity extends BaseHttpActivity {
 		edtVIN = (EditText)findViewById(R.id.edt_vin);
 		edtEngine_no = (EditText)findViewById(R.id.edt_engine_no);
 		edtRegistration_date = (EditText)findViewById(R.id.edt_registration_date);
-		
+		edtOwner_name = (EditText)findViewById(R.id.edt_owner_name);
 		
 		btnNext.setOnClickListener(new OnClickListener(){
 
@@ -62,6 +62,7 @@ public class Step2Activity extends BaseHttpActivity {
 		edtVIN.setText(intent.getStringExtra("vin"));
 		edtEngine_no.setText(intent.getStringExtra("engine_no"));
 		edtRegistration_date.setText(intent.getStringExtra("registration_date"));
+		edtOwner_name.setText(intent.getStringExtra("owner_name"));
 	}
 	
 	@Override
@@ -96,7 +97,7 @@ public class Step2Activity extends BaseHttpActivity {
 		String vin= edtVIN.getText().toString();
 		String engine_no = edtEngine_no.getText().toString();
 		String registration_date = edtRegistration_date.getText().toString();
-		
+		String owner_name = edtOwner_name.getText().toString();
 		/*
 		if (vin.equals("")){
 			this.showMessage("请输入VIN码。", null);
@@ -111,7 +112,7 @@ public class Step2Activity extends BaseHttpActivity {
 			return;
 		}
 		*/
-		String url =String.format("api/wizardstep2?userid=%d&vin=%s&engine_no=%s&registration_date=%s",AppSettings.userid,vin,engine_no,registration_date);
+		String url =String.format("api/wizardstep2?userid=%d&vin=%s&engine_no=%s&registration_date=%s&owner_name=%s",AppSettings.userid,vin,engine_no,registration_date,owner_name);
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtVIN.getWindowToken(), 0);
 		this.get(url, 1);

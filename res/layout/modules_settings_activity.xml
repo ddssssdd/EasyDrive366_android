@@ -302,7 +302,7 @@
                     android:layout_width="30dip"
                     android:layout_height="30dip"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/g" />
+                    android:src="@drawable/p" />
 
                 <TextView
                     android:layout_span="2"

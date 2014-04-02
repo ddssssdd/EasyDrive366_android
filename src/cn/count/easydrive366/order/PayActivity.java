@@ -88,7 +88,7 @@ public class PayActivity extends BaseHttpActivity {
 	private void load_view(final String result){
 		txtOrderPay=(TextView)findViewById(R.id.txt_order_pay);
 		chbUse = (CheckBox)findViewById(R.id.chb_usedicount);
-		chbUse.setChecked(true);
+		chbUse.setChecked(false);
 		chbUse.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
 			@Override
@@ -100,13 +100,13 @@ public class PayActivity extends BaseHttpActivity {
 		
 		data = AppSettings.getSuccessJSON(result,this);
 		try{
-			isUseDiscount =true;
+			isUseDiscount =false;
 			order_id = data.getString("order_id");
 			((TextView)findViewById(R.id.txt_order_total)).setText(data.getString("order_total"));
 			((TextView)findViewById(R.id.txt_discount)).setText(data.getString("discount"));
 			((TextView)findViewById(R.id.txt_bounds)).setText(data.getString("bounds"));
 			bounds_num = data.getString("bounds_num");
-			txtOrderPay.setText(data.getString("order_pay"));
+			txtOrderPay.setText(data.getString("order_pay_2"));
 			tblItems = (TableLayout)findViewById(R.id.tb_items);
 			tblPays = (LinearLayout)findViewById(R.id.tb_pays);
 			tblItems.removeAllViews();

@@ -123,7 +123,7 @@
 
              <TextView
                 style="@style/textview.right"
-                android:text="车主名称:" />
+                android:text="所有人:" />
 
             <EditText
                 android:id="@+id/edt_carregistration_owner_name"
