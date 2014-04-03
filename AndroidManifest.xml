@@ -301,6 +301,8 @@
         </activity>
         <activity android:name="cn.count.easydrive366.user.UesrProfileActivity" >
         </activity>
+        <activity android:name="cn.count.easydrive366.goods.GoodsShopListActivity" >
+        </activity>
         <!-- <activity android:name="cn.count.easydrive366.share.OpenActivity" >
             <intent-filter>
                 <data android:scheme="easydrive366" />

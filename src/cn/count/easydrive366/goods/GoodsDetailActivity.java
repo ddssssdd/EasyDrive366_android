@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.comments.ItemCommentsActivity;
 import cn.count.easydrive366.order.NewOrderActivity;
+import cn.count.easydrive366.provider.ProviderDetailActivity;
 import cn.count.easydrive366.share.FavorController;
 import cn.count.easydrive366.share.ShareController;
 import cn.count.easydriver366.base.AppSettings;
@@ -156,9 +158,46 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 						
 					}});
 			}
+			findViewById(R.id.layout_lookservice).setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					open_service();
+					
+				}});
+			JSONArray list = _json.getJSONArray("provider_list");
+			LinearLayout items = (LinearLayout)findViewById(R.id.layout_shops);
+			items.removeAllViews();
+			for(int i=0;i<list.length();i++){
+				JSONObject item = list.getJSONObject(i);
+				GoodsProviderItem gpi = new GoodsProviderItem(this,null,
+						item.getString("name"),
+						item.getString("phone"),
+						item.getString("address"),
+						item.getString("star_voternum"),
+						item.getInt("star_num"),
+						item.getString("pic_url"));
+				gpi.setTag(item.get("code"));
+				gpi.setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						String code = (String)v.getTag();
+						Intent intent = new Intent(GoodsDetailActivity.this,ProviderDetailActivity.class);
+						intent.putExtra("code", code);
+						startActivity(intent);
+						
+					}});
+				items.addView(gpi);
+			}
 		} catch (Exception e) {
 			log(e);
 		}
+	}
+	private void open_service(){
+		Intent intent =new Intent(this,GoodsShopListActivity.class);
+		intent.putExtra("id", this._goods_id);
+		startActivity(intent);
 	}
 
 	private void btnBuyPressed() {

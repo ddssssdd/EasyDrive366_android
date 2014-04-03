@@ -1,4 +1,5 @@
-package cn.count.easydrive366.provider;
+package cn.count.easydrive366.goods;
+
 
 import java.util.Map;
 
@@ -14,47 +15,40 @@ import android.widget.TextView;
 
 import cn.count.easydrive366.BaseListViewActivity;
 import cn.count.easydrive366.R;
-import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
-import cn.count.easydrive366.baidumap.SearchShopActivity;
-import cn.count.easydrive366.goods.GoodsDetailActivity;
+
+import cn.count.easydrive366.baidumap.ShowLocationActivity;
+import cn.count.easydrive366.provider.ProviderDetailActivity;
 import cn.count.easydriver366.base.AppSettings;
 
-public class ProviderListActivity extends BaseListViewActivity {
-	private boolean _isSearching=false;
-	private String _types;
-	private String _key;
+public class GoodsShopListActivity extends BaseListViewActivity {
+	private int goods_id;
+	private String shoplist;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.modules_goodslist);
-		this.setupRightButtonWithText("分类");
+		this.setupRightButtonWithText("地图");
 		this.setupPhoneButtonInVisible();
-		this.setBarTitle("推荐商户");
+		this.setBarTitle("服务网点");
 		this.setupLeftButton();
 		this.resource_listview_id = R.id.modules_information_listview;
 		//this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.listitem_provider;
 		restoreFromLocal(1);
-		
+		goods_id = getIntent().getIntExtra("id", 0);
 		reload_data();
 		this.setupPullToRefresh();
 	}
 	@Override
 	protected void reload_data(){
-		if (_isSearching){
-			this.get(String.format("api/get_service_list?userid=%d&type=%s&keyword=%s", AppSettings.userid,_types,_key), 1);
-			_isSearching = false;
-			
-		}else{
-			this.get(String.format("api/get_service_list?userid=%d", AppSettings.userid), 1);
-		}
+		this.get(String.format("goods/list_goods_service?userid=%d&id=%d", AppSettings.userid,goods_id), 1);
 	}
 	@Override
 	protected void initData(Object result,int msgType){
 		try{
 			
 			JSONArray list = ((JSONObject)result).getJSONArray("result");
-			
+			shoplist = result.toString();
 			this.initList(list);
 			
 		}catch(Exception e){
@@ -102,20 +96,11 @@ public class ProviderListActivity extends BaseListViewActivity {
 	}
 	@Override
 	protected void onRightButtonPress() {
-		Intent intent = new Intent(this,SearchShopActivity.class);
-		intent.putExtra("isSearching", true);
-		intent.putExtra("type", "provider");
-		intent.putExtra("title", "Provider");
-		this.startActivityForResult(intent, 1);
+		Intent intent = new Intent(this,ShowLocationActivity.class);
+		intent.putExtra("isFull", false);
+		intent.putExtra("shoplist", shoplist);
+		startActivity(intent);
 	}
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		if (requestCode==1 && resultCode==RESULT_OK){
-			_types= intent.getStringExtra("types");
-			_key = intent.getStringExtra("key");
-			_isSearching = true;
-			this.reload_data();
-		}
-	}
+	
 	
 }
