@@ -3,6 +3,7 @@ package cn.count.easydrive366.afterpay;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -149,7 +150,7 @@ public class AccidentActivity extends BaseHttpActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		
 		//super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode==1){
+		if (requestCode==1 && resultCode==Activity.RESULT_OK && data!=null){
 			job_id =data.getIntExtra("job_id", job_id);
 			txt_job.setText(data.getStringExtra("job_name"));
 			

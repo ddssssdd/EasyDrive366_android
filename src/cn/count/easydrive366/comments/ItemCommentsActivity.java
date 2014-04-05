@@ -68,7 +68,11 @@ public class ItemCommentsActivity extends BaseHttpActivity {
 			RatingBar bar = (RatingBar)findViewById(R.id.rating_bar);
 			bar.setRating(json.getInt("avg_star_num"));
 			JSONArray list = json.getJSONArray("list");
-			
+			Intent intent = new Intent();
+			intent.putExtra("star",json.getString("avg_star"));
+			intent.putExtra("star_num",json.getInt("avg_star_num"));
+			intent.putExtra("star_voternum",json.getString("total_voters"));
+			this.setResult(RESULT_OK, intent);
 			JSONObject stars_info = json.getJSONObject("stars_info");
 			JSONObject star = stars_info.getJSONObject("1");
 			ProgressBar pb  =(ProgressBar)findViewById(R.id.pb_star1);
@@ -136,7 +140,7 @@ public class ItemCommentsActivity extends BaseHttpActivity {
 		Intent intent = new Intent(this,DoCommentActivity.class);
 		intent.putExtra("id", getIntent().getStringExtra("id"));
 		intent.putExtra("type", getIntent().getStringExtra("type"));
-		startActivity(intent);
+		startActivityForResult(intent,1);
 		
 	}
 	@Override

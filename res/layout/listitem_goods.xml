@@ -51,6 +51,7 @@
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
             android:layout_marginBottom="5dip"
+            android:gravity="center_vertical"
             android:layout_weight="1"
             android:orientation="horizontal" >
 
@@ -60,16 +61,17 @@
                 android:layout_height="wrap_content"
                 android:text="middle left"
                android:layout_alignParentLeft="true"
-                android:textSize="12sp" />
+               android:layout_alignBaseline="@+id/txt_discount"
+                android:textSize="8sp" />
 
             <TextView
-                android:id="@+id/txt_discount"
+                android:id="@id/txt_discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="middle left"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/red"
-                android:textSize="14sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/txt_price"
@@ -79,7 +81,7 @@
                 android:layout_alignParentRight="true"
                 android:text="middle right"
                 android:textColor="@color/red"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </RelativeLayout>
 
         <RelativeLayout

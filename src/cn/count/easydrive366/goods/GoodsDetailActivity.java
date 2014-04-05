@@ -145,7 +145,8 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 					_json.getString("share_url"));
 			_index = 0;
 			_favor.init(_json.getInt("is_favor"), _menuFavor, _id, "GDS");
-			showPicture();
+			//showPicture();
+			this.loadImageFromUrl(imgPicture, _json.getString("pic_url"), R.drawable.default_640x234);
 			this.addSwipeToView(imgPicture);
 			if (clause_url!=null && !clause_url.isEmpty()){
 				findViewById(R.id.layout_agreement).setOnClickListener(new OnClickListener(){
@@ -212,7 +213,17 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 		Intent intent = new Intent(this, ItemCommentsActivity.class);
 		intent.putExtra("id", String.valueOf(_goods_id));
 		intent.putExtra("type", "goods");
-		startActivity(intent);
+		startActivityForResult(intent,5);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode==5){
+			txtRate.setText(data.getStringExtra("star"));
+			txtVoternum.setText(data.getStringExtra("star_voternum"));
+			rateBar.setRating(data.getIntExtra("star_num",(int)rateBar.getRating()));
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private void showPicture() {
@@ -222,8 +233,9 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 				txtIndex.setText(String.format("%d/%d", _index + 1,
 						_albums.length()));
 				String url = _albums.getJSONObject(_index).getString("pic_url");
-				com.koushikdutta.urlimageviewhelper.UrlImageViewHelper
-						.setUrlDrawable(imgPicture, url);
+				this.loadImageFromUrl(imgPicture, url, R.drawable.default_640x234);
+				//com.koushikdutta.urlimageviewhelper.UrlImageViewHelper
+				//		.setUrlDrawable(imgPicture, url);
 			} catch (Exception e) {
 				log(e);
 			}

@@ -36,6 +36,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 
@@ -100,6 +101,11 @@ public class SetupUserActivity extends BaseHttpActivity {
 		load_data();
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+		/*
+		 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(mPullRefreshScrollView.getWindowToken(), 0);
+		 
+		 */
 	}
 	
 	private void setupView(){
@@ -142,6 +148,8 @@ public class SetupUserActivity extends BaseHttpActivity {
 	
 	@Override
 	protected void onRightButtonPress() {
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(_edtName.getWindowToken(), 0);
 		doSave();
 	}
 

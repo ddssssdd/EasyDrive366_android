@@ -28,16 +28,17 @@ public final class AppSettings {
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
 	//below is for debug
+	/*
 	static public String WEIXIN_ID ="wxbf4902100b6d4a69";
 	static public String SINA_WEIBO_ID="4276960189";  
 	static public String BAIDUMAPKEY="nu9WO5Zg0SBHQXvegwM60DWH";//for debug   //old:30d50073a606ac3ce0b7f8a187e8248b
-	
+	*/
 	// below is for release
-	/*
+	
 	static public String WEIXIN_ID ="wxe590795397d68fd3";//"wxe590795397d68fd3";
 	static public String SINA_WEIBO_ID="4031912721";  //"4031912721"
 	static public String BAIDUMAPKEY="939cb0c01d09f55edbf15645e42a1624";//for release
-	*/
+	
 	static public int userid=-1;
 	static public int TotalPageCount=12;
 	static public String username;

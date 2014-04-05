@@ -38,6 +38,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
 import cn.count.easydrive366.baidumap.ShowLocationActivity;
@@ -63,6 +64,7 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 	private MenuItem _menuFavor;
 	private FavorController _favor;
 	private IWeiboShareAPI _weibo;
+	private String _content_url;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -114,6 +116,14 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 				
 			}
 		});
+		findViewById(R.id.layout_content).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				openContent();
+				
+			}
+		});
 		txtIndex = (TextView)findViewById(R.id.txt_index);
 	}
 	@Override
@@ -137,7 +147,7 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 		Intent intent =new Intent(this,ItemCommentsActivity.class);
 		intent.putExtra("id",code);
 		intent.putExtra("type", "provider");
-		startActivity(intent);
+		startActivityForResult(intent,5);
 	}
 	private void openPhone(){
 		Uri uri =Uri.parse(String.format("tel:%s",_phone)); 
@@ -145,12 +155,41 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 		Intent it = new Intent(Intent.ACTION_VIEW,uri); 
 		startActivity(it); 
 	}
+	
+	private void openContent(){
+		if (_content_url!=null && !_content_url.isEmpty()){
+			Intent intent = new Intent(this,BrowserActivity.class);
+			intent.putExtra("url", _content_url);
+			startActivity(intent);
+		}
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode==5){
+			((TextView)findViewById(R.id.txt_star)).setText(data.getStringExtra("star"));
+			((TextView)findViewById(R.id.txt_voternum)).setText(data.getStringExtra("star_voternum"));
+			((RatingBar)findViewById(R.id.rating_bar)).setRating(data.getIntExtra("star_num",(int)((RatingBar)findViewById(R.id.rating_bar)).getRating()));
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 	private void openAddress(){
 		Intent intent = new Intent(this,ShowLocationActivity.class);
+		intent.putExtra("isFull", false);
+		try{
+			JSONObject result=new JSONObject();
+			result.put("status", "success");
+			JSONArray list = new JSONArray();
+			list.put(json);
+			result.put("result", list);
+			intent.putExtra("shoplist", result.toString());
+		}catch(Exception e){
+			log(e);
+		}
 		startActivity(intent);
 	}
+	private JSONObject json;
 	private void load_view(final String result){
-		JSONObject json =  AppSettings.getSuccessJSON(result,this);
+		json =  AppSettings.getSuccessJSON(result,this);
 		if (json==null) return;
 		try{
 			LinearLayout items = (LinearLayout)findViewById(R.id.layout_items);
@@ -161,6 +200,9 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 			((TextView)findViewById(R.id.txt_star)).setText(json.getString("star"));
 			((TextView)findViewById(R.id.txt_voternum)).setText(json.getString("star_voternum"));
 			((RatingBar)findViewById(R.id.rating_bar)).setRating(json.getInt("star_num"));
+			((TextView)findViewById(R.id.txt_content)).setText(json.getString("description"));
+			_content_url = json.getString("intro_url");
+			this.loadImageFromUrl(_imageView, json.getString("pic_url"), R.drawable.default_640x234);
 			_phone =json.getString("phone");
 			_share.setContent(json);
 			_favor.init(json.getInt("is_favor"), _menuFavor, code, "SPV");
@@ -203,10 +245,12 @@ public class ProviderDetailActivity extends BaseHttpActivity  implements Respons
 				_imageList.add(album);
 				
 			}
+			/*
 			if (_imageList.size()>0){
 				_index = 0;
 				showPicture();
 			}
+			*/
 			
 		}catch(Exception e){
 			log(e);

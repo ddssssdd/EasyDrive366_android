@@ -41,6 +41,8 @@ public class JobSelectActivity extends BaseHttpActivity {
 			intent.putExtra("job_name", current_jk.name);
 			this.setResult(RESULT_OK, intent);
 			finish();
+		}else{
+			this.showMessage("请选择一个职业分类",null);
 		}
 	}
 

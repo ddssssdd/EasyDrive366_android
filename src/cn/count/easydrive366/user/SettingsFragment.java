@@ -5,6 +5,7 @@ import java.util.Locale;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -70,6 +72,7 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 		this.setupPhoneButtonInVisible();
 		this.init_view();
 		this.setBarTitle(this.getResources().getString(R.string.menu_settings));
+		
 		return containerView;
 
 	}

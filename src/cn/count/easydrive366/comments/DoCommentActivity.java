@@ -2,8 +2,10 @@ package cn.count.easydrive366.comments;
 
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import cn.count.easydrive366.R;
@@ -37,6 +39,8 @@ public class DoCommentActivity extends BaseHttpActivity {
 		});
 	}
 	private void doComment(){
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(edtComment.getWindowToken(), 0);
 		String comment = edtComment.getText().toString();
 		int rating = (int) rb.getRating();
 		String url = String.format("comment/edit_comment?userid=%d&id=%s&type=%s&comment=%s&star=%d", AppSettings.userid,_item_id,

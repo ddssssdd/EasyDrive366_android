@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,6 +82,8 @@ public class FriendActivity extends BaseHttpActivity implements Response{
 
 			}
 		});
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(edt_code.getWindowToken(), 0);
 	}
 
 	private void do_save() {
@@ -153,7 +156,8 @@ public class FriendActivity extends BaseHttpActivity implements Response{
 
 			}
 			*/
-			txt_invite_code.setText(json.getString("invite_code"));
+			txt_invite_code.setText("");
+			edt_code.setText(json.getString("invite_code"));
 			edt_code.setEnabled(is_can_invite);
 			btn_save.setEnabled(is_can_invite);
 
@@ -268,7 +272,12 @@ public class FriendActivity extends BaseHttpActivity implements Response{
 		return super.onOptionsItemSelected(item);
 	}
 
-	
+	@Override
+	protected void onLeftButtonPress(){
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(edt_code.getWindowToken(), 0);
+		finish();
+	}
 
 	@Override
 	protected void onNewIntent(Intent intent) {
