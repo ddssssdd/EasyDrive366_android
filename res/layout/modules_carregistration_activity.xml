@@ -385,7 +385,15 @@
                         android:text="" />
                 </TableRow>
             </TableLayout>
-
+			<TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left"
+                    android:text="4S店"
+                    android:textSize="16sp" />
             <LinearLayout
                 android:id="@+id/layout_shops"
                 android:layout_width="match_parent"
