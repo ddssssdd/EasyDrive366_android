@@ -335,7 +335,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class id {
         public static final int AlipayTitle=0x7f080011;
-        public static final int FlashBarLayout=0x7f08008b;
+        public static final int FlashBarLayout=0x7f08008f;
         public static final int action_favor=0x7f0801ae;
         public static final int action_search=0x7f0801ad;
         public static final int action_settings=0x7f0801ac;
@@ -358,7 +358,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_compulsory_insurance_0=0x7f0800e4;
         public static final int btn_compulsory_insurance_1=0x7f0800e5;
         public static final int btn_compulsory_insurance_2=0x7f0800e6;
-        public static final int btn_delete=0x7f08008c;
+        public static final int btn_delete=0x7f08008b;
         public static final int btn_down=0x7f08018a;
         public static final int btn_friend=0x7f08019c;
         public static final int btn_get_code=0x7f0800c2;
@@ -707,8 +707,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txt_no=0x7f0800a4;
         public static final int txt_order_id=0x7f080123;
         public static final int txt_order_pay=0x7f080039;
-        public static final int txt_order_status=0x7f08008f;
-        public static final int txt_order_time=0x7f08008d;
+        public static final int txt_order_status=0x7f08008e;
+        public static final int txt_order_time=0x7f08008c;
         public static final int txt_order_total=0x7f080036;
         public static final int txt_partview_business_biz=0x7f080191;
         public static final int txt_partview_business_companyname=0x7f080192;
@@ -723,7 +723,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txt_phone1=0x7f08012c;
         public static final int txt_phone2=0x7f080130;
         public static final int txt_phone3=0x7f080136;
-        public static final int txt_po=0x7f08008e;
+        public static final int txt_po=0x7f08008d;
         public static final int txt_price=0x7f080083;
         public static final int txt_price_order=0x7f080189;
         public static final int txt_price_time=0x7f080088;

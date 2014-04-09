@@ -138,7 +138,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 		holder.detail3 = (TextView)convertView.findViewById(R.id.txt_total);
 		holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
 		holder.btnDelete =(Button)convertView.findViewById(R.id.btn_delete);
-		holder.btnDelete.setVisibility(View.GONE);
+		
 		convertView.setTag(holder);
 		if (_status.equals("notpay")){
 			holder.button1 =(Button)convertView.findViewById(R.id.btn_buy);
@@ -152,41 +152,20 @@ public class NeedPayListActivity extends BaseListViewActivity{
 					startActivity(intent);
 					NeedPayListActivity.this.finish();
 				}});
+			holder.btnDelete.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					String id =(String)v.getTag();
+					deleteOrder(id);
+				}});
 		}else{
 			holder.detail4 = (TextView)convertView.findViewById(R.id.txt_order_time);
 			holder.detail2 = (TextView)convertView.findViewById(R.id.txt_po);
 			holder.detail5 = (TextView)convertView.findViewById(R.id.txt_order_status);
 		}
 		
-		holder.btnDelete.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				String id =(String)v.getTag();
-				deleteOrder(id);
-			}});
-		/*
-		convertView.setOnTouchListener(new OnSwipeTouchListener(){
-
-			@Override
-			public void onSwipeRight(View v) {
-				ViewHolder holder = (ViewHolder)v.getTag();
-				String id = (String)holder.button1.getTag();
-				holder.btnDelete.setVisibility(View.VISIBLE);
-				
-			}
-
-			@Override
-			public void onSwipeLeft(View v) {
-				ViewHolder holder = (ViewHolder)v.getTag();
-				String id = (String)holder.button1.getTag();
-				holder.btnDelete.setVisibility(View.GONE);
-				
-			}
-			
-			
-		});
-		*/
+		
 	}
 	private void deleteOrder(final String order_id){
 		String url = String.format("order/order_del?userid=%d&orderid=%s", AppSettings.userid,order_id);
@@ -215,68 +194,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 			log(e);
 		}
 	}
-	public abstract class OnSwipeTouchListener implements OnTouchListener {
-		private View sender;
-	    private final GestureDetector gestureDetector = new GestureDetector(NeedPayListActivity.this,new GestureListener());
-
-	    public boolean onTouch(final View view, final MotionEvent motionEvent) {
-	    	sender = view;
-	        return gestureDetector.onTouchEvent(motionEvent);
-	    }
-
-	    
-	    private final class GestureListener extends SimpleOnGestureListener implements OnGestureListener {
-
-	        private static final int SWIPE_THRESHOLD = 50;
-	        private static final int SWIPE_VELOCITY_THRESHOLD = 100;
-
-	        @Override
-	        public boolean onDown(MotionEvent e) {
-	            return true;
-	        }
-
-	        @Override
-	        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-	            boolean result = false;
-	            try {
-	                float diffY = e2.getY() - e1.getY();
-	                float diffX = e2.getX() - e1.getX();
-	                if (Math.abs(diffX) > Math.abs(diffY)) {
-	                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-	                        if (diffX > 0) {
-	                            onSwipeRight(sender);
-	                        } else {
-	                            onSwipeLeft(sender);
-	                        }
-	                    }
-	                } else {
-	                    if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-	                        if (diffY > 0) {
-	                            onSwipeBottom(sender);
-	                        } else {
-	                            onSwipeTop(sender);
-	                        }
-	                    }else{
-	                    	Log.e("Touch","this is a touch");
-	                    }
-	                }
-	            } catch (Exception exception) {
-	                exception.printStackTrace();
-	            }
-	            return result;
-	        }
-	    }
-		abstract public void onSwipeRight(final View v) ;
-
-	    abstract public void onSwipeLeft(final View v); 
-
-	    public void onSwipeTop(final View v) {
-	    }
-
-	    public void onSwipeBottom(final View v) {
-	    }
-	    
-	}
+	
 	
 	
 
