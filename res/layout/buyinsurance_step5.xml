@@ -9,13 +9,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <TextView
+        <CheckBox
             android:id="@+id/txt_section0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dip"
+            android:checked="true"
             android:text="商业险（元）" />
-
+		
         <TableLayout
             android:id="@+id/table_biz"
             style="@style/table"
@@ -26,11 +27,12 @@
             android:stretchColumns="*" >
         </TableLayout>
 
-        <TextView
+        <CheckBox
             android:id="@+id/txt_section1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dip"
+            android:checked="true"
             android:text="交强险及车船税（元）" />
 
         <TableLayout
@@ -42,23 +44,7 @@
             android:gravity="center"
             android:stretchColumns="*" >
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/signup_hit_input1" >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dip"
-                    android:text="选择交强险和车船税" />
-
-                <CheckBox
-                    android:id="@+id/chb_com"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dip" />
-            </TableRow>
+            
 
             <TableRow
                 android:layout_width="match_parent"

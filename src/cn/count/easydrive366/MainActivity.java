@@ -13,6 +13,7 @@ import cn.count.easydrive366.article.ArticleListFragment;
 import cn.count.easydrive366.components.EDViewPager;
 import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydrive366.goods.GoodsListFragment;
+import cn.count.easydrive366.guide.GuideActivity;
 import cn.count.easydrive366.provider.ProviderDetailActivity;
 import cn.count.easydrive366.provider.ProviderListFragment;
 import cn.count.easydrive366.user.SettingsFragment;
@@ -27,6 +28,8 @@ import android.app.ActionBar.Tab;
 import android.app.ActivityManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -109,6 +112,16 @@ public class MainActivity extends FragmentActivity {
         
         new CheckUpdate(this,false);
         handle_extra_call();
+        SharedPreferences pref = this.getSharedPreferences("first_run", MODE_PRIVATE);
+        boolean isfirst=pref.getBoolean("isfirst", true);
+        if (isfirst){
+        	Editor editor =pref.edit();
+        	editor.putBoolean("isfirst", false);
+        	editor.commit();
+        	Intent intent = new Intent(this,GuideActivity.class);
+            startActivity(intent);
+        }
+        
         
     }  
     private void handle_extra_call(){
