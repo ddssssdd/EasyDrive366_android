@@ -38,7 +38,7 @@ import cn.count.easydriver366.base.HttpExecuteGetTask;
 
 public class BuyInsuranceStep6 extends BaseInsurance {
 	private String data;
-	private boolean useDiscount=true;
+	private boolean useDiscount=false;
 	private String order_pay;
 	private String order_pay2;
 	private String order_id;

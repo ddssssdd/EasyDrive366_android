@@ -14,11 +14,13 @@ import cn.count.easydriver366.base.HttpClient;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -104,6 +106,8 @@ public class MaintainEditActivity extends BaseHttpActivity{
 		}
 	}
 	private void save(){
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(((EditText)findViewById(R.id.edt_maintain_max_distance)).getWindowToken(), 0);
 		if (!this.isOnline()){
 			this.showMessage(this.getResources().getString(R.string.no_network), null);
 			return;

@@ -121,13 +121,15 @@ public class NeedPayListActivity extends BaseListViewActivity{
 		
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
 		
-		holder.btnDelete.setTag(info.get("order_id"));
+		
 		if (!_status.equals("notpay")){
+			
 			holder.detail4.setText(info.get("order_time").toString());
 			holder.detail2.setText(info.get("po").toString());
 			holder.detail5.setText(info.get("order_status_name").toString());
 		}else{
 			holder.button1.setTag(info.get("order_id"));
+			holder.btnDelete.setTag(info.get("order_id"));
 		}
 		
 	}
@@ -137,10 +139,11 @@ public class NeedPayListActivity extends BaseListViewActivity{
 		holder.detail = (TextView)convertView.findViewById(R.id.txt_description);
 		holder.detail3 = (TextView)convertView.findViewById(R.id.txt_total);
 		holder.image = (ImageView)convertView.findViewById(R.id.img_picture);
-		holder.btnDelete =(Button)convertView.findViewById(R.id.btn_delete);
+		
 		
 		convertView.setTag(holder);
 		if (_status.equals("notpay")){
+			holder.btnDelete =(Button)convertView.findViewById(R.id.btn_delete);
 			holder.button1 =(Button)convertView.findViewById(R.id.btn_buy);
 			holder.button1.setOnClickListener(new OnClickListener(){
 

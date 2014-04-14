@@ -105,19 +105,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/FlashBarLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_gravity="right" >
-
-        <Button
-            android:id="@+id/btn_delete"
-            style="@style/button.red"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:focusable="false"
-            android:text="@string/delete" />
-    </FrameLayout>
-
+   
 </FrameLayout>

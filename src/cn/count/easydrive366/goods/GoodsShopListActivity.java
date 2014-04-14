@@ -23,6 +23,7 @@ import cn.count.easydriver366.base.AppSettings;
 public class GoodsShopListActivity extends BaseListViewActivity {
 	private int goods_id;
 	private String shoplist;
+	private boolean has_data;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -41,15 +42,20 @@ public class GoodsShopListActivity extends BaseListViewActivity {
 	}
 	@Override
 	protected void reload_data(){
+		has_data = false;
+		
 		this.get(String.format("goods/list_goods_service?userid=%d&id=%d", AppSettings.userid,goods_id), 1);
 	}
 	@Override
 	protected void initData(Object result,int msgType){
 		try{
-			
+		
 			JSONArray list = ((JSONObject)result).getJSONArray("result");
 			shoplist = result.toString();
+			has_data =true;
+			
 			this.initList(list);
+			
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -96,10 +102,12 @@ public class GoodsShopListActivity extends BaseListViewActivity {
 	}
 	@Override
 	protected void onRightButtonPress() {
-		Intent intent = new Intent(this,ShowLocationActivity.class);
-		intent.putExtra("isFull", false);
-		intent.putExtra("shoplist", shoplist);
-		startActivity(intent);
+		if (has_data){
+			Intent intent = new Intent(this,ShowLocationActivity.class);
+			intent.putExtra("isFull", false);
+			intent.putExtra("shoplist", shoplist);
+			startActivity(intent);
+		}
 	}
 	
 	
