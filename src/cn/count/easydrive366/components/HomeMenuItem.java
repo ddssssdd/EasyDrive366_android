@@ -177,8 +177,8 @@ public class HomeMenuItem extends LinearLayout {
 	private void processData(final String json){
 		try{
 			final JSONObject result = new JSONObject(json);
-			_company = result.getString("company");
-			_phone = result.getString("phone");
+			//_company = result.getString("company");
+			//_phone = result.getString("phone");
 			final String d = result.getString("latest");
 			((Activity) _context).runOnUiThread(new Runnable(){
 

@@ -25,6 +25,9 @@ public final class AppTools {
 			Log.e("Application Log", e.getMessage());
 	}
 	public static boolean isSuccess(final String result,Context context){
+		if (result==null){
+			return false;
+		}
 		try{
 			JSONObject json = new JSONObject(result);
 			boolean r = isSuccess(json);

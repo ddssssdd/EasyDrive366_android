@@ -180,7 +180,7 @@ public class HomeFragment extends Fragment implements IRightButtonPressed, OnCli
 		startActivity(intent);
 		
 	}
-	private void settingsButtonPress(){
+	public void settingsButtonPress(){
 		
 		
 		

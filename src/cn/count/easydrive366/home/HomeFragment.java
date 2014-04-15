@@ -170,7 +170,7 @@ public class HomeFragment extends Fragment implements IRightButtonPressed{
 		startActivity(intent);
 		
 	}
-	private void settingsButtonPress(){
+	public void settingsButtonPress(){
 		
 		
 		

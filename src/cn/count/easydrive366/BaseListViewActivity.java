@@ -61,7 +61,7 @@ public abstract class BaseListViewActivity extends BaseHttpActivity {
 				
 			}
 		});
-
+		
 	
 		
 	}

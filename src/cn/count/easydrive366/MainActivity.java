@@ -257,15 +257,18 @@ public class MainActivity extends FragmentActivity {
         }  
   
         public void onClick(View v) {  
-        	
+        	if (index==4 && !AppSettings.isLogin){
+        		gotoLogin();
+        		return;
+        	}
             mTabPager.setCurrentItem(index);  
             Log.d("Tab", String.format("Select=%d", index));
         }  
     };  
   
-    /* 
-     * 页卡切换监听(原作者:D.Winter) 
-     */  
+    private void gotoLogin(){
+    	this._home.settingsButtonPress();
+    }
     public class MyOnPageChangeListener implements OnPageChangeListener {  
         public void onPageSelected(int index) {  
             pageChanged(index);

@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
         android:gravity="center"
-        android:stretchColumns="*" >
+        android:stretchColumns="1" >
 
         <TableRow
             android:layout_width="match_parent"
@@ -33,6 +33,7 @@
                 android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+            
                 android:inputType="text" />
         </TableRow>
 
@@ -80,7 +81,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_margin="10dip"
-        android:stretchColumns="*" >
+        android:stretchColumns="1" >
 
         <TableRow
             android:layout_width="match_parent"
