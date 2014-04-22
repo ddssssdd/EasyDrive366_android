@@ -15,6 +15,7 @@
         android:textSize="@dimen/txtsize" />
 
     <LinearLayout
+        android:id="@+id/layout_brand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dip"
@@ -32,14 +33,19 @@
             android:text="品牌型号："
             android:textSize="@dimen/txtsize" />
 
-        <TextView
-            android:id="@+id/txt_brand"
+        <EditText
+            android:id="@+id/edt_brand"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_weight="2"
             android:text="@string/placeholder"
             android:textSize="@dimen/txtsize" />
+
+        <ImageButton
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:background="@drawable/jiantou" />
     </LinearLayout>
 
     <LinearLayout
@@ -88,8 +94,8 @@
             android:text="排气量："
             android:textSize="@dimen/txtsize" />
 
-        <TextView
-            android:id="@+id/txt_exhause"
+        <EditText
+            android:id="@+id/edt_exhause"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
@@ -116,8 +122,8 @@
             android:text="乘客数："
             android:textSize="@dimen/txtsize" />
 
-        <TextView
-            android:id="@+id/txt_gear"
+        <EditText
+            android:id="@+id/edt_passengers"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
@@ -203,10 +209,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dip"
                 android:layout_marginTop="5dip"
+                android:background="@drawable/jiantou"
                 android:clickable="false"
                 android:contentDescription="@string/init_date"
-                android:focusable="false"
-                android:background="@drawable/jiantou" >
+                android:focusable="false" >
             </ImageButton>
         </RelativeLayout>
     </LinearLayout>
@@ -251,10 +257,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dip"
                 android:layout_marginTop="5dip"
+                android:background="@drawable/jiantou"
                 android:clickable="false"
                 android:contentDescription="@string/init_date"
-                android:focusable="false"
-                android:background="@drawable/jiantou" >
+                android:focusable="false" >
             </ImageButton>
         </RelativeLayout>
     </LinearLayout>

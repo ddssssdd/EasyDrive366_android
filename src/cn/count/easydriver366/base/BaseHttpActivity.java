@@ -47,6 +47,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -334,9 +335,15 @@ public class BaseHttpActivity extends ActionActivity implements
 	}
 
 	protected void onLeftButtonPress() {
+		hideKeyBoard();
 		finish();
 	}
-
+	protected void hideKeyBoard(){
+		if (this.getCurrentFocus() != null) {// 隐藏软键盘
+			((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(this
+					.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+		}
+	}
 	protected void setupLeftButton() {
 		View v = findViewById(R.id.img_navigationbar_logo);
 		if (v != null) {

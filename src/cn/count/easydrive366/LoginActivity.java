@@ -106,6 +106,10 @@ public class LoginActivity extends BaseHttpActivity {
 	private void login(final String username,final String password){
 		//String username= edtUsername.getText().toString();
 		//String password = edtPassword.getText().toString();
+		if (!this.isOnline()){
+			this.showMessage("请先联网再继续。", null);
+			return;
+		}
 		if (username.equals("")){
 			this.showMessage(getResources().getString(R.string.username_not_empty), null);
 			return;
@@ -139,9 +143,8 @@ public class LoginActivity extends BaseHttpActivity {
 			String message;
 			try {
 				message = ((JSONObject)result).getString("message");
-				this.showMessage(message, null);
+				//this.showMessage(message, null);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				log(e);
 			}
 			

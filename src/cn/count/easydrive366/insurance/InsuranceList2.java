@@ -97,7 +97,9 @@ public class InsuranceList2 extends BaseHttpActivity {
 
 	@Override
 	protected void onRightButtonPress() {
-
+		if (list==null){
+			return;
+		}
 		try {
 			list2 = new JSONArray();
 			StringBuilder sb = new StringBuilder();
@@ -115,6 +117,10 @@ public class InsuranceList2 extends BaseHttpActivity {
 				}else{
 					list2.put(info);
 				}
+			}
+			if (sb.length()==0){
+				this.showMessage("请先选择投保单再继续操作。", null);
+				return;
 			}
 			String url = String.format("ins/del_quote?userid=%d&id=%s",AppSettings.userid,sb.toString().substring(0, sb.toString().length() - 1));
 			beginHttp();
