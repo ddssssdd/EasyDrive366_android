@@ -308,13 +308,14 @@ public class ShowLocationActivity extends BaseHttpActivity {
 		public double longtitude;
 		public ShopLocation(JSONObject item){
 			try{
-				code = item.getString("code");
-				name = item.getString("name");
-				address = item.getString("address");
-				phone = item.getString("phone");
-				description = item.getString("description");
 				latitude = item.getDouble("y");
 				longtitude = item.getDouble("x");
+				code = item.optString("code");
+				name = item.optString("name");
+				address = item.optString("address");
+				phone = item.optString("phone");
+				description = item.optString("description");
+				
 			}catch(Exception e){
 				log(e);
 			}
@@ -362,6 +363,8 @@ public class ShowLocationActivity extends BaseHttpActivity {
 				if (_isFull){
 					_mapView.getController().animateTo(new GeoPoint((int)(locData.latitude*1e6),(int)(locData.longitude*1e6)));					
 					getBusiness(locData);	
+				}else{
+					_mapView.getController().animateTo(new GeoPoint((int)(locData.latitude*1e6),(int)(locData.longitude*1e6)));	
 				}
 				isFirstLoc = true;
 				

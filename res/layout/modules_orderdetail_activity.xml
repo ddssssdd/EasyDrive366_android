@@ -9,6 +9,7 @@
         android:orientation="vertical" >
 
         <LinearLayout
+            android:id="@+id/layout_goods"
             android:layout_width="match_parent"
             android:layout_height="120dip"
             android:layout_margin="10dip"
@@ -20,11 +21,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dip"
                 android:layout_marginLeft="10dip"
-                android:layout_marginTop="10dip"
                 android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
                 android:layout_weight="4"
-                android:scaleType="fitXY"
                 android:contentDescription="@string/app_name"
+                android:scaleType="fitXY"
                 android:src="@drawable/default_640x234" />
 
             <LinearLayout
@@ -41,7 +42,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    
                     android:textSize="14sp" />
 
                 <TextView
@@ -49,7 +49,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="3"
-                    
                     android:textSize="10sp" />
 
                 <LinearLayout
@@ -63,7 +62,6 @@
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        
                         android:textSize="12sp" />
 
                     <TextView
@@ -71,7 +69,6 @@
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        
                         android:textColor="@color/red"
                         android:textSize="14sp" />
 
@@ -81,7 +78,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dip"
                         android:layout_weight="1"
-                        
                         android:textColor="@color/red"
                         android:textSize="14sp" />
 
@@ -90,7 +86,6 @@
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -128,8 +123,23 @@
                 android:layout_weight="8"
                 android:gravity="right"
                 android:text="@string/placeholder" />
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:layout_width="20dip"
+                    android:layout_height="20dip"
+                    android:background="@drawable/jiantou" />
+            </LinearLayout>
         </LinearLayout>
-		<LinearLayout
+
+        <LinearLayout
+            android:id="@+id/layout_coupon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
@@ -153,7 +163,20 @@
                 android:layout_weight="7"
                 android:gravity="right"
                 android:text="@string/placeholder" />
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:layout_width="20dip"
+                    android:layout_height="20dip"
+                    android:background="@drawable/jiantou" />
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -231,6 +254,7 @@
                 android:gravity="right"
                 android:text="@string/placeholder" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/layout_status"
             android:layout_width="match_parent"
@@ -256,6 +280,18 @@
                 android:layout_weight="7"
                 android:gravity="right"
                 android:text="@string/placeholder" />
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:layout_width="20dip"
+                    android:layout_height="20dip"
+                    android:background="@drawable/jiantou" />
+            </LinearLayout>
         </LinearLayout>
 
         <Button
@@ -794,8 +830,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
                 android:text="积分" />
-
-           
 
             <LinearLayout
                 android:layout_width="match_parent"

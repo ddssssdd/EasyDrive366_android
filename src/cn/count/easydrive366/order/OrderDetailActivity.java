@@ -8,6 +8,7 @@ import android.os.Bundle;
 import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.afterpay.AfterPayController;
+import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydrive366.insurance.UploadInsPhotoActivity;
 import cn.count.easydrive366.user.BoundActivity;
 import cn.count.easydriver366.base.AppSettings;
@@ -32,7 +33,9 @@ public class OrderDetailActivity extends BaseHttpActivity {
 	private boolean is_upload;
 	private int order_count;
 	private JSONObject json;
+	private int _goods_id;
 	private String order_url;
+	private String coupon_url;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -68,7 +71,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 				is_upload = json.getInt("is_upload")==1;
 				is_exform = json.getInt("is_exform")==1;
 				order_url = json.getString("order_url").trim();
-				
+				coupon_url = json.optString("coupon_url");
 				final String status_url = json.getString("status_url").trim();
 				
 				if (order_url!=null && !order_url.isEmpty()){
@@ -82,6 +85,28 @@ public class OrderDetailActivity extends BaseHttpActivity {
 							
 						}});
 				}
+				if (coupon_url!=null && !coupon_url.isEmpty()){
+					findViewById(R.id.layout_coupon).setOnClickListener(new OnClickListener(){
+
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent(OrderDetailActivity.this,BrowserActivity.class);
+							intent.putExtra("url", coupon_url);
+							startActivity(intent);
+							
+						}});
+				}
+				findViewById(R.id.layout_goods).setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						int id = _goods_id;
+						Intent intent = new Intent(OrderDetailActivity.this,
+								GoodsDetailActivity.class);
+						intent.putExtra("id", id);
+						startActivity(intent);
+						
+					}});
 				if (!is_exform){
 					this.rightTopMenu.setVisible(false);
 				}
@@ -98,6 +123,7 @@ public class OrderDetailActivity extends BaseHttpActivity {
 					((TextView)findViewById(R.id.txt_buyer)).setText(goods.getString("buyer"));
 					ImageView img = (ImageView)findViewById(R.id.img_picture);
 					AppTools.loadImageFromUrl(img, goods.getString("pic_url"));
+					_goods_id = goods.optInt("id");
 					
 				}
 				//sets order informaiton
@@ -216,12 +242,16 @@ public class OrderDetailActivity extends BaseHttpActivity {
 						payItem.setData(pay.getString("bank_name"), pay.getString("account"), index);
 						tr.addView(payItem);
 						tblPays.addView(tr);
-						tr.setTag(pay);
+						tr.setTag(pay.get("pay_url"));
+						
 						tr.setOnClickListener(new OnClickListener(){
 
 							@Override
 							public void onClick(View v) {
-								
+								String url = (String)v.getTag();
+								Intent intent = new Intent(OrderDetailActivity.this,BrowserActivity.class);
+								intent.putExtra("url", url);
+								OrderDetailActivity.this.startActivity(intent);
 							}});
 					}
 					
