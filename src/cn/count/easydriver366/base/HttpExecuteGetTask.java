@@ -39,14 +39,16 @@ public abstract class HttpExecuteGetTask extends
 					+ e.getMessage();
 		}
 	}
-
+	protected String getServerUrl(){
+		return AppSettings.ServerUrl;
+	}
 	@Override
 	abstract protected void onPostExecute(String result);
 	private static String session_id="";
 	private String httpGetUrl(final String urlString) {
 		try {
 
-			String httpUrl = AppSettings.ServerUrl + urlString;
+			String httpUrl = getServerUrl() + urlString;
 			if (AppSettings.task_id>0){
 				httpUrl = String.format("%s&taskid=%d", httpUrl,AppSettings.task_id);
 				AppSettings.task_id =0;

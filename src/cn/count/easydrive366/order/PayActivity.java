@@ -33,6 +33,7 @@ import cn.count.easydrive366.R;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
+import com.unionpay.UPPayAssistEx;
 
 public class PayActivity extends BaseHttpActivity {
 	private TableLayout tblItems;
@@ -160,8 +161,10 @@ public class PayActivity extends BaseHttpActivity {
 							if (pay.getString("bank_id").equals("00001")){
 								
 								alipayStart();
-							}else{
+							}else if (pay.getString("bank_id").equals("00000")){
 								afterPay();
+							}else if (pay.getString("bank_id").equals("62000")){
+								up_pay();
 							}
 						}catch(Exception e){
 							log(e);
@@ -173,6 +176,43 @@ public class PayActivity extends BaseHttpActivity {
 			
 		}catch(Exception e){
 			log(e);
+		}
+	}
+	private void up_pay(){
+		price = price.replace("元", "");
+		String url = String.format("UnionPay/PayNewOrder/%s/%s", this.order_id,price);
+		new HttpExecuteGetTask(){
+			@Override
+			protected String getServerUrl(){
+				return "http://payment.yijia366.cn/";
+			}
+			@Override
+			protected void onPostExecute(String result) {
+				try{
+					JSONObject json = new JSONObject(result);
+					String tn = json.optString("tn");
+					start_up_pay(tn);
+				}catch(Exception e){
+					log(e);
+				}
+				
+			}}.execute(url);
+	}
+	private void start_up_pay(final String tn){
+		String serverMode = "01"; //00 - production
+		int ret = UPPayAssistEx.startPay(this, null, null, tn, serverMode);
+		if (ret == UPPayAssistEx.PLUGIN_NOT_FOUND){
+			UPPayAssistEx.installUPPayPlugin(this);
+		}
+	}
+	@Override
+	protected void onActivityResult(int requestCode,int resultCode,Intent data){
+		if (data == null){
+			return;
+		}
+		String str = data.getExtras().getString("pay_result");
+		if (str.equalsIgnoreCase("success")){
+			afterPay();
 		}
 	}
 	private static String TAG = "Alipay";

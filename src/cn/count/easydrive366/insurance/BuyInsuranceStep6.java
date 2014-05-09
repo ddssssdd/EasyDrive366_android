@@ -44,6 +44,7 @@ public class BuyInsuranceStep6 extends BaseInsurance {
 	private String order_id;
 	private String price;
 	private String bounds;
+	private String bounds_num;
 	private String bank_id;
 	private String account;
 	@Override
@@ -67,6 +68,10 @@ public class BuyInsuranceStep6 extends BaseInsurance {
 			order_id = json.getString("order_id");
 			price =useDiscount?order_pay:order_pay2;
 			bounds =json.getString("bounds");
+			bounds_num = json.optString("bounds_num");
+			if (bounds_num==null || bounds_num.isEmpty()){
+				bounds_num = "0";
+			}
 			((TextView)findViewById(R.id.txt_order_total)).setText(json.getString("order_total"));
 			((TextView)findViewById(R.id.txt_bounds)).setText(bounds);
 			txt_pay =(TextView)findViewById(R.id.txt_order_pay); 
@@ -115,13 +120,34 @@ public class BuyInsuranceStep6 extends BaseInsurance {
 			this.account = json.getString("account");
 			if (bank_id.equals("00001")){
 				alipayStart();
-			}else{
+			}else if (bank_id.equals("00000")){
 				afterPay();
+			}else if (bank_id.equals("62000")){
+				//up_pay();
 			}
 		}catch(Exception e){
 			
 		}
 		
+	}
+	private void up_pay(){
+		
+		price = price.replace("元", "");
+		String url = String.format("UnionPay/PayNewOrder/%s/%s", this.order_id,price);
+		new HttpExecuteGetTask(){
+			@Override
+			protected String getServerUrl(){
+				return "http://payment.yijia366.cn/";
+			}
+			@Override
+			protected void onPostExecute(String result) {
+				try{
+					
+				}catch(Exception e){
+					log(e);
+				}
+				
+			}}.execute(url);
 	}
 	private static String TAG = "Alipay";
 	private static final int RQF_PAY = 1;
@@ -229,7 +255,7 @@ public class BuyInsuranceStep6 extends BaseInsurance {
 		Intent intent = new Intent(this,BuyInsuranceStep7.class);
 		
 		intent.putExtra("orderid", this.order_id);
-		intent.putExtra("bounds", this.bounds);
+		intent.putExtra("bounds",useDiscount?this.bounds_num:"0");
 		intent.putExtra("bank_id", this.bank_id);
 		intent.putExtra("account", this.account);
 		startActivity(intent);
