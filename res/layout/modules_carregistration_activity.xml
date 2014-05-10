@@ -359,7 +359,7 @@
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/signup_hit_input6"
+                    android:background="@drawable/signup_hit_input2"
                     android:gravity="center"
                     android:orientation="horizontal" >
 
@@ -372,6 +372,34 @@
 
                     <TextView
                         android:id="@+id/txt_carregistration_owner_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:hint="" >
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.0"
+                        android:text="" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/signup_hit_input6"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.0"
+                        android:gravity="right"
+                        android:text="所有人证件：" />
+
+                    <TextView
+                        android:id="@+id/txt_carregistration_owner_license"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"

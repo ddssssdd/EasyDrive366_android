@@ -16,6 +16,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import cn.count.easydrive366.components.CodeListTable;
 import cn.count.easydrive366.components.InformationRow;
 import cn.count.easydriver366.base.AppSettings;
@@ -48,6 +49,12 @@ public class ActivateCodeActivity extends BaseHttpActivity {
 		this.setupPhoneButtonInVisible();
 		edtCode = (EditText)findViewById(R.id.edt_code);
 		_table = (TableLayout)findViewById(R.id.table_cards);
+		TextView txt_remark =(TextView)findViewById(R.id.txt_remark);
+		
+		String remark = this.getIntent().getStringExtra("remark");
+		if (remark!=null && !remark.isEmpty()){
+			txt_remark.setText(remark);
+		}
 		findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() {
 			
 			@Override

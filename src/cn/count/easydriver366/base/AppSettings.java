@@ -22,8 +22,8 @@ import android.util.Log;
 
 public final class AppSettings {
 
-	static public String ServerUrl = "http://m.4006678888.com:21000/index.php/";
-	//static public String ServerUrl = "http://119.167.144.23:21000/index.php/";
+	//static public String ServerUrl = "http://m.4006678888.com:21000/index.php/";
+	static public String ServerUrl = "http://119.167.144.23:21000/index.php/";
 	
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";

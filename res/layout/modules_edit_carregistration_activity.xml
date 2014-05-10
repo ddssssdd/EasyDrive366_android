@@ -119,7 +119,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:background="@drawable/signup_hit_input6" >
+            android:background="@drawable/signup_hit_input2" >
 
              <TextView
                 style="@style/textview.right"
@@ -127,6 +127,32 @@
 
             <EditText
                 android:id="@+id/edt_carregistration_owner_name"
+                style="@style/edittext"
+                android:inputType="textCapCharacters"
+               
+                android:hint="" >
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.0"
+                android:text="" />
+        </TableRow>
+        <TableRow
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/signup_hit_input6" >
+
+             <TextView
+                style="@style/textview.right"
+                android:text="所有人证件:" />
+
+            <EditText
+                android:id="@+id/edt_carregistration_owner_license"
                 style="@style/edittext"
                 android:inputType="textCapCharacters"
                

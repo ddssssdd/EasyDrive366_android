@@ -29,6 +29,7 @@ public class Step2Activity extends BaseHttpActivity {
 	private EditText edtEngine_no;
 	private EditText edtRegistration_date;
 	private EditText edtOwner_name;
+	private EditText edtOwner_license;
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
 		this._isHideTitleBar = true;
@@ -43,7 +44,7 @@ public class Step2Activity extends BaseHttpActivity {
 		edtEngine_no = (EditText)findViewById(R.id.edt_engine_no);
 		edtRegistration_date = (EditText)findViewById(R.id.edt_registration_date);
 		edtOwner_name = (EditText)findViewById(R.id.edt_owner_name);
-		
+		edtOwner_license = (EditText)findViewById(R.id.edt_owner_license);
 		btnNext.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -63,6 +64,7 @@ public class Step2Activity extends BaseHttpActivity {
 		edtEngine_no.setText(intent.getStringExtra("engine_no"));
 		edtRegistration_date.setText(intent.getStringExtra("registration_date"));
 		edtOwner_name.setText(intent.getStringExtra("owner_name"));
+		edtOwner_license.setText(intent.getStringExtra("owner_license"));
 	}
 	
 	@Override
@@ -98,6 +100,7 @@ public class Step2Activity extends BaseHttpActivity {
 		String engine_no = edtEngine_no.getText().toString();
 		String registration_date = edtRegistration_date.getText().toString();
 		String owner_name = edtOwner_name.getText().toString();
+		String owner_license = edtOwner_license.getText().toString();
 		/*
 		if (vin.equals("")){
 			this.showMessage("请输入VIN码。", null);
@@ -112,7 +115,8 @@ public class Step2Activity extends BaseHttpActivity {
 			return;
 		}
 		*/
-		String url =String.format("api/wizardstep2?userid=%d&vin=%s&engine_no=%s&registration_date=%s&owner_name=%s",AppSettings.userid,vin,engine_no,registration_date,owner_name);
+		String url =String.format("api/wizardstep2?userid=%d&vin=%s&engine_no=%s&registration_date=%s&owner_name=%s&owner_license=%s",
+				AppSettings.userid,vin,engine_no,registration_date,owner_name,owner_license);
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(edtVIN.getWindowToken(), 0);
 		this.get(url, 1);

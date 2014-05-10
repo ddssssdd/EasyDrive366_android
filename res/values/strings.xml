@@ -28,7 +28,7 @@
 	<string name="key_10">购买意外险</string>
 	<string name="key_11">购买车险</string>
 	<string name="key_12">车务服务</string>
-	<string name="key_13">投保单</string>
+	<string name="key_13">保险订单</string>
 	<string name="exit_question">再按一次退出易驾366</string>
 	<string name="current">当前保单</string>
 	<string name="renew">新续保单</string>

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
+import cn.count.easydrive366.insurance.BuyInsuranceStep1;
 import cn.count.easydrive366.order.NewOrderActivity;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseListViewFragment;
@@ -106,7 +107,7 @@ public class GoodsListFragment extends BaseListViewV4Fragment {
 		holder.detail5.setText(info.get("buyer").toString());
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(
 				holder.image, info.get("pic_url").toString());
-		holder.button1.setTag(info.get("id"));
+		holder.button1.setTag(info);
 	}
 
 	@Override
@@ -127,12 +128,22 @@ public class GoodsListFragment extends BaseListViewV4Fragment {
 
 			@Override
 			public void onClick(View v) {
-				String id = (String) v.getTag();
-				Intent intent = new Intent(
-						GoodsListFragment.this.getActivity(),
-						NewOrderActivity.class);
-				intent.putExtra("id", id);
-				startActivity(intent);
+				Map<String,Object> info =(Map<String,Object>)v.getTag();
+				String id = info.get("id").toString();
+				if (info.get("is_carins").toString().equalsIgnoreCase("0")){
+					Intent intent = new Intent(
+							GoodsListFragment.this.getActivity(),
+							NewOrderActivity.class);
+					intent.putExtra("id", id);
+					startActivity(intent);
+				}else{
+					String web_url = info.get("web_url").toString();
+					Intent intent = new Intent(GoodsListFragment.this.getActivity(),BuyInsuranceStep1.class);
+					intent.putExtra("web_url", web_url);
+					intent.putExtra("goods_id", id);
+					startActivity(intent);
+				}
+				
 			}
 		});
 	}

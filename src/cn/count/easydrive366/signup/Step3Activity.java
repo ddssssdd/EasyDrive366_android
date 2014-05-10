@@ -98,6 +98,8 @@ public class Step3Activity extends BaseHttpActivity {
 				*/
 				Intent intent = new Intent(this,ActivateCodeActivity.class);
 				intent.putExtra("isGuide", true);
+				JSONObject json = (JSONObject)result;
+				intent.putExtra("remark", json.getJSONObject("result").optString("remark"));
 				startActivity(intent);
 				
 				finish();

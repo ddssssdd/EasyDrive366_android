@@ -65,6 +65,7 @@ public class CarRegistrationActivity extends BaseListViewActivity {
 			((TextView)findViewById(R.id.txt_carregistration_untreated_number  )).setText(_result.getString("untreated_number"));
 			((TextView)findViewById(R.id.txt_carregistration_vin  )).setText(_result.getString("vin"));
 			((TextView)findViewById(R.id.txt_carregistration_owner_name  )).setText(_result.getString("owner_name"));
+			((TextView)findViewById(R.id.txt_carregistration_owner_license  )).setText(_result.getString("owner_license"));
 			this.setupRightButton();
 			/*
 			((Button)findViewById(R.id.btn_carregistration_edit)).setOnClickListener(new OnClickListener(){

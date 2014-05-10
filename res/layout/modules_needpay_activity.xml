@@ -88,7 +88,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dip"
-            android:text="可用积分折扣"
+            android:text="积分支付"
             android:textSize="14sp" />
 
         <TextView

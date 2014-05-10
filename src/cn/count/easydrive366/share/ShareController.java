@@ -164,7 +164,7 @@ public class ShareController {
 
 	        Intent sendIntent = new Intent(Intent.ACTION_SEND);
 	        sendIntent.setType("text/plain");
-	        sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("%s - %s(%s)",_title,_description,_url));
+	        sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("%s(%s)%s",_description,_url,_title));
 
 	        if (defaultSmsPackageName != null)//Can be null in case that there is no default, then the user would be able to choose any app that support this intent.
 	        {
@@ -175,7 +175,7 @@ public class ShareController {
 	    {
 	    	Intent sendIntent = new Intent(Intent.ACTION_VIEW);
 	        sendIntent.setData(Uri.parse("sms:"));
-	        sendIntent.putExtra("sms_body", String.format("%s - %s(%s)",_title,_description,_url));
+	        sendIntent.putExtra("sms_body", String.format("%s(%s)%s",_description,_url,_title));
 	        _context.startActivity(sendIntent);
 	    	
 	    }

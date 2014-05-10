@@ -1,5 +1,8 @@
 package cn.count.easydrive366.components;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -171,6 +174,13 @@ public class HomeMenuItem extends LinearLayout {
 			
 			Intent intent=new Intent(_context,_menuItem.activityClass);
 			intent.putExtra("title", _menuItem.name);
+			if (_menuItem.params!=null){
+				for(Entry<String, String> entry :_menuItem.params.entrySet()){
+					String key = entry.getKey();
+					String v = entry.getValue();
+					intent.putExtra(key, v);
+				}
+			}
 			_context.startActivity(intent);
 		}
 	}

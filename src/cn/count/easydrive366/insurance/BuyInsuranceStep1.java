@@ -20,9 +20,15 @@ import cn.count.easydriver366.base.HttpExecuteGetTask;
 public class BuyInsuranceStep1 extends BaseInsurance {
 	private WebView _webView;
 	private Handler mHandler = new Handler();
+	private String goods_id;
 	@Override
 	protected void onRightButtonPress() {
-		startActivity(new Intent(this,BuyInsuranceStep2.class));
+		Intent intent =new Intent(this,BuyInsuranceStep2.class);
+		if (goods_id!=null && !goods_id.isEmpty()){
+			intent.putExtra("goods_id", goods_id);
+		}
+		startActivity(intent);
+		
 		stack_push();
 	}
 	
@@ -57,7 +63,16 @@ public class BuyInsuranceStep1 extends BaseInsurance {
 		*/
 		
 		//_webView.loadUrl(url);
-		load_data();
+		
+		String web_url = getIntent().getStringExtra("web_url");
+		if (web_url!=null && !web_url.isEmpty()){
+			goods_id = getIntent().getStringExtra("goods_id");
+			
+			_webView.loadUrl(web_url);
+		}else{
+			load_data();
+		}
+		
 		 
 	}
 	public boolean onKeyDown(int keyCode, KeyEvent event) {       

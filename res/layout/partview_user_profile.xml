@@ -94,7 +94,7 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/baoxian"
+            android:src="@drawable/wodejifen"
             android:scaleType="centerInside"
             android:contentDescription="@string/app_name" />
 

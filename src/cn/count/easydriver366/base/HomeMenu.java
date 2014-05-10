@@ -1,5 +1,7 @@
 package cn.count.easydriver366.base;
 
+import java.util.Map;
+
 import cn.count.easydrive366.components.HomeMenuItem;
 
 public class HomeMenu {
@@ -12,6 +14,7 @@ public class HomeMenu {
 	public Class activityClass;
 	public HomeMenuItem menuItem;
 	public int ImageId;
+	public Map<String,String> params;
 	public HomeMenu(final String name,final String key,Class aClass){
 		this.name= name;
 		this.key =key;

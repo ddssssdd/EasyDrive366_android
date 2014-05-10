@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 
 import cn.count.easydrive366.components.HomeMenuItem;
+import cn.count.easydrive366.signup.Step0Activity;
 import cn.count.easydrive366.user.TaskDispatch;
 import cn.count.easydrive366.user.TaskListActivity;
 import cn.count.easydrive366.user.Task;
@@ -190,8 +191,12 @@ public class HomeFragment extends Fragment implements IRightButtonPressed, OnCli
 			
 			startActivityForResult(intent,1);
 			*/
+			/*
 			MainActivity main = (MainActivity)this.getActivity();
 			main.gotoTab(4);
+			*/
+			Intent intent = new Intent(this.getActivity(),Step0Activity.class);
+			startActivity(intent);
 		}else{
 			Intent intent = new Intent(this.getActivity(),WelcomeActivity.class);
 			startActivityForResult(intent,2);
@@ -222,8 +227,10 @@ public class HomeFragment extends Fragment implements IRightButtonPressed, OnCli
 	@Override
 	public void onRightButtonPress() {
 		if (AppSettings.isLogin){
-			MainActivity main = (MainActivity)this.getActivity();
-			main.gotoTab(4);
+			Intent intent = new Intent(this.getActivity(),Step0Activity.class);
+			startActivity(intent);
+			//MainActivity main = (MainActivity)this.getActivity();
+			//main.gotoTab(4);
 		}else{
 			Intent intent = new Intent(this.getActivity(),WelcomeActivity.class);
 			startActivityForResult(intent,2);

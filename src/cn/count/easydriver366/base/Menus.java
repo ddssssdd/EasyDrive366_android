@@ -1,6 +1,7 @@
 package cn.count.easydriver366.base;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -24,6 +25,7 @@ import cn.count.easydrive366.insurance.BuyInsuranceStep7;
 import cn.count.easydrive366.insurance.InsuranceList;
 import cn.count.easydrive366.insurance.InsuranceList2;
 import cn.count.easydrive366.insurance.InsuranceMenuActivity;
+import cn.count.easydrive366.order.NeedPayListActivity;
 
 public class Menus {
 	private Activity _activity;
@@ -53,7 +55,12 @@ public class Menus {
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_09),"09",BusinessInsuranceActivity.class,R.drawable.t));	
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_11),"11",BuyInsuranceStep1.class,R.drawable.r));
 		//insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_10),"10",AddCardStep1Activity.class,R.drawable.n));
-		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_13),"13",InsuranceList2.class,R.drawable.p));
+		HomeMenu mh =  new HomeMenu(_activity.getResources().getString(R.string.key_13),"13",NeedPayListActivity.class,R.drawable.p);
+		mh.params = new HashMap<String,String>();
+		
+		mh.params.put("status", "finished");
+		mh.params.put("type", "ins");
+		insurance_menus.add(mh);
 		//
 	}
 	public List<HomeMenu> getMenus(){

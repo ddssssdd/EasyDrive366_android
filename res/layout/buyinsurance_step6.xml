@@ -51,14 +51,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dip"
-                android:text="积分" />
+                android:text="积分支付" />
 
             <TextView
                 android:id="@+id/txt_bounds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dip"
-                android:text="交强险及车船税（元）" />
+                android:text="" />
 
             <CheckBox
                 android:id="@+id/chb_usediscount"

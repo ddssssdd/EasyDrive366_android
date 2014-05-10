@@ -31,6 +31,7 @@ import android.widget.TextView;
 import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.comments.ItemCommentsActivity;
+import cn.count.easydrive366.insurance.BuyInsuranceStep1;
 import cn.count.easydrive366.order.NewOrderActivity;
 import cn.count.easydrive366.provider.ProviderDetailActivity;
 import cn.count.easydrive366.share.FavorController;
@@ -54,6 +55,8 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 	private RatingBar rateBar;
 	private JSONObject _json;
 	private JSONArray _albums;
+	private String web_url;
+	private int is_carins;
 	private int _index = 0;
 	private String _id;
 	private String clause_url;
@@ -191,6 +194,8 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 					}});
 				items.addView(gpi);
 			}
+			web_url = _json.optString("web_url");
+			is_carins = _json.optInt("is_carins",0);
 		} catch (Exception e) {
 			log(e);
 		}
@@ -202,10 +207,17 @@ public class GoodsDetailActivity extends BaseHttpActivity implements Response {
 	}
 
 	private void btnBuyPressed() {
-
-		Intent intent = new Intent(this, NewOrderActivity.class);
-		intent.putExtra("id", _id);
-		startActivity(intent);
+		if (is_carins==1){
+			Intent intent = new Intent(this,BuyInsuranceStep1.class);
+			intent.putExtra("web_url", web_url);
+			intent.putExtra("goods_id", String.valueOf(this._goods_id));
+			startActivity(intent);
+		}else{
+			Intent intent = new Intent(this, NewOrderActivity.class);
+			intent.putExtra("id", _id);
+			startActivity(intent);
+		}
+		
 		finish();
 	}
 

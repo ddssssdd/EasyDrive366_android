@@ -23,6 +23,7 @@ import cn.count.easydriver366.base.AppTools.ISetDate;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
 public class BuyInsuranceStep2 extends BaseInsurance{
+	private String goods_id;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class BuyInsuranceStep2 extends BaseInsurance{
 		this.setupLeftButton();
 		this.setupRightButtonWithText("下一步");
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		goods_id = getIntent().getStringExtra("goods_id");
 		init_view();
 		boolean is_list = getIntent().getBooleanExtra("is_list", false);
 		if (is_list){
@@ -188,7 +190,12 @@ public class BuyInsuranceStep2 extends BaseInsurance{
 		if (id!=null && !id.isEmpty()){
 			url  = String.format("ins/carins_info?userid=%d&id=%s", AppSettings.userid,id);
 		}else{
-			url  = String.format("ins/carins_info?userid=%d", AppSettings.userid);
+			if (goods_id!=null && !goods_id.isEmpty()){
+				url  = String.format("ins/carins_info?userid=%d&goods_id=%s", AppSettings.userid,goods_id);
+			}else{
+				url  = String.format("ins/carins_info?userid=%d", AppSettings.userid);
+			}
+			
 		}
 		beginHttp();
 		new HttpExecuteGetTask(){

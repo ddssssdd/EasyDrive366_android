@@ -123,10 +123,10 @@
             android:name="cn.count.easydriver366.service.GetLatestReceiver"
             android:enabled="true"
             android:persistent="true" >
-            <intent-filer>
+            <intent-filter>
                 <action android:name="cn.count.easydriver366.service.GetLatestReceiver" >
                 </action>
-            </intent-filer>
+            </intent-filter>
         </receiver>
 
         <service
@@ -145,10 +145,10 @@
             </intent-filter>
         </receiver>
         <receiver android:name="cn.count.easydrive366.components.HomeMenuItem$LatestInformationReceiver" >
-            <intent-filer>
+            <intent-filter>
                 <action android:name="cn.count.easydrive366.components.HomeMenuItem.LatestInformationReceiver" >
                 </action>
-            </intent-filer>
+            </intent-filter>
         </receiver>
 
         <activity android:name="cn.count.easydrive366.SettingsActivity" >
@@ -182,6 +182,8 @@
             android:windowSoftInputMode="adjustPan|stateHidden" >
         </activity>
         <activity android:name="cn.count.easydrive366.ActivateCodeShowActivity" >
+        </activity>
+        <activity android:name="cn.count.easydrive366.signup.Step0Activity" >
         </activity>
         <activity android:name="cn.count.easydrive366.signup.Step1Activity" >
         </activity>

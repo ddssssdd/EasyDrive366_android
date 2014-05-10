@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import cn.count.easydrive366.ActivateCodeActivity;
 import cn.count.easydrive366.BindCellphoneActivity;
+import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.CarRegistrationEditActivity;
 import cn.count.easydrive366.DriverLicenseEditActivity;
 import cn.count.easydrive366.MainActivity;
@@ -590,9 +591,15 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 	}
 
 	private void open_insurance() {
+		/*
 		Intent intent = new Intent(this.getActivity(), NeedPayListActivity.class);
 		intent.putExtra("status", "finished");
 		intent.putExtra("type", "ins");
+		startActivity(intent);
+		*/
+		Intent intent = new Intent(this.getActivity(), BrowserActivity.class);
+		intent.putExtra("url", "http://www.yijia366.com/");
+		
 		startActivity(intent);
 	}
 
