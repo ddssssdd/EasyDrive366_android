@@ -252,6 +252,11 @@
         <activity android:name="cn.count.easydrive366.order.NewOrderActivity" >
         </activity>
         <activity android:name="cn.count.easydrive366.order.PayActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wxe590795397d68fd3"/>
+            </intent-filter>
         </activity>
         <activity android:name="cn.count.easydrive366.order.NeedPayListActivity" >
         </activity>

@@ -27,6 +27,9 @@ public final class AppSettings {
 	
 	static public final String AppTile="cn.count.EasyDrive366";
 	static public String LatestNewsKey="LatestNews";
+	
+	static public String WEIXIN_PARTNERID="1218610801";
+	
 	//below is for debug
 	/*
 	static public String WEIXIN_ID ="wxbf4902100b6d4a69";
@@ -36,6 +39,7 @@ public final class AppSettings {
 	// below is for release
 	
 	static public String WEIXIN_ID ="wxe590795397d68fd3";//"wxe590795397d68fd3";
+	
 	static public String SINA_WEIBO_ID="4031912721";  //"4031912721"
 	static public String BAIDUMAPKEY="939cb0c01d09f55edbf15645e42a1624";//for release
 	

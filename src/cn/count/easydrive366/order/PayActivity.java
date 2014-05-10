@@ -13,6 +13,7 @@ import com.alipay.android.app.sdk.AliPay;
 import cn.count.easydrive366.afterpay.AfterPayController;
 import cn.count.easydrive366.alipay.*;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,9 +34,17 @@ import cn.count.easydrive366.R;
 import cn.count.easydriver366.base.AppSettings;
 import cn.count.easydriver366.base.BaseHttpActivity;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
+
+import com.tencent.mm.sdk.constants.ConstantsAPI;
+import com.tencent.mm.sdk.modelbase.BaseReq;
+import com.tencent.mm.sdk.modelbase.BaseResp;
+import com.tencent.mm.sdk.modelpay.PayReq;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.unionpay.UPPayAssistEx;
 
-public class PayActivity extends BaseHttpActivity {
+public class PayActivity extends BaseHttpActivity implements IWXAPIEventHandler {
 	private TableLayout tblItems;
 	private LinearLayout tblPays;
 	private CheckBox chbUse;
@@ -50,14 +59,16 @@ public class PayActivity extends BaseHttpActivity {
 	private boolean isUseDiscount;
 	private String bankid;
 	private String bankname;
+	private IWXAPI api;
 	@Override 
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modules_needpay_activity);
 		this.setBarTitle("付款");
 		this.setupLeftButton();
-		
-		
+		api = WXAPIFactory.createWXAPI(this, AppSettings.WEIXIN_ID);
+    	api.registerApp(AppSettings.WEIXIN_ID);
+		api.handleIntent(getIntent(), this);
 		Intent intent= getIntent();
 		json = intent.getStringExtra("json");
 		if (json==null || json.isEmpty()){
@@ -165,6 +176,8 @@ public class PayActivity extends BaseHttpActivity {
 								afterPay();
 							}else if (pay.getString("bank_id").equals("62000")){
 								up_pay();
+							}else if (pay.getString("bank_id").equals("60000")){
+								wx_pay();
 							}
 						}catch(Exception e){
 							log(e);
@@ -204,6 +217,33 @@ public class PayActivity extends BaseHttpActivity {
 		if (ret == UPPayAssistEx.PLUGIN_NOT_FOUND){
 			UPPayAssistEx.installUPPayPlugin(this);
 		}
+	}
+	private void wx_pay(){
+		String url = String.format("pay_wechat/get_prepay?userid=%d&orderid=%s&total=0.01", 
+				AppSettings.userid,
+				this.order_id);
+		new HttpExecuteGetTask(){
+
+			@Override
+			protected void onPostExecute(String result) {
+				JSONObject json = AppSettings.getSuccessJSON(result, PayActivity.this);
+				if (json!=null){
+					try{
+						PayReq request = new PayReq();
+						request.appId = AppSettings.WEIXIN_ID;
+						request.partnerId = AppSettings.WEIXIN_PARTNERID;
+						request.prepayId = json.optString("prepayid");
+						request.nonceStr = json.optString("noncestr");
+						request.packageValue = "Sign=WXPay";
+						request.sign = json.optString("sign");
+						request.timeStamp = json.optString("timestamp");
+						api.sendReq(request);
+					}catch(Exception e){
+						log(e);
+					}
+				}
+				
+			}}.execute(url);
 	}
 	@Override
 	protected void onActivityResult(int requestCode,int resultCode,Intent data){
@@ -341,5 +381,22 @@ public class PayActivity extends BaseHttpActivity {
 				
 				
 			}}.execute(url);
+	}
+	@Override
+	public void onReq(BaseReq arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onResp(BaseResp resp) {
+		Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
+
+		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.app_name);
+			builder.setMessage("支付成功");
+			builder.show();
+		}
+		
 	}
 }
