@@ -14,7 +14,10 @@ import cn.count.easydrive366.afterpay.AfterPayController;
 import cn.count.easydrive366.alipay.*;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -44,7 +47,7 @@ import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.unionpay.UPPayAssistEx;
 
-public class PayActivity extends BaseHttpActivity implements IWXAPIEventHandler {
+public class PayActivity extends BaseHttpActivity  {
 	private TableLayout tblItems;
 	private LinearLayout tblPays;
 	private CheckBox chbUse;
@@ -68,7 +71,7 @@ public class PayActivity extends BaseHttpActivity implements IWXAPIEventHandler 
 		this.setupLeftButton();
 		api = WXAPIFactory.createWXAPI(this, AppSettings.WEIXIN_ID);
     	api.registerApp(AppSettings.WEIXIN_ID);
-		api.handleIntent(getIntent(), this);
+		
 		Intent intent= getIntent();
 		json = intent.getStringExtra("json");
 		if (json==null || json.isEmpty()){
@@ -77,7 +80,18 @@ public class PayActivity extends BaseHttpActivity implements IWXAPIEventHandler 
 		}else{
 			load_view(json);
 		}
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("wx.pay.success");
+		wx_receiver = new Wx_Receiver(this);
+		this.registerReceiver(wx_receiver, filter);
 	}
+	private Wx_Receiver wx_receiver;
+	@Override
+	protected void onDestroy() {
+		this.unregisterReceiver(wx_receiver);
+		super.onDestroy();
+	}
+
 	private void load_data(){
 		String url = String.format("order/order_info?userid=%d&orderid=%s", AppSettings.userid,order_id);
 		new HttpExecuteGetTask(){
@@ -360,7 +374,7 @@ public class PayActivity extends BaseHttpActivity implements IWXAPIEventHandler 
 			}
 		};
 	};
-	private void afterPay(){
+	public void afterPay(){
 		String bounds = "0";
 		if (this.isUseDiscount)
 			bounds = bounds_num;
@@ -382,20 +396,20 @@ public class PayActivity extends BaseHttpActivity implements IWXAPIEventHandler 
 				
 			}}.execute(url);
 	}
-	@Override
-	public void onReq(BaseReq arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void onResp(BaseResp resp) {
-		Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
-
-		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle(R.string.app_name);
-			builder.setMessage("支付成功");
-			builder.show();
+	
+	public static class Wx_Receiver extends BroadcastReceiver{
+		private PayActivity parent;
+		public Wx_Receiver(){
+			
+		}
+		public Wx_Receiver(PayActivity p){
+			parent = p;
+		}
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			Log.d("Receive wx pay success", intent.toString());
+			if (parent!=null)
+				parent.afterPay();
 		}
 		
 	}

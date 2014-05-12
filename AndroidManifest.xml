@@ -251,12 +251,9 @@
         </activity>
         <activity android:name="cn.count.easydrive366.order.NewOrderActivity" >
         </activity>
-        <activity android:name="cn.count.easydrive366.order.PayActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="wxe590795397d68fd3"/>
-            </intent-filter>
+        <activity android:name="cn.count.easydrive366.order.PayActivity"
+             >
+            
         </activity>
         <activity android:name="cn.count.easydrive366.order.NeedPayListActivity" >
         </activity>
@@ -314,6 +311,18 @@
         </activity>
         <activity android:name="cn.count.easydrive366.guide.GuideActivity" >
         </activity>
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wxe590795397d68fd3"/>
+            </intent-filter>
+            
+            
+        </activity>
         <!-- <activity android:name="cn.count.easydrive366.share.OpenActivity" >
             <intent-filter>
                 <data android:scheme="easydrive366" />
@@ -324,6 +333,12 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity> -->
+        <receiver android:name="cn.count.easydrive366.order.PayActivity$Wx_Receiver" >
+            <intent-filter>
+                <action android:name="wx.pay.success" >
+                </action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
