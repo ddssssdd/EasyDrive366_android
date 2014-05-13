@@ -598,7 +598,7 @@ public class SettingsFragment extends BaseHttpV4Fragment {
 		startActivity(intent);
 		*/
 		Intent intent = new Intent(this.getActivity(), BrowserActivity.class);
-		intent.putExtra("url", "http://www.yijia366.com/");
+		intent.putExtra("url", String.format("http://m.4006678888.com:21000/index.php/prize/summary?userid=%d", AppSettings.userid));
 		
 		startActivity(intent);
 	}

@@ -53,7 +53,7 @@ public class Menus {
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_07),"07",TaxForCarShipActivity.class,R.drawable.q));
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_08),"08",CompulsoryInsuranceActivity.class,R.drawable.s));
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_09),"09",BusinessInsuranceActivity.class,R.drawable.t));	
-		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_11),"11",BuyInsuranceStep1.class,R.drawable.r));
+		//insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_11),"11",BuyInsuranceStep1.class,R.drawable.r));
 		//insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_10),"10",AddCardStep1Activity.class,R.drawable.n));
 		HomeMenu mh =  new HomeMenu(_activity.getResources().getString(R.string.key_13),"13",NeedPayListActivity.class,R.drawable.p);
 		mh.params = new HashMap<String,String>();
