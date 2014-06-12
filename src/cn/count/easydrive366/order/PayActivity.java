@@ -47,7 +47,7 @@ import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.unionpay.UPPayAssistEx;
 
-public class PayActivity extends BaseHttpActivity  {
+public class PayActivity extends BaseHttpActivity{
 	private TableLayout tblItems;
 	private LinearLayout tblPays;
 	private CheckBox chbUse;
@@ -226,16 +226,19 @@ public class PayActivity extends BaseHttpActivity  {
 			}}.execute(url);
 	}
 	private void start_up_pay(final String tn){
-		String serverMode = "01"; //00 - production
+		String serverMode = "00"; //00 - production
 		int ret = UPPayAssistEx.startPay(this, null, null, tn, serverMode);
 		if (ret == UPPayAssistEx.PLUGIN_NOT_FOUND){
 			UPPayAssistEx.installUPPayPlugin(this);
 		}
 	}
 	private void wx_pay(){
-		String url = String.format("pay_wechat/get_prepay?userid=%d&orderid=%s&total=0.01", 
+		price = price.replace("元", "");
+		String url = String.format("pay_wechat/get_prepay?userid=%d&orderid=%s&total=%s&name=%s", 
 				AppSettings.userid,
-				this.order_id);
+				this.order_id,
+				price,
+				title);
 		new HttpExecuteGetTask(){
 
 			@Override
@@ -374,13 +377,19 @@ public class PayActivity extends BaseHttpActivity  {
 			}
 		};
 	};
+	private boolean finish_pay=false;
 	public void afterPay(){
+		if (finish_pay){
+			return;
+		}
+		finish_pay=true;
 		String bounds = "0";
 		if (this.isUseDiscount)
 			bounds = bounds_num;
 		String url =String.format("order/order_payed?userid=%d&orderid=%s&orderpay=%s&bounds=%s&bankid=%s&account=%s",
 				AppSettings.userid,this.order_id,price,bounds,bankid,bankname);
 		beginHttp();
+		
 		new HttpExecuteGetTask(){
 
 			@Override
@@ -388,6 +397,7 @@ public class PayActivity extends BaseHttpActivity  {
 				endHttp();
 				JSONObject json = AppSettings.getSuccessJSON(result,PayActivity.this);
 				if (json!=null){
+					
 					AfterPayController controller = new AfterPayController(PayActivity.this);
 					controller.dispatch(json);
 					finish();
@@ -408,9 +418,18 @@ public class PayActivity extends BaseHttpActivity  {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			Log.d("Receive wx pay success", intent.toString());
-			if (parent!=null)
-				parent.afterPay();
+			if (intent.getIntExtra("result", -1)==0){
+				if (parent!=null)
+					parent.afterPay();
+			}else{
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle(R.string.app_name);
+				builder.setMessage(String.format("支付失败，微信返回结果：%d，请联系客服。", intent.getIntExtra("result", -1)));
+				builder.show();
+			}
 		}
 		
 	}
+
+	
 }

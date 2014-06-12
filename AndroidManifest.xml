@@ -252,7 +252,8 @@
         <activity android:name="cn.count.easydrive366.order.NewOrderActivity" >
         </activity>
         <activity android:name="cn.count.easydrive366.order.PayActivity"
-             >
+             android:exported="true"
+            android:launchMode="singleTop">
             
         </activity>
         <activity android:name="cn.count.easydrive366.order.NeedPayListActivity" >
