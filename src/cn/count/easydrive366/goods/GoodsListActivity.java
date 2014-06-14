@@ -16,6 +16,7 @@ import android.widget.TextView;
 import cn.count.easydrive366.BaseListViewActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
+import cn.count.easydrive366.insurance.BuyInsuranceStep1;
 import cn.count.easydrive366.order.NewOrderActivity;
 import cn.count.easydriver366.base.AppSettings;
 
@@ -34,7 +35,12 @@ public class GoodsListActivity extends BaseListViewActivity {
 		this.resource_listview_id = R.id.modules_information_listview;
 		//this.resource_listitem_id = R.layout.module_listitem;
 		this.resource_listitem_id = R.layout.listitem_goods;
-		restoreFromLocal(1);
+		_key = getIntent().getStringExtra("key");
+		if (_key!=null && !_key.isEmpty()){
+			_types= getIntent().getStringExtra("types");
+			
+			_isSearching = true;
+		}
 		
 		reload_data();
 		this.setupPullToRefresh();
@@ -86,7 +92,7 @@ public class GoodsListActivity extends BaseListViewActivity {
 		holder.detail4.setText(info.get("discount").toString());
 		holder.detail5.setText(info.get("buyer").toString());
 		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
-		holder.button1.setTag(info.get("id"));
+		holder.button1.setTag(info);
 	}
 	@Override
 	protected void initListItem(ViewHolder holder,View convertView){
@@ -103,10 +109,21 @@ public class GoodsListActivity extends BaseListViewActivity {
 
 			@Override
 			public void onClick(View v) {
-				String id =(String)v.getTag();
-				Intent intent = new Intent(GoodsListActivity.this, NewOrderActivity.class);
-				intent.putExtra("id", id);
-				startActivity(intent);
+				Map<String,Object> info =(Map<String,Object>)v.getTag();
+				String id = info.get("id").toString();
+				if (info.get("is_carins").toString().equalsIgnoreCase("0")){
+					Intent intent = new Intent(
+							GoodsListActivity.this,
+							NewOrderActivity.class);
+					intent.putExtra("id", id);
+					startActivity(intent);
+				}else{
+					String web_url = info.get("web_url").toString();
+					Intent intent = new Intent(GoodsListActivity.this,BuyInsuranceStep1.class);
+					intent.putExtra("web_url", web_url);
+					intent.putExtra("goods_id", id);
+					startActivity(intent);
+				}
 			}});
 	}
 	@Override

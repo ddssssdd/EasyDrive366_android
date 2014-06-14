@@ -14,6 +14,10 @@ import cn.count.easydrive366.components.EDViewPager;
 import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydrive366.goods.GoodsListFragment;
 import cn.count.easydrive366.guide.GuideActivity;
+import cn.count.easydrive366.maintab.MineFragment;
+import cn.count.easydrive366.maintab.MoreFragment;
+import cn.count.easydrive366.maintab.RecommentsFragment;
+import cn.count.easydrive366.maintab.SearchFragment;
 import cn.count.easydrive366.provider.ProviderDetailActivity;
 import cn.count.easydrive366.provider.ProviderListFragment;
 import cn.count.easydrive366.user.SettingsFragment;
@@ -63,15 +67,22 @@ public class MainActivity extends FragmentActivity {
     private EDViewPager mTabPager;//声明对象  
     private ImageView _imgHome, _imgGoods, _imgProvider, _imgArticle,_imgSettings;  
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private HomeFragment _home;
+    //private HomeFragment _home;
+    private RecommentsFragment _home;
     private boolean _userWantQuit=false;
 	private Timer _quitTimer;
-    private GoodsListFragment _goods;
-    private ProviderListFragment _provider;
+    //private GoodsListFragment _goods;
+	private SearchFragment _goods;
+	
+    //private ProviderListFragment _provider;
+    private MineFragment _provider;
     //private ArticleListFragment _article;
-    private SettingsFragment _settings;
+    
     private ArticleFragment _article2;
     
+    
+    //private SettingsFragment _settings;
+    private MoreFragment _settings;
     @Override  
     public void onCreate(Bundle savedInstanceState) {  
         super.onCreate(savedInstanceState);  
@@ -192,12 +203,12 @@ public class MainActivity extends FragmentActivity {
     		else
     			rightMenu.setTitle("登录");
     		break;
-    	case 4:
-    		
-    		rightMenu.setTitle("");
+    	case 1:
+    		rightMenu.setTitle("查询");
+    	
     		break;
     	default:
-    		rightMenu.setTitle("分类");
+    		rightMenu.setTitle("");
     	}
     }
     
@@ -369,17 +380,17 @@ public class MainActivity extends FragmentActivity {
 			Log.d("Tab", String.format("Wanted=%d", position));
 			if (position==0){
 				if (_home==null){
-					_home = new HomeFragment();
+					_home = new RecommentsFragment();
 				}
 				return _home;
 			}else if (position ==1){
 				if (_goods==null){
-					_goods = new GoodsListFragment();
+					_goods = new SearchFragment();
 				}
 				return _goods;
 			}else if (position ==2){
 				if (_provider==null){
-					_provider = new ProviderListFragment();
+					_provider = new MineFragment();
 				}
 				return _provider;
 			}else if (position ==3){
@@ -394,7 +405,7 @@ public class MainActivity extends FragmentActivity {
 				return _article2;
 			}else if (position ==4){
 				if (_settings==null){
-					_settings = new SettingsFragment();
+					_settings = new MoreFragment();
 				}
 				return _settings;
 			}else{
