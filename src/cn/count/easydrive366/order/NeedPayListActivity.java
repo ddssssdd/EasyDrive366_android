@@ -22,6 +22,7 @@ import cn.count.easydrive366.BaseListViewActivity;
 import cn.count.easydrive366.R;
 
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 
 
@@ -119,7 +120,7 @@ public class NeedPayListActivity extends BaseListViewActivity{
 		holder.detail3.setText(info.get("order_total").toString());
 	//	holder.detail4.setText(info.get("quantity").toString());
 		
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
+		AppTools.loadImageFromUrl(holder.image, info.get("pic_url").toString());
 		
 		
 		if (!_status.equals("notpay")){

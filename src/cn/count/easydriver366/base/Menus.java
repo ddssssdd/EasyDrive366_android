@@ -26,6 +26,7 @@ import cn.count.easydrive366.insurance.InsuranceList;
 import cn.count.easydrive366.insurance.InsuranceList2;
 import cn.count.easydrive366.insurance.InsuranceMenuActivity;
 import cn.count.easydrive366.order.NeedPayListActivity;
+import cn.count.easydrive366.user.UesrProfileActivity;
 
 public class Menus {
 	private Activity _activity;
@@ -38,16 +39,21 @@ public class Menus {
 	private void initMenuItems(){
 		menus = new ArrayList<HomeMenu>();
 		insurance_menus = new ArrayList<HomeMenu>();
+		HomeMenu mo =  new HomeMenu(_activity.getResources().getString(R.string.key_13),"13",NeedPayListActivity.class,R.drawable.dingdan);
+		mo.params = new HashMap<String,String>();
 		
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_01),"01",InformationActivity.class,R.drawable.m));
+		mo.params.put("status", "finished");
+		menus.add(mo);
+		//menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_14),"14",InformationActivity.class,R.drawable.dingdan));
+		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_01),"01",InformationActivity.class,R.drawable.xinxi));
 		//menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_02),"02",HelpCallActivity.class,R.drawable.n));
 		
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_04),"04",MaintainActivity.class,R.drawable.g));	
+		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_04),"04",MaintainActivity.class,R.drawable.baoyang));	
 		//menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_12),"12",CarServiceActivity.class,R.drawable.o));
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_06),"06",CarRegistrationActivity.class,R.drawable.e));
-		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_05),"05",DriverLicenseActivity.class,R.drawable.f));
+		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_06),"06",CarRegistrationActivity.class,R.drawable.cheliang));
+		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_05),"05",DriverLicenseActivity.class,R.drawable.jiashizheng));
 		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",InsuranceMenuActivity.class,R.drawable.p));
-		//menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_03),"03",BuyInsuranceStep7.class,R.drawable.p));
+		menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_15),"15",UesrProfileActivity.class,R.drawable.ziliao));
 		
 		
 		insurance_menus.add(new HomeMenu(_activity.getResources().getString(R.string.key_07),"07",TaxForCarShipActivity.class,R.drawable.q));

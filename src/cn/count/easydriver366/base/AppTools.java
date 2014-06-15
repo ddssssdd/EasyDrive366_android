@@ -108,13 +108,18 @@ public final class AppTools {
 		return intent;
 	}
 	public static void loadImageFromUrl(ImageView imageView,final String url){
-		if (imageView==null)
+		if (imageView == null)
 			return;
-		if (url ==null)
+		if (url == null)
 			return;
 		if (url.isEmpty())
 			return;
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url);
+		if (!url.toLowerCase().startsWith("http://")){
+			imageView.setImageResource(R.drawable.m);
+		}else{
+			com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(
+					imageView, url);
+		}
 	}
 	public static void loadImageFromUrl(ImageView imageView,final String url,int resourceId){
 		if (imageView==null)
@@ -123,7 +128,11 @@ public final class AppTools {
 			return;
 		if (url.isEmpty())
 			return;
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url,resourceId);
+		if (!url.toLowerCase().startsWith("http://")){
+			imageView.setImageResource(R.drawable.m);
+		}else{
+			com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url,resourceId);
+		}
 	}
 	public static void chooseDate(String d,Context context,final ISetDate callback){
 		

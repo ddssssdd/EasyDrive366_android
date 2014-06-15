@@ -23,6 +23,7 @@ import cn.count.easydrive366.baidumap.SearchShopActivity;
 import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydrive366.order.NewOrderActivity;
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.BaseListViewFragment;
 
 public class GoodsListFragment extends BaseListViewFragment {
@@ -107,7 +108,7 @@ public class GoodsListFragment extends BaseListViewFragment {
 		holder.detail3.setText(info.get("stand_price").toString());
 		holder.detail4.setText(info.get("discount").toString());
 		holder.detail5.setText(info.get("buyer").toString());
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(
+		AppTools.loadImageFromUrl(
 				holder.image, info.get("pic_url").toString());
 		holder.button1.setTag(info.get("id"));
 	}

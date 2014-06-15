@@ -1,6 +1,7 @@
 package cn.count.easydrive366.user;
 
 import cn.count.easydrive366.R;
+import cn.count.easydriver366.base.AppTools;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
@@ -32,11 +33,7 @@ public class ShowPictureDialog extends DialogFragment {
 				}});
 	        Bundle b = this.getArguments();
 	        String url = b.getString("url");
-	        if (url!=null && !url.isEmpty()){
-	        	if (url.startsWith("http://")){
-	        		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(img, url);
-	        	}
-	        }
+	        AppTools.loadImageFromUrl(img, url);
 	        return v;
 	 }
 	

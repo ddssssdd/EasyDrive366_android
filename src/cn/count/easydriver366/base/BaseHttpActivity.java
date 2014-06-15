@@ -536,22 +536,10 @@ public class BaseHttpActivity extends ActionActivity implements
 		}.execute(url,AppSettings.getOutputParameters(params));
 	}
 	public void loadImageFromUrl(ImageView imageView,final String url){
-		if (imageView==null)
-			return;
-		if (url ==null)
-			return;
-		if (url.isEmpty())
-			return;
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url);
+		AppTools.loadImageFromUrl(imageView, url);
 	}
 	public void loadImageFromUrl(ImageView imageView,final String url,int resourceId){
-		if (imageView==null)
-			return;
-		if (url ==null)
-			return;
-		if (url.isEmpty())
-			return;
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView, url,resourceId);
+		AppTools.loadImageFromUrl(imageView, url,resourceId);
 	}
 	protected void setupTitle(final String title,final String subtitle){
 		this.getActionBar().setTitle(title);

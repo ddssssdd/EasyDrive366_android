@@ -18,6 +18,7 @@ import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
 import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydrive366.provider.ProviderDetailActivity;
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.AppTools;
 
 public class MyHistroyActivity extends BaseListViewActivity {
 	@Override
@@ -74,7 +75,7 @@ public class MyHistroyActivity extends BaseListViewActivity {
 		holder.detail2.setText(info.get("price").toString());
 		holder.detail.setText(info.get("description").toString());
 		holder.detail3.setText(info.get("occur_time").toString());
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
+		AppTools.loadImageFromUrl(holder.image, info.get("pic_url").toString());
 		
 
 	}

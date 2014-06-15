@@ -19,6 +19,7 @@ import cn.count.easydrive366.R;
 import cn.count.easydrive366.baidumap.ShowLocationActivity;
 import cn.count.easydrive366.provider.ProviderDetailActivity;
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.AppTools;
 
 public class GoodsShopListActivity extends BaseListViewActivity {
 	private int goods_id;
@@ -85,7 +86,7 @@ public class GoodsShopListActivity extends BaseListViewActivity {
 		holder.detail3.setText(info.get("phone").toString());
 		holder.detail4.setText(info.get("star_voternum").toString());
 		holder.ratingbar.setRating(Float.parseFloat(info.get("star_num").toString()));
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
+		AppTools.loadImageFromUrl(holder.image, info.get("pic_url").toString());
 		
 	}
 	@Override

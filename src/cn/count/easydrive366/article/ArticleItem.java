@@ -3,6 +3,7 @@ package cn.count.easydrive366.article;
 import java.util.Map;
 
 import cn.count.easydrive366.R;
+import cn.count.easydriver366.base.AppTools;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -73,7 +74,7 @@ public class ArticleItem extends LinearLayout {
 		
 		detail3.setText(info.get("star_voternum").toString());
 		ratingbar.setRating(Float.parseFloat(info.get("star_num").toString()));
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(image, info.get("pic_url").toString());
+		AppTools.loadImageFromUrl(image, info.get("pic_url").toString());
 		int is_favor = Integer.parseInt( info.get("is_favor").toString());
 		if (is_favor==1){
 			image3.setImageResource(R.drawable.favor);

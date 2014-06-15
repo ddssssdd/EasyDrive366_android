@@ -3,6 +3,7 @@ package cn.count.easydrive366.goods;
 import java.util.Map;
 
 import cn.count.easydrive366.R;
+import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.BaseListViewV4Fragment.ViewHolder;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -32,7 +33,7 @@ public class GoodsProviderItem extends LinearLayout {
 		txtAddress.setText(address);
 		txtVoter.setText(voternum);
 		ratingBar.setRating(star_num);
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(imageView,url);
+		AppTools.loadImageFromUrl(imageView,url);
 	}
 	
 }

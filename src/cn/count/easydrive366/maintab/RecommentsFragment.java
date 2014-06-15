@@ -35,6 +35,7 @@ import cn.count.easydrive366.signup.Step0Activity;
 import cn.count.easydrive366.user.Task;
 import cn.count.easydrive366.user.TaskDispatch;
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 import cn.count.easydriver366.base.IRightButtonPressed;
@@ -254,7 +255,7 @@ public class RecommentsFragment extends Fragment implements IRightButtonPressed,
 			return;
 		if (url.isEmpty())
 			return;
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(
+		AppTools.loadImageFromUrl(
 				imageView, url);
 	}
     private void get_imagelist(){

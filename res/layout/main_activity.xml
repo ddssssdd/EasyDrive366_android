@@ -29,12 +29,12 @@
                 android:clickable="false"
                 android:contentDescription="@string/app_name"
                 android:scaleType="matrix"
-                android:src="@drawable/zhuye_pressed" />
+                android:src="@drawable/tuijian_pressed" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name"
+                android:text="推荐"
                 android:textColor="#fff"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -54,12 +54,12 @@
                 android:clickable="false"
                 android:contentDescription="@string/goods"
                 android:scaleType="matrix"
-                android:src="@drawable/shangpin_normal" />
+                android:src="@drawable/fenlei_normal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/goods"
+                android:text="搜索"
                 android:textColor="#fff"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -79,12 +79,12 @@
                 android:clickable="false"
                 android:contentDescription="@string/provider"
                 android:scaleType="matrix"
-                android:src="@drawable/shanghu_normal" />
+                android:src="@drawable/wode_normal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/provider"
+                android:text="我的"
                 android:textColor="#fff"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -129,12 +129,12 @@
                 android:clickable="false"
                 android:contentDescription="@string/settings"
                 android:scaleType="matrix"
-                android:src="@drawable/yonghu_normal" />
+                android:src="@drawable/gengduo_normal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/settings"
+                android:text="更多"
                 android:textColor="#fff"
                 android:textSize="12sp" />
         </LinearLayout>

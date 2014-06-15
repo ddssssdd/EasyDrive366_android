@@ -34,6 +34,7 @@ import cn.count.easydrive366.comments.ItemCommentsActivity;
 import cn.count.easydrive366.share.FavorController;
 import cn.count.easydrive366.share.ShareController;
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.BaseListViewFragment;
 import cn.count.easydriver366.base.BaseListViewV4Fragment;
 
@@ -219,7 +220,9 @@ public class ArticleListFragment extends BaseListViewV4Fragment implements Respo
 		
 		holder.detail3.setText(info.get("star_voternum").toString());
 		holder.ratingbar.setRating(3/*Float.parseFloat(info.get("star").toString())*/);
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
+		//com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable
+		
+		AppTools.loadImageFromUrl(holder.image, info.get("pic_url").toString());
 		int is_favor = Integer.parseInt( info.get("is_favor").toString());
 		if (is_favor==1){
 			holder.image3.setImageResource(R.drawable.favor);

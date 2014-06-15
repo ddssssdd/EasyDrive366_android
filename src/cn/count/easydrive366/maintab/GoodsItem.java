@@ -7,6 +7,7 @@ import cn.count.easydrive366.R;
 import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydrive366.insurance.BuyInsuranceStep1;
 import cn.count.easydrive366.order.NewOrderActivity;
+import cn.count.easydriver366.base.AppTools;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
@@ -49,7 +50,7 @@ public class GoodsItem extends LinearLayout {
 		is_carins = item.optString("is_carins");
 		web_url = item.optString("web_url");
 		ImageView image = (ImageView) findViewById(R.id.img_picture);
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(
+		AppTools.loadImageFromUrl(
 				image, item.optString("pic_url"));
 		Button btnBuy = (Button) findViewById(R.id.btn_buy);
 

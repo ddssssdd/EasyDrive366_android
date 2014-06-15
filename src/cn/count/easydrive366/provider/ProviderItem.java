@@ -4,6 +4,7 @@ import java.util.Map;
 
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.order.NewOrderActivity;
+import cn.count.easydriver366.base.AppTools;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
@@ -54,7 +55,7 @@ public class ProviderItem extends LinearLayout {
 		detail3.setText(info.get("stand_price").toString());
 		detail4.setText(info.get("discount").toString());
 		detail5.setText(info.get("buyer").toString());
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(
+		AppTools.loadImageFromUrl(
 				image, info.get("pic_url").toString());
 		button1.setTag(info.get("id"));
 	}

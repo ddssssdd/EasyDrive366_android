@@ -18,6 +18,7 @@ import cn.count.easydrive366.BaseListViewActivity.ViewHolder;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
 import cn.count.easydrive366.goods.GoodsDetailActivity;
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.AppTools;
 
 public class ProviderListActivity extends BaseListViewActivity {
 	private boolean _isSearching=false;
@@ -85,7 +86,7 @@ public class ProviderListActivity extends BaseListViewActivity {
 		holder.detail3.setText(info.get("phone").toString());
 		holder.detail4.setText(info.get("star_voternum").toString());
 		holder.ratingbar.setRating(Float.parseFloat(info.get("star_num").toString()));
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
+		AppTools.loadImageFromUrl(holder.image, info.get("pic_url").toString());
 		
 	}
 	@Override

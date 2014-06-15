@@ -15,6 +15,7 @@ import cn.count.easydrive366.user.TaskListActivity;
 import cn.count.easydrive366.user.Task;
 import cn.count.easydriver366.base.AppSettings;
 
+import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.HomeMenu;
 import cn.count.easydriver366.base.HttpExecuteGetTask;
 import cn.count.easydriver366.base.IRightButtonPressed;
@@ -305,14 +306,8 @@ public class HomeFragment extends Fragment implements IRightButtonPressed, OnCli
 		txt_index.setText(p);
 	}
     public void loadImageFromUrl(ImageView imageView, final String url) {
-		if (imageView == null)
-			return;
-		if (url == null)
-			return;
-		if (url.isEmpty())
-			return;
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(
-				imageView, url);
+		
+		AppTools.loadImageFromUrl(imageView, url);
 	}
     private void get_imagelist(){
     	String url = String.format("api/get_mainform?userid=%d", AppSettings.userid);

@@ -20,6 +20,7 @@ import cn.count.easydrive366.BrowserActivity;
 import cn.count.easydrive366.R;
 import cn.count.easydrive366.baidumap.SearchShopActivity;
 import cn.count.easydriver366.base.AppSettings;
+import cn.count.easydriver366.base.AppTools;
 import cn.count.easydriver366.base.BaseListViewFragment;
 
 public class ArticleListFragment extends BaseListViewFragment {
@@ -126,7 +127,7 @@ public class ArticleListFragment extends BaseListViewFragment {
 		
 		holder.detail3.setText(info.get("star_voternum").toString());
 		holder.ratingbar.setRating(3/*Float.parseFloat(info.get("star").toString())*/);
-		com.koushikdutta.urlimageviewhelper.UrlImageViewHelper.setUrlDrawable(holder.image, info.get("pic_url").toString());
+		AppTools.loadImageFromUrl(holder.image, info.get("pic_url").toString());
 		
 	}
 	@Override
